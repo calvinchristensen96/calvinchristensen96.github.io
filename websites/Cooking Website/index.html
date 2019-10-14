@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <meta charset="UTF-8">
+      <meta name="author" content="Calvin Christensen">
+      <title>Calvin's Recipes | Recipes</title>
+
+
+<style>
+
+html,body {
+  margin: 0;
+  padding: 0;
+}
+
+ul.nav{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #eee;
+  border-style: solid;
+  border-width: 1px;
+}
+
+li.nav{
+  float: left;
+}
+
+li.nav a{
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.nav a:hover:not(.active){
+  background-color: #555;
+  color: white;
+}
+
+.title {
+  text-align: center;
+  position: relative;
+  z-index: -5;
+}
+
+.title img{
+  width: 95%;
+}
+
+.imageButtons img {
+  border-style: solid; 
+  width: 100%;
+}
+
+#index1 {
+  margin-bottom: 15px;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+#index2 {
+  margin-bottom: 15px;
+  opacity: 1;
+  transition: 0.3s; 
+}
+
+#index3 {
+  margin-bottom: 15px;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+#index1:hover {
+  opacity: 0.5;
+}
+
+#index2:hover {
+  opacity: 0.5;
+}
+
+#index3:hover {
+  opacity: 0.5;
+}
+
+
+</style>
+
+    </head>
+    <body>
+      
+
+      <ul class="nav">
+        <li class="nav"><a>Home</a></li>
+        <li class="nav"><a href="recipes.html">Recipes</a></li>
+        <li class="nav"><a href="about.html">About</a></li>
+        <li class="nav" style="float:right"><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="title">
+        <img src="images/Calvin's_Recipes_Logo.png">
+      </div>
+
+     <div class="imageButtons">
+      <div id="index1">
+        <img src="images/index1.png" alt="index">
+      </div>
+      <div id="index2">
+        <img src="images/index2.png" alt="index">
+      </div>
+      <div id="index3">
+        <img src="images/index3.png" alt="index">
+      </div>
+     </div>
+
+<script>
+
+function recipes() {
+  window.location.href = "recipes.html";
+}
+
+function about() {
+  window.location.href = "about.html";
+}
+
+function contact() {
+  window.location.href = "contact.html";
+}
+
+$(document).ready(function(){
+  $("#index1").click(function(){
+    recipes();
+  });
+});
+
+$(document).ready(function(){
+  $("#index2").click(function(){
+    about();
+  });
+});
+
+$(document).ready(function(){
+  $("#index3").click(function(){
+    contact();
+  });
+});
+
+</script>
+
+    </body>
+  </html>
+

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <meta charset="UTF-8">
+      <meta name="author" content="Calvin Christensen">
+      <title>Calvin's Recipes | Recipes</title>
+
+
+<style>
+
+html,body {
+  margin: 0;
+  padding: 0;
+}
+
+.title{
+  text-align: center
+}
+
+ul.nav{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #eee;
+  border-style: solid;
+  border-width: 1px;
+}
+
+li.nav{
+  float: left;
+}
+
+li.nav a{
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.nav a:hover:not(.active){
+  background-color: #555;
+  color: white;
+}
+
+.image_row {
+  text-align: center;
+}
+
+img {
+  border-style: solid;
+  border-width: 5px;
+  border-color: #000;
+  margin: 10px;
+}
+
+.title img {
+  text-align: center;
+  border-style: none;
+  width: 95%;
+}
+
+.container{
+  position: absolute;
+  width: 100%;
+  
+}
+
+.overlay{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #fff;
+}
+
+.container:hover .overlay{
+  opacity: 0.75;
+}
+
+.text{
+  color: black;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  right: 44%;
+  text-align: center;
+  font-size: 20px;
+}
+
+.label {
+  position: absolute;
+  bottom: 200%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.collapsible {
+  font-size: 100%;
+}
+
+.space {
+  margin: 15%;
+}
+
+.image_button {
+  border-style: solid;
+  border-width: 5px;
+  border-color: #000;
+  margin: 10px;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.container .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.details {
+  float: right;
+  border-radius: 4px;
+  background-color: #eee;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0px;
+}
+
+.details span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.details span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.details:hover span {
+  padding-right: 25px;
+}
+
+.details:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.test{
+ position: relative;
+ display: inline;
+ opacity: 1;
+ transition: 0.3s;
+}
+
+.test:hover {
+ opacity: 0.5;
+}
+
+#content {
+  text-align: left;
+  margin: 10px;
+  display: none;
+}
+
+#content2 {
+  text-align: left;
+  margin: 10px;
+  display: none;
+}
+
+</style>
+
+    </head>
+    <body>
+      <ul class="nav">
+        <li class="nav"><a href="index.html">Home</a></li>
+        <li class="nav"><a>Recipes</a></li>
+        <li class="nav"><a href="about.html">About</a></li>
+        <li class="nav" style="float:right"><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="title">
+        <img src="images/Calvin's_Recipes_Logo.png">
+      </div>
+
+      <div class="image_row">
+        <div class="left">
+          <div class="container">    
+ 
+           <div class="test">
+            <img id="acai" src="images/acai.png" alt="Acai Bowl" style="width:25%; height:25%;">
+           </div>
+           <div class="test">
+            <img id="burrito" src="images/burrito_bowl.png" alt="Chicken Burrito Bowl" style="width:25%; height:25%;">
+           </div>
+           <div class="test">
+            <img id="skillet" src="images/skillet_sausage.png" alt="Skillet Sausage with White Beans and Spinach" style="width:25%; height:25%;">
+           </div>
+          </div>
+        </div>
+       </div>
+
+      <div class="space">
+        &nbsp
+      </div>
+
+      <div id="content">
+        <hr>
+	<h1>
+          <p id="content_title"><u>Title</u></p>
+        </h1>
+        <p id="content_description">Sample Text.</p>
+        <ul>
+          <li id="list_item1"> Sample Text </li>
+          <li id="list_item2"> Sample Text </li>
+          <li id="list_item3"> Sample Text </li>
+        </ul>
+        <button class="details" onclick="details()"><span>Details</span></button>
+      <br>
+      <br>
+      <hr>
+      </div>
+
+
+
+
+
+      <div class="image_row">
+        <div class="left">
+          <div class="container">    
+ 
+           <div class="test">
+            <img id="pumpkin" src="images/pumpkin_pie.png" alt="Pumpkin Pie" style="width:25%; height:25%;">
+           </div>
+           <div class="test">
+            <img id="oats" src="images/oats.png" alt="Overnight Oats" style="width:25%; height:25%;">
+           </div>
+           <div class="test">
+            <img id="tostadas" src="images/tostadas.png" alt="Tostadas" style="width:25%; height:25%;">
+           </div>
+          </div>
+        </div>
+       </div>
+
+      <div class="space">
+        &nbsp
+      </div>
+      <div class="space">
+        &nbsp
+      </div>
+
+      <div id="content2">
+        <hr>
+	<h1>
+          <p id="content_title2"><u>Title</u></p>
+        </h1>
+        <p id="content_description2">Sample Text.</p>
+        <ul>
+          <li id="list2_item1"> Sample Text </li>
+          <li id="list2_item2"> Sample Text </li>
+          <li id="list2_item3"> Sample Text </li>
+        </ul>
+        <button class="details" onclick="details()"><span>Details</span></button>
+      <br>
+      <br>
+      <hr>
+      </div>
+
+    
+
+
+<script>
+
+$(document).ready(function(){
+  $("#acai").click(function(){
+    $('#content_title').text("Acai Bowl");
+    $('#content_description').text("A nice fruity meal great for breakfast.");
+    $('#list_item1').text("Acai puree");
+    $('#list_item2').text("Assorted fruits");
+    $('#list_item3').text("Granola");
+    $("#content2").slideUp("slow");
+    $("#content").slideDown("slow");
+  });
+});
+
+$(document).ready(function(){
+  $("#burrito").click(function(){
+    $('#content_title').text("Chicken Burrito Bowl");
+    $('#content_description').text("A healthier take on the tradition burrito (without a tortilla).");
+    $('#list_item1').text("Chicken");
+    $('#list_item2').text("Kale");
+    $('#list_item3').text("Black beans");
+    $("#content2").slideUp("slow");
+    $("#content").slideDown("slow");
+  });
+});
+
+$(document).ready(function(){
+  $("#skillet").click(function(){
+    $('#content_title').text("Skillet Sausage with White Beans and Spinach");
+    $('#content_description').text("A quick, easy, and healthy meal that you can make on the stove.");
+    $('#list_item1').text("Kielbasa");
+    $('#list_item2').text("Canellini Beans");
+    $('#list_item3').text("Spinach");
+    $("#content2").slideUp("slow");
+    $("#content").slideDown("slow");
+  });
+});
+
+$(document).ready(function(){
+  $("#pumpkin").click(function(){
+    $('#content_title2').text("Pumpkin Pie");
+    $('#content_description2').text("A great dessert to enjoy during the fall.");
+    $('#list2_item1').text("Pumpkin");
+    $('#list2_item2').text("Homemade Crust");
+    $('#list2_item3').text("Pie");
+    $("#content").slideUp("slow");
+    $("#content2").slideDown("slow");
+  });
+});
+
+$(document).ready(function(){
+  $("#oats").click(function(){
+    $('#content_title2').text("Overnight Oats");
+    $('#content_description2').text("An excellent breakfast meal to start your day right. With no prep needed in the morning!");
+    $('#list2_item1').text("Rolled Oats");
+    $('#list2_item2').text("Milk of choice");
+    $('#list2_item3').text("Greek Yogurt");
+    $("#content").slideUp("slow");
+    $("#content2").slideDown("slow");
+  });
+});
+
+$(document).ready(function(){
+  $("#tostadas").click(function(){
+    $('#content_title2').text("Tostadas");
+    $('#content_description2').text("Tostadas made with taco-seasoned Turkey on a corn tortilla.");
+    $('#list2_item1').text("Ground turkey");
+    $('#list2_item2').text("Corn tortillas");
+    $('#list2_item3').text("Refried beans");
+    $("#content").slideUp("slow");
+    $("#content2").slideDown("slow");
+  });
+});
+
+
+function details() {
+  var y = document.getElementById("content_title").innerHTML;
+  y = y.substring(0,4);
+  var string = "details/";
+  var link = string.concat(y, "Details.html");
+  window.location.href = link;
+}
+</script>
+
+    </body>
+  </html>
+
