@@ -621,7 +621,10 @@ input[type=submit]:hover {
 }
 
 
-@media only screen and (min-width: 0px) {
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) {
 
   .logo img {
     margin-top: 48px;
