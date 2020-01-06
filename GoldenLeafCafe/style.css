@@ -742,7 +742,7 @@ input[type=submit]:hover {
 
 }
 
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: 820px) {
 
   .logo img {
     margin-top: 0;
