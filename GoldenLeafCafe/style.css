@@ -920,13 +920,7 @@ input[type=submit]:hover {
   #navbar2 button{
     font-size: 18px;
   }
-  
-  .navbar {
-    display: inline;
-  }
-  .mobile-navbar {
-    display: none;
-  }
+ 
 
 }
 
