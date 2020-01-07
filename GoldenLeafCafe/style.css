@@ -739,7 +739,7 @@ input[type=submit]:hover {
 
 }
 
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: 1000px) {
 
   .logo img {
     margin-top: 0;
@@ -845,7 +845,7 @@ input[type=submit]:hover {
 }
 
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1200px) {
 
   .phone {
     font-size: 24px;
