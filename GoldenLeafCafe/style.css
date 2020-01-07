@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
 @font-face {
   font-family: Seagull;
@@ -32,7 +32,7 @@ html,body {
 }
 
 .mobile-navbar img {
-  width: 24px;
+  width: 42px;
 }
 
 .mobile-navbar #myLinks {
@@ -43,12 +43,8 @@ html,body {
   color: white;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 36px;
   display: block;
-}
-
-.mobile-active {
-
 }
 
 
@@ -621,13 +617,10 @@ input[type=submit]:hover {
 }
 
 
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 3) {
+@media only screen and (min-width: 0px) {
 
   .logo img {
-    margin-top: 48px;
+    margin-top: 72px;
     width: 186px;
   }
 
@@ -745,7 +738,7 @@ input[type=submit]:hover {
 
 }
 
-@media only screen and (min-width: 820px) {
+@media only screen and (min-width: 720px) {
 
   .logo img {
     margin-top: 0;
@@ -771,7 +764,12 @@ input[type=submit]:hover {
     height: 20px;
   }
 
-  
+  .navbar {
+    display: inline;
+  }
+  .mobile-navbar {
+    display: none;
+  }
 
   .text-over-image {
     font-size: 12px;
@@ -920,7 +918,6 @@ input[type=submit]:hover {
   #navbar2 button{
     font-size: 18px;
   }
- 
 
 }
 
@@ -940,4 +937,3 @@ input[type=submit]:hover {
     </style>
   </head>
 </html>
-
