@@ -1,0 +1,491 @@
+ <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="author" content="Calvin Christensen">
+      <title>Waffle Shack Eau Claire</title>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link href="https://fonts.googleapis.com/css?family=Spectral&display=swap" rel="stylesheet">
+    </head>
+
+<style>
+  html,body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Spectral', serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  .header-image img {
+    width: 100%;
+    z-index: -10;
+    position: relative;
+  }
+
+  .navt {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px black;
+    text-decoration: none;
+    z-index: 100;
+    top: 200px;
+    margin-top: -200px;
+    padding-top: 24px;
+  }
+
+  .navt li {
+    display: inline;
+  }
+
+  .navt a {
+    text-decoration: none;
+    display: inline-block;
+    padding-left: 4%;
+    padding-right: 4%;
+    text-shadow: 2px 2px black;
+    color: white;
+    height: 44px;
+    line-height: 44px;
+    font-size: 24px
+  }
+
+  .navt a:hover {
+    text-decoration: underline;
+  }
+
+  .navt img {
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    border-style: solid;
+    border-color: gold;
+    border-width: 3px;
+  }
+
+  .section1 {
+    background-color: #592A00;
+    padding: 100px;
+    color: #fff;
+    text-align: center;
+  }
+
+  .section1 h1 {
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    margin-bottom: 36px;
+    font-size: 36px;
+    font-family: 'Spectral', serif;
+  }
+
+  .section1 p {
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    color: #aaa;
+    font-size: 18px;
+  }
+
+  .section-nav {
+    overflow: hidden;
+    text-align: center;
+    padding-top: 32px;
+  }
+
+  .section-nav a{
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .section-nav a.active {
+    border-bottom: solid;
+    border-color: #592A00;
+  }
+
+  .section2 {
+    padding: 24px;
+    padding-bottom: 48px;
+  }
+
+  .menu-button {
+    border-radius: 4px;
+    background-color: #592A00;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .menu-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .menu-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .menu-button:hover span {
+    padding-right: 25px;
+  }
+
+  .menu-button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+ .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+
+  .column img {
+    width: 100%;
+  }
+
+/* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column-info {
+    margin: 5%;
+  }
+
+  .section3 {
+    background-color: #FFF0E3;
+    padding: 24px;
+    padding-bottom: 48px;
+    padding-top: 48px;
+  }
+
+  .contact h1 {
+    text-align: center;
+  }
+ 
+  .map {
+    border-style: solid;
+    border-width: 2px;
+    line-height: 0;
+  }
+
+
+  input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+
+  input[type=submit] {
+    text-align: center;
+    background-color: #592A00;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: #63460B;
+    color: white;
+  }
+
+  .section4 {
+    background-color: #E5CF63;
+    padding: 100px;
+    color: black;
+    text-align: center;
+  }
+
+  .section4 h1 {
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    margin-bottom: 36px;
+    font-size: 36px;
+    font-family: 'Spectral', serif;
+  }
+
+  .section4 p {
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    color: #444;
+    font-size: 18px;
+  }
+
+  .fb-page {
+    text-align: center;
+  }
+  
+  .site-footer {
+    background-color:#222222;
+    padding:24px;
+    padding-left:  2.5%;
+    padding-right: 2.5%;
+    font-size:18px;
+    line-height:24px;
+    color: #bbbbbb;
+  }
+
+  .site-footer hr {
+    padding: 0;
+  }
+
+  .site-footer .container {
+    margin: 24px;
+  }
+
+  .site-footer hr {
+    border-top-color:#bbb;
+    opacity:0.5;
+  }
+
+  .site-footer hr.small {
+    margin:20px 0
+  }
+
+  .site-footer h6 {
+    color:#fff;
+    font-size:16px;
+    text-transform:uppercase;
+    margin-top:5px;
+    letter-spacing:2px
+  }
+
+  .site-footer a {
+    color:#bbbbbb;
+    font-size: 18px;
+  }
+
+  .site-footer a:hover {
+    color: white;
+    text-decoration:none;
+  }
+
+  .footer-links {
+    padding-left: 0;
+    list-style: none;
+    text-align: left;
+  }
+
+  .footer-links li {
+    display: inline;
+    text-align: left;
+  }
+
+  .footer-links a {
+    color:#737373
+    text-align: left;
+    line-height: 6px;
+    padding-left: 0px;
+  }
+
+  .footer-links a:active,.footer-links a:focus,.footer-links a:hover {
+    color: white;
+    text-decoration:none;
+  }
+
+  .footer-links.inline li {
+    display: list-item;
+  }
+
+  .copyright-text {
+    margin:0
+  }
+
+  @media (max-width:767px) {
+
+    .site-footer .copyright-text,.site-footer .social-icons {
+      text-align:center
+    }
+
+    .site-footer [class^=col-] {
+      margin-bottom:30px;
+    }
+  }
+
+</style>
+
+<body>  
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+  <ul class="navt">
+    <li>
+      <a href="#about">About</a>
+    </li>
+    <li>
+      <a href="#menu">Menu</a>
+    </li>
+    <li>
+      <a>
+        <img src="images/logo.png" height="400px" border="0">
+      </a>
+    </li>
+    <li>
+      <a href="#contact">Contact</a>
+    </li>
+    <li>
+      <a href="#news">News</a>
+    </li>
+  </ul>
+  <div class="header-image w3-animate-opacity">
+    <img src="images/bread-breakfast-delicious-food-374830.jpg">
+  </div>
+  <a id="about"></a>
+  <div class="section1">
+    <h1>
+      Welcome To The Waffle Shack
+    </h1>
+    <p>
+      We bring delicious fluffy waffles to our Eau Claire area. Come enjoy the smells, tastes, sounds, sights, and feels of our Shack. Free WI-FI for patrons so you can get that work done.Feel free take a break with our retro video games, and instruments.
+    </p>
+    <br><br>
+    <p>See below what we have to offer!</p>
+  </div>
+  <a id="menu"></a>
+  <div class="section2">
+    <div class="section-nav">
+      <a class="active" href="#home">Waffles</a>
+      <a href="#news">Retro Videogames</a>
+      <a href="#news">Instruments</a>
+      <hr>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <br>
+        <div class="column-info">
+          <h1>
+            Explore our Menu
+          </h1>
+          <p>
+          We bring delicious fluffy waffles to our Eau Claire area. Come enjoy the smells, tastes, sounds, sights, and feels of our Shack. Free WI-FI for patrons so you can get that work done.Feel free take a break with our retro video games, and instruments.
+          </p>
+          <br><br>
+          <button class="menu-button">
+            <span>
+              Full Menu 
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="column">
+        <img src="images/waffle.jpg">
+      </div>
+    </div>
+  </div>
+  <a id="contact"></a>
+  <div class="section3">
+    <div class="row">
+      <div class="column">
+        <div class="map">
+          <div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=508%20Water%20Street%20Eau%20Claire%2C%20Wisconsin+(Waffle%20Shack)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/coordinates.html">gps coordinates</a></iframe></div><br />
+        </div>
+      </div>
+ 
+      <div class="column">
+        <div class="contact">
+          <h1>We'd love to hear from you!</h1>
+	   <form action="mailto:info@goldenleafcafe.com" method="GET">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+            <label for="lname">Subject</label>
+            <input type="text" id="lname" name="subject" placeholder="Your subject..">     
+
+            <label for="subject">Message</label>
+            <textarea id="subject" name="body" placeholder="Write something.." style="height:200px"></textarea>
+
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a id="news"></a>
+  <div class="section4">
+    <h1>Follow us on Facebook</h1>
+    <p>Like our Facebook page to stay updated on everything happening at the Waffle Shack.</p>
+    <br><br><br>
+
+ 
+  <div class="fb-page">
+  <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FWaffleShackEC/&width=600&colorscheme=light&show_faces=true&border_color&stream=true&header=true&height=435" scrolling="yes" style="border:none; overflow:hidden; width:500px; height:435px; background: white;" allowtransparency="true" frameborder="0"></iframe> </div>
+
+  </div>
+
+
+<!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container-footer">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About Waffle Shack</h6>
+          <p class="text-justify">We bring delicious fluffy waffles to our Eau Claire area. Come enjoy the smells, tastes, sounds, sights, and feels of our Shack. Free WI-FI for patrons so you can get that work done.Feel free take a break with our retro video games, and instruments.</p> 
+        </div><br>
+	
+        <div class="col-xs-6 col-md-3">
+          <h6>Links</h6>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li><br>
+            <li><a href="#menu">Menu</a></li><br>
+            <li><a href="#contact">Contact</a></li> <br>
+            <li><a href="#news">News</a></li>       
+          </ul>
+        </div>
+        <br>
+	<div class="col-sm-12 col-md-6">
+	    Follow us on <a href = "https://www.facebook.com/WaffleShackEC/">Facebook</a> 
+        </div>
+      
+      </div>
+      <hr>
+    </div>
+    <div class="container-footer">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by <a href="#">Waffle Shack</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
+
