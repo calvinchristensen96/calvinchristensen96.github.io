@@ -850,7 +850,7 @@ input[type=submit]:hover {
   
 }
 
-@media screen and (min-width: 820px) {
+@media screen and (min-width: 860px) {
 
   #draggable {
     display: none;
