@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="author" content="Calvin Christensen">
+      <title>Golden Leaf Cafe | Contact</title>
+      <link rel="stylesheet" type="text/css" href="style.css">
+
+
+<style>
+
+@font-face {
+  font-family: Seagull;
+  src: url(fonts/seagull-serial-light/seagull-serial-light-regular.ttf);
+}
+
+</style>
+
+</head>
+<body>
+  <div class="margins">
+  <div class="mobile-navbar">
+    <div class="navbar-logo">
+      <img src="images/logo-small.png">
+    </div>
+    <p>Golden Leaf Cafe</p>
+    <div class="myLinks" id="myLinks"> 
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="coffee.html">Coffee Beans</a>
+      <a href="tea.html">Tea Leaves</a>
+      <a class="contact">Contact</a>
+      <div class="navbar-contact"><img src="images/phone.png"> 715-231-5323</div>
+      <div class="navbar-contact"><img src="images/location.png"> 1706 Stout Road Menomonie, Wi 54751</div>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="hamburgerMenu()">
+      <img src="images/hamburger2.png"><i class="fa fa-bars"></i>
+    </a>
+  </div>
+  <div class="phone">
+    <img src="images/phone.png"> 715-231-5323
+  </div>
+  <div class="location">
+    <img src="images/location.png"> 1706 Stout Road<br>Menomonie, Wi 54751
+  </div>
+  <div class="logo">
+    <img src="images/Golden_Leaf_Logo.png" alt="Golden Leaf Cafe Logo">
+  </div>
+
+  <div class="navbar">
+    <ul>
+      <li><a href="index.html">Welcome</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="coffee.html">Coffee Beans</a></li>
+      <li><a href="tea.html">Tea Leaves</a></li>
+      <li><a class="active" href="">Contact</a></li>
+    </ul>
+  </div>
+  <div class="navbar-underline">
+
+  </div>
+
+  <div class="header-image">
+    <img src="images/cafe4.jpg" alt="">
+  </div>
+
+  <div class="content2">
+    <h1>
+      A Local Menomonie Coffee Shop
+    </h1>
+    <br>
+    <h2>
+      Proudly serving Dunn County and neighboring communities of North-Western Wisconsin
+    </h2>
+    <br><hr><br>
+      <div class="contact">
+	<form action="mailto:info@goldenleafcafe.com" method="GET">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+	  <label for="lname">Subject</label>
+          <input type="text" id="lname" name="subject" placeholder="Your subject..">     
+
+          <label for="subject">Message</label>
+          <textarea id="subject" name="body" placeholder="Write something.." style="height:200px"></textarea>
+
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+     
+<br><br><br>
+    <div class="partners">
+      <h1>Friends & Partners of Golden Leaf Cafe</h1>
+      <br><hr><br>
+      <div class="business-partner">
+        <a href="https://www.farmertofarmer.org" alt="Farmer to Farmer"><img src="images/partners/FarmertoFarmer_logo.png"></a>
+      </div>
+      <div class="business-partner">
+        <a href="http://www.simply-dunn.com" alt="Simply Dunn"><img src="images/partners/Leaf-Logo_250.png"></a> <br>Simply Dunn
+      </div>
+      <div class="business-partner">
+        <a href="https://www.mmfc.coop" alt="Menomonie Market Food Co-Op"><img src="images/partners/Menomone-Market-Grocery-Food-Co-op-Store.png"></a> <br>
+      </div>
+      <div class="business-partner">
+        <a href="http://www.oaklawninn.com" alt="Oaklawn Inn"><img src="images/partners/Oaklawn-inn-logo-w-house2.png"></a> <br>
+      </div>
+    </div>
+
+
+
+  </div>
+  </div>
+
+
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6><br>
+          <p class="text-justify">Golden Leaf Cafe was created to sell unique recipes and products using high quality, natural and organic ingredients. A supportive organization in Menomonie, Wisconsin that is committed to benefiting both local and global communities.</p> 
+        </div>
+	<br><br><br>
+        <div class="col-xs-6 col-md-3">
+          <h6>Links</h6><br>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="coffee.html">Coffee Beans</a></li> 
+            <li><a href="tea.html">Tea Leaves</a></li> 
+            <li><a href="contact.html">Contact</a></li>      
+          </ul>
+        </div>
+        <br>
+	<div class="col-sm-12 col-md-6">
+	    Follow us on <a href = "https://www.facebook.com/pages/category/Coffee-Shop/Golden-Leaf-Cafe-181600309134/">Facebook</a> 
+        </div>
+      
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by <a href="#">Golden Leaf Cafe</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  
+
+
+<script>
+function hamburgerMenu() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>
+
