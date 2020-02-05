@@ -226,10 +226,6 @@ li button:hover{
   color: gold;
 }
 
-li .active:hover {
- color: black;
-}
-
 .navbar {
   text-align: center;
 }
@@ -373,7 +369,6 @@ h2 {
   content: "";
   display: table;
   clear: both;
-
 }
 
 .image-container {
@@ -519,11 +514,6 @@ td {
   text-align: center;
 }
 
-.coffee-images img {
-  width: 240px;
-  margin: 24px;
-}
-
 .content2 {
   text-align: center;
   margin: 12.5%;
@@ -666,11 +656,9 @@ input[type=text] {
   display: list-item;
 }
 
-
 .copyright-text {
   margin:0
 }
-
 
 @media only screen and (min-width: 0px) {
 
@@ -828,7 +816,13 @@ input[type=text] {
   .price {
     font-size: 24px;
   }
-  
+
+  .coffee-images img {
+    width: 30%;
+    margin: 24px;
+    margin-left: 35%;
+    margin-right: 35%;
+  }
 }
 
 @media screen and (min-width: 840px) {
@@ -949,32 +943,11 @@ input[type=text] {
     display: inline;
   }
   
-  #cafe-menu-btn2 {
-    background-size: 92px;
-  }
-
-  #beverage-menu-btn2 {
-    background-size: 92px;
-  }
-
-  #breakfast-menu-btn2 {
-    background-size: 92px;
-  }
-
-  #bakery-menu-btn2 {
-    background-size: 92px;
-  }
-
-  #budda-menu-btn2 {
-    background-size: 92px;
-  }
-
-  #gf-menu-btn2 {
-    background-size: 92px; 
-  }
-
-  #vegan-menu-btn2 {
-    background-size: 92px;
+  .coffee-images img {
+    width: 20%;
+    margin: 24px;
+    margin-left: 40%;
+    margin-right: 40%;
   }
 }
 
@@ -1021,6 +994,11 @@ input[type=text] {
 
   .header-image img{
     width: 75%;
+  }
+
+  .coffee-images img {
+    width: 180px;
+    margin: 24px;
   }
 
 }
@@ -1105,7 +1083,21 @@ input[type=text] {
     margin-right: 12px;
   }
 
+  .col-sm-12col-md-6 {
+    width: 50%;
+    float: left;
+  }
 
+  .col-xs-6col-md-3 {
+    width: 45%;
+    float: right;
+    margin-left: 5%;
+    margin-bottom: 24px;
+  }
+
+  .col-sm-3col-md-6 {
+    width: 100%;
+  }
 }
 
 
