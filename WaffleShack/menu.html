@@ -13,42 +13,6 @@
     font-family: 'Spectral', serif;
   }
 
-
-
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
 </style>
 
 <script>
@@ -85,42 +49,12 @@ function instrument() {
   var x = document.getElementById("menu-button");
   x.style.display = "none";
 }
-
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
 </script>
 
 
 <body>  
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
-
-
-
-
-
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#about">About</a>
-    <a href="#menu">Menu</a>
-    <a href="#contact">Contact</a>
-    <a href="#news">News</a>
-  </div>
-
-  <div class="mobile-navbar">
-    <div class="navbar-logo">
-      <img src="images/logo-transparent.png">
-    </div>
-    <a href="javascript:void(0);" class="icon" onclick="openNav()">
-      <img src="images/hamburger.png"><i class="fa fa-bars"></i>
-    </a>
-  </div>
-
   <ul class="navt">
     <li>
       <a href="#about">About</a>
@@ -178,7 +112,7 @@ function closeNav() {
           Waffle Shack is bringing waffle confections and savory fillers to downtown Water Street in Eau Claire WI.
           </p>
           <br><br>
-          <button onclick="window.location.href = 'menu.html';" id="menu-button">
+          <button onclick="window.location.href = "menu.html" id="menu-button">
             <span>
               Full Menu 
             </span>
@@ -191,25 +125,6 @@ function closeNav() {
       </div>
     </div>
   </div>
-  </div>
-
-  <div class="section2-mobile">
-    <h1>Waffles</h1>
-    <p>Waffle Shack is bringing waffle confections and savory fillers to downtown Water Street in Eau Claire WI.</p>
-    <img src="images/waffle.jpg">
-    <button onclick="window.location.href = 'menu.html';" id="menu-button">
-      <span>
-        Full Menu 
-      </span>
-    </button>
-    <br><hr><br>
-    <h1>Videogames</h1>
-    <p>Check out our wide selection of retro videogames and arcade games.</p> <ul><li>Super Nintendo</li> <li>Nintendo 64</li> <li>Arcade Games</li></ul>
-    <img src="images/videogame.png">
-    <br><hr><br>
-    <h1>Instruments</h1>
-    <p>After you're done enjoying some waffles, stop by our open guitars and piano to jam out.</p>
-    <img src="images/instruments.png">
   </div>
 
   <a id="contact"></a>
@@ -246,7 +161,7 @@ function closeNav() {
   <a id="news"></a>
   <div class="section4">
     <h1>Follow us on Facebook</h1>
-    <p>Like our <b><a href="https://www.facebook.com/WaffleShackEC/">Facebook</a></b> page to stay updated on everything happening at the Waffle Shack.</p>
+    <p>Like our Facebook page to stay updated on everything happening at the Waffle Shack.</p>
     <br><br><br>
 
  
@@ -263,7 +178,7 @@ function closeNav() {
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <h6>About Waffle Shack</h6>
-          <p class="text-justify">We bring delicious fluffy waffles to our Eau Claire area. Come enjoy the smells, tastes, sounds, sights, and feels of our Shack. Free WI-FI for patrons so you can get that work done. Feel free take a break with our retro video games, and instruments.</p> 
+          <p class="text-justify">We bring delicious fluffy waffles to our Eau Claire area. Come enjoy the smells, tastes, sounds, sights, and feels of our Shack. Free WI-FI for patrons so you can get that work done.Feel free take a break with our retro video games, and instruments.</p> 
         </div><br>
 	
         <div class="col-xs-6 col-md-3">
