@@ -127,17 +127,14 @@
     text-align: center;
     padding-left: 12.5%;
     padding-right: 12.5%;
-  }
+  }  
 
   .section1 h1 {
     margin-bottom: 36px;
-    font-size: 36px;
   }
 
   .section1 p {
-
     color: #aaa;
-    font-size: 18px;
   }
 
   .section-nav {
@@ -333,14 +330,12 @@
     margin-left: 12.5%;
     margin-right: 12.5%;
     margin-bottom: 36px;
-    font-size: 36px;
   }
 
   .section4 p {
     margin-left: 12.5%;
     margin-right: 12.5%;
     color: #444;
-    font-size: 18px;
   }
 
   .fb-page {
@@ -439,6 +434,19 @@
   }
 
   @media only screen and (min-width: 0px) {
+
+    h1 {
+      font-size: 54px;
+    }
+
+    p {
+      font-size: 26px;
+    }
+   
+    li {
+      font-size: 26px;
+    }
+
     .section2 {
       display: none;
     }
@@ -467,6 +475,19 @@
   }
 
   @media only screen and (min-width: 1100px) {
+
+    h1 {
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    li {
+      font-size: 18px;
+    }
+
     .section2 {
       display: block;
     }
