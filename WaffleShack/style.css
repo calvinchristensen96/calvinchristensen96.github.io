@@ -127,6 +127,40 @@
     color: #FFB02C;
   }
 
+  
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidenav a {
+    padding: 12px 12px 12px 32px;
+    text-decoration: none;
+    font-size: 42px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 56px;
+    margin-left: 50px;
+  }
 
   .section1 {
     background-color: #592A00;
@@ -478,6 +512,18 @@
       padding-right: 0;
     }
 
+    input[type=text], select, textarea {
+      font-size: 36px;
+    }
+
+    label {
+      font-size: 36px;
+    }
+
+    input[type=submit] {
+      font-size: 36px;
+    }
+
   }
 
   @media only screen and (min-width: 1100px) {
@@ -522,6 +568,18 @@
     .section4 {
       padding-left: 100px;
       padding-right: 100px;
+    }
+
+    input[type=text], select, textarea {
+      font-size: 18px;
+    }
+
+    label {
+      font-size: 18px;
+    }
+
+    input[type=submit] {
+      font-size: 18px;
     }
 
   }
