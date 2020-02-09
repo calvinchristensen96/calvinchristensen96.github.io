@@ -73,18 +73,19 @@
 
   .mobile-navbar {
     overflow: hidden;
-    background-color: white;
+    background-color: #222;
     width: 100%;
     z-index: 1;
     color: #bbb;
   }
 
   .mobile-navbar img {
-    width: 125px;
-    margin-top: -50px;
-    padding-top: 50px;
+    width: 150px;
+    margin-top: -45px;
+    padding-top: 40px;
     display: block;
     top: 0;
+    margin-left: 20px;
     z-index: 20;
   }
 
@@ -117,6 +118,11 @@
     top: 0;
   }
 
+  .mobile-navbar a.icon img {
+    margin-top: -45px;
+    width: 125px;
+  }
+
   .mobile-navbar a:hover {
     color: #FFB02C;
   }
@@ -127,8 +133,6 @@
     padding: 100px;
     color: #fff;
     text-align: center;
-    padding-left: 12.5%;
-    padding-right: 12.5%;
   }  
 
   .section1 h1 {
@@ -488,6 +492,11 @@
 
     li {
       font-size: 18px;
+    }
+
+    .section1 {
+      padding-left: 12.5%;
+      padding-right: 12.5%;
     }
 
     .section2 {
