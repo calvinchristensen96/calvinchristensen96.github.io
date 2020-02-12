@@ -3,260 +3,430 @@
     <head>
       <meta charset="UTF-8">
       <meta name="author" content="Calvin Christensen">
-      <title>Waffle Shack Eau Claire</title>
-      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <title>Overwatch Pokédex</title>
       <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
 <style>
-  html,body {
-    font-family: 'Spectral', serif;
+@font-face {
+  font-family: Overwatch;
+  src: url(koverwatch.ttf);
+}
+
+html,body {
+  margin: 0 auto;
+  font-family: Overwatch;
+}
+
+#content {
+
+}
+
+.navbar {
+  background-color: #e63632;
+  color: white;
+  padding: 12px;
+  padding-bottom: 0;
+  width: 100%;
+  top: 0;
+}
+
+.navbar input {
+  width: 48px;
+  float: right;
+  padding-top: 18px;
+}
+
+.navbar img {
+  width: 48px;
+  float: right;
+  padding-right: 24px;
+  padding-top: 18px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: white;
+  cursor: pointer; 
+  transition-duration: 0.3s;
+}
+
+li a:hover:not(.active) {
+  background-color: #fc8381;
+}
+
+li a.active {
+  color: #e63632;
+  background-color: white;
+}
+
+.gen {
+  padding-top: 48px;
+}
+
+.gen hr {
+  margin-top: 48px;
+  border-style: solid;
+  border-color: #e63632;
+}
+
+.caught {
+  text-align: center;
+  color: #e63632;
+}
+
+.pokemon {
+  margin: 5%;
+}
+
+.pokemon a img {
+  position: absolute;
+  width: 32px;
+  margin-left: 45px;
+  margin-top: -36px;
+}
+
+.image {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.image:hover {
+  opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 85%;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption { 
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
   }
+}
+
+@media only screen and (min-width: 0px) {
+  .navbar h1 {
+    font-size: 72px;
+  }
+  
+  .navbar input {
+    width: 120px;
+    padding-top: 30px;
+  }
+
+  .navbar img {
+    width: 120px;
+    float: right;
+    padding-top: 30px;
+  }
+
+  .caught {
+    font-size: 42px;
+  }
+
+  #caption {
+    font-size: 40px;
+  }
+
+  .pokemon a img {
+    width: 64px;
+    margin-left: 32px;
+    margin-top: -76px;
+  }
+
+  .caught {
+    margin-bottom: 120px;
+  }
+
+}
+
+
+
+@media only screen and (min-width: 1100px) {
+  .navbar h1 {
+   font-size: 36px;
+  }
+
+  .navbar input {
+    width: 48px;
+    padding-top: 18px;
+  }
+
+  .navbar img {
+    width: 48px;
+    padding-top: 18px;
+  }
+
+  .caught {
+    font-size: 24px;
+  }
+
+  #caption {
+    font-size: 18px;
+  }
+
+  .pokemon a img {
+    width: 32px;
+    margin-left: 45px;
+    margin-top: -36px;
+  }
+
+  .caught {
+    margin-bottom: 0;
+  }
+
+}
+
 </style>
 
-<script>
-function waffle() {
-  document.getElementById("videogame-button").style.border = "none";
-  document.getElementById("instrument-button").style.border = "none";
-  document.getElementById("waffle-button").style.borderBottom = "solid #592A00";
-  document.getElementById("header").innerHTML = "Explore our Menu";
-  document.getElementById("paragraph").innerHTML = "Waffle Shack is bringing waffle confections and savory fillers to downtown Water Street in Eau Claire WI.";
-  document.getElementById("image").src = "images/waffle.jpg";
-
-  var x = document.getElementById("menu-button");
-  x.style.display = "block";
-}
-
-function videogame() {
-  document.getElementById("waffle-button").style.border = "none";
-  document.getElementById("instrument-button").style.border = "none";
-  document.getElementById("videogame-button").style.borderBottom = "solid #592A00";
-  document.getElementById("header").innerHTML = "Play Some Games";
-  document.getElementById("paragraph").innerHTML = "Check out our wide selection of retro videogames and arcade games. <ul><li>Super Nintendo</li> <li>Nintendo 64</li> <li>Arcade Games</li></ul>";
-  document.getElementById("image").src = "images/videogame.png";
-  var x = document.getElementById("menu-button");
-  x.style.display = "none";
-}
-
-function instrument() {
-  document.getElementById("waffle-button").style.border = "none";
-  document.getElementById("videogame-button").style.border = "none";
-  document.getElementById("instrument-button").style.borderBottom = "solid #592A00";
-  document.getElementById("header").innerHTML = "Come Jam Out";
-  document.getElementById("paragraph").innerHTML = "After you're done enjoying some waffles, stop by our open guitars and piano to jam out.";
-  document.getElementById("image").src = "images/instruments.png";
-  var x = document.getElementById("menu-button");
-  x.style.display = "none";
-}
-
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-</script>
-
-
 <body>  
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
-
-
-
-
-
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#about">About</a>
-    <a href="#menu">Menu</a>
-    <a href="#contact">Contact</a>
-    <a href="#news">News</a>
-    <p>508 Water Street Eau Claire Wisconsin 54701</p><p>(715) 895-8580</p>
+<div id="content"> 
+  <div id="navbar" class="navbar">
+    <img id="logo" src="images/logo.png">
+    <input id="input" type="image" src="images/sun.png" onClick="myFunction()">
+    <h1>Overwatch Pokédex</h1>
+    
+    <ul>
+      <li><a href="#Kanto">Kanto</a></li>
+      <li><a href="#Jhoto">Jhoto</a></li>
+      <li><a href="#Hoenn">Hoenn</a></li>
+      <li><a href="#Sinnoh">Sinnoh</a></li>
+      <li><a href="#Unova">Unova</a></li>
+      <li><a href="#Kalos">Kalos</a></li>
+      <li><a href="#Alola">Alola</a></li>
+      <li><a href="#Galar">Galar</a></li>
+    </ul>
   </div>
 
-  <div class="mobile-navbar">
-    <div class="navbar-logo">
-      <img src="images/logo-transparent.png">
+  <div id="Kanto" class="gen">
+    <div id="caught" class="caught">
+      <p class="p">Kanto<br>1 / 151</p>
     </div>
-    <a href="javascript:void(0);" class="icon" onclick="openNav()">
-      <img src="images/hamburger.png"><i class="fa fa-bars"></i>
-    </a>
-  </div>
-
-  <ul class="navt">
-    <li>
-      <a href="#about">About</a>
-    </li>
-    <li>
-      <a href="#menu">Menu</a>
-    </li>
-    <li>
-      <a>
-        <img src="images/logo.png" height="400px" border="0">
-      </a>
-    </li>
-    <li>
-      <a href="#contact">Contact</a>
-    </li>
-    <li>
-      <a href="#news">News</a>
-    </li>
-  </ul>
-  <div class="header-image w3-animate-opacity">
-    <img src="images/bread-breakfast-delicious-food-374830.jpg">
-  </div>
-  <a id="about"></a>
-  <div class="section1">
-    <h1>
-      Welcome To The Waffle Shack
-    </h1>
-    <p>
-      We bring delicious fluffy waffles to our Eau Claire area. Come enjoy the smells, tastes, sounds, sights, and feels of our Shack. Free WI-FI for patrons so you can get that work done.Feel free take a break with our retro video games, and instruments. 
-      <br><br>
-      Waffle Shack features retro video games for freeplay, open guitars and piano for jamming, basketball hoops and soccer nets if you just want to ballout. Jam out to the 90s throwback vibe our music and environment has to offer.  We provide the best tasty waffle breakfast foods in Eau Claire Wisconsin.
-    </p>
-    <br><br>
-    <p>See below what we have to offer!</p>
-  </div>
-  <a id="menu"></a>
-  <div class="section2">
-    <div class="section-nav">
-      <button id="waffle-button" onclick="waffle()">Waffles</button>
-      <button id="videogame-button" onclick="videogame()">Retro Videogames</button>
-      <button id="instrument-button" onclick="instrument()">Instruments</button>
-      <hr>
+    <div class="pokemon">
+      <a href="http://pokemondb.net/pokedex/ditto"><img src="https://img.pokemondb.net/sprites/sun-moon/normal/ditto.png" alt="Ditto"></a>
+      <img class="image" src="images/132 - Ditto.png" style="width:100%;max-width:120px;" alt="Ditto<br> caught by Calvagh on February 2nd, 2020">
+      <div id="modalImage" class="modal">
+        <span class="close">&times;</span>
+        <div id="caption"></div>
+        <img class="modal-content" id="img01">
+      </div>
+    <hr class="hr"> 
     </div>
    
 
-    <div id="test">
-    <div class="row">
-      <div class="column">
-        <br>
-        <div class="column-info">
-          <h1 id="header">
-            Explore our Menu
-          </h1>
-          <p id="paragraph">
-          Waffle Shack is bringing waffle confections and savory fillers to downtown Water Street in Eau Claire WI.
-          </p>
-          <br><br>
-          <button onclick="window.location.href = 'menu.html';" id="menu-button">
-            <span>
-              Full Menu 
-            </span>
-          </button>
-        </div>
-      </div>
-
-      <div class="column">
-        <img id="image" src="images/waffle.jpg">
-      </div>
+  <div id="Jhoto" class="gen">
+    <div id="caught" class="caught">
+      <p class="p">Jhoto<br>2 / 100</p>
     </div>
-  </div>
-  </div>
-
-  <div class="section2-mobile">
-    <h1>Waffles</h1>
-    <p>Waffle Shack is bringing waffle confections and savory fillers to downtown Water Street in Eau Claire WI.</p>
-    <img src="images/waffle.jpg">
-    <button onclick="window.location.href = 'menu.html';" id="menu-button">
-      <span>
-        Full Menu 
-      </span>
-    </button>
-    <br><hr><br>
-    <h1>Videogames</h1>
-    <p>Check out our wide selection of retro videogames and arcade games.</p> <ul><li>Super Nintendo</li> <li>Nintendo 64</li> <li>Arcade Games</li></ul>
-    <img src="images/videogame.png">
-    <br><hr><br>
-    <h1>Instruments</h1>
-    <p>After you're done enjoying some waffles, stop by our open guitars and piano to jam out.</p>
-    <img src="images/instruments.png">
-  </div>
-
-  <a id="contact"></a>
-  <div class="section3">
-    <div class="row">
-      <div class="column">
-        <div class="map">
-          <div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=508%20Water%20Street%20Eau%20Claire%2C%20Wisconsin+(Waffle%20Shack)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/coordinates.html">gps coordinates</a></iframe></div><br />
-        </div>
-      </div>
- 
-      <div class="column">
-        <div class="contact">
-          <h1>We'd love to hear from you!</h1>
-	   <form action="" method="GET">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-            <label for="lname">Subject</label>
-            <input type="text" id="lname" name="subject" placeholder="Your subject..">     
-
-            <label for="subject">Message</label>
-            <textarea id="subject" name="body" placeholder="Write something.." style="height:200px"></textarea>
-
-            <input type="submit" value="Submit">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <a id="news"></a>
-  <div class="section4">
-    <h1>Follow us on Facebook</h1>
-    <p>Like our <b><a href="https://www.facebook.com/WaffleShackEC/">Facebook</a></b> page to stay updated on everything happening at the Waffle Shack.</p>
-    <br><br><br>
-
- 
-    <div class="fb-page">
-      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FWaffleShackEC%2Fposts%2F189563405763456&width=500" width="500" height="826" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> 
-    </div>
-
-  </div>
-
-
-<!-- Site footer -->
-  <footer class="site-footer">
-    <div class="container-footer">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <h6>About Waffle Shack</h6>
-          <p class="text-justify">We bring delicious fluffy waffles to our Eau Claire area. Come enjoy the smells, tastes, sounds, sights, and feels of our Shack. Free WI-FI for patrons so you can get that work done. Feel free take a break with our retro video games, and instruments.</p> 
-        </div><br>
-	
-        <div class="col-xs-6 col-md-3">
-          <h6>Links</h6>
-          <ul class="footer-links">
-            <li><a href="#about">About</a></li><br>
-            <li><a href="#menu">Menu</a></li><br>
-            <li><a href="#contact">Contact</a></li> <br>
-            <li><a href="#news">News</a></li>       
-          </ul>
-        </div>
-        <br>
-	<div class="col-sm-12 col-md-6">
-	    Follow us on <a href = "https://www.facebook.com/WaffleShackEC/">Facebook</a> 
-        </div>
+    <div class="pokemon">
+      <a href="http://pokemondb.net/pokedex/hoothoot"><img src="https://img.pokemondb.net/sprites/ultra-sun-ultra-moon/normal/hoothoot.png" alt="Hoothoot"></a>
+      <img class="image" src="images/163 - Hoothoot.png" style="width:100%;max-width:120px;" alt="Hoothoot<br> caught by Calvagh on February 10th, 2020">
       
-      </div>
-      <hr>
+      <a href="http://pokemondb.net/pokedex/sudowoodo"><img src="https://img.pokemondb.net/sprites/sun-moon/normal/sudowoodo-f.png" alt="Sudowoodo"></a>
+      <img class="image" src="images/185 - Sudowoodo.png" style="width:100%;max-width:120px;" alt="Sudowoodo<br> caught by Calvagh on February 6th, 2020">
+      <hr class="hr">  
     </div>
-    <div class="container-footer">
-      <div class="row">
-        <div class="col-md-8 col-sm-6 col-xs-12">
-          <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by <a href="#">Waffle Shack</a>.
-          </p>
-        </div>
-      </div>
+  </div>
+
+  <div id="Hoenn" class="gen">
+    <div id="caught" class="caught">
+      <p class="p">Hoenn<br>1 / 135</p>
     </div>
-  </footer>
+    <div class="pokemon">
+      <a href="http://pokemondb.net/pokedex/swampert"><img src="https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/swampert.png" alt="Swampert"></a>
+      <img class="image" src="images/260 - Swampert.png" style="width:100%;max-width:120px;" alt="Swampert<br> caught by Calvagh on February 2nd, 2020">
+    <hr class="hr">  
+    </div>
+  </div>
+
+  <div id="Sinnoh" class="gen">
+    <div id="caught" class="caught">
+      <p class="p">Sinnoh<br>0 / 107</p>
+    </div>
+    <div class="pokemon">
+      <hr class="hr">
+    </div>  
+  </div>
+
+  <div id="Unova" class="gen">
+    <div id="caught" class="caught">
+      <p class="p">Unova<br>0 / 156</p>
+    </div>
+    <div class="pokemon">
+      <hr class="hr">
+    </div>
+  </div>
+
+  <div id="Kalos" class="gen">
+    <div id="caught" class="caught">
+      <p class="p">Kalos<br>0 / 72</p>
+    </div>
+    <div class="pokemon">
+      <hr class="hr">
+    </div>  
+  </div>
+
+  <div id="Alola" class="gen">
+    <div id="caught" class="caught">
+      <p class="p">Alola<br>0 / 86</p>
+    </div>
+    <div class="pokemon">
+      <hr class="hr">
+    </div>  
+  </div>
+
+  <div id="Galar" class="gen">
+    <div id="caught" class="caught">
+      <p class="p">Galar<br>0 / 83</p>
+    </div>
+    <div class="pokemon">
+      <hr class="hr">
+    </div>  
+  </div>
 </div>
+
+<script>
+   var dark = false;
+
+   function myFunction() {
+    if (!dark) {
+      document.getElementById("logo").src = "images/logo-dark.png";
+      document.getElementById("input").src = "images/moon2.png";
+      document.getElementById("content").style.transition = "all 1s";
+      document.getElementById("content").style.backgroundColor = "black";
+      var x = document.getElementById("content").querySelectorAll(".p");
+      for(var j=0; j<x.length; j++){
+        x[j].style.transition = "all 1s";
+        x[j].style.color = "white";
+      }
+      var y = document.getElementById("content").querySelectorAll(".hr");
+      for(var k=0; k<y.length; k++){
+        y[k].style.transition = "all 1s";
+        y[k].style.borderColor = "white";
+      }
+      document.getElementById("navbar").style.transition = "all 1s";
+      document.getElementById("navbar").style.backgroundColor = "#5c0f0e";
+      dark = true;
+    }  else {
+      document.getElementById("logo").src = "images/logo.png";
+      document.getElementById("input").src = "images/sun.png";
+      document.getElementById("content").style.transition = "all 1s";
+      document.getElementById("content").style.backgroundColor = "white";
+      var x = document.getElementById("content").querySelectorAll(".p");
+      for(var j=0; j<x.length; j++){
+        x[j].style.transition = "all 1s";
+        x[j].style.color = "#e63632";
+      }
+      var y = document.getElementById("content").querySelectorAll(".hr");
+      for(var k=0; k<y.length; k++){
+        y[k].style.transition = "all 1s";
+        y[k].style.borderColor = "#e63632";
+      }
+      document.getElementById("navbar").style.transition = "all 1s";
+      document.getElementById("navbar").style.backgroundColor = "#e63632";
+      dark = false;
+    }
+  }
+
+  var modal = document.getElementById("modalImage");
+  var img = document.getElementsByClassName("image");
+  for(var i=0; i<img.length; i++){
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img[i].addEventListener('click',function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    })
+  }
+  var span = document.getElementsByClassName("close")[0];
+  span.onclick = function() { 
+    modal.style.display = "none";
+  }
+
+</script>
+
+
+
+
+
+
+
+
 </body>
 </html>
 
