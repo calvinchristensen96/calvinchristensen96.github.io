@@ -31,10 +31,9 @@ html,body {
   top: 0;
 }
 
-.navbar button {
+.navbar input {
   width: 48px;
   float: right;
-  padding-right: 24px;
   padding-top: 18px;
 }
 
@@ -44,8 +43,6 @@ html,body {
   padding-right: 24px;
   padding-top: 18px;
 }
-
-
 
 ul {
   list-style-type: none;
@@ -94,6 +91,13 @@ li a.active {
 
 .pokemon {
   margin: 5%;
+}
+
+.pokemon a img {
+  position: absolute;
+  width: 32px;
+  margin-left: 45px;
+  margin-top: -36px;
 }
 
 .image {
@@ -180,7 +184,8 @@ li a.active {
 <body>  
 <div id="content"> 
   <div id="navbar" class="navbar">
-    <img src="images/logo.png">
+    <img id="logo" src="images/logo.png">
+    <input id="input" type="image" src="images/sun.png" onClick="myFunction()">
     <h1>Overwatch Pokédex</h1>
     
     <ul>
@@ -197,92 +202,136 @@ li a.active {
 
   <div id="Kanto" class="gen">
     <div id="caught" class="caught">
-      <p>Kanto<br>1 / 151</p>
+      <p class="p">Kanto<br>1 / 151</p>
     </div>
     <div class="pokemon">
+      <a href="http://pokemondb.net/pokedex/ditto"><img src="https://img.pokemondb.net/sprites/sun-moon/normal/ditto.png" alt="Ditto"></a>
       <img class="image" src="images/132 - Ditto.png" style="width:100%;max-width:120px;" alt="Ditto<br> caught by Calvagh on February 2nd, 2020">
       <div id="modalImage" class="modal">
         <span class="close">&times;</span>
         <div id="caption"></div>
         <img class="modal-content" id="img01">
       </div>
-    <hr> 
+    <hr class="hr"> 
     </div>
    
 
   <div id="Jhoto" class="gen">
     <div id="caught" class="caught">
-      <p>Jhoto<br>2 / 100</p>
+      <p class="p">Jhoto<br>2 / 100</p>
     </div>
     <div class="pokemon">
+      <a href="http://pokemondb.net/pokedex/hoothoot"><img src="https://img.pokemondb.net/sprites/ultra-sun-ultra-moon/normal/hoothoot.png" alt="Hoothoot"></a>
       <img class="image" src="images/163 - Hoothoot.png" style="width:100%;max-width:120px;" alt="Hoothoot<br> caught by Calvagh on February 10th, 2020">
+      
+      <a href="http://pokemondb.net/pokedex/sudowoodo"><img src="https://img.pokemondb.net/sprites/sun-moon/normal/sudowoodo-f.png" alt="Sudowoodo"></a>
       <img class="image" src="images/185 - Sudowoodo.png" style="width:100%;max-width:120px;" alt="Sudowoodo<br> caught by Calvagh on February 6th, 2020">
-      <hr> 
+      <hr class="hr">  
     </div>
   </div>
 
   <div id="Hoenn" class="gen">
     <div id="caught" class="caught">
-      <p>Hoenn<br>1 / 135</p>
+      <p class="p">Hoenn<br>1 / 135</p>
     </div>
     <div class="pokemon">
+      <a href="http://pokemondb.net/pokedex/swampert"><img src="https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/swampert.png" alt="Swampert"></a>
       <img class="image" src="images/260 - Swampert.png" style="width:100%;max-width:120px;" alt="Swampert<br> caught by Calvagh on February 2nd, 2020">
-    <hr> 
+    <hr class="hr">  
     </div>
   </div>
 
   <div id="Sinnoh" class="gen">
     <div id="caught" class="caught">
-      <p>Sinnoh<br>0 / 107</p>
+      <p class="p">Sinnoh<br>0 / 107</p>
     </div>
     <div class="pokemon">
-    </div>
-  <hr> 
+      <hr class="hr">
+    </div>  
   </div>
 
   <div id="Unova" class="gen">
     <div id="caught" class="caught">
-      <p>Unova<br>0 / 156</p>
+      <p class="p">Unova<br>0 / 156</p>
     </div>
     <div class="pokemon">
+      <hr class="hr">
     </div>
-  <hr> 
   </div>
 
   <div id="Kalos" class="gen">
     <div id="caught" class="caught">
-      <p>Kalos<br>0 / 72</p>
+      <p class="p">Kalos<br>0 / 72</p>
     </div>
     <div class="pokemon">
-    </div>
-  <hr> 
+      <hr class="hr">
+    </div>  
   </div>
 
   <div id="Alola" class="gen">
     <div id="caught" class="caught">
-      <p>Alola<br>0 / 86</p>
+      <p class="p">Alola<br>0 / 86</p>
     </div>
     <div class="pokemon">
-    </div>
-  <hr> 
+      <hr class="hr">
+    </div>  
   </div>
 
   <div id="Galar" class="gen">
     <div id="caught" class="caught">
-      <p>Galar<br>0 / 83</p>
+      <p class="p">Galar<br>0 / 83</p>
     </div>
     <div class="pokemon">
-    </div>
-  <hr> 
+      <hr class="hr">
+    </div>  
   </div>
 </div>
 
 <script>
+   var dark = false;
+
    function myFunction() {
-    document.getElementById("content").style.transition = "all 1s";
-    document.getElementById("content").style.backgroundColor = "black";
-    document.getElementById("navbar").style.transition = "all 1s";
-    document.getElementById("navbar").style.backgroundColor = "#5c0f0e";
+    if (!dark) {
+      document.getElementById("logo").style.transition = "all 1s";
+      document.getElementById("logo").src = "images/logo-dark.png";
+      document.getElementById("input").style.transition = "all 1s";
+      document.getElementById("input").src = "images/moon2.png";
+      document.getElementById("content").style.transition = "all 1s";
+      document.getElementById("content").style.backgroundColor = "black";
+      var x = document.getElementById("content").querySelectorAll(".p");
+      for(var j=0; j<x.length; j++){
+        x[j].style.transition = "all 1s";
+        x[j].style.color = "white";
+      }
+      var y = document.getElementById("content").querySelectorAll(".hr");
+      for(var k=0; k<y.length; k++){
+        y[k].style.transition = "all 1s";
+        y[k].style.borderColor = "white";
+      }
+      document.getElementById("navbar").style.transition = "all 1s";
+      document.getElementById("navbar").style.backgroundColor = "#5c0f0e";
+      dark = true;
+    }  else {
+      document.getElementById("logo").style.transition = "all 1s";
+      document.getElementById("logo").src = "images/logo.png";
+      document.getElementById("input").style.transition = "all 1s";
+      document.getElementById("input").src = "images/sun.png";
+      document.getElementById("content").style.transition = "all 1s";
+      document.getElementById("content").style.backgroundColor = "white";
+      var x = document.getElementById("content").querySelectorAll(".p");
+      for(var j=0; j<x.length; j++){
+        x[j].style.transition = "all 1s";
+        x[j].style.color = "#e63632";
+      }
+      var y = document.getElementById("content").querySelectorAll(".hr");
+      for(var k=0; k<y.length; k++){
+        y[k].style.transition = "all 1s";
+        y[k].style.borderColor = "#e63632";
+      }
+      document.getElementById("navbar").style.transition = "all 1s";
+      document.getElementById("navbar").style.backgroundColor = "#e63632";
+      dark = false;
+    }
   }
 
   var modal = document.getElementById("modalImage");
