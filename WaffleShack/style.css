@@ -483,6 +483,14 @@
 
   @media only screen and (min-width: 0px) {
 
+    .header1 {
+      display: block;
+    }
+
+    .header2 {
+      display: none;
+    }
+
     h1 {
       font-size: 72px;
     }
@@ -536,6 +544,14 @@
 
   @media only screen and (min-width: 1100px) {
 
+    .header1 {
+      display: none;
+    }
+
+    .header2 {
+      display: block;
+    }
+   
     h1 {
       font-size: 36px;
     }
