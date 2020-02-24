@@ -32,6 +32,10 @@ html,body {
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+.modal h2 {
+  padding-top: 64px;
+}
+
 /* Modal Content */
 .modal-content {
   position: relative;
@@ -61,6 +65,12 @@ html,body {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.close2 {
+  font-size: 64px;
+  float: right;
   cursor: pointer;
 }
 
@@ -155,11 +165,21 @@ li a.active {
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
-  height: 75px;
+  height: 75px; 
+  margin: 24px;
+  width: 240px;
+  height: auto
 }
 
 .image:hover {
   opacity: 0.7;
+}
+
+.submit {
+  padding: 48px;
+  text-align: center;
+  background-color: #ff9694;
+  color: white;
 }
 
 /* The Modal (background) */
@@ -265,6 +285,8 @@ li a.active {
     margin-bottom: 120px;
   }
 
+  
+
 }
 
 
@@ -346,10 +368,10 @@ li a.active {
     </div>
     <div class="pokemon">
       <a href="http://pokemondb.net/pokedex/slowpoke"><img src="https://img.pokemondb.net/sprites/sun-moon/normal/slowpoke.png" alt="Ditto"></a>
-      <img class="image" src="images/79 - Slowpoke.jpg" style="width:100%;max-width:120px;" alt="Slowpoke<br> caught by Calvagh on February 19th, 2020">
+      <img class="image" src="images/79 - Slowpoke.jpg" alt="Slowpoke<br> caught by Calvagh on February 19th, 2020">
 
       <a href="http://pokemondb.net/pokedex/ditto"><img src="https://img.pokemondb.net/sprites/sun-moon/normal/ditto.png" alt="Ditto"></a>
-      <img class="image" src="images/132 - Ditto.png" style="width:100%;max-width:120px;" alt="Ditto<br> caught by Calvagh on February 2nd, 2020">
+      <img class="image" src="images/132 - Ditto.png" alt="Ditto<br> caught by Calvagh on February 2nd, 2020">
       <div id="modalImage" class="modal">
         <span class="close">&times;</span>
         <div id="caption"></div>
@@ -365,10 +387,10 @@ li a.active {
     </div>
     <div class="pokemon">
       <a href="http://pokemondb.net/pokedex/hoothoot"><img src="https://img.pokemondb.net/sprites/ultra-sun-ultra-moon/normal/hoothoot.png" alt="Hoothoot"></a>
-      <img class="image" src="images/163 - Hoothoot.png" style="width:100%;max-width:120px;" alt="Hoothoot<br> caught by Calvagh on February 10th, 2020">
+      <img class="image" src="images/163 - Hoothoot.png" alt="Hoothoot<br> caught by Calvagh on February 10th, 2020">
       
       <a href="http://pokemondb.net/pokedex/sudowoodo"><img src="https://img.pokemondb.net/sprites/sun-moon/normal/sudowoodo-f.png" alt="Sudowoodo"></a>
-      <img class="image" src="images/185 - Sudowoodo.png" style="width:100%;max-width:120px;" alt="Sudowoodo<br> caught by Calvagh on February 6th, 2020">
+      <img class="image" src="images/185 - Sudowoodo.png" alt="Sudowoodo<br> caught by Calvagh on February 6th, 2020">
       <hr class="hr">  
     </div>
   </div>
@@ -379,7 +401,7 @@ li a.active {
     </div>
     <div class="pokemon">
       <a href="http://pokemondb.net/pokedex/swampert"><img src="https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/swampert.png" alt="Swampert"></a>
-      <img class="image" src="images/260 - Swampert.png" style="width:100%;max-width:120px;" alt="Swampert<br> caught by Calvagh on February 2nd, 2020">
+      <img class="image" src="images/260 - Swampert.png" alt="Swampert<br> caught by Calvagh on February 2nd, 2020">
     <hr class="hr">  
     </div>
   </div>
@@ -428,6 +450,24 @@ li a.active {
       <hr class="hr">
     </div>  
   </div>
+
+
+
+
+  <div class="submit">
+    <h1>Submit a Screenshot</h1>
+    <p>Upload a screenshot that you've taken.</p>
+    <form action="/action_page.php">
+      <label for="img">Select image:</label>
+      <input type="file" id="img" name="img" accept="image/*"><br>
+      <label for="fname">Pokemon:</label><br>
+      <input type="text" id="fname" name="fname" value=""><br>
+      <label for="lname">Your username (optional):</label><br>
+      <input type="text" id="lname" name="lname" value=""><br>
+      <input type="submit">
+    </form>
+  </div>
+
 </div>
 
 <script>
