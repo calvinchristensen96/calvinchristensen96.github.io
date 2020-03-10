@@ -201,7 +201,7 @@ html,body {
 
 
   .header-contact {
-    top: 90%;
+    top: 88%;
     position: absolute;
     font-size: 18px;
     z-index: 2;  
@@ -247,14 +247,11 @@ html,body {
     padding-left: 7.5%;
     padding-right: 7.5%;
     padding-bottom: 120px;
+    line-height: 200%;
   }
 
   .section2 h1 {
     font-size: 48px;
-  }
-
-  .section2 p {
-
   }
 
   .section2 hr {
@@ -284,9 +281,6 @@ html,body {
     
   }
 
-
-
-
   .line1 {
     position: absolute;
     background-color: #5e2d01;
@@ -295,7 +289,7 @@ html,body {
     height: 2px;
     z-index: 0;
     width: 40%;
-    margin-top: 8px;
+    margin-top: 16px;
   }
 
   .line2 {
@@ -307,7 +301,7 @@ html,body {
     z-index: 0;
     width: 40%;
     margin-left: 45%;
-    margin-top: -10px;
+    margin-top: -16px;
     float: right;
   }
 
@@ -323,26 +317,11 @@ html,body {
   }
 
   .column img {
-    width: 100%;
+    width: 450px;
   }
 
   .column h2 {
     font-size: 36px;
-  }
-
-  .column p {
-    position: absolute;
-    top: 175px;
-    pading-left: 64px;
-    z-index: 1;
-    width: 93%;
-    height: 200%;
-    opacity: 0;
-    transition-duration: 0.5s;
-  }
-
-  .column p:hover {
-    opacity: 0.75;
   }
 
   .row:after {
@@ -416,20 +395,96 @@ html,body {
     font-size: 12px;
   }
 
+  .footer a {
+    color: #ddd;
+    text-decoration: none;
+    transition-duration: 0.4s;
+  }
+
+  .footer a:hover {
+    color: white;
+  }
+
   .footer ul {
     text-align: center;
     list-style: inside;
     width: 95%;
   }
 
+  .flip-box {
+    width: 500px;
+    height: 100%;
+    margin: 100px auto;
+    perspective: 1000px;
+  }
+
+  .flip-img, .front, .back {
+    width: 450px;
+    height: 450px;
+  }
+
+  .flip-img {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+    box-shadow: 0px 0px 10px 2px grey;
+    border-radius: 10px;
+  }
+
+  .front {
+    position: absolute;
+    cursor: pointer;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+   }
+
+  .back {
+    transform: rotateY(180deg);
+    background: orange;
+    padding: 20px;
+    color: #fff;
+    position: absolute;
+    box-sizing: border-box;
+    opacity: 0;
+    transition-duration: 0.4s;
+  }
+
+  .flip-box:hover .flip-img {
+    transform: rotateY(180deg);
+  }
+
+  .back:hover {
+    opacity: 1;
+  }
+
+  .mobile h1 {
+    font-size: 36px;
+  }
+
+  .mobile p {
+    font-size: 24px;
+  }
+
+
+
+
+
   @media only screen and (min-width: 0px) {
+
+  .pc {
+    display: none;
+  }
+
+  .mobile {
+    display: inline;
+  }
 
   .text-over-image {
     display: none;
   }
 
   .header1 {
-    height: 150px;
+    height: 20vh;
   }
 
   .mobile-navbar {
@@ -466,6 +521,10 @@ html,body {
   }
 
   .column {
+    width: 33.33%;
+  }
+
+  .column img {
     width: 100%;
   }
   
@@ -476,6 +535,14 @@ html,body {
   }
 
   @media only screen and (min-width: 1100px) {
+
+  .pc {
+    display: inline;
+  }
+
+  .mobile {
+    display: none;
+  }
 
   .header1 {
     height: 111vh;
@@ -526,8 +593,77 @@ html,body {
     width: 50%;
   }
 
+  .flip-box {
+    width: 250px;
+    height: 100%;
+    margin: 100px auto;
   }
 
+  .flip-img, .front, .back {
+    width: 250px;
+    height: 250px;
+  }
+
+  .column img {
+    width: 250px;
+  }
+
+  .back h1 {
+    font-size: 24px;
+  }
+
+  .back p {
+    font-size: 12px;
+  }
+
+  }
+
+  @media only screen and (min-width: 1800px) {
+    .text-over-image {
+      font-size: 48px;
+    }
+
+  .section2 h1 {
+    font-size: 56px;
+  }
+
+  .section2 p {
+    font-size: 24px;
+  }
+
+  .footer h1 {
+    font-size: 24px;
+  }
+
+  .footer li {
+    display: inline-block;
+    padding: 24px;
+    margin: 0px;
+    font-size: 24px;
+  }
+
+  .footer ul {
+    text-align: center;
+    list-style: inside;
+    width: 98%;
+  }
+
+  .flip-box {
+    width: 400px;
+    height: 100%;
+    margin: 100px auto;
+  }
+
+  .flip-img, .front, .back {
+    width: 400px;
+    height: 400px;
+  }
+
+  .column img {
+    width: 400px;
+  }
+   
+  }
 
 </style>
 
@@ -547,8 +683,8 @@ function closeNav() {
 
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#about">About</a>
     <a href="#menu">Menu</a>
+    <a href="#about">About</a>
     <a href="#contact">Contact</a>
     <a href="#news">News</a>
     <p>316 Main St E, Menomonie, WI 54751</p><p>(715) 309-4044</p>
@@ -571,15 +707,15 @@ function closeNav() {
 
   <ul class="navt">
     <li>
-      <a>
+      
         <img src="images/logo-white.png" height="400px" border="0">
-      </a>
-    </li>
-    <li>
-      <a href="#about">About</a>
+      
     </li>
     <li>
       <a href="#menu">Menu</a>
+    </li>
+    <li>
+      <a href="#about">About</a>
     </li>
     <li>
       <a href="#contact">Contact</a>
@@ -615,33 +751,101 @@ function closeNav() {
   
   </div>
 
-  <div class="section2">
+  <div id="menu" class="section2">
     <h1>Welcome to 6B Cafe</h1>
     <p>A family owned cafe in Menomonie, Wisconsin</p>
     <br><br>
     <div class="line1"></div>
     ✿
     <div class="line2"></div>
+
+
+
+<div class="mobile">
+  <h1>Cafe</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <br>
+  <h1>Hookah</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <br>
+  <h1>Snacks</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+  <div class="row">
+    <div class="column">
+      <img src="images/79788284_166195444775698_3824595495787954176_o.jpg">
+    </div>
+    <div class="column">
+      <img src="images/86659857_203488551046387_1588859366595887104_o.jpg">
+    </div>
+    <div class="column">
+      <img src="images/84318063_189459375782638_7845369927832698880_o.jpg">
+    </div>
+  </div>
+</div>
+
+
+<div class="pc">
     <div class="row">
       <div class="column">
+
+
+        
+
         <h2>Cafe</h2>
-        <img src="images/79788284_166195444775698_3824595495787954176_o.jpg">
+        <div class="flip-box">
+          <div class="flip-img">
+            <div class="front">
+              <img src="images/79788284_166195444775698_3824595495787954176_o.jpg">
+            </div>
+
+            <div class="back">
+              <h1>Cafe</h1><hr>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="column">
         <h2>Hookah</h2>
-        <img src="images/86659857_203488551046387_1588859366595887104_o.jpg">
+        <div class="flip-box">
+          <div class="flip-img">
+            <div class="front">
+              <img src="images/86659857_203488551046387_1588859366595887104_o.jpg">
+            </div>
+
+            <div class="back">
+              <h1>Hookah</h1><hr>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+        </div>      
       </div>
+     
       <div class="column">
         <h2>Snacks</h2>
-        <img src="images/84318063_189459375782638_7845369927832698880_o.jpg">
+        <div class="flip-box">
+          <div class="flip-img">
+            <div class="front">
+              <img src="images/84318063_189459375782638_7845369927832698880_o.jpg">
+            </div>
+
+            <div class="back">
+              <h1>Snacks</h1><hr>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
   </div>
 
   <div class="section5">
   </div>
 
-  <div class="section2">
+<div class="mobile">
+  <div id="about" class="section2">
     <h1>About us</h1>
     <br><br>
     <div class="line1"></div>
@@ -651,7 +855,37 @@ function closeNav() {
       <div class="column-2">
         <h2>6B Cafe</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>lorem ipsum</p>
+      </div>
+      <div class="column-2">
+        <img src="images/86659857_203488551046387_1588859366595887104_o.jpg">
+      </div>
+    </div>
+
+    <div class="row-2">
+      <div class="column-2">
+        <h2>Downtown Cafe</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+
+      <div class="column-2">
+        <img src="images/86457748_206033970791845_4235274590684708864_o.jpg">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="pc">
+  <div id="about" class="section2">
+    <h1>About us</h1>
+    <br><br>
+    <div class="line1"></div>
+    ✿
+    <div class="line2"></div>
+    <div class="row-2">
+      <div class="column-2">
+        <h2>6B Cafe</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
       <div class="column-2">
         <img src="images/86659857_203488551046387_1588859366595887104_o.jpg">
@@ -666,15 +900,14 @@ function closeNav() {
       <div class="column-2">
         <h2>Downtown Cafe</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>lorem ipsum</p>
       </div>
     </div>
   </div>
-
+</div>
   <div class="section6">
   </div>
 
-  <div class="section2">
+  <div id="contact" class="section2">
     <h1>Contact</h1>
     <br><br>
     <div class="line1"></div>
@@ -715,10 +948,11 @@ function closeNav() {
   <div class="footer">
     <h1>6B Cafe - Menomonie, Wisconsin</h1>
     <ul>
-      <li>Home</li>
-      <li>Menu</li>
-      <li>About</li>
-      <li>Contact</li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#news">News</a></li>
     </ul>
   </div>
 
