@@ -3,6 +3,8 @@
     <head>
       <meta charset="UTF-8">
       <meta name="author" content="Calvin Christensen">
+      <meta name="description" content="Goldenleaf Cafe gourmet coffee proudly serving Menomonie and local area communities.">
+      <meta name="keywords" content="Gourmet coffee cafe, java coffee, gourmet coffee beans, raw coffee beans, Just coffee, Fair Trade coffee, coffee bar, drive thru coffee, Tea leaves, coffee lounges, gift ideas, gifts, unique gifts, cafe menu, woman artists, local artists, Republic of Tea">
       <title>Golden Leaf Cafe</title>
       <link rel="stylesheet" type="text/css" href="style.css">
     </head>
@@ -12,6 +14,70 @@
     font-family: Seagull;
     src: url(fonts/seagull-serial-light/seagull-serial-light-regular.ttf);
     }
+
+    #updates {
+      text-align: center;
+      background-color: red;
+      padding: 24px;
+      font-size: 24px;
+      color: white;
+    }
+
+    #updates a {
+      color: white;
+      text-decoration: underline;
+    }
+
+    #myBtn {
+      font-family: Seagull;
+      background-color: red;
+      border: none;
+      color: white;
+      text-decoration: underline;
+      display: inline-block;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      font-size: 24px;
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
   </style>
   <script src="https://www.w3schools.com/lib/w3.js"></script>
 <body>
@@ -62,6 +128,28 @@
   <div class="navbar-underline">
 
   </div>
+
+  <br>
+  <div id="updates">
+    <p>Due to COVID-19, the Golden Leaf Cafe will be closed until the <a href="https://evers.wi.gov/Documents/COVID19/EMO12-SaferAtHome.pdf" target="_blank">Safer at Home</a> order is lifted. <br>We will still provide orders for pickup on Saturday mornings. <button id="myBtn">Click Here</button> for more details.</p>
+  </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Until we reopen, we will be doing special orders.<br><br>Orders need to be put in between Sunday and Wednesday at 5:00pm. Pickup will be on Saturday from 10:00AM to 11:00AM.<br><br>To place an order please call (715) 231-5323 and leave a message, or email us at info@goldenleafcafe.com.<br><br>
+Coffee Grounds: 12.95 per pound / 6.75 per half pound <br>
+Golden Muffins: (minimum order of 6) 2.25 each.<br>Quiche: whole<br>
+
+Spinach and Mushrooms: 18.00<br>
+Ham and Broccoli 20.00</p>
+    </div>
+  </div>
+
+<!--  -->
 
   <div class="header-image">
     <img src="images/cafe3.jpg" alt="Picture of the Cafe from outside.">
@@ -183,6 +271,34 @@ function hamburgerMenu() {
 </script>
 <script>
 myShow = w3.slideshow(".slide", 5000);
+</script>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 </script>
 
 
