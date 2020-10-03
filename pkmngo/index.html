@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>CP Maximizer</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+  <body>
+    <p>Pokemon: <input onChange="selectForm()" id="input" list="brow">
+      <datalist id="brow">
+        <option value="1. Bulbasaur">
+        <option value="2. Ivysaur">
+	<option value="3. Venusaur">
+	<option value="4. Charmander">
+	<option value="5. Charmeleon">
+	<option value="6. Charizard">
+ 	<option value="7. Squirtle">
+ 	<option value="8. Wartortle">
+ 	<option value="9. Blastoise">
+ 	<option value="10. Caterpie">
+ 	<option value="11. Metapod">
+ 	<option value="12. Butterfree">
+ 	<option value="13. Weedle">
+ 	<option value="14. Kakuna">
+ 	<option value="15. Beedrill">
+ 	<option value="16. Pidgey">
+ 	<option value="17. Pidgeotto">
+  	<option value="18. Pidgeot">
+ 	<option value="19. Rattata">
+ 	<option value="20. Raticate">
+ 	<option value="21. Spearow">
+ 	<option value="22. Fearow">
+ 	<option value="23. Ekans">
+ 	<option value="24. Arbok">
+ 	<option value="25. Pikachu">
+  	<option value="26. Raichu">
+  	<option value="27. Sandshrew">
+  	<option value="28. Sandslash">
+  	<option value="29. Nidoran♀">
+  	<option value="30. Nidorina">
+  	<option value="31. Nidoqueen">
+  	<option value="32. Nidoran♂">
+  	<option value="33. Nidorino">
+  	<option value="34. Nidoking">
+  	<option value="35. Clefairy">
+  	<option value="36. Clefable">
+  	<option value="37. Vulpix">
+  	<option value="38. Ninetales">
+  	<option value="39. Jigglypuff">
+  	<option value="40. Wigglytuff">
+  	<option value="41. Zubat">
+  	<option value="42. Golbat">
+  	<option value="43. Oddish">
+  	<option value="44. Gloom">
+  	<option value="45. Vileplume">
+  	<option value="46. Paras">
+  	<option value="47. Parasect">
+  	<option value="48. Venonat">
+  	<option value="49. Venomoth">
+  	<option value="50. Diglett">
+  	<option value="51. Dugtrio">
+  	<option value="52. Meowth">
+  	<option value="53. Persian">
+  	<option value="54. Psyduck">
+  	<option value="55. Golduck">
+  	<option value="56. Mankey">
+  	<option value="57. Primeape">
+  	<option value="58. Growlithe">
+  	<option value="59. Arcanine">
+  	<option value="60. Poliwag">
+  	<option value="61. Poliwhirl">
+  	<option value="62. Poliwrath">
+  	<option value="63. Abra">
+  	<option value="64. Kadabra">
+  	<option value="65. Alakazam">
+  	<option value="66. Machop">
+  	<option value="67. Machoke">
+  	<option value="68. Machamp">
+  	<option value="69. Bellsprout">
+  	<option value="70. Weepinbell">
+  	<option value="71. Victrebell">
+  	<option value="72. Tentacool">
+  	<option value="73. Tentacruel">
+  	<option value="74. Geodude">
+  	<option value="75. Graveler">
+  	<option value="76. Golem">
+  	<option value="77. Ponyta">
+  	<option value="78. Rapidash">
+  	<option value="79. Slowpoke">
+  	<option value="80. Slowbro">
+  	<option value="81. Magnemite">
+  	<option value="82. Magneton">
+  	<option value="83. Farfetch'd">
+  	<option value="84. Doduo">
+  	<option value="85. Dodrio">
+  	<option value="86. Seel">
+  	<option value="87. Dewgong">
+  	<option value="88. Grimer">
+  	<option value="89. Muk">
+  	<option value="90. Shellder">
+  	<option value="91. Cloyster">
+  	<option value="92. Gastly">
+  	<option value="93. Haunter">
+  	<option value="94. Gengar">
+  	<option value="95. Onix">
+  	<option value="96. Drowzee">
+  	<option value="97. Hypno">
+  	<option value="98. Krabby">
+  	<option value="99. Kingler">
+  	<option value="100. Voltorb">
+  	<option value="101. Electrode">
+  	<option value="102. Exeggcute">
+  	<option value="103. Exeggutor">
+  	<option value="104. Cubone">
+  	<option value="105. Marowak">
+  	<option value="106. Hitmonlee">
+  	<option value="107. Hitmonchan">
+  	<option value="108. Lickitung">
+  	<option value="109. Koffing">
+  	<option value="110. Weezing">
+  	<option value="111. Rhyhorn">
+  	<option value="112. Rhydon">
+  	<option value="113. Chansey">
+  	<option value="114. Tangela">
+  	<option value="115. Kangaskhan">
+  	<option value="116. Goldeen">
+  	<option value="117. Seaking">
+  	<option value="118. Horsea">
+  	<option value="119. Seadra">
+  	<option value="120. Staryu">
+  	<option value="121. Starmie">
+  	<option value="122. Mr. Mime">
+  	<option value="123. Scyther">
+  	<option value="124. Jynx">
+  	<option value="125. Electabuzz">
+  	<option value="126. Magmar">
+  	<option value="127. Pinsir">
+  	<option value="128. Tauros">
+  	<option value="129. Magikarp">
+  	<option value="130. Gyarados">
+  	<option value="131. Lapras">
+  	<option value="132. Ditto">
+  	<option value="133. Eevee">
+  	<option value="134. Vaporeon">
+  	<option value="135. Jolteon">
+  	<option value="136. Flareon">
+  	<option value="137. Porygon">
+  	<option value="138. Omanyte">
+  	<option value="139. Omastar">
+  	<option value="140. Kabuto">
+  	<option value="141. Kabutops">
+  	<option value="142. Aerodactyl">
+  	<option value="143. Snorlax">
+  	<option value="144. Articuno">
+  	<option value="145. Zapdos">
+  	<option value="146. Moltres">
+  	<option value="147. Dratini">
+  	<option value="148. Dragonair">
+  	<option value="149. Dragonite">
+  	<option value="150. Mewtwo">
+  	<option value="151. Mew">
+  	<option value="152. Chikorita">
+  	<option value="153. Bayleaf">
+  	<option value="154. Meganium">
+  	<option value="155. Cyndaquil">
+  	<option value="156. Quilava">
+  	<option value="157. Typhlosion">
+  	<option value="158. Totodile">
+  	<option value="159. Croconaw">
+  	<option value="160. Feraligatr">
+  	<option value="161. Sentret">
+  	<option value="162. Furret">
+  	<option value="163. Hoothoot">
+  	<option value="164. Noctowl">
+  	<option value="165. Ledyba">
+  	<option value="166. Ledian">
+  	<option value="167. Spinarak">
+  	<option value="168. Ariados">
+  	<option value="169. Crobat">
+  	<option value="170. Chinchou">
+  	<option value="171. Lantern">
+  	<option value="172. Pichu">
+  	<option value="173. Cleffa">
+  	<option value="174. Igglybuff">
+  	<option value="175. Togepi">
+  	<option value="176. Togetic">
+  	<option value="177. Natu">
+  	<option value="178. Xatu">
+  	<option value="179. Mareep">
+  	<option value="180. Flaafy">
+  	<option value="181. Ampharos">
+  	<option value="182. Bellossom">
+  	<option value="183. Marill">
+  	<option value="184. Azumarill">
+  	<option value="185. Sudowoodo">
+  	<option value="186. Politoad">
+  	<option value="187. Hoppip">
+  	<option value="188. Skiploom">
+  	<option value="189. Jumpluff">
+  	<option value="190. Aipom">
+  	<option value="191. Sunkern">
+  	<option value="192. Sunflora">
+  	<option value="193. Yanma">
+  	<option value="194. Wooper">
+  	<option value="195. Quagsire">
+  	<option value="196. Espeon">
+  	<option value="197. Umbreon">
+  	<option value="198. Murkrow">
+  	<option value="199. Slowking">
+  	<option value="200. Misdrievus">
+  	<option value="201. Unown">
+  	<option value="202. Wobuffett">
+  	<option value="203. Girafarig">
+  	<option value="204. Pineco">
+  	<option value="205. Forretress">
+  	<option value="206. Dunsparce">
+  	<option value="207. Gligar">
+  	<option value="208. Steelix">
+  	<option value="209. Snubull">
+  	<option value="210. Granbull">
+  	<option value="211. Qwilfish">
+  	<option value="212. Scizor">
+  	<option value="213. Shuckle">
+  	<option value="214. Heracross">
+  	<option value="215. Sneasel">
+  	<option value="216. Teddiursa">
+  	<option value="217. Ursaring">
+  	<option value="218. Slugma">
+  	<option value="219. Magcargo">
+  	<option value="220. Swinub">
+  	<option value="221. Piloswine">
+  	<option value="222. Corsola">
+  	<option value="223. Remoraid">
+  	<option value="224. Octillary">
+  	<option value="225. Delibird">
+  	<option value="226. Mantine">
+  	<option value="227. Skarmory">
+  	<option value="228. Hondour">
+  	<option value="229. Houndoom">
+  	<option value="230. Kingdra">
+  	<option value="231. Phanphy">
+  	<option value="232. Donphan">
+  	<option value="233. Porygon2">
+  	<option value="234. Stantler">
+  	<option value="235. Smeargle">
+  	<option value="236. Tyrogue">
+  	<option value="237. Hitmontop">
+  	<option value="238. Smoochum">
+  	<option value="239. Elekid">
+  	<option value="240. Magby">
+  	<option value="241. Miltank">
+  	<option value="242. Blissey">
+  	<option value="243. Raikou">
+  	<option value="244. Entei">
+  	<option value="245. Suicune">
+  	<option value="246. Larvitar">
+  	<option value="247. Pupitar">
+  	<option value="248. Tyranitar">
+  	<option value="249. Lugia">
+  	<option value="250. Ho-Oh">
+  	<option value="251. Celebi">
+        <option value="252. Treecko">
+	<option value="253. Grovyle">
+	<option value="254. Sceptile">
+	<option value="255. Torchic">
+	<option value="256. Combusken">
+	<option value="257. Blaziken">
+	<option value="258. Mudkip">
+	<option value="259. Marshtomp">
+	<option value="260. Swampert">
+	<option value="261. Poochyena">
+	<option value="262. Mightyena">
+	<option value="263. Zigzagoon">
+	<option value="264. Linoone">
+	<option value="265. Wurmple">
+	<option value="266. Silcoon">
+	<option value="267. Beautifly">
+	<option value="268. Cascoon">
+	<option value="269. Dustox">
+	<option value="270. Lotad">
+	<option value="271. Lombre">
+	<option value="272. Ludicolo">
+	<option value="273. Seedot">
+	<option value="274. Nuzleaf">
+	<option value="275. Shiftry">
+	<option value="276. Taillow">
+	<option value="277. Swellow">
+	<option value="278. Wingull">
+	<option value="279. Pelipper">
+	<option value="280. Ralts">
+	<option value="281. Kirlia">
+	<option value="282. Gardevoir">
+	<option value="283. Surskit">
+	<option value="284. Masquerain">
+	<option value="285. Shroomish">
+	<option value="286. Breloom">
+	<option value="287. Slakoth">
+	<option value="288. Vigoroth">
+	<option value="289. Slaking">
+	<option value="290. Nincada">
+	<option value="291. Ninjask">
+	<option value="292. Shedinja">
+	<option value="293. Whismur">
+	<option value="294. Loudred">
+	<option value="295. Exploud">
+	<option value="296. Makuhita">
+	<option value="297. Hariyama">
+	<option value="298. Azurill">
+	<option value="299. Nosepass">
+	<option value="300. Skitty">
+	<option value="301. Delcatty">
+	<option value="302. Sableye">
+	<option value="303. Mawile">
+	<option value="304. Aron">
+	<option value="305 Lairon">
+	<option value="306. Aggron">
+	<option value="307. Meditite">
+	<option value="308. Medicham">
+	<option value="309. Electrike">
+	<option value="310. Manetric">
+	<option value="311. Plusle">
+	<option value="312. Minun">
+	<option value="313. Volbeat">
+	<option value="314. Illumise">
+	<option value="315. Roselia">
+	<option value="316. Gulpin">
+	<option value="317. Swalot">
+	<option value="318. Carvanha">
+	<option value="319. Sharpedo">
+	<option value="320. Wailmer">
+	<option value="321. Wailord">
+	<option value="322. Numel">
+	<option value="323. Camerupt">
+	<option value="324. Torkoal">
+	<option value="325. Spoink">
+	<option value="326. Grumpig">
+	<option value="327. Spinda">
+	<option value="328. Trapinch">
+	<option value="329. Vibrava">
+	<option value="330. Flygon">
+	<option value="331. Cacnea">
+	<option value="332. Cacturne">
+	<option value="333. Swablu">
+	<option value="334. Altaria">
+	<option value="335. Zangoose">
+	<option value="336. Seviper">
+	<option value="337. Lunatone">
+	<option value="338. Solrock">
+	<option value="339. Barboach">
+	<option value="340. Whiscash">
+  	<option value="341. Corphish">
+  	<option value="342. Crawdaunt">
+  	<option value="343. Baltoy">
+  	<option value="344. Claydol">
+  	<option value="345. Lileep">
+  	<option value="346. Cradily">
+  	<option value="347. Anorith">
+  	<option value="348. Armaldo">
+  	<option value="349. Feebas">
+  	<option value="350. Milotic">
+  	<option value="351. Castform">
+  	<option value="352. Keckleon">
+  	<option value="353. Shuppet">
+  	<option value="354. Banette">
+  	<option value="355. Duskull">
+  	<option value="356. Dusclops">
+  	<option value="357. Tropius">
+  	<option value="358. Chimeco">
+  	<option value="359. Absol">
+  	<option value="360. Wynaut">
+  	<option value="361. Snorunt">
+  	<option value="362. Glalie">
+  	<option value="363. Spheal">
+  	<option value="364. Sealeo">
+  	<option value="365. Walrein">
+  	<option value="366. Clampearl">
+  	<option value="367. Huntail">
+  	<option value="368. Gorebyss">
+  	<option value="369. Relicanth">
+  	<option value="370. Luvdisc">
+  	<option value="371. Bagon">
+  	<option value="372. Shellgon">
+  	<option value="373. Salamence">
+  	<option value="374. Beldum">
+  	<option value="375. Metang">
+  	<option value="376. Metagross">
+  	<option value="377. Regirock">
+  	<option value="378. Regice">
+  	<option value="379. Registeel">
+  	<option value="380. Latias">
+  	<option value="381. Latios">
+  	<option value="382. Kyogre">
+  	<option value="383. Groudon">
+  	<option value="384. Rayquaza">
+  	<option value="385. Jirachi">
+  	<option value="386. Deoxys">
+  	<option value="387. Turtwig">
+  	<option value="388. Grotle">
+  	<option value="389. Torterra">
+  	<option value="390. Chimchar">
+  	<option value="391. Monferno">
+  	<option value="392. Infernape">
+  	<option value="393. Piplup">
+  	<option value="394. Prinplup">
+  	<option value="395. Empoleon">
+  	<option value="396. Starly">
+  	<option value="397. Staravia">
+  	<option value="398. Staraptor">
+  	<option value="399. Bidoof">
+  	<option value="400. Bibarell">
+  	<option value="401. Kriketot">
+  	<option value="402. Krikitune">
+  	<option value="403. Shinx">
+  	<option value="404. Luxio">
+  	<option value="405. Luxray">
+  	<option value="406. Budew">
+  	<option value="407. Roserade">
+  	<option value="408. Cranidos">
+  	<option value="409. Rampardos">
+  	<option value="410. Shieldon">
+  	<option value="411. Bastiodon">
+  	<option value="412. Burmy">
+  	<option value="413. Wormadam">
+  	<option value="414. Mothim">
+  	<option value="415. Combee">
+  	<option value="416. Vespiquen">
+  	<option value="417. Pachirisu">
+  	<option value="418. Buizel">
+  	<option value="419. Floatzel">
+ 	<option value="420. Cherubi">
+  	<option value="421. Cherrim">
+  	<option value="422. Shellos">
+  	<option value="423. Gastrodon">
+  	<option value="424. Ambipom">
+  	<option value="425. Drifloon">
+  	<option value="426. Drifblim">
+  	<option value="427. Bunneary">
+  	<option value="428. Lopunny">
+  	<option value="429. Mismagius">
+  	<option value="430. Honchkrow">
+  	<option value="431. Glameow">
+  	<option value="432. Purugly">
+  	<option value="433. Chingling">
+  	<option value="434. Stunky">
+  	<option value="435. Skuntank">
+  	<option value="436. Bronzor">
+  	<option value="437. Bronzong">
+  	<option value="438. Bonsly">
+  	<option value="439. Mime Jr.">
+  	<option value="440. Happiny">
+  	<option value="441. Chatot">
+  	<option value="442. Spiritomb">
+  	<option value="443. Gible">
+  	<option value="444. Gabite">
+  	<option value="445. Garchomp">
+  	<option value="446. Munchlax">
+  	<option value="447. Riolu">
+  	<option value="448. Lucario">
+  	<option value="449. Hippopotas">
+  	<option value="450. Hippowdon">
+  	<option value="451. Skorupi">
+  	<option value="452. Drapion">
+  	<option value="453. Croagunk">
+  	<option value="454. Toxicroak">
+  	<option value="455. Carnivine">
+  	<option value="456. Finneon">
+  	<option value="457. Lumineon">
+  	<option value="458. Mantyke">
+  	<option value="459. Snover">
+  	<option value="460. Abomasnow">
+  	<option value="461. Weavile">
+  	<option value="462. Magnetzone">
+  	<option value="463. Lickilicki">
+  	<option value="464. Rhyperior">
+  	<option value="465. Tangrowth">
+  	<option value="466. Electivire">
+  	<option value="467. Magmortar">
+  	<option value="468. Togekiss">
+  	<option value="469. Yanmega">
+  	<option value="470. Leafeon">
+  	<option value="471. Glaceon">
+  	<option value="472. Gliscor">
+  	<option value="473. Mamoswine">
+  	<option value="474. Porygon-Z">
+  	<option value="475. Gallade">
+  	<option value="476. Probopass">
+  	<option value="477. Dusknoir">
+  	<option value="478. Froslass">
+  	<option value="479. Rotom">
+  	<option value="480. Uxie">
+  	<option value="481. Mespirit">
+  	<option value="482. Azelf">
+  	<option value="483. Dialga">
+  	<option value="484. Palkia">
+  	<option value="485. Heatran">
+  	<option value="486. Regigigas">
+  	<option value="487. Giratina">
+  	<option value="488. Cresselia">
+  	<option value="489. Phione">
+  	<option value="490. Manaphy">
+  	<option value="491. Darkrai">
+  	<option value="492. Shaymin">
+  	<option value="493. Arceus">
+ 	<option value="494. Victini">
+  	<option value="495. Snivy">
+  	<option value="496. Servine">
+  	<option value="497. Serperior">
+  	<option value="498. Tepig">
+  	<option value="499. Pignite">
+  	<option value="500. Emboar">
+  	<option value="501. Oshawott">
+  	<option value="502. Dewott">
+  	<option value="503. Samurott">
+  	<option value="504. Patrat">
+  	<option value="505. Watchog">
+  	<option value="506. Lilipup">
+  	<option value="507. Herdier">
+  	<option value="508. Stoutland">
+  	<option value="509. Purrloin">
+  	<option value="510. Liepard">
+  	<option value="511. Pansage">
+  	<option value="512. Simisage">
+  	<option value="513. Pansear">
+  	<option value="514. Simisear">
+  	<option value="515. Panpour">
+  	<option value="516. Simipour">
+  	<option value="517. Muuna">
+  	<option value="518. Musharna">
+  	<option value="519. Pidove">
+  	<option value="520. Tranquil">
+  	<option value="521. Unfezant">
+  	<option value="522. Blitzle">
+  	<option value="523. Zebstrika">
+  	<option value="524. Roggenrola">
+  	<option value="525. Boldore">
+  	<option value="526. Gigalith">
+  	<option value="527. Woobat">
+  	<option value="528. Swoobat">
+  	<option value="529. Drillbur">
+  	<option value="530. Excadrill">
+  	<option value="531. Audino">
+  	<option value="532. Timburr">
+  	<option value="533. Gurdurr">
+  	<option value="534. Conkeldurr">
+  	<option value="535. Tympole">
+  	<option value="536. Palpitoad">
+  	<option value="537. Seismitoad">
+  	<option value="538. Throh">
+  	<option value="539. Sawk">
+  	<option value="540. Sewaddle">
+  	<option value="541. ">
+  	<option value="542. Leavany">
+  	<option value="543. Venipede">
+  	<option value="544. Whirlipede">
+  	<option value="545. Scolipede">
+  	<option value="546. Cottonee">
+  	<option value="547. Whimsicott">
+  	<option value="548. Petilil">
+  	<option value="549. Liligant">
+  	<option value="550. Basculin">
+  	<option value="551. Krokorok">
+  	<option value="552. Krookodile">
+  	<option value="553.">
+  	<option value="554. Darumaka">
+  	<option value="555. Darmanitan">
+  	<option value="556. Maractus">
+  	<option value="557. Dwebble">
+  	<option value="558. Crustle">
+  	<option value="559. Scraggy">
+  	<option value="560. Scrafty">
+  	<option value="561. Sigilyph">
+  	<option value="562. Yamask">
+  	<option value="563. Cofagrigus">
+  	<option value="564. Tirtouga">
+  	<option value="565. Carracosta">
+  	<option value="566. Archen">
+  	<option value="567. Archeops">
+  	<option value="568. Trubbish">
+  	<option value="569. Garbodor">
+  	<option value="570. Zoroa">
+  	<option value="571. Zoroark">
+  
+  
+	
+
+
+
+      </datalist></p><br>
+      <p id="formList">Form: <input name="form" list="forms">
+        <datalist id="forms">
+          <option id="alolanForm" value="Alolan">
+          <option id="galarianForm" value="Galarian">
+        </datalist></p><br>
+      <p>Potential <input type="number" id="potential"></input></p><br>
+      <input id="gl" type="checkbox">Great League</input>
+      <input id="ul" type="checkbox">Ultra League</input>
+      <button id="go" onClick="foo(), calculate()">Go</button>
+      <p id="demo"></p>
+      <table id="myTable">
+        <th id="th-level" onClick="sortTable(0)">Level</th>
+        <th id="th-attack" onClick="sortTable(1)">Attack</th>
+        <th id="th-defense" onClick="sortTable(2)">Defense</th>
+        <th id="th-stamina" onClick="sortTable(3)">Stamina</th>
+      </table>
+  </body>
+
+<script type="text/javascript">
+  var potential;
+  var species;
+  var pkmn;
+  var base_atk = [118,151,198,116,158,223,94,126,171,55,45,167,63,46,169,85,117,166,103,161,112,182,110,167,112,193,126,182,86,117,180,105,137,204,107,178,96,169,80,156,83,161,131,153,202,121,165,100,179,109,167,92,150,122,191,148,207,136,227,101,130,182,195,232,271,137,177,234,139,172,207,97,166,132,164,211,170,207,109,177,165,223,124,158,218,85,139,135,190,116,186,186,223,261,85,89,144,181,240,109,173,107,233,90,144,224,193,108,119,174,140,222,60,183,181,129,187,123,175,137,210,192,218,223,198,206,238,198,29,237,165,91,104,205,232,246,153,155,207,148,220,221,190,192,253,251,119,163,263,300,210,92,122,168,116,158,223,117,150,205,79,148,67,145,72,107,105,161,194,106,146,77,75,69,67,139,134,192,114,145,211,169,37,112,167,174,67,91,118,136,55,185,154,75,152,261,126,175,177,167,136,60,182,108,161,131,143,148,137,212,184,236,17,234,189,142,236,118,139,90,181,118,127,197,128,148,148,152,224,194,107,214,198,192,40,64,173,153,135,151,157,129,241,235,180,115,155,251,193,239,210,124,172,223,130,163,240,126,156,208,96,171,58,142,75,60,189,60,98,71,112,173,71,134,200,106,185,106,175,79,117,237,93,192,74,241,104,159,290,80,199,153,92,134,179,99,209,36,82,84,132,141,155,121,158,198,78,121,123,215,167,147,143,143,186,80,140,171,243,136,175,119,194,151,125,171,116,162,134,205,156,221,76,141,222,196,178,178,93,151,141,224,77,140,105,152,176,222,29,192,139,161,138,218,70,124,136,175,246,41,95,162,95,137,182,133,197,211,162,81,134,172,277,96,138,257,179,179,143,228,268,270,270,284,210,345, 119,157,202,113,158,222,112,150,210,101,142,234,80,162,45,160,117,159,232,91,243,218,295,76,94,53,141,185,59,149,94,132,221,108,170,103,169,205,117,180,130,156,211,243,109,172,114,121,184,43,161,124,125,25,183,169,124,172,261,137,127,236,124,201,93,180,116,211,187,96,142,105,115,178,243,238,161,241,207,249,247,225,231,216,238,185,247,264,237,135,180,171,185,156,212,270,275,280,251,287,187,152,162,210,285,210,238];
+
+  var base_def = [111,143,189,93,126,173,121,155,207,55,80,137,50,75,130,73,105,154,70,139,60,133,97,153,96,151,120,175,89,120,173,76,111,156,108,162,109,190,41,90,73,150,112,136,167,99,146,100,143,78,134,78,136,95,162,82,138,93,166,82,123,184,82,117,167,82,125,159,61,92,135,149,209,132,164,198,127,162,98,180,121,169,115,83,140,121,177,90,172,134,256,67,107,149,232,136,193,124,181,111,173,125,149,144,186,181,197,137,141,197,127,171,128,169,165,103,156,110,147,112,184,205,170,151,158,154,182,183,85,186,174,91,114,161,182,179,136,153,201,140,186,159,169,236,185,181,91,135,198,182,210,112,155,202,93,126,173,109,142,188,73,125,88,156,118,179,73,124,178,97,137,53,79,32,116,181,89,146,79,109,169,186,93,152,176,179,94,120,183,112,55,135,94,66,143,175,240,87,180,154,91,106,133,122,205,128,184,272,85,131,138,181,396,179,146,93,144,71,191,69,138,156,69,141,90,226,226,83,144,194,98,185,180,131,83,64,207,91,101,99,193,169,195,171,235,93,133,207,310,244,210,94,120,169,87,115,141,93,133,175,61,132,80,128,59,77,98,77,162,77,119,176,77,78,121,61,124,61,174,59,90,195,87,150,110,144,92,145,166,126,112,73,42,81,137,54,114,71,215,79,127,136,141,141,198,257,107,152,78,127,129,150,166,166,131,99,159,39,83,68,87,79,136,203,122,188,116,78,99,168,74,115,132,201,124,118,153,153,82,141,99,142,124,229,150,194,100,174,85,219,139,189,65,126,162,234,163,170,120,86,95,162,90,132,176,135,179,179,203,128,93,155,168,132,176,228,309,309,285,246,212,228,228,170,210,115, 110,143,188,86,105,151,102,139,186,58,94,140,73,119,74,100,64,95,156,109,185,71,109,195,286,83,180,98,83,190,172,67,114,92,153,105,143,143,80,102,105,194,187,103,82,133,94,90,132,154,213,133,142,77,91,199,84,125,193,117,78,144,118,191,151,202,76,133,136,116,170,179,105,158,171,205,181,190,184,163,172,217,156,219,205,222,146,150,195,275,254,150,159,270,212,151,211,215,213,210,187,258,162,210,198,210,238];
+
+  var base_sta = [128,155,190,118,151,186,127,153,188,128,137,155,120,128,163,120,160,195,102,146,120,163,111,155,111,155,137,181,146,172,207,130,156,191,172,216,116,177,251,295,120,181,128,155,181,111,155,155,172,67,111,120,163,137,190,120,163,146,207,120,163,207,93,120,146,172,190,207,137,163,190,120,190,120,146,190,137,163,207,216,93,137,141,111,155,163,207,190,233,102,137,102,128,155,111,155,198,102,146,120,155,155,216,137,155,147,137,207,120,163,190,233,487,163,233,102,146,128,190,102,155,120,172,163,163,163,163,181,85,216,277,134,146,277,163,163,163,111,172,102,155,190,330,207,207,207,121,156,209,214,225,128,155,190,118,151,186,137,163,198,111,198,155,225,120,146,120,172,198,181,268,85,137,207,111,146,120,163,146,172,207,181,172,225,172,207,111,146,181,146,102,181,163,146,216,163,216,155,216,155,134,382,172,137,181,225,163,181,155,207,163,172,85,190,146,155,207,120,137,137,225,146,111,181,128,163,163,128,181,181,207,207,198,177,146,111,137,128,128,128,216,496,207,251,225,137,172,225,235,214,225,120,137,172,128,155,190,137,172,225,111,172,116,186,128,137,155,137,155,120,155,190,120,172,207,120,155,120,155,99,116,169,120,172,155,155,155,190,284,104,156,1,162,197,232,176,302,137,102,137,172,137,137,137,155,172,102,155,120,172,155,155,163,163,137,172,225,128,172,277,347,155,172,172,155,190,155,128,137,190,137,172,128,181,177,177,207,207,137,242,125,160,120,155,165,200,128,181,85,216,172,155,127,162,85,120,223,181,163,216,137,190,172,207,242,111,146,146,225,125,128,163,216,120,155,190,190,190,190,190,190,205,205,213,225,137, 146,181,216,127,162,183,142,162,197,120,146,198,153,188,114,184,128,155,190,120,155,167,219,102,155,120,155,172,102,172,155,146,198,128,172,183,244,181,207,312,146,163,155,225,135,174,128,160,230,149,167,137,85,225,183,137,151,169,239,286,120,172,169,239,120,172,134,195,179,135,170,128,155,207,172,172,242,251,225,181,181,198,200,163,163,181,242,198,169,155,128,172,137,181,190,181,205,189,209,221,284,260,190,225,172,225,237];
+
+  var level = [1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27,27.5,28,28.5,29,29.5,30,30.5,  31,31.5,32,32.5,33,33.5,34,34.5,35,35.5,36,36.5,37,37.5,38,38.5,39,39.5,40,41];
+
+  var multiplier = [.094,.1351374318,.16639787,.192650919,.21573247,.2365726613,.25572005,.2735303812,.29024988,.3060573775,.3210876,.3354450362,.34921268,.3624577511,.3752356,.387592416,.39956728,.4111935514,.4225,.4329264091,.44310755,.4530599591,.4627984,.472336093,.48168495,.4908558003,.49985844,.508701765,.51739395,.5259425113,.5343543,.5426357375,.5507927,.5588305862,.5667545,.5745691333,.5822789,.5898879072,.5974,.6048236651,.6121573,.6194041216,.6265671,.6336491432,.64065295,.6475809666,.65443563,.6612192524,.667934,.6745818959,.6811649,.6876849038,.69414365,.70054287,.7068842,.7131691091,.7193991,.7255756136,.7317,.7347410093,.7377695,.7407855938,.74378943,.7467812109,.74976104,.7527290867,.7556855,.7586303683,.76156384,.7644860647,.76739717,.7702972656,.7731865,.7760649616,.77893275,.7817900548,.784637,.7874736075,.7903,.79530001];
+  var invert = [false,false,false,false];
+  var alolan = [19,20,26,27,28,37,38,50,51,52,53,74,75,76,88,89,103,105];
+  var mega = [3,9,15,18,65,94,115,130];
+  var megax = [6,150];
+  var megay = [6,150];
+  var armored = [150];
+  var galarian = [52,83,110,263,264];
+  var deoxys = [386];
+
+
+//Alolan Base Stats
+var base_atk_alolan = [103,135,201,125,177,96,170,108,201,99,158,132,164,211,135,190,230,144];
+var base_def_alolan = [70,154,154,129,195,109,193,81,142,78,136,132,164,198,90,172,153,186];
+var base_sta_alolan = [102,181,155,137,181,116,177,67,111,120,163,120,146,190,190,233,216,155];
+
+//Galarian Base Stats
+var base_atk_galarian = [115,174,174,58,142];
+var base_def_galarian = [92,114,197,80,128];
+var base_sta_galarian = [137,141,163,116,186];
+
+//Armored Base Stats
+var base_atk_armored = [182];
+var base_def_armored = [278];
+var base_sta_armored = [214];
+
+//Deoxys Base Stats 1=Attack/2=Defense/3=Speed
+var base_atk_deoxys = [414,114,230];
+var base_def_deoxys = [46,330,218];
+var base_sta_deoxys = [137,137,137];
+
+
+
+
+function selectForm() {
+  var str = '';
+  var forms = new Array();
+  document.getElementById("formList").style.display = "none";
+
+  if (alolan.includes(parseInt(species))) {
+   document.getElementById("formList").style.display = "inline";
+   forms.push("Alolan");
+  }
+  if (mega.includes(parseInt(species))) {
+   document.getElementById("formList").style.display = "inline";
+   forms.push("Mega");
+  }
+  if (megax.includes(parseInt(species))) {
+   document.getElementById("formList").style.display = "inline";
+   forms.push("Mega X");
+  }
+  if (megay.includes(parseInt(species))) {
+   document.getElementById("formList").style.display = "inline";
+   forms.push("Mega Y");
+  }
+  if (armored.includes(parseInt(species))) {
+   document.getElementById("formList").style.display = "inline";
+   forms.push("Armored");
+  }
+  if (galarian.includes(parseInt(species))) {
+   document.getElementById("formList").style.display = "inline";
+   forms.push("Galarian");
+  }
+  if (deoxys.includes(parseInt(species))) {
+   document.getElementById("formList").style.display = "inline";
+   forms.push("Attack");
+   forms.push("Defense");
+   forms.push("Speed");
+  }
+  
+  var i;
+  for (i=0;i<forms.length;i++) {
+     str += '<option value="' + forms[i] + '">';
+  }
+  document.getElementById("forms").innerHTML = str;
+}
+
+
+
+
+  
+  function foo() {
+    potential = document.getElementById("potential").value;
+    var str = document.getElementById("input").value;
+    species = str.substring(0, str.indexOf("."));
+    pkmn = str.substring(str.indexOf(".") + 2, str.length);
+    document.getElementById("demo").innerHTML = potential;
+    var forms = document.getElementById("forms");
+ 
+    if (alolan.includes(parseInt(species))) { 
+      document.getElementById("demo").innerHTML = base_sta.length;
+      document.getElementById("formList").style.display = "inline";
+    }
+  } 
+
+  function sortTable(value) {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("myTable");
+    switching = true;
+    /*Make a loop that will continue until
+    no switching has been done:*/
+    while (switching) {
+      //start by saying: no switching is done:
+      switching = false;
+      rows = table.rows;
+      /*Loop through all table rows (except the
+      first, which contains table headers):*/
+      for (i = 1; i < (rows.length - 1); i++) {
+        //start by saying there should be no switching:
+        shouldSwitch = false;
+        /*Get the two elements you want to compare,
+        one from current row and one from the next:*/
+        x = rows[i].getElementsByTagName("TD")[value];
+        y = rows[i + 1].getElementsByTagName("TD")[value];
+        //check if the two rows should switch place:
+        if (invert[value]) {
+          if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;  
+          }        
+        } else {
+          if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+        /*If a switch has been marked, make the switch
+        and mark that a switch has been done:*/
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+  
+    document.getElementById("th-level").style.color = "black";
+    document.getElementById("th-attack").style.color = "black";
+    document.getElementById("th-defense").style.color = "black";
+    document.getElementById("th-stamina").style.color = "black";
+    if (value == 0) {
+      document.getElementById("th-level").style.color = "blue";
+    } else if (value == 1) {
+      document.getElementById("th-attack").style.color = "blue";
+    } else if (value == 2) {
+      document.getElementById("th-defense").style.color = "blue";
+    } else if (value == 3) {
+      document.getElementById("th-stamina").style.color = "blue";
+    }
+    invert[value] = !invert[value];
+  }
+
+  function calculate() {
+    clearTable();
+    var iv_atk;
+    var iv_def;
+    var iv_sta;
+    var mult;
+    for (iv_atk = 0; iv_atk <= 15; iv_atk++) {
+      for (iv_def = 0; iv_def <= 15; iv_def++) {
+        for (iv_sta = 0; iv_sta <= 15; iv_sta++) {
+          for (mult = 0; mult < multiplier.length; mult++) {
+            if (Math.floor((((base_atk[species-1] + iv_atk) * (Math.pow(base_def[species-1] + iv_def,0.5)) * (Math.pow(base_sta[species-1] + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10)) == potential) {
+              addRow(mult,iv_atk, iv_def, iv_sta);
+            }
+          }
+        }
+      }
+    }
+    if (document.getElementById("myTable").rows.length <= 1) {
+
+    }
+}
+
+  function clearTable() {
+    var table = document.getElementById("myTable");
+    var x = document.getElementById("myTable").rows.length;
+    var i;
+    for (i = 1; i < x; i++) {
+      var row = table.deleteRow(1);
+    }
+  }
+
+  function addRow(l,a,d,s) {
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell1.innerHTML = level[l];
+    cell2.innerHTML = a;
+    cell3.innerHTML = d;
+    cell4.innerHTML = s;  
+  }
+</script>
+
+<style>
+body, * {
+ text-align: center;
+ margin: 0 auto;
+}
+
+#th-level, #th-attack, #th-defense, #th-stamina {
+  cursor: pointer;
+}
+
+#formList {
+  display: none;
+}
+</style>
+</html>
