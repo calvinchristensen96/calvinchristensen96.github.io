@@ -41,10 +41,11 @@
    </div>
 
    <div id="welcome">
+   <div id="section">
      <h1>Hello,</h1>
      <h2>I'm Calvin Christensen</h2>
      <p>Web Developer</p>
-     <button onClick="e()">Portfolio</button>
+     <button onClick="e()">Get Started</button>
 
      <div id="socials">
        <div id="github">
@@ -61,19 +62,25 @@
        </div>
      </div>
    </div>
+   </div>
  </div>
 
 
 
  <div id="about">
+ <div id="section">
   <h1>About me</h1>
   <p>I'm a web developer based out of the <span>Eau Claire area of Wisconsin, USA.</span> I have experience with web development from designing and implementing websites for local businesses, interning as a developer, and volunteering as a WordPress editor. I earned my Bachelor's Degree in Mathematics, with minors in both Computer Science and Spanish from the University of Wisconsin - Eau Claire in December 2018.<br><br> I specialize in full stack development using HTML, CSS, Javascript, Jquery, PHP, and SQL. Take a look at my portfolio below to see my work.</p>
  </div>
+ </div>
  
  <div id="portfolio">
+ <div id="section">
    <h1>Portfolio</h1>
    <h2>Browse my completed projects</h2>
 
+
+   <div id="project-slider">
    <div id="project">
      <img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/GoldenLeafCafe/images/Golden_Leaf_Logo.png">
      
@@ -83,44 +90,63 @@
    </div>
    
    <div id="project">
-     <img src="https://raw.githubusercontent.com/calvinchristensen96/Cerveza-Santa-Maria/master/CervezaSantaMaria/logotipo.png">
+     <img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/GoldenLeafCafe/images/Golden_Leaf_Logo.png">
      
-     <h1>Cerveza Santa Maria</h1>
-     <p>Brewery in Puebla, Mexico</p>
-     <button>View Source</button>
+     <h1>Project 2</h1>
+     <p>Cafe and gift shop in Menomonie, Wisconsin.</p>
+     <button>Visit Website</button>
    </div>
+   
+   <div id="project">
+     <img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/GoldenLeafCafe/images/Golden_Leaf_Logo.png">
+     
+     <h1>Project 3</h1>
+     <p>Cafe and gift shop in Menomonie, Wisconsin.</p>
+     <button>Visit Website</button>
+   </div>
+    </div>
+   <div id="project-navigator">
+     <button onClick="projectNavigator('l')" id="left"> &lt </button>
+     <button onClick="projectNavigator('r')" id="right"> &gt </button>
+   </div>
+
+
  </div>
-  <div id="section">
+
     <div id="image2">
    <img src="https://scontent-msp1-1.xx.fbcdn.net/v/t1.0-9/76643691_1267369680136345_3868684864089751552_o.jpg?_nc_cat=105&ccb=3&_nc_sid=e3f864&_nc_ohc=VThgjBG9nO8AX-qhjZ0&_nc_ht=scontent-msp1-1.xx&oh=7a053d520f39b39958ad8f4319a7b07f&oe=6055D4C2">
+
    </div>
 
 
  <div id="experience">
+ <div id="section">
    <h1>My Experiences</h1>
    <h2>Previous companies and my tasks</h2>
    <ul>
      <li>
-       <h3>Administrative Assistant <span>September 2019 - Present</span></h3>
-       <h4>Menomonie Market Food Co-op</h4>
+       <h3>Administrative Assistant</h3>
+       <h4>Menomonie Market Food Co-op<br><span>September 2019 - Present</span></h4>
        <p>Manage IT operations and the backend of our website. Create programs and web applications to access the databasea and provide information in a presentable form.</p>
      </li>
      <li>
-       <h3>Web Developer <span>November 2019 - February 2020</span></h3>
-       <h4>Golden Leaf Cafe</h4>
+       <h3>Web Developer</h3>
+       <h4>Golden Leaf Cafe<br><span>November 2019 - February 2020</span></h4>
        <p>Designed and developed the current website for the local coffee shop and cafe. Included an online menu and implemented online ordering. Worked closely with the owner to ensure my work matched their specifications.</p>
      </li>
      <li>
-       <h3>WordPress Developer <span>November 2019 - February 2020</span></h3>
-       <h4>Chippewa Valley Free Clinic</h4>
+       <h3>WordPress Developer</h3>
+       <h4>Chippewa Valley Free Clinic<br><span>November 2019 - February 2020</span></h4>
+       
        <p>Assisted the free clinic by performing routine updates to their website to ensure information is accurate and up-to-date. </p>
      </li>
      <li>
-       <h3>Web Developer Intern <span>May 2018 - July 2018</span></h3>
-       <h4>B!RTH Group</h4>
+       <h3>Web Developer Intern</h3>
+       <h4>B!RTH Group<br><span>May 2018 - July 2018</span></h4>
        <p>Worked closely with the fulltime design and development staff to develop a website for one of their local clients.</p>
      </li>
    </ul>
+ </div>
  </div>
  </div>
 
@@ -130,7 +156,7 @@
    <h2>Universitys and areas of study</h2>
    <ul>
      <li>
-       <h3>University of Wisconsin - Eau Claire<span>September 2014 - December 2018</span></h3>
+       <h3>University of Wisconsin - Eau Claire<br><span>September 2014 - December 2018</span></h3>
        <h4>Bachelor's of Arts </h4>
        <p>Major: Mathematics <br> Minors: Computer Science, Spanish</p>
      </li>
@@ -138,24 +164,22 @@
  </div>
 
     <div id="contact">
+         <div class="section">
      <h1>Contact me</h1>
      <h2>Leave me a message, or get ahold of me by other means</h2>
-     <div class="section">
+
       <div class="container">
         <form action="/action_page.php">
           <div id="names">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name..">
           </div>
-          <div id="names">
-	    <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your name..">
-          </div>
+         
           <label for="email">Email Address</label>
           <input type="text" id="email" name="email-address" placeholder="Your email address...">
-          <label for="subject">Subject</label>
-          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-          <input id="submit" type="submit" value="Submit">
+          <label for="subject">Message</label>
+          <textarea id="subject" name="subject" placeholder="Your message..." style="height:200px"></textarea>
+          <input class="submit" type="submit" value="Submit">
         </form>
       </div>     
      </div>
@@ -171,6 +195,16 @@
 <script>
 // https://scontent-msp1-1.cdninstagram.com/v/t51.2885-15/e35/69347419_1360141827477770_8186956316984209709_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=BwsU61FhYXgAX9sDHku&tp=1&oh=578dda1ea7cd332629c3dfa8ef4e2933&oe=605792EF
 
+
+var curr = 0;
+function projectNavigator(direction) {
+  if (direction == "r") {
+  document.getElementById("project-slider").style.right = "100%";
+   } else if (direction == "l") {
+  document.getElementById("project-slider").style.right = "0%";
+  }
+}
+
 function e() {
 document.getElementById("me-img").style.opacity = 1;
 }
@@ -180,13 +214,13 @@ document.getElementById("me-img").style.opacity = 1;
 
 var x = document.getElementById("myLinks");
 
-x.style.marginTop = "-220px";
+x.style.marginTop = "-120%";
 function myFunction() {
   
-  if (x.style.marginTop === "-220px") {
-    x.style.marginTop = "0px";
+  if (x.style.marginTop === "-120%") {
+    x.style.marginTop = "48px";
   } else {
-    x.style.marginTop = "-220px";
+    x.style.marginTop = "-120%";
   }
 }
 
@@ -199,6 +233,7 @@ function myFunction() {
 body {
   margin: 0px;
   font-family: Palatino;
+  overflow-x: hidden;
 }
 
 .navbar2 {
@@ -221,9 +256,9 @@ body {
 }
 
 .topnav #myLinks {
-  margin-top: -220px;
-  padding-bottom: 36px;
-  transition-duration: 0.5s;
+  margin-top: -10%;
+  padding-bottom: 12px;
+  transition-duration: 0.75s;
 }
 
 .topnav a {
@@ -243,6 +278,7 @@ body {
   position: absolute;
   right: 0;
   top: 0;
+  position: fixed;
 }
 
 .topnav a:hover {
@@ -251,6 +287,15 @@ body {
 
 .active {
   color: #39603D;
+  padding: 32px;
+  position: fixed;
+  width: 100%;
+}
+
+#section {
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
 }
 
 #socials img { 
@@ -285,7 +330,7 @@ body {
 
 #image img {
   height: 100%;
-  margin-left: -33%;
+  margin-left: -70%;
   transition-duration: 0.5s;
   opacity: 0;
 }
@@ -298,25 +343,25 @@ body {
   width: 100%;
   background-color: #DADED4;
   color: #3C403D;
+  padding-top: 48px;
   padding-bottom: 48px;
 }
 
 #welcome h1 {
   color: #39603D;
-  font-size: 48px;
+  font-size: 32px;
   margin: 0px;
-  padding-left: 48px;
-  padding-top: 48px;
+
 }
 
 #welcome h2 {
-  font-size: 48px;
+  font-size: 36px;
   margin: 0px;
-  padding-left: 48px;
+
 }
 
 #welcome p {
-  padding-left: 48px;
+
 }
 
 #welcome button {
@@ -329,7 +374,6 @@ body {
   border-radius: 25px 25px 25px 25px;
   cursor: pointer;
   transition-duration: 0.5s;
-  margin-left: 48px;
   margin-bottom: 48px;
 }
 
@@ -338,30 +382,59 @@ body {
   color: white;
 }
 
+#about {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+#about h1 {
+  font-size: 32px;
+}
+
+#about p {
+  font-size: 20px;
+  line-height: 36px;
+  color: #39603D;
+}
+
+
 #portfolio {
   background-color: #DADED4;
   color: #3C403D;
-  padding: 48px;
+  padding-top: 48px;
+  padding-bottom: 0px;
+  
 }
 
 #portfolio h1 {
   color: #39603D;
-  font-size: 48px;
+  font-size: 32px;
   margin: 0px;
 }
 
 #portfolio h2 {
   font-size: 20px;
   margin-bottom: 48px;
+}
 
+#project-slider {
+  text-align: center;
+  width: 300%;
+  position: relative;
 }
 
 #project {
+  width: 27.3%;
+  float: left;
   background-color: white;
-  height: 200px;
   border-radius: 25px 25px 25px 25px;
   transition-duration: 0.5s;
-  margin-bottom: 48px;
+  padding-bottom: 36px;
+  margin-bottom: 12px;
+  margin-right: 3%;
+  margin-left: 3%;
+  position: relative;
+  transition-duration: 0.75s;
 }
 
 #project button {
@@ -385,7 +458,7 @@ body {
 
 #project img {
   width: 176px;
-  float: left;
+
   margin: 12px;
 }
 
@@ -394,18 +467,31 @@ body {
   padding-top: 24px;
 }
 
-#about {
-  padding: 48px;
+#project-navigator {
+  margin-bottom: 24px;
 }
 
-#about h1 {
-  font-size: 48px;
-}
-
-#about p {
-  font-size: 20px;
-  line-height: 36px;
+#project-navigator button {
+  font-size: 24px;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  margin: 12px;
+  text-decoration: none;
+  background-color: #DADED4;
+  border: solid 3px #39603D;
   color: #39603D;
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
+
+#project-navigator button:hover {
+  background-color: #39603D;
+  color: white;
+}
+
+#image2 {
+  margin: 0px;
 }
 
 #image2 img {
@@ -421,79 +507,70 @@ body {
   width: 100%;
 }
 
-#experience h1 {
-  font-size: 36px;
-  margin-left: 48px;
-  margin-right: 48px;
+#experience h1, #education h1 {
+  font-size: 32px;
+  color: white;
 }
 
-#experience h2 {
-  font-size: 14px;
-  padding-bottom: 12px;
-  margin-left: 48px;
-  margin-right: 48px;
+#experience h2, #education h2 {
+  font-size: 20px;
+  margin-bottom: 48px;
 }
 
-#experience h4 {
-  font-size: 12px;
-  text-decoration: underline;
-  line-height: 6px;
+#experience h4, #education h4 {
+  font-size: 16px;
 }
 
 #experience span {
   color: #A3BCB6;
   font-size: 16px;
-  margin-left: 12px;
 }
 
-#experience p {
-  font-size: 14px;
-  line-height: 14px;
+#experience p, #education p {
+  font-size: 18px;
+  line-height: 18px;
 }
 
-#experience li {
-  margin-bottom: 32px;
+#experience li, #education li {
+  margin-bottom: 84px;
 }
 
-#experience ul {
-  margin-left: 48px;
-  margin-right: 48px;
+#experience ul, #education ul {
+  list-style: none;
+  padding: 0px;
 }
 
 #education {
   background-color: #A3BCB6;
-  color: 39603D;
-  padding: 48px;
+  color: black;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  text-align: center;
 }
 
-
 #education h1 {
-  font-size: 48px;
+  color: black;
 }
 
 #education h2 {
-  font-size: 20px;
-  padding-bottom: 48px;
+  margin-bottom: 84px;
 }
 
 #education span {
-  color: white;
+  color: #39603D;
   font-size: 16px;
   margin-left: 12px;
-}
-
-#education p {
-  font-size: 12px;
-  line-height: 36px;
-}
-
-#education li {
-  margin-bottom: 64px;
 }
 
 #contact {
   background-color: #242424;
   color: white;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  text-align: center;
+}
+
+#contact form {
   padding: 48px;
 }
 
@@ -523,7 +600,7 @@ body {
 }
 
 input, textarea {
-  background-color: #DADED4;
+  background-color: white;
   border: solid 3px #39603D;
   font-size: 16px;
   color: #39603D;
@@ -531,6 +608,7 @@ input, textarea {
   padding-bottom: 12px;
   border-radius: 25px 25px 25px 25px;
   margin-bottom: 24px;
+  text-indent: 12px;
 }
 
 
@@ -538,7 +616,7 @@ input, textarea {
   width: 100%;
 }
 
-#submit {
+input .submit {
   width: 25px;
 }
 
