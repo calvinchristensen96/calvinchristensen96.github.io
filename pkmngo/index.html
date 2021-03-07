@@ -697,6 +697,7 @@
         <th id="th-attack" onClick="sortTable(1)">Attack</th>
         <th id="th-defense" onClick="sortTable(2)">Defense</th>
         <th id="th-stamina" onClick="sortTable(3)">Stamina</th>
+        <th id="th-rating" onClick="sortTable(4)">Rating</th>
       </table>
 	</div>
       <p id="demo"></p>
@@ -872,7 +873,7 @@ function selectForm(val) {
       
        document.getElementById("pokemon").style.paddingTop = "40vh";
        
-       document.getElementById("nav").style.top = "-72px";
+       document.getElementById("nav").style.top = "-100px";
        document.getElementById("table-div").style.opacity = "0";
        
 }
@@ -894,22 +895,67 @@ function selectForm(val) {
         shouldSwitch = false;
         /*Get the two elements you want to compare,
         one from current row and one from the next:*/
-        x = rows[i].getElementsByTagName("TD")[value];
-        y = rows[i + 1].getElementsByTagName("TD")[value];
-        //check if the two rows should switch place:
-        if (invert[value]) {
-          if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
-            //if so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;  
-          }        
-        } else {
-          if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
-            //if so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
+        if (value != 4) {
+          x = rows[i].getElementsByTagName("TD")[value];
+          y = rows[i + 1].getElementsByTagName("TD")[value];
+          //check if the two rows should switch place:
+          if (invert[value]) {
+            if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break; 
+            }        
+          } else {
+            if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
           }
+        } else {
+          x = rows[i].getElementsByTagName("TD")[value].innerHTML;
+          y = rows[i + 1].getElementsByTagName("TD")[value].innerHTML;
+          if (parseInt(x.innerHTML) == "☆☆☆☆") {
+            x = 0;
+          } else if (x == "★☆☆☆") {
+            x = 1;
+          } else if (x == "★★☆☆") {
+            x = 2;
+          } else if (x == "★★★☆") {
+            x = 3;
+          } else if (x == "★★★★") {
+            x = 4;
+          }
+
+          if (parseInt(y.innerHTML) == "☆☆☆☆") {
+            y = 0;
+          } else if (y == "★☆☆☆") {
+            y = 1;
+          } else if (y == "★★☆☆") {
+            y = 2;
+          } else if (y == "★★★☆") {
+            y = 3;
+          } else if (y == "★★★★") {
+            y = 4;
+          }
+
+          //check if the two rows should switch place:
+          if (invert[value]) {
+            if (x < y) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break; 
+            }        
+          } else {
+            if (x > y) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+
         }
+
       }
       if (shouldSwitch) {
         /*If a switch has been marked, make the switch
@@ -923,6 +969,7 @@ function selectForm(val) {
     document.getElementById("th-attack").style.border = "none";
     document.getElementById("th-defense").style.border = "none";
     document.getElementById("th-stamina").style.border = "none";
+    document.getElementById("th-rating").style.border = "none";
     if (value == 0) {
       document.getElementById("th-level").style.borderBottom = "solid white 2px";
     } else if (value == 1) {
@@ -931,6 +978,8 @@ function selectForm(val) {
       document.getElementById("th-defense").style.borderBottom = "solid white 2px";
     } else if (value == 3) {
       document.getElementById("th-stamina").style.borderBottom = "solid white 2px";
+    } else if (value == 4) {
+      document.getElementById("th-rating").style.borderBottom = "solid white 2px";
     }
     invert[value] = !invert[value];
   }
@@ -976,11 +1025,24 @@ function selectForm(val) {
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
     cell1.innerHTML = level[l];
     cell2.innerHTML = a;
     cell3.innerHTML = d;
     cell4.innerHTML = s;  
+    if (a + d + s == 45) {
+      cell5.innerHTML = "★★★★"; 
+    } else if (a + d + s >= 37) {
+      cell5.innerHTML = "★★★☆"; 
+    } else if (a + d + s >= 30) {
+      cell5.innerHTML = "★★☆☆"; 
+    } else if (a + d + s >= 23) {
+      cell5.innerHTML = "★☆☆☆"; 
+    } else {
+      cell5.innerHTML = "☆☆☆☆";
+    }
   }
+  
   
   /*
   body {
@@ -1051,7 +1113,6 @@ body, * {
 .content {
   background: linear-gradient(135deg, #6303B1, #ff0099);
   color: white;
-  
   height: 100%;
   min-height: 100vh;
 }
@@ -1061,6 +1122,7 @@ body, * {
   height: 100%;
   transition-duration: 0.3s;
   opacity: 0;
+  padding-top: 72px;
   
 }
 
@@ -1080,12 +1142,13 @@ th {
 
 #nav {
   position: fixed;
-  top: -72px;
+  top: -100px;
   left: 0px;
   width: 100%;
   background-color: black;
-  height: 72px;
+  height: 100px;
   transition-duration: 0.3s;
+  font-size: 26px;
 }
 </style>
 </html>
