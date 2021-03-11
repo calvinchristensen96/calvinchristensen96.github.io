@@ -765,19 +765,19 @@ var base_sta_deoxys = [137,137,137];
 
 /*
 function textReset(val) {
-  document.getElementById("pokemon").style.fontSize = "48px";
+  document.getElementById("pokemon").style.fontSize = "72px";
   document.getElementById("pokemon").style.paddingTop = "40vh";
 
-  document.getElementById("cp").style.fontSize = "24px";
+  document.getElementById("cp").style.fontSize = "36px";
 }
 */
 /*
 function selectForm() {
 
-  document.getElementById("pokemon").style.fontSize = "24px";
+  document.getElementById("pokemon").style.fontSize = "36px";
   document.getElementById("pokemon").style.paddingTop = "20vh";
 
-  document.getElementById("cp").style.fontSize = "48px";
+  document.getElementById("cp").style.fontSize = "72px";
 
   var str = '';
   var forms = new Array();
@@ -826,12 +826,12 @@ function selectForm() {
 
 function selectForm(val) {
   if (val == 0) {
-   document.getElementById("pokemon").style.fontSize = "24px";
+   document.getElementById("pokemon").style.fontSize = "36px";
   document.getElementById("pokemon").style.paddingTop = "20vh";
-  document.getElementById("cp").style.fontSize = "36px"; 
+  document.getElementById("cp").style.fontSize = "72px"; 
   }  else if (val == 1) {
     document.getElementById("pokemon").style.paddingTop = "0vh";
-  document.getElementById("cp").style.fontSize = "24px"; 
+  document.getElementById("cp").style.fontSize = "36px"; 
   }
 
 }
@@ -1123,16 +1123,18 @@ body, * {
   transition-duration: 0.3s;
   opacity: 0;
   padding-top: 72px;
+  font-size: 24px;
   
 }
 
 #pokemon {
-  font-size: 36px;
+  font-size: 72px;
   padding-top: 40vh;
   transition-duration: .3s;
 }
 
 #cp {
+  font-size: 36px;
   transition-duration: .3s;
 }
 
@@ -1149,6 +1151,11 @@ th {
   height: 100px;
   transition-duration: 0.3s;
   font-size: 26px;
+}
+
+input {
+  width: 400px;
+  font-size: 24px;
 }
 </style>
 </html>
