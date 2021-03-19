@@ -197,7 +197,7 @@
   	<option value="183. Marill">
   	<option value="184. Azumarill">
   	<option value="185. Sudowoodo">
-  	<option value="186. Politoad">
+  	<option value="186. Politoed">
   	<option value="187. Hoppip">
   	<option value="188. Skiploom">
   	<option value="189. Jumpluff">
@@ -915,7 +915,7 @@ function selectForm(val) {
         } else {
           x = rows[i].getElementsByTagName("TD")[value].innerHTML;
           y = rows[i + 1].getElementsByTagName("TD")[value].innerHTML;
-          if (parseInt(x.innerHTML) == "☆☆☆☆") {
+          if (x == "☆☆☆☆") {
             x = 0;
           } else if (x == "★☆☆☆") {
             x = 1;
@@ -927,7 +927,7 @@ function selectForm(val) {
             x = 4;
           }
 
-          if (parseInt(y.innerHTML) == "☆☆☆☆") {
+          if (y == "☆☆☆☆") {
             y = 0;
           } else if (y == "★☆☆☆") {
             y = 1;
