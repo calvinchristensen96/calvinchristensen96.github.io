@@ -7,7 +7,7 @@
 <body>
   <div class="diagonal-box">
     <div id="content">  
-      <button id="info" onClick="abcde()">-</button>
+      <img id="info" onClick="abcde()" src="menu.png">
       <div id="overview">
         <div id="nav">
           <button id="restart" onClick="startOver()">←</button>
@@ -204,7 +204,7 @@
   	<option value="183. Marill">
   	<option value="184. Azumarill">
   	<option value="185. Sudowoodo">
-  	<option value="186. Politoad">
+  	<option value="186. Politoed">
   	<option value="187. Hoppip">
   	<option value="188. Skiploom">
   	<option value="189. Jumpluff">
@@ -808,12 +808,13 @@ function foo(val) {
   document.getElementById("demo").innerHTML = potential;
   var forms = document.getElementById("forms");
   if (val == 0) {
+      document.getElementById("info").style.filter="invert(100%)";
       document.getElementById('custom-cp').value = 0;
   document.getElementById("info").style.color = "white";
     document.getElementById("pokemon-image").src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + species + ".png";
     document.getElementById("overview").style.height = "25vh";
   
-    document.getElementById("content").style.backgroundColor = "#C00";
+    document.getElementById("content").style.backgroundColor = "#545454";
     document.getElementById("nav").style.opacity = "1";   
     document.getElementById("nav").style.marginTop = "0px";   
     document.getElementById("pokemon").style.display = "none";
@@ -823,8 +824,11 @@ function foo(val) {
 } 
   
 function startOver() {
-  document.getElementById("pokemon").style.display = "block";  document.getElementById("content").style.backgroundColor = "#eee";
+  document.getElementById("info").style.filter="invert(0%)";
+  document.getElementById("pokemon").style.display = "block";  
+  document.getElementById("content").style.backgroundColor = "#eee";
   document.getElementById("nav").style.opacity = "0";
+  document.getElementById("info").style.color = "black";
   
   document.getElementById("nav").style.marginTop = "24px";
     document.getElementById("input").value = "";     
@@ -1062,6 +1066,8 @@ body, * {
   background-color: #eee;
   height: 100vh;
   text-align: center;
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c1c1c1' fill-opacity='0.67' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 #pokemon {
@@ -1106,21 +1112,17 @@ body, * {
 
 #info {
   position: fixed;
-  right: 0;
-  font-size: 72px;
+  right: 20px;
+  top: 40px;
   border-color: white;
   border: none;
   text-decoration: none;
-  width: 108px;
-  height: 108px;
-  border-radius: 50%;
   margin: 0px;
   padding: 0px;
   color: black;
   background-color: transparent;
   cursor: pointer;
 }
-
 
 #selected-mon {
   font-size: 72px;
