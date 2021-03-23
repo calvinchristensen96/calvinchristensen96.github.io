@@ -808,11 +808,12 @@ function foo(val) {
   document.getElementById("demo").innerHTML = potential;
   var forms = document.getElementById("forms");
   if (val == 0) {
+    document.getElementById("restart").style.cursor = "pointer";
       document.getElementById("info").style.filter="invert(100%)";
       document.getElementById('custom-cp').value = 0;
   document.getElementById("info").style.color = "white";
     document.getElementById("pokemon-image").src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + species + ".png";
-    document.getElementById("overview").style.height = "25vh";
+    document.getElementById("overview").style.height = "33vh";
   
     document.getElementById("content").style.backgroundColor = "#545454";
     document.getElementById("nav").style.opacity = "1";   
@@ -824,6 +825,7 @@ function foo(val) {
 } 
   
 function startOver() {
+  document.getElementById("restart").style.cursor = "default";
   document.getElementById("info").style.filter="invert(0%)";
   document.getElementById("pokemon").style.display = "block";  
   document.getElementById("content").style.backgroundColor = "#eee";
@@ -1057,11 +1059,6 @@ body, * {
  overflow-y: hidden;
 }
 
-#info {
-  position: fixed;
-  right: 0;
-}
-
 #content {
   background-color: #eee;
   height: 100vh;
@@ -1077,7 +1074,7 @@ body, * {
   margin-bottom: 20%;
 }
 
-#input {
+#input, #custom-cp {
   max-width: 480px;
   min-width: 50%;
   margin-left: 36px;
@@ -1107,13 +1104,12 @@ body, * {
   padding: 0px;
   color: white;
   background-color: transparent;
-  cursor: pointer;
 }
 
 #info {
   position: fixed;
   right: 20px;
-  top: 40px;
+  top: 32px;
   border-color: white;
   border: none;
   text-decoration: none;
@@ -1122,19 +1118,21 @@ body, * {
   color: black;
   background-color: transparent;
   cursor: pointer;
+  width: 48px;
+  z-index: 20;
 }
 
 #selected-mon {
-  font-size: 72px;
+  font-size: 54px;
   text-align: left;
-  padding-top: 108px;
-  padding-left: 5%;
+  padding-left: 164px;
+  padding-top: 24px;
 }
 
 #maxCp {
-  font-size: 48px;
+  font-size: 32px;
   text-align: left;
-  padding-left: 5%;
+  padding-left: 164px;
 }
 
 #overview {
@@ -1145,20 +1143,24 @@ body, * {
 #table-div {
   background-color: white;
   border-radius: 24px 0px 0px 0px;
-  height: 75vh;
+  height: 67vh;
   overflow-y: overlay;
 }
 
 table {
-  font-size: 36px;
+  font-size: 24px;
 }
 
 #nav img {
-  width: 35%;
+  width: 200px;
 }
 
 #image {
-  margin-top: -10%;
+  margin-top: -40px;
+}
+
+#great-table-content, #ultra-table-content, #custom-table-content {
+  font-size: 28px;
 }
 
 .tab {
@@ -1175,7 +1177,7 @@ table {
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
-  font-size: 42px;
+  font-size: 28px;
   width: 33.33%;
 }
 
@@ -1201,6 +1203,20 @@ th {
   cursor: pointer;
 }
 
+@media only screen and (min-width: 767px) {
+  
+#content {
+  width: 50%;
+  float: left;
+}
 
+#input {
+  width: 50%;
+}
+
+#pokemon {
+  font-size: 24px;
+}
+}
 </style>
 </html>
