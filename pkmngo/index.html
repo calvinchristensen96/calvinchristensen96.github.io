@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CP Maximizer</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title>CP Maximizer</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
 </head>
 <body>
-  <div class="diagonal-box">
-    <div id="content">  
-      <img id="info" onClick="abcde()" src="menu.png">
-      <div id="overview">
-        <div id="nav">
-          <button id="restart" onClick="startOver()">←</button>
-          <p id="selected-mon">Pokemon</p>
-          <p id="maxCp">???</p>
-          <div id="image">
-            <img id="pokemon-image" src="https://img.pokemondb.net/sprites/bank/normal/bulbasaur.png">
-          </div>
-        </div>
-        <p class="choose" id="pokemon">Choose Your Pokemon:<br><input onClick="textReset(0)" onChange="selectForm(0), foo(0), calculate(), clearTable(3)" id="input" list="brow">
-        <datalist id="brow">
+	<div id="content">  
+		<img id="info" src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/pkmngo/menu.png">
+		<div id="overview">
+			<div id="nav">
+				<button id="restart" onClick="startOver()">←</button>
+				<p id="selected-mon">Pokemon</p>
+				<p id="maxCp">???</p>
+				<div id="image">
+					<img id="pokemon-image" src="https://img.pokemondb.net/sprites/bank/normal/bulbasaur.png">
+				</div>
+				<div id="formes">
+					<p>Form:</p>
+					<input id="forme-input" placeholder = "Normal" list="forme-list" onChange="selectForme()">
+					<datalist id="forme-list">
+					</datalist>
+				</div>
+			</div>
+			<p class="choose" id="pokemon">Choose Your Pokemon:<br><input placeholder="Name or Pokedex Number" onClick="textReset(0)" onChange="begin(0), clearTable(3)" id="input" list="brow">
+				<datalist id="brow">
         <option value="1. Bulbasaur">
         <option value="2. Ivysaur">
 	<option value="3. Venusaur">
@@ -559,7 +565,7 @@
   	<option value="538. Throh">
   	<option value="539. Sawk">
   	<option value="540. Sewaddle">
-  	<option value="541. ">
+  	<option value="541. Swadloon">
   	<option value="542. Leavany">
   	<option value="543. Venipede">
   	<option value="544. Whirlipede">
@@ -569,9 +575,9 @@
   	<option value="548. Petilil">
   	<option value="549. Liligant">
   	<option value="550. Basculin">
-  	<option value="551. Krokorok">
-  	<option value="552. Krookodile">
-  	<option value="553.">
+  	<option value="551. Sandile">
+  	<option value="552. Krokorok">
+  	<option value="553. Krookodile">
   	<option value="554. Darumaka">
   	<option value="555. Darmanitan">
   	<option value="556. Maractus">
@@ -683,540 +689,553 @@
         <option value="662. Fletchinder">
         <option value="663. Talonflame">
 </datalist></p>
-      </div>
-      <div id="table-div">
-        <div class="tab">
-          <button class="tablinks  active" onClick="openTab(event, 'great')">1500</button>
-          <button class="tablinks" onClick="openTab(event, 'ultra')">2500</button>
-          <button class="tablinks" onClick="openTab(event, 'custom')">Custom</button>
-        </div>
-        <div id="great" class="tabcontent">
-          <div id="great-table-content">
-          </div>
-	      <table id="myTable">
-            <th id="th-level" onClick="sortTable(0)">Level</th>
-            <th id="th-attack" onClick="sortTable(1)">Attack</th>
-            <th id="th-defense" onClick="sortTable(2)">Defense</th>
-            <th id="th-stamina" onClick="sortTable(3)">Stamina</th>
-            <th id="th-rating" onClick="sortTable(4)">Rating</th>
-          </table>
-	    </div>
-        <div id="ultra" class="tabcontent">
-          <div id="ultra-table-content">
-          </div>
-          <table id="myTable2">
-             <th id="th-level" onClick="sortTable(0)">Level</th>
-             <th id="th-attack" onClick="sortTable(1)">Attack</th>
-             <th id="th-defense" onClick="sortTable(2)">Defense</th>
-             <th id="th-stamina" onClick="sortTable(3)">Stamina</th>
-             <th id="th-rating" onClick="sortTable(4)">Rating</th>
-           </table>
-        </div>
-        <div id="custom" class="tabcontent">
-          <div id="custom-info">
-            <h2>Enter a custom CP to get a list of IV's.</h2>
-            <input type="number" id="custom-cp" onChange="custom()"></input>
-          </div>
-          <div id="custom-table-content">
-          </div>
-          <table id="myTable3">
-             <th id="th-level" onClick="sortTable(0)">Level</th>
-             <th id="th-attack" onClick="sortTable(1)">Attack</th>
-             <th id="th-defense" onClick="sortTable(2)">Defense</th>
-             <th id="th-stamina" onClick="sortTable(3)">Stamina</th>
-             <th id="th-rating" onClick="sortTable(4)">Rating</th>
-           </table>
-        </div>
-      </div>
-      <p id="demo"></p>
-      <div id="additional-details"></div>
-    </div>
-  </div>
+		</div>
+		<div id="table-div">
+			<div class="tab">
+				<button class="tablinks  active" onClick="openTab(event, 'great')">1500</button>
+				<button class="tablinks" onClick="openTab(event, 'ultra')">2500</button>
+				<button class="tablinks" onClick="openTab(event, 'custom')">Custom</button>
+			</div>
+			<div id="great" class="tabcontent">
+				<div id="great-table-content">
+				</div>
+				<table id="myTable">
+					<th id="th-level" onClick="sortTable(0)">Level</th>
+					<th id="th-attack" onClick="sortTable(1)">Attack</th>
+					<th id="th-defense" onClick="sortTable(2)">Defense</th>
+					<th id="th-stamina" onClick="sortTable(3)">Stamina</th>
+					<th id="th-rating" onClick="sortTable(4)">Rating</th>
+				</table>
+			</div>
+			<div id="ultra" class="tabcontent">
+				<div id="ultra-table-content">
+				</div>
+				<table id="myTable2">
+					<th id="th-level" onClick="sortTable(0)">Level</th>
+					<th id="th-attack" onClick="sortTable(1)">Attack</th>
+					<th id="th-defense" onClick="sortTable(2)">Defense</th>
+					<th id="th-stamina" onClick="sortTable(3)">Stamina</th>
+					<th id="th-rating" onClick="sortTable(4)">Rating</th>
+				</table>
+			</div>
+			<div id="custom" class="tabcontent">
+				<div id="custom-info">
+					<h2>Enter a custom CP to get a list of IV's.</h2>
+					<input type="number" id="custom-cp" onChange="custom()"></input>
+				</div>
+			<div id="custom-table-content">
+			</div>
+			<table id="myTable3">
+				<th id="th-level" onClick="sortTable(0)">Level</th>
+				<th id="th-attack" onClick="sortTable(1)">Attack</th>
+				<th id="th-defense" onClick="sortTable(2)">Defense</th>
+				<th id="th-stamina" onClick="sortTable(3)">Stamina</th>
+				<th id="th-rating" onClick="sortTable(4)">Rating</th>
+			</table>
+		</div>
+	</div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js.map"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/calvinchristensen96/calvinchristensen96.github.io/pkmngo/stats.js"></script>
 <script type="text/javascript">
-
-
-
-function abcde() {
- 
-}
-
-var amount;
-var potential;
+var amount, potential;
 var species;
 var pkmn;
-var base_atk = [118,151,198,116,158,223,94,126,171,55,45,167,63,46,169,85,117,166,103,161,112,182,110,167,112,193,126,182,86,117,180,105,137,204,107,178,96,169,80,156,83,161,131,153,202,121,165,100,179,109,167,92,150,122,191,148,207,136,227,101,130,182,195,232,271,137,177,234,139,172,207,97,166,132,164,211,170,207,109,177,165,223,124,158,218,85,139,135,190,116,186,186,223,261,85,89,144,181,240,109,173,107,233,90,144,224,193,108,119,174,140,222,60,183,181,129,187,123,175,137,210,192,218,223,198,206,238,198,29,237,165,91,104,205,232,246,153,155,207,148,220,221,190,192,253,251,119,163,263,300,210,92,122,168,116,158,223,117,150,205,79,148,67,145,72,107,105,161,194,106,146,77,75,69,67,139,134,192,114,145,211,169,37,112,167,174,67,91,118,136,55,185,154,75,152,261,126,175,177,167,136,60,182,108,161,131,143,148,137,212,184,236,17,234,189,142,236,118,139,90,181,118,127,197,128,148,148,152,224,194,107,214,198,192,40,64,173,153,135,151,157,129,241,235,180,115,155,251,193,239,210,124,172,223,130,163,240,126,156,208,96,171,58,142,75,60,189,60,98,71,112,173,71,134,200,106,185,106,175,79,117,237,93,192,74,241,104,159,290,80,199,153,92,134,179,99,209,36,82,84,132,141,155,121,158,198,78,121,123,215,167,147,143,143,186,80,140,171,243,136,175,119,194,151,125,171,116,162,134,205,156,221,76,141,222,196,178,178,93,151,141,224,77,140,105,152,176,222,29,192,139,161,138,218,70,124,136,175,246,41,95,162,95,137,182,133,197,211,162,81,134,172,277,96,138,257,179,179,143,228,268,270,270,284,210,345, 119,157,202,113,158,222,112,150,210,101,142,234,80,162,45,160,117,159,232,91,243,218,295,76,94,53,141,185,59,149,94,132,221,108,170,103,169,205,117,180,130,156,211,243,109,172,114,121,184,43,161,124,125,25,183,169,124,172,261,137,127,236,124,201,93,180,116,211,187,96,142,105,115,178,243,238,161,241,207,249,247,225,231,216,238,185,247,264,237,135,180,171,185,156,212,270,275,280,251,287,187,152,162,210,285,210,238,210,88,122,161,115,173,235,117,159,212,98,165,107,145,206,98,187,104,206,104,206,104,206,111,183,98,144,226,118,211,121,174,226,107,161,154,255,114,134,180,243,98,128,188,172,231,96,115,205,83,100,203,71,164,119,214,189,132,155,229,153,263,201,118,188,132,163,204,95,163,134,192,213,292,96,181,153,250,98,198,98,137,176,170,208,214,84,182,118,151,218,115,198,158,137,223,97,155,115,159,138,110,201,82,158,98,150,199,105,156,217,148,221,108,169,271,154,212,284,128,233,190,72,220,144,160,258,213,127,222,154,232,195,150,232,105,129,204,217,116,159,256,156,264,192,260,192,266,266,275,275,261,246,260,250,252,110,146,201,116,171,230,122,168,223,68,112,95,145,176];
-var base_def = [111,143,189,93,126,173,121,155,207,55,80,137,50,75,130,73,105,154,70,139,60,133,97,153,96,151,120,175,89,120,173,76,111,156,108,162,109,190,41,90,73,150,112,136,167,99,146,100,143,78,134,78,136,95,162,82,138,93,166,82,123,184,82,117,167,82,125,159,61,92,135,149,209,132,164,198,127,162,98,180,121,169,115,83,140,121,177,90,172,134,256,67,107,149,232,136,193,124,181,111,173,125,149,144,186,181,197,137,141,197,127,171,128,169,165,103,156,110,147,112,184,205,170,151,158,154,182,183,85,186,174,91,114,161,182,179,136,153,201,140,186,159,169,236,185,181,91,135,198,182,210,112,155,202,93,126,173,109,142,188,73,125,88,156,118,179,73,124,178,97,137,53,79,32,116,181,89,146,79,109,169,186,93,152,176,179,94,120,183,112,55,135,94,66,143,175,240,87,180,154,91,106,133,122,205,128,184,272,85,131,138,181,396,179,146,93,144,71,191,69,138,156,69,141,90,226,226,83,144,194,98,185,180,131,83,64,207,91,101,99,193,169,195,171,235,93,133,207,310,244,210,94,120,169,87,115,141,93,133,175,61,132,80,128,59,77,98,77,162,77,119,176,77,78,121,61,124,61,174,59,90,195,87,150,110,144,92,145,166,126,112,73,42,81,137,54,114,71,215,79,127,136,141,141,198,257,107,152,78,127,129,150,166,166,131,99,159,39,83,68,87,79,136,203,122,188,116,78,99,168,74,115,132,201,124,118,153,153,82,141,99,142,124,229,150,194,100,174,85,219,139,189,65,126,162,234,163,170,120,86,95,162,90,132,176,135,179,179,203,128,93,155,168,132,176,228,309,309,285,246,212,228,228,170,210,115, 110,143,188,86,105,151,102,139,186,58,94,140,73,119,74,100,64,95,156,109,185,71,109,195,286,83,180,98,83,190,172,67,114,92,153,105,143,143,80,102,105,194,187,103,82,133,94,90,132,154,213,133,142,77,91,199,84,125,193,117,78,144,118,191,151,202,76,133,136,116,170,179,105,158,171,205,181,190,184,163,172,217,156,219,205,222,146,150,195,275,254,150,159,270,212,151,211,215,213,210,187,258,162,210,198,210,238,210,107,152,204,85,106,127,85,116,157,73,139,86,126,182,73,106,94,133,94,133,94,133,92,166,80,107,146,64,136,110,143,201,85,119,85,129,163,87,134,158,78,109,150,160,153,124,162,165,99,173,175,111,176,91,155,129,69,90,158,86,114,130,128,200,132,222,167,141,237,146,197,89,139,122,164,78,127,80,130,112,153,205,83,103,148,96,132,106,138,184,100,146,127,87,187,91,139,134,178,131,98,128,155,223,121,174,214,78,130,152,100,163,98,115,182,101,123,172,74,152,218,140,120,171,98,127,170,92,154,114,176,182,97,152,139,205,129,188,93,135,188,107,189,229,192,229,164,164,211,211,182,170,192,225,199,106,156,204,102,130,189,84,114,152,72,155,80,110,155];
-var base_sta = [128,155,190,118,151,186,127,153,188,128,137,155,120,128,163,120,160,195,102,146,120,163,111,155,111,155,137,181,146,172,207,130,156,191,172,216,116,177,251,295,120,181,128,155,181,111,155,155,172,67,111,120,163,137,190,120,163,146,207,120,163,207,93,120,146,172,190,207,137,163,190,120,190,120,146,190,137,163,207,216,93,137,141,111,155,163,207,190,233,102,137,102,128,155,111,155,198,102,146,120,155,155,216,137,155,147,137,207,120,163,190,233,487,163,233,102,146,128,190,102,155,120,172,163,163,163,163,181,85,216,277,134,146,277,163,163,163,111,172,102,155,190,330,207,207,207,121,156,209,214,225,128,155,190,118,151,186,137,163,198,111,198,155,225,120,146,120,172,198,181,268,85,137,207,111,146,120,163,146,172,207,181,172,225,172,207,111,146,181,146,102,181,163,146,216,163,216,155,216,155,134,382,172,137,181,225,163,181,155,207,163,172,85,190,146,155,207,120,137,137,225,146,111,181,128,163,163,128,181,181,207,207,198,177,146,111,137,128,128,128,216,496,207,251,225,137,172,225,235,214,225,120,137,172,128,155,190,137,172,225,111,172,116,186,128,137,155,137,155,120,155,190,120,172,207,120,155,120,155,99,116,169,120,172,155,155,155,190,284,104,156,1,162,197,232,176,302,137,102,137,172,137,137,137,155,172,102,155,120,172,155,155,163,163,137,172,225,128,172,277,347,155,172,172,155,190,155,128,137,190,137,172,128,181,177,177,207,207,137,242,125,160,120,155,165,200,128,181,85,216,172,155,127,162,85,120,223,181,163,216,137,190,172,207,242,111,146,146,225,125,128,163,216,120,155,190,190,190,190,190,190,205,205,213,225,137, 146,181,216,127,162,183,142,162,197,120,146,198,153,188,114,184,128,155,190,120,155,167,219,102,155,120,155,172,102,172,155,146,198,128,172,183,244,181,207,312,146,163,155,225,135,174,128,160,230,149,167,137,85,225,183,137,151,169,239,286,120,172,169,239,120,172,134,195,179,135,170,128,155,207,172,172,242,251,225,181,181,198,200,163,163,181,242,198,169,155,128,172,137,181,190,181,205,189,209,221,284,260,190,225,172,225,237,225,128,155,181,163,207,242,146,181,216,128,155,128,163,198,121,162,137,181,137,181,137,181,183,253,137,158,190,128,181,146,172,198,163,167,155,242,230,181,198,233,137,181,233,260,181,128,146,181,102,120,155,120,155,128,172,172,137,155,216,172,233,181,137,172,137,163,176,116,151,144,179,146,181,137,190,120,155,146,181,128,155,172,128,163,242,158,181,113,139,174,155,190,146,137,172,170,249,146,225,338,137,172,127,179,120,155,155,111,163,198,146,181,137,155,155,130,165,183,146,216,190,137,190,240,128,163,184,153,205,128,163,216,172,225,172,242,198,151,141,176,211,146,198,209,209,209,188,188,205,205,205,245,209,225,174,148,156,204,120,153,181,121,144,176,116,198,128,158,186];
-var level = [1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12,12.5,13,13.5,14,14.5,15,15.5,16,16.5,17,17.5,18,18.5,19,19.5,20,20.5,21,21.5,22,22.5,23,23.5,24,24.5,25,25.5,26,26.5,27,27.5,28,28.5,29,29.5,30,30.5,  31,31.5,32,32.5,33,33.5,34,34.5,35,35.5,36,36.5,37,37.5,38,38.5,39,39.5,40,40.5,41,41.5,42,42.5,43,43.5,44,44.5,45,45.5,46,46.5,47,47.5,48,48.5,49,49.5,50,50.5,51];
-var multiplier = [.094,.1351374318,.16639787,.192650919,.21573247,.2365726613,.25572005,.2735303812,.29024988,.3060573775,.3210876,.3354450362,.34921268,.3624577511,.3752356,.387592416,.39956728,.4111935514,.4225,.4329264091,.44310755,.4530599591,.4627984,.472336093,.48168495,.4908558003,.49985844,.508701765,.51739395,.5259425113,.5343543,.5426357375,.5507927,.5588305862,.5667545,.5745691333,.5822789,.5898879072,.5974,.6048236651,.6121573,.6194041216,.6265671,.6336491432,.64065295,.6475809666,.65443563,.6612192524,.667934,.6745818959,.6811649,.6876849038,.69414365,.70054287,.7068842,.7131691091,.7193991,.7255756136,.7317,.7347410093,.7377695,.7407855938,.74378943,.7467812109,.74976104,.7527290867,.7556855,.7586303683,.76156384,.7644860647,.76739717,.7702972656,.7731865,.7760649616,.77893275,.7817900548,.784637,.7874736075,.7903,.792803968,.79530001,.797800015,.8003,.802799995,.8053,.8078,.81029999,.812799985,.81529999,.81779999,.82029999,.82279999,.82529999,.82779999,.83029999,.83279999,.83529999,.83779999,.84029999,.84279999,.84529999];
 var invert = [false,false,false,false];
-var alolan = [19,20,26,27,28,37,38,50,51,52,53,74,75,76,88,89,103,105];
-var mega = [3,9,15,18,65,94,115,130];
-var megax = [6,150];
-var megay = [6,150];
-var armored = [150];
-var galarian = [52,83,110,263,264];
+var alolan = [19,20,26,27,28,37,38,50,51,52,53,74,75,76,88,89,103,105,'Alolan'];
+var mega = [3,9,15,18,65,94,115,130,'Mega'];
+var megax = [6,150, "Mega-X"];
+var megay = [6,150, 'Mega-Y'];
+var armored = [150,'Armored'];
+var galarian = [52,83,110,263,264,'Galarian'];
 var deoxys = [386];
-//Alolan Base Stats
+var wormadam = [413];
+var giratina = [487, 'Origin'];
+var base_atk_wormadam = [141,141,127];
+var base_def_wormadam = [180,180,175];
+var base_sta_wormadam = [155,155,155];
+var base_atk_giratina = [225];
+var base_def_giratina = [187];
+var base_sta_giratina = [284];
 var base_atk_alolan = [103,135,201,125,177,96,170,108,201,99,158,132,164,211,135,190,230,144];
 var base_def_alolan = [70,154,154,129,195,109,193,81,142,78,136,132,164,198,90,172,153,186];
 var base_sta_alolan = [102,181,155,137,181,116,177,67,111,120,163,120,146,190,190,233,216,155];
-//Galarian Base Stats
+var base_atk_mega = [241,264,303];
+var base_def_mega = [246,237,148];
+var base_sta_mega = [190,188,163];
+var base_atk_megax = [273];
+var base_def_megax = [213];
+var base_sta_megax = [186];
+var base_atk_megay = [319];
+var base_def_megay = [212];
+var base_sta_megay = [186];
 var base_atk_galarian = [115,174,174,58,142];
 var base_def_galarian = [92,114,197,80,128];
 var base_sta_galarian = [137,141,163,116,186];
-//Armored Base Stats
 var base_atk_armored = [182];
 var base_def_armored = [278];
 var base_sta_armored = [214];
-//Deoxys Base Stats 1=Attack/2=Defense/3=Speed
 var base_atk_deoxys = [414,114,230];
 var base_def_deoxys = [46,330,218];
 var base_sta_deoxys = [137,137,137];
 
-function selectForm(val) {
-
+function changeImage(suffix) {
+  document.getElementById("pokemon-image").src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + species + suffix + ".png";
 }
 
+function selectForme() {
+	var choice = document.getElementById('forme-input').value;
+	if (choice == "Normal") {
+		calculate(base_atk[species-1], base_def[species-1],base_sta[species-1]);
+		document.getElementById("pokemon-image").src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + species + ".png";
+	} else if (choice == "Alolan") {
+		changeImage("_f2");
+		calculate(base_atk_alolan[alolan.indexOf(parseInt(species))], base_def_alolan[alolan.indexOf(parseInt(species))], base_sta_alolan[alolan.indexOf(parseInt(species))]);
+	} else if (choice == "Galarian") {
+	  changeImage("_f2");
+      calculate(base_atk_galarian[galarian.indexOf(parseInt(species))], base_def_galarian[galarian.indexOf(parseInt(species))], base_sta_galarian[galarian.indexOf(parseInt(species))]);
+	} else if (choice == "Mega") {
+		changeImage("_f2");
+		calculate(base_atk_mega[mega.indexOf(parseInt(species))], base_def_mega[mega.indexOf(parseInt(species))], base_sta_mega[mega.indexOf(parseInt(species))]);
+	} else if (choice == "Mega-X") {
+		changeImage("_f2");
+		calculate(base_atk_megax[megax.indexOf(parseInt(species))], base_def_megax[megax.indexOf(parseInt(species))], base_sta_megax[megax.indexOf(parseInt(species))]);
+	} else if (choice == "Armored") {
+		calculate(base_atk_armored[armored.indexOf(parseInt(species))], base_def_armored[armored.indexOf(parseInt(species))], base_sta_armored[armored.indexOf(parseInt(species))]);
+    } else if (choice == "Origin") {
+		changeImage("_f2");	calculate(base_atk_giratina[giratina.indexOf(parseInt(species))], base_def_giratina[giratina.indexOf(parseInt(species))], base_sta_giratina[giratina.indexOf(parseInt(species))]);
+    } else if (choice == "Plant") {	
+		calculate(base_atk_wormadam[0], base_def_wormadam[0], base_sta_wormadam[0]);
+    } else if (choice == "Sandy") {
+		changeImage("_f2");
+        calculate(base_atk_wormadam[1], base_def_wormadam[1], base_sta_wormadam[1]);
+    } else if (choice == "Trash") {
+		changeImage("_f3");
+        calculate(base_atk_wormadam[2], base_def_wormadam[2], base_sta_wormadam[2]);
+    }
+}
 function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  } 
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+	document.getElementById(tabName).style.display = "block";
+	evt.currentTarget.className += " active";
+}
+function checkFormes(arr) {
+	var options = "";
+	if (arr == wormadam) {
+	//	options += '<option value="Plant"/><option value="Sandy"/><option value="Trash"/>';
+	//	document.getElementById("formes").style.display = "block";
+	//	document.getElementById("forme-list").innerHTML += options;
+	} else {
+		if (arr.includes(parseInt(species))) {
+			options += '<option value=' + arr[arr.length-1] + '>';
+			document.getElementById("formes").style.display = "block";
+			document.getElementById("forme-list").innerHTML = '<option value="Normal"/>';
+			document.getElementById("forme-list").innerHTML += options;
+		}
+	}
 }
 
-function foo(val) {    
-  var str = document.getElementById("input").value;
-  species = str.substring(0, str.indexOf("."));
-  while (species.length < 3) {
-    species = '0' + species;
-  }
-  pkmn = str.substring(str.indexOf(".") + 2, str.length);
-  document.getElementById("demo").innerHTML = potential;
-  var forms = document.getElementById("forms");
-  if (val == 0) {
-    document.getElementById("restart").style.cursor = "pointer";
-      document.getElementById("info").style.filter="invert(100%)";
-      document.getElementById('custom-cp').value = 0;
-  document.getElementById("info").style.color = "white";
-    document.getElementById("pokemon-image").src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + species + ".png";
-    document.getElementById("overview").style.height = "33vh";
-  
-    document.getElementById("content").style.backgroundColor = "#545454";
-    document.getElementById("nav").style.opacity = "1";   
-    document.getElementById("nav").style.marginTop = "0px";   
-    document.getElementById("pokemon").style.display = "none";
-    document.getElementById("selected-mon").innerHTML = pkmn;
-    document.getElementById("table-div").style.opacity = "1";  
-  }
-} 
-  
+function begin(val) {    
+	var str = document.getElementById("input").value;
+	species = str.substring(0, str.indexOf("."));
+	checkFormes(alolan);
+	checkFormes(mega);
+	checkFormes(megax);
+    checkFormes(galarian);
+    checkFormes(armored);
+    checkFormes(wormadam);
+    checkFormes(giratina);
+	while (species.length < 3) {
+		species = '0' + species;
+	}
+	pkmn = str.substring(str.indexOf(".") + 2, str.length);
+	var forms = document.getElementById("forms");
+	if (val == 0) {
+		calculate(base_atk[species-1], base_def[species-1],base_sta[species-1]);
+		document.getElementById("restart").style.cursor = "pointer";
+		document.getElementById("info").style.filter="invert(100%)";
+		document.getElementById('custom-cp').value = 0;
+		document.getElementById("info").style.color = "white";
+		document.getElementById("pokemon-image").src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + species + ".png";
+		document.getElementById("overview").style.height = "33vh";
+		document.getElementById("content").style.backgroundColor = "#545454";
+		document.getElementById("nav").style.opacity = "1";   
+		document.getElementById("nav").style.marginTop = "0px";   
+		document.getElementById("pokemon").style.display = "none";
+		document.getElementById("selected-mon").innerHTML = pkmn;
+		document.getElementById("table-div").style.opacity = "1";  
+	}
+}
 function startOver() {
-  document.getElementById("restart").style.cursor = "default";
-  document.getElementById("info").style.filter="invert(0%)";
-  document.getElementById("pokemon").style.display = "block";  
-  document.getElementById("content").style.backgroundColor = "#eee";
-  document.getElementById("nav").style.opacity = "0";
-  document.getElementById("info").style.color = "black";
-  
-  document.getElementById("nav").style.marginTop = "24px";
-    document.getElementById("input").value = "";     
-   document.getElementById("overview").style.height = "100vh";
+	document.getElementById('forme-input').value = "";
+	document.getElementById("formes").style.display = "none";
+	document.getElementById("restart").style.cursor = "default";
+	document.getElementById("info").style.filter="invert(0%)";
+	document.getElementById("pokemon").style.display = "block";  
+	document.getElementById("content").style.backgroundColor = "#eee";
+	document.getElementById("nav").style.opacity = "0";
+	document.getElementById("info").style.color = "black";
+	document.getElementById("nav").style.marginTop = "24px";
+	document.getElementById("input").value = "";     
+	document.getElementById("overview").style.height = "100vh";
 }
-
 function sortTable(value) {
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("myTable");
-  switching = true;
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      if (value != 4) {
-        x = rows[i].getElementsByTagName("TD")[value];
-        y = rows[i + 1].getElementsByTagName("TD")[value];
-        if (invert[value]) {
-          if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
-            shouldSwitch = true;
-            break; 
-          }        
-        } else {
-          if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
-            shouldSwitch = true;
-            break;
-          }
-        }
-      } else {
-        x = rows[i].getElementsByTagName("TD")[value].innerHTML;
-        y = rows[i + 1].getElementsByTagName("TD")[value].innerHTML;
-        if (x == "☆☆☆☆") {
-          x = 0;
-        } else if (x == "★☆☆☆") {
-          x = 1;
-        } else if (x == "★★☆☆") {
-          x = 2;
-        } else if (x == "★★★☆") {
-          x = 3;
-        } else if (x == "★★★★") {
-          x = 4;
-        }
-        if (y == "☆☆☆☆") {
-          y = 0;
-        } else if (y == "★☆☆☆") {
-          y = 1;
-        } else if (y == "★★☆☆") {
-          y = 2;
-        } else if (y == "★★★☆") {
-          y = 3;
-        } else if (y == "★★★★") {
-          y = 4;
-        }
-        if (invert[value]) {
-          if (x < y) {
-            shouldSwitch = true;
-            break; 
-          }        
-        } else {
-          if (x > y) {
-            shouldSwitch = true;
-            break;
-          }
-        }
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-  document.getElementById("th-level").style.border = "none";
-  document.getElementById("th-attack").style.border = "none";
-  document.getElementById("th-defense").style.border = "none";
-  document.getElementById("th-stamina").style.border = "none";
-  document.getElementById("th-rating").style.border = "none";
-  if (value == 0) {
-    document.getElementById("th-level").style.borderBottom = "solid white 2px";
-  } else if (value == 1) {
-    document.getElementById("th-attack").style.borderBottom = "solid white 2px";
-  } else if (value == 2) {
-    document.getElementById("th-defense").style.borderBottom = "solid white 2px";
-  } else if (value == 3) {
-    document.getElementById("th-stamina").style.borderBottom = "solid white 2px";
-  } else if (value == 4) {
-    document.getElementById("th-rating").style.borderBottom = "solid white 2px";
-  }
-  invert[value] = !invert[value];
+	var table, rows, switching, i, x, y, shouldSwitch;
+	table = document.getElementById("myTable");
+	switching = true;
+	while (switching) {
+		switching = false;
+		rows = table.rows;
+		for (i = 1; i < (rows.length - 1); i++) {
+			shouldSwitch = false;
+			if (value != 4) {
+				x = rows[i].getElementsByTagName("TD")[value];
+				y = rows[i + 1].getElementsByTagName("TD")[value];
+				if (invert[value]) {
+					if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+						shouldSwitch = true;
+						break; 
+					}        
+				} else {
+					if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+						shouldSwitch = true;
+						break;
+					}
+				}
+			} else {
+				x = rows[i].getElementsByTagName("TD")[value].innerHTML;
+				y = rows[i + 1].getElementsByTagName("TD")[value].innerHTML;
+				if (x == "☆☆☆☆") {
+					x = 0;
+				} else if (x == "★☆☆☆") {
+					x = 1;
+				} else if (x == "★★☆☆") {
+					x = 2;
+				} else if (x == "★★★☆") {
+					x = 3;
+				} else if (x == "★★★★") {
+					x = 4;
+				}
+				if (y == "☆☆☆☆") {
+					y = 0;
+				} else if (y == "★☆☆☆") {
+					y = 1;
+				} else if (y == "★★☆☆") {
+					y = 2;
+				} else if (y == "★★★☆") {
+					y = 3;
+				} else if (y == "★★★★") {
+					y = 4;
+				}
+				if (invert[value]) {
+					if (x < y) {
+						shouldSwitch = true;
+						break;
+					}
+				} else {
+					if (x > y) {
+						shouldSwitch = true;
+						break;
+					}
+				}
+			}
+		}
+		if (shouldSwitch) {
+			rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+			switching = true;
+		}
+	}
+	document.getElementById("th-level").style.border = "none";
+	document.getElementById("th-attack").style.border = "none";
+	document.getElementById("th-defense").style.border = "none";
+	document.getElementById("th-stamina").style.border = "none";
+	document.getElementById("th-rating").style.border = "none";
+	if (value == 0) {
+		document.getElementById("th-level").style.borderBottom = "solid white 2px";
+	} else if (value == 1) {
+		document.getElementById("th-attack").style.borderBottom = "solid white 2px";
+	} else if (value == 2) {
+		document.getElementById("th-defense").style.borderBottom = "solid white 2px";
+	} else if (value == 3) {
+		document.getElementById("th-stamina").style.borderBottom = "solid white 2px";
+	} else if (value == 4) {
+		document.getElementById("th-rating").style.borderBottom = "solid white 2px";
+	}
+	invert[value] = !invert[value];
 }
-
 var maxCp = 1008;
-
 function custom() {
-  var inputValue = document.getElementById("custom-cp").value;
-  potential = inputValue;
-  clearTable(3);
-  var iv_atk;
-  var iv_def;
-  var iv_sta;
-  var mult = 0;
-  for (iv_atk = 0; iv_atk <= 15; iv_atk++) {
-    for (iv_def = 0; iv_def <= 15; iv_def++) {
-      for (iv_sta = 0; iv_sta <= 15; iv_sta++) {
-        for (mult = 0; mult < multiplier.length; mult++) {
-          if (iv_atk == 15 && iv_def == 15 && iv_sta == 15 && mult == 100) {
-            maxCp = Math.floor((((base_atk[species-1] + iv_atk) * (Math.pow(base_def[species-1] + iv_def,0.5)) * (Math.pow(base_sta[species-1] + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10));
-            document.getElementById("maxCp").innerHTML = "Max CP: " + maxCp;
-          }
-          if (Math.floor((((base_atk[species-1] + iv_atk) * (Math.pow(base_def[species-1] + iv_def,0.5)) * (Math.pow(base_sta[species-1] + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10)) == potential) {
-            addRow(mult,iv_atk, iv_def, iv_sta,"myTable3");
-	        amount++;
-          }
-        }
-      }
-    }
-  }
-  if (document.getElementById("myTable3").rows.length <= 1) {
-    document.getElementById('custom-table-content').innerHTML = "No data available.";
-    document.getElementById("myTable3").style.display = "none";
-  }
+	var inputValue = document.getElementById("custom-cp").value;
+	potential = inputValue;
+	clearTable(3);
+	var iv_atk;
+	var iv_def;
+	var iv_sta;
+	var mult = 0;
+	for (iv_atk = 0; iv_atk <= 15; iv_atk++) {
+		for (iv_def = 0; iv_def <= 15; iv_def++) {
+			for (iv_sta = 0; iv_sta <= 15; iv_sta++) {
+				for (mult = 0; mult < multiplier.length; mult++) {
+					if (iv_atk == 15 && iv_def == 15 && iv_sta == 15 && mult == 100) {
+						maxCp = Math.floor((((base_atk[species-1] + iv_atk) * (Math.pow(base_def[species-1] + iv_def,0.5)) * (Math.pow(base_sta[species-1] + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10));
+						document.getElementById("maxCp").innerHTML = "Max CP: " + maxCp;
+					}
+					if (Math.floor((((base_atk[species-1] + iv_atk) * (Math.pow(base_def[species-1] + iv_def,0.5)) * (Math.pow(base_sta[species-1] + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10)) == potential) {
+						addRow(mult,iv_atk, iv_def, iv_sta,"myTable3");
+						amount++;
+					}
+				}
+			}
+		}
+	}
+	if (document.getElementById("myTable3").rows.length <= 1) {
+		document.getElementById('custom-table-content').innerHTML = "No data available.";
+		document.getElementById("myTable3").style.display = "none";
+	}
 }
-
-function calculate() {
-  potential = 1500;
-  clearTable(1);
-  var iv_atk;
-  var iv_def;
-  var iv_sta;
-  var mult = 0;
-  for (iv_atk = 0; iv_atk <= 15; iv_atk++) {
-    for (iv_def = 0; iv_def <= 15; iv_def++) {
-      for (iv_sta = 0; iv_sta <= 15; iv_sta++) {
-        for (mult = 0; mult < multiplier.length; mult++) {
-          if (iv_atk == 15 && iv_def == 15 && iv_sta == 15 && mult == 100) {
-            maxCp = Math.floor((((base_atk[species-1] + iv_atk) * (Math.pow(base_def[species-1] + iv_def,0.5)) * (Math.pow(base_sta[species-1] + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10));
-            document.getElementById("maxCp").innerHTML = "Max CP: " + maxCp;
-          }
-          if (Math.floor((((base_atk[species-1] + iv_atk) * (Math.pow(base_def[species-1] + iv_def,0.5)) * (Math.pow(base_sta[species-1] + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10)) == potential) {
-            addRow(mult,iv_atk, iv_def, iv_sta,"myTable");
-	        amount++;
-          }
-        }
-      }
-    }
-  }
-  if (document.getElementById("myTable").rows.length <= 1) {
-    document.getElementById('great-table-content').innerHTML = "No data available.";
-    document.getElementById("myTable").style.display = "none";
-    
-  }
-  document.getElementById("additional-details").innerHTML = amount + " out of 4096<br>" + amount / 4096 * 100 + "%";
-  
-  potential = 2500;
-  clearTable(2);
-  for (iv_atk = 0; iv_atk <= 15; iv_atk++) {
-    for (iv_def = 0; iv_def <= 15; iv_def++) {
-      for (iv_sta = 0; iv_sta <= 15; iv_sta++) {
-        for (mult = 0; mult < multiplier.length; mult++) {
-          if (Math.floor((((base_atk[species-1] + iv_atk) * (Math.pow(base_def[species-1] + iv_def,0.5)) * (Math.pow(base_sta[species-1] + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10)) == potential) {
-            addRow(mult,iv_atk, iv_def, iv_sta,"myTable2");
-	        amount++;
-          }
-        }
-      }
-    }
-  }
-  if (document.getElementById("myTable2").rows.length <= 1) {
-    document.getElementById('ultra-table-content').innerHTML = "No data available.";
-    document.getElementById("myTable2").style.display = "none";
-  }
+function calculate(a,d,s) {
+	potential = 1500;
+	clearTable(1);
+	var iv_atk;
+	var iv_def;
+	var iv_sta;
+	var mult = 0;
+	for (iv_atk = 0; iv_atk <= 15; iv_atk++) {
+		for (iv_def = 0; iv_def <= 15; iv_def++) {
+			for (iv_sta = 0; iv_sta <= 15; iv_sta++) {
+				for (mult = 0; mult < multiplier.length; mult++) {
+					if (iv_atk == 15 && iv_def == 15 && iv_sta == 15 && mult == 100) {
+						maxCp = Math.floor((((a + iv_atk) * (Math.pow(d + iv_def,0.5)) * (Math.pow(s + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10));
+						document.getElementById("maxCp").innerHTML = "Max CP: " + maxCp;
+					}
+					if (Math.floor((((a + iv_atk) * (Math.pow(d + iv_def,0.5)) * (Math.pow(s + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10)) == potential) {
+						addRow(mult,iv_atk, iv_def, iv_sta,"myTable");
+						amount++;
+					}
+				}
+			}
+		}
+	}
+	if (document.getElementById("myTable").rows.length <= 1) {
+		document.getElementById('great-table-content').innerHTML = "No data available.";
+		document.getElementById("myTable").style.display = "none";
+	}
+	potential = 2500;
+	clearTable(2);
+	for (iv_atk = 0; iv_atk <= 15; iv_atk++) {
+		for (iv_def = 0; iv_def <= 15; iv_def++) {
+			for (iv_sta = 0; iv_sta <= 15; iv_sta++) {
+				for (mult = 0; mult < multiplier.length; mult++) {
+					if (Math.floor((((a + iv_atk) * (Math.pow(d + iv_def,0.5)) * (Math.pow(s + iv_sta,0.5)) * Math.pow(multiplier[mult],2)) / 10)) == potential) {
+						addRow(mult,iv_atk, iv_def, iv_sta,"myTable2");
+						amount++;
+					}
+				}
+			}
+		}
+	}
+	if (document.getElementById("myTable2").rows.length <= 1) {
+		document.getElementById('ultra-table-content').innerHTML = "No data available.";
+		document.getElementById("myTable2").style.display = "none";
+	}
 }
-
 function clearTable(tableNum) {
-  amount = 0;
-  if (tableNum == 1) {
-    var table = document.getElementById("myTable");
-    var x = document.getElementById("myTable").rows.length;
-    document.getElementById("myTable").style.display = "inline";
-    document.getElementById('great-table-content').innerHTML = "";
-  } else if (tableNum == 2) {
-    var table = document.getElementById("myTable2");
-    var x = document.getElementById("myTable2").rows.length;
-    document.getElementById("myTable2").style.display = "inline";
-    document.getElementById('ultra-table-content').innerHTML = "";
-  } else if (tableNum == 3) {
-    var table = document.getElementById("myTable3");
-    var x = document.getElementById("myTable3").rows.length;  
-    document.getElementById("myTable3").style.display = "inline";
-    document.getElementById('custom-table-content').innerHTML = "";
-  }
-  var i;   
-  for (i = 1; i < x; i++) {
-    var row = table.deleteRow(1);
-  }
+	amount = 0;
+	if (tableNum == 1) {
+		var table = document.getElementById("myTable");
+		var x = document.getElementById("myTable").rows.length;
+		document.getElementById("myTable").style.display = "inline";
+		document.getElementById('great-table-content').innerHTML = "";
+	} else if (tableNum == 2) {
+		var table = document.getElementById("myTable2");
+		var x = document.getElementById("myTable2").rows.length;
+		document.getElementById("myTable2").style.display = "inline";
+		document.getElementById('ultra-table-content').innerHTML = "";
+	} else if (tableNum == 3) {
+		var table = document.getElementById("myTable3");
+		var x = document.getElementById("myTable3").rows.length;  
+		document.getElementById("myTable3").style.display = "inline";
+		document.getElementById('custom-table-content').innerHTML = "";
+	}
+	var i;   
+	for (i = 1; i < x; i++) {
+		var row = table.deleteRow(1);
+	}
 }
-
 function addRow(l,a,d,s, tableId) {
-  var table = document.getElementById(tableId);
-  var row = table.insertRow(1);
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  var cell5 = row.insertCell(4);
-  cell1.innerHTML = level[l];
-  cell2.innerHTML = a;
-  cell3.innerHTML = d;
-  cell4.innerHTML = s;  
-  if (a + d + s == 45) {
-    cell5.innerHTML = "★★★★"; 
-  } else if (a + d + s >= 37) {
-    cell5.innerHTML = "★★★☆"; 
-  } else if (a + d + s >= 30) {
-    cell5.innerHTML = "★★☆☆"; 
-  } else if (a + d + s >= 23) {
-    cell5.innerHTML = "★☆☆☆"; 
-  } else {
-    cell5.innerHTML = "☆☆☆☆";
-  }
+	var table = document.getElementById(tableId);
+	var row = table.insertRow(1);
+	var cell1 = row.insertCell(0);
+	var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+	var cell4 = row.insertCell(3);
+	var cell5 = row.insertCell(4);
+	cell1.innerHTML = level[l];
+	cell2.innerHTML = a;
+	cell3.innerHTML = d;
+	cell4.innerHTML = s;  
+	if (a + d + s == 45) {
+		cell5.innerHTML = "★★★★"; 
+	} else if (a + d + s >= 37) {
+		cell5.innerHTML = "★★★☆"; 
+	} else if (a + d + s >= 30) {
+		cell5.innerHTML = "★★☆☆"; 
+	} else if (a + d + s >= 23) {
+		cell5.innerHTML = "★☆☆☆"; 
+	} else {
+		cell5.innerHTML = "☆☆☆☆";
+	}
 }
 </script>
 <style>
 body, * {
- margin: 0 auto;
- overflow-y: hidden;
+	margin: 0 auto;
+	overflow-y: hidden;
 }
-
 #content {
-  background-color: #eee;
-  height: 100vh;
-  text-align: center;
-  background-color: #ffffff;
-  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c1c1c1' fill-opacity='0.67' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+	background-color: #eee;
+	height: 100vh;
+	text-align: center;
+	background-color: #ffffff;
+	background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c1c1c1' fill-opacity='0.67' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
 }
-
 #pokemon {
-  font-size: 300%;
-  margin-left: 24px;
-  margin-right: 24px;
-  margin-bottom: 20%;
+	font-size: 300%;
+	margin-left: 24px;
+	margin-right: 24px;
+	margin-bottom: 20%;
 }
-
 #input, #custom-cp {
-  max-width: 480px;
-  min-width: 50%;
-  margin-left: 36px;
-  margin-right: 36px;
-  font-size: 36px;
+	max-width: 480px;
+	min-width: 50%;
+	margin-left: 36px;
+	margin-right: 36px;
+	font-size: 36px;
 }
-
+#forme-input {
+	width: 120px;
+    font-size: 24px;
+}
 #nav {
-  opacity: 0;
-  color: white;
-  text-align: center;
-  transition-duration: 0.3s;
-  margin-top: 24px;
+	opacity: 0;
+	color: white;
+	text-align: center;
+	transition-duration: 0.3s;
+	margin-top: 24px;
 }
-
 #restart {
-  position: fixed;
-  left: 0;
-  font-size: 72px;
-  border-color: white;
-  border: none;
-  text-decoration: none;
-  width: 108px;
-  height: 108px;
-  border-radius: 50%;
-  margin: 0px;
-  padding: 0px;
-  color: white;
-  background-color: transparent;
+	position: fixed;
+	left: -12px;
+	top: -24px;
+	font-size: 72px;
+	border-color: white;
+	border: none;
+	text-decoration: none;
+	width: 108px;
+	height: 108px;
+	border-radius: 50%;
+	margin: 0px;
+	padding: 0px;
+	color: white;
+	background-color: transparent;
 }
-
 #info {
-  position: fixed;
-  right: 20px;
-  top: 32px;
-  border-color: white;
-  border: none;
-  text-decoration: none;
-  margin: 0px;
-  padding: 0px;
-  color: black;
-  background-color: transparent;
-  cursor: pointer;
-  width: 48px;
-  z-index: 20;
+	position: fixed;
+	right: 12px;
+    top: 12px;
+	border-color: white;
+	border: none;
+	text-decoration: none;
+	margin: 0px;
+	padding: 0px;
+	color: black;
+	background-color: transparent;
+	cursor: pointer;
+	width: 48px;
+	z-index: 20;
 }
-
 #selected-mon {
-  font-size: 54px;
-  text-align: left;
-  padding-left: 164px;
-  padding-top: 24px;
+	font-size: 54px;
+	text-align: left;
+	padding-left: 100px;
+	padding-top: 12px;
 }
-
 #maxCp {
-  font-size: 32px;
-  text-align: left;
-  padding-left: 164px;
+	font-size: 32px;
+	text-align: left;
+	padding-left: 100px;
 }
-
 #overview {
-  height: 100vh;
-  transition-duration: 0.3s;
+	height: 100vh;
+	transition-duration: 0.3s;
 }
-
 #table-div {
-  background-color: white;
-  border-radius: 24px 0px 0px 0px;
-  height: 67vh;
-  overflow-y: overlay;
+	background-color: white;
+	border-radius: 24px 0px 0px 0px;
+	height: 67vh;
+	overflow-y: overlay;
 }
-
 table {
-  font-size: 24px;
+	font-size: 24px;
 }
-
 #nav img {
-  width: 200px;
+	width: 75%;
+    min-width: 300px;
+	max-width: 500px;
 }
-
+#formes {
+	position: absolute;
+	top: 22vh;
+	right: 12px;
+	text-align: left;
+	display: none;
+	font-size: 24px;
+}
 #image {
-  margin-top: -40px;
+	margin-top: -40px;
 }
-
 #great-table-content, #ultra-table-content, #custom-table-content {
-  font-size: 28px;
+	font-size: 28px;
 }
-
 .tab {
-  overflow: hidden;
-  border-bottom: 1px solid #ccc;
-  background-color: white;
+	overflow: hidden;
+	border-bottom: 1px solid #ccc;
+	background-color: white;
 }
-
 .tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 28px;
-  width: 33.33%;
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 28px;
+	width: 33.33%;
 }
-
 .tab button:hover {
-  background-color: #ddd;
+	background-color: #ddd;
 }
-
 .tab button.active {
-  background-color: #ccc;
+	background-color: #ccc;
 }
-
 .tabcontent {
-  text-align: center;
-  padding: 6px 12px;
-  border-top: none;
+	text-align: center;
+	padding: 6px 12px;
+	border-top: none;
 }
-
 #custom, #ultra{
-  display: none;
+	display: none;
 }
-
 th {
-  cursor: pointer;
-}
-
-@media only screen and (min-width: 1280px) {
-  
-#content {
-  width: 50%;
-  float: left;
-}
-
-#input {
-  width: 50%;
-}
-
-#pokemon {
-  font-size: 24px;
-}
+	cursor: pointer;
 }
 </style>
 </html>
