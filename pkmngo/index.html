@@ -1120,8 +1120,8 @@ body, * {
 	font-size: 36px;
 }
 #forme-input {
-	width: 120px;
-    font-size: 24px;
+	width: 180px;
+	font-size: 36px;
 }
 #nav {
 	opacity: 0;
@@ -1129,11 +1129,11 @@ body, * {
 	text-align: center;
 	transition-duration: 0.3s;
 	margin-top: 24px;
+
 }
 #restart {
 	position: fixed;
-	left: -12px;
-	top: -24px;
+	left: 12px;
 	font-size: 72px;
 	border-color: white;
 	border: none;
@@ -1145,15 +1145,17 @@ body, * {
 	padding: 0px;
 	color: white;
 	background-color: transparent;
+	text-shadow: 4px 4px black;
+	z-index: 5;
 }
 #info {
 	position: fixed;
 	right: 12px;
-    top: 12px;
+	top: 12px;
 	border-color: white;
 	border: none;
 	text-decoration: none;
-	margin: 0px;
+	margin: 24px;
 	padding: 0px;
 	color: black;
 	background-color: transparent;
@@ -1162,15 +1164,21 @@ body, * {
 	z-index: 20;
 }
 #selected-mon {
-	font-size: 54px;
+	font-size: 72px;
 	text-align: left;
-	padding-left: 100px;
+	padding-left: 124px;
 	padding-top: 12px;
+	text-shadow: 4px 4px black;
+	position: relative;
+	z-index: 4;
 }
 #maxCp {
 	font-size: 32px;
 	text-align: left;
-	padding-left: 100px;
+	padding-left: 124px;
+	text-shadow: 4px 4px black;
+	position: relative;
+	z-index: 4;
 }
 #overview {
 	height: 100vh;
@@ -1186,20 +1194,23 @@ table {
 	font-size: 24px;
 }
 #nav img {
-	width: 75%;
-    min-width: 300px;
-	max-width: 500px;
+	width: 300px;
+	margin: 0 auto;
+        position: relative;
+	float: center;
+	z-index: 1;
 }
 #formes {
 	position: absolute;
-	top: 22vh;
+	top: 21vh;
 	right: 12px;
 	text-align: left;
 	display: none;
-	font-size: 24px;
+	font-size: 36px;
+	text-shadow: 4px 4px black;
 }
 #image {
-	margin-top: -40px;
+	margin-top: -138px;
 }
 #great-table-content, #ultra-table-content, #custom-table-content {
 	font-size: 28px;
