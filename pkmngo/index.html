@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=1280, initial-scale=1">
 	<title>CP Maximizer</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>
@@ -1194,7 +1195,7 @@ table {
 	font-size: 24px;
 }
 #nav img {
-	width: 300px;
+	height: 100%;
 	margin: 0 auto;
         position: relative;
 	float: center;
@@ -1210,7 +1211,14 @@ table {
 	text-shadow: 4px 4px black;
 }
 #image {
-	margin-top: -138px;
+	position: absolute;
+	float: center;
+	width: 34vw;
+	height: 33vh;
+	margin-left: 33vw;
+	margin-right: 33vw;
+	top: 12px;
+	pointer-events: none;
 }
 #great-table-content, #ultra-table-content, #custom-table-content {
 	font-size: 28px;
