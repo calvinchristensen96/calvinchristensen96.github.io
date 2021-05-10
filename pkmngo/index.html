@@ -895,6 +895,9 @@ function checkFormes(arr) {
 function begin(val) {    
 	var str = document.getElementById("input").value;
 	species = str.substring(0, str.indexOf("."));
+        		alert(base_atk[species-1]);
+		alert(base_def[species-1]);
+		alert(base_sta[species-1]);
 	checkFormes(alolan);
 	checkFormes(mega);
 	checkFormes(megax);
