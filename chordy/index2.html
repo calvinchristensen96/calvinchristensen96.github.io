@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+</head>
+<body>
+<div id="content">
+<div id="logo">
+ <img src="chordy-logo.png">
+</div>
+<div id="tool">
+ <p id="active">Reverse Lookup</p>
+ <p id="un">Chord Dictionary</p>
+</div>
+<div id="left">
+<br><br><br><br><br>
+ <span class="key" id="key-c0"></span>
+ <span class="b-key" id="key-c#0"></span>
+ <span class="key" id="key-d0"></span>
+ <span class="b-key" id="key-d#0"></span>
+ <span class="key" id="key-e0"></span>
+ <span class="key" id="key-f0"></span>
+ <span class="b-key" id="key-f#0"></span>
+ <span class="key" id="key-g0"></span>
+ <span class="b-key" id="key-g#0"></span>
+ <span class="key" id="key-a0"></span>
+ <span class="b-key" id="key-a#0"></span>
+ <span class="key" id="key-b0"></span>
+ <span class="key" id="key-c1"></span>
+ <span class="b-key" id="key-c#1"></span>
+ <span class="key" id="key-d1"></span>
+ <span class="b-key" id="key-d#1"></span>
+ <span class="key" id="key-e1"></span>
+ <span class="key" id="key-f1"></span>
+ <span class="b-key" id="key-f#1"></span>
+ <span class="key" id="key-g1"></span>
+ <span class="b-key" id="key-g#1"></span>
+ <span class="key" id="key-a1"></span>
+ <span class="b-key" id="key-a#1"></span>
+ <span class="key" id="key-b1"></span>
+ <span class="key" id="key-c2"></span>
+ <span class="b-key" id="key-c#2"></span>
+ <span class="key" id="key-d2"></span>
+ <span class="b-key" id="key-d#2"></span>
+ <span class="key" id="key-e2"></span>
+ <span class="key" id="key-f2"></span>
+ <span class="b-key" id="key-f#2"></span>
+ <span class="key" id="key-g2"></span>
+ <span class="b-key" id="key-g#2"></span>
+ <span class="key" id="key-a2"></span>
+ <span class="b-key" id="key-a#2"></span>
+ <span class="key" id="key-b2"></span>
+ <br><br>
+ <div id="checks">
+ <input id="c" type="checkbox">C
+ <input id="c#" type="checkbox">C♯
+ <input id="d" type="checkbox">D
+ <input id="d#" type="checkbox">D♯
+ <input id="e" type="checkbox">E
+ <input id="f" type="checkbox">F
+ <input id="f#" type="checkbox">F♯
+ <input id="g" type="checkbox">G
+ <input id="g#" type="checkbox">G♯
+ <input id="a" type="checkbox">A
+ <input id="a#" type="checkbox">A♯
+ <input id="b" type="checkbox">B
+ </div>
+ <p id="chord-name"><span id="name-key">C</span> <span id="name-chord">Major</span></p>
+<br><br><br><button onClick="reset()">Reset</button>
+<button id="stof" onClick="sharpsToFlats()">Sharps</button>
+</div>
+<div id="section3">
+ <div id="buttons">
+  <h2>Key</h2>
+  <button onClick="foo('A')" id="btn0">A</button>
+  <button onClick="foo('A#')" id="btn1">A♯</button>
+  <button onClick="foo('B')" id="btn2">B</button>
+  <button onClick="foo('C')" id="btn3">C</button>
+  <button onClick="foo('C#')" id="btn4">C♯</button>
+  <button onClick="foo('D')" id="btn5">D</button>
+  <button onClick="foo('D#')" id="btn6">D♯</button>
+  <button onClick="foo('E')" id="btn7">E</button>
+  <button onClick="foo('F')" id="btn8">F</button>
+  <button onClick="foo('F#')" id="btn9">F♯</button>
+  <button onClick="foo('G')" id="btn10">G</button>
+ </div>
+ <div id="buttons2">
+  <h2>Chord</h2>
+  <button onClick="bar('maj')" id="maj">maj</button>
+  <button onClick="bar('min')" id="min">min</button>
+  <button onClick="bar('o')" id="o">o</button>
+  <button onClick="bar('aug')" id="aug">+</button>
+  <button onClick="bar('7')" id="7">7</button>
+  <button onClick="bar('maj7')" id="maj7">maj7</button>
+  <button onClick="bar('min7')" id="min7">min7</button>
+  <button onClick="bar('maj6')" id="maj6">maj6</button>
+  <button onClick="bar('aug7')" id="aug7">+7</button>
+  <button onClick="bar('min6')" id="min6">min6</button>
+  <button onClick="bar('mM7')" id="mM7">mM7</button>
+  <button onClick="bar('o7')" id="o7">o7</button>
+  <button onClick="bar('halfdim7')" id="halfdim7">ø7</button>
+  <button onClick="bar('augM7')" id="augM7">+M7</button>
+  <button onClick="bar('7flat5')" id="7flat5">7♭5</button>
+  <button onClick="bar('maj9')" id="maj9">maj9</button>
+  <button onClick="bar('9')" id="9">9</button>
+  <button onClick="bar('7flat9')" id="7flat9">7♭9</button>
+  <button onClick="bar('11')" id="11">11</button>
+  <button onClick="bar('13')" id="13">13</button>
+  <button onClick="bar('7aug5')" id="7aug5">7+5</button>
+  <button onClick="bar('7aug9')" id="7aug9">7+9</button>
+  <button onClick="bar('7aug11')" id="7aug11">7+11</button>
+  <button onClick="bar('7flat13')" id="7flat13">7♭13</button>
+  <button onClick="bar('2')" id="2">2</button>
+  <button onClick="bar('4')" id="4">4</button>
+  <button onClick="bar('6')" id="6">6</button>
+  <button onClick="bar('6-9')" id="6-9">6/9</button>
+  <button onClick="bar('7-6')" id="7-6">7/6</button>
+  <button onClick="bar('sus2')" id="sus2">sus2</button>
+  <button onClick="bar('sus4')" id="sus4">sus4</button>
+  <button onClick="bar('9sus4')" id="9sus4">9sus4</button>
+ </div>
+</div>
+<div id="section2">
+ <div id="card1">
+  <div id="treble">
+   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/GClef.svg/60px-GClef.svg.png">
+  </div>
+  <div id="bass">
+   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/FClef.svg/60px-FClef.svg.png">
+  </div>
+   <table>
+    <td></td><tr>
+    <td></td><tr>
+	<td></td><tr>
+    <td></td><tr>
+     <span class="ln" id="note-b2">o</span>
+     <span class="ln" id="note-a2">o</span>
+     <span class="ln" id="note-g2">o</span>
+     <span class="ln" id="note-f2">o</span>
+     <span class="ln" id="note-e2">o</span>
+     <span class="ln" id="note-d2">o</span>
+     <span class="ln" id="note-c2">o</span>
+     <span class="ln" id="note-b1">o</span>
+     <span class="ln" id="note-a1">o</span>
+     <span class="ln" id="note-g1">o</span>
+     <span class="ln" id="note-f1">o</span>
+     <span class="ln" id="note-e1">o</span>
+     <span class="ln" id="note-d1">o</span>
+     <span class="ln" id="note-c1">o</span>
+     <span class="ln" id="note-b0">o</span>
+     <span class="ln" id="note-a0">o</span>
+     <span class="ln" id="note-g0">o</span>
+     <span class="ln" id="note-f0">o</span>
+     <span class="ln" id="note-e0">o</span>
+     <span class="ln" id="note-d0">o</span>
+     <span class="ln" id="note-c0">o</span>
+    </table><span id="space">—</span>
+    <table id="t2">
+	 <td></td><tr>
+	 <td></td><tr>
+	 <td></td><tr>
+	 <td></td><tr>
+    </table>
+  </div>
+</div>
+<div id="footer">
+ <p>Chordy is a Web Application by Calvin Christensen, 2021</p><br>
+ <p><a>Blog</a> • <a>Contact</a> • <a>Github</a></p>
+</div>
+</div>
+<script>
+var ledger = ["c0","d0","e0","f0","g0","a0","b0","c1","d1","e1","f1","g1","a1","b1","c2","d2","e2","f2","g2","a2","b2"];
+var mm;
+for (mm=0;mm<ledger.length;mm++) {
+  document.getElementById("note-" + ledger[mm]).style.marginTop = 180 - (12 * mm) + "px";
+}
+var notes = ["c","c#","d","d#","e","f","f#","g","g#","a","a#","b"];
+var rootNote = "?";
+var order = [];
+var root = 'C';
+var chordName = 'maj'
+var roots=['A','A♯','B','C','C♯','D','D♯','E','F','F♯','G'];
+var types=['maj','min','o','aug','7','maj7','min7','maj6','aug7','min6','mM7','o7','halfdim7','augM7','7flat5','maj9','9','7flat9','11','13','7aug5','7aug9','7aug11','7flat13','2','4','6','6-9','7-6','sus2','sus4','9sus4'];
+var typeNames = ['Major','Minor','Diminished','Augmented','7','Major 7','Minor 7','Major 6','Augmented 7','Minor 6','Minor Major 7','Diminished 7','Half Diminished 7','Augmented Major 7','7 Flat 5','Major 9','9','7 Flat 9','11','13','7 Augmented 5','7 Augmented 9','7 Augmented 11','7 Flat 13','2','4','6','6-9','7-6','Suspended 2','Suspended 4','9 Suspended 4'];
+foo('C');
+bar('maj');
+
+function foo(note) {
+ resetLedger();
+ for (mm=0;mm<roots.length;mm++) {
+  if (roots[mm] == note) {
+   document.getElementById("btn" + mm).style.backgroundColor = "#ffb900";
+   root=note;
+  } else {
+   document.getElementById("btn" + mm).style.backgroundColor = "white";
+  }
+ }
+ var tmpRoot = root;
+ if (!sharps) {
+  if(root == "A♯") {
+   tmpRoot = "B♭";
+  } else if(root == "C♯") {
+   tmpRoot = "D♭";
+  } else if(root == "D♯") {
+   tmpRoot = "E♭";
+  } else if(root == "F♯") {
+   tmpRoot = "G♭";
+  }
+ }
+ document.getElementById("name-key").innerHTML = tmpRoot;
+ document.getElementById("maj").innerHTML = tmpRoot + "maj";
+ document.getElementById("min").innerHTML = tmpRoot + "min";
+ document.getElementById("o").innerHTML = tmpRoot + "o";
+ document.getElementById("aug").innerHTML = tmpRoot + "+";
+ document.getElementById("7").innerHTML = tmpRoot + "7";
+ document.getElementById("maj7").innerHTML = tmpRoot + "maj7";
+ document.getElementById("min7").innerHTML = tmpRoot + "min7";
+ document.getElementById("maj6").innerHTML = tmpRoot + "maj6";
+ document.getElementById("aug7").innerHTML = tmpRoot + "+7";
+ document.getElementById("min6").innerHTML = tmpRoot + "min6";
+ document.getElementById("mM7").innerHTML = tmpRoot + "mM7";
+ document.getElementById("o7").innerHTML = tmpRoot + "o7";
+ document.getElementById("halfdim7").innerHTML = tmpRoot + "ø7";
+ document.getElementById("augM7").innerHTML = tmpRoot + "+M7";
+ document.getElementById("7flat5").innerHTML = tmpRoot + "7♭5";
+ document.getElementById("maj9").innerHTML = tmpRoot + "maj9";
+ document.getElementById("9").innerHTML = tmpRoot + "9";
+ document.getElementById("7flat9").innerHTML = tmpRoot + "7♭9";
+ document.getElementById("11").innerHTML = tmpRoot + "11";
+ document.getElementById("13").innerHTML = tmpRoot + "13";
+ document.getElementById("7aug5").innerHTML = tmpRoot + "7+5";
+ document.getElementById("7aug9").innerHTML = tmpRoot + "7+9";
+ document.getElementById("7aug11").innerHTML = tmpRoot + "7+11";
+ document.getElementById("7flat13").innerHTML = tmpRoot + "7♭13";
+ document.getElementById("2").innerHTML = tmpRoot + "2";
+ document.getElementById("4").innerHTML = tmpRoot + "4";
+ document.getElementById("6").innerHTML = tmpRoot + "6";
+ document.getElementById("6-9").innerHTML = tmpRoot + "6/9";
+ document.getElementById("7-6").innerHTML = tmpRoot + "7/6";
+ document.getElementById("sus2").innerHTML = tmpRoot + "sus2";
+ document.getElementById("sus4").innerHTML = tmpRoot + "sus4";
+ document.getElementById("9sus4").innerHTML = tmpRoot + "9sus4";
+ begin();
+}
+function resetLedger() {
+ for (mm=0;mm<3;mm++) {
+  document.getElementById("note-c" + mm).style.opacity = "0";
+  document.getElementById("note-d" + mm).style.opacity = "0";
+  document.getElementById("note-e" + mm).style.opacity = "0";
+  document.getElementById("note-f" + mm).style.opacity = "0";
+  document.getElementById("note-g" + mm).style.opacity = "0";
+  document.getElementById("note-a" + mm).style.opacity = "0";
+  document.getElementById("note-b" + mm).style.opacity = "0";
+ }
+}
+function bar(type) {
+ resetLedger();
+ document.getElementById("name-chord").innerHTML = typeNames[types.indexOf(type)];
+ for (mm=0;mm<types.length;mm++) {
+  if (types[mm] == type) {
+   document.getElementById(types[mm]).style.backgroundColor = "#ffb900";
+   chordName=type;
+  } else {
+   document.getElementById(types[mm]).style.backgroundColor = "white";
+  }
+ }
+ begin();
+}
+function begin() {
+ if (root != null && chordName != null) {
+ checkChord(root,chordName);
+ }
+}
+var sharps = true;
+function sharpsToFlats() {
+ if (sharps) {
+  document.getElementById("btn1").innerHTML = "B♭";
+  document.getElementById("btn4").innerHTML = "D♭";
+  document.getElementById("btn6").innerHTML = "E♭";
+  document.getElementById("btn9").innerHTML = "G♭";
+  sharps = false;
+ } else {
+  document.getElementById("btn1").innerHTML = "A♯";
+  document.getElementById("btn4").innerHTML = "C♯";
+  document.getElementById("btn6").innerHTML = "D♯";
+  document.getElementById("btn9").innerHTML = "F♯";
+  sharps = true;
+ }
+ foo(root);
+}
+function produceChord(rI, arr) {
+ var pos = 1;
+ var pos2 = 2;
+ if (rI >= 7) {
+  pos = 0;
+  pos2 = 1;
+ }
+ var ee = 0;
+ while (ee < arr.length) {
+ if (rI + arr[ee] > 11) {
+      light("key-" + notes[(rI + arr[ee]) - 12] + pos2,notes[rI + arr[ee]],"1");
+     } else {
+      light("key-" + notes[rI + arr[ee]] + pos,notes[rI + arr[ee]],"1");
+     }
+   ee++;
+ }
+}
+function checkChord(key,crd) {
+ for (i=0;i<notes.length;i++) {
+  for (j=0; j<3; j++) {
+   if (i == 1 || i == 3 || i == 6 || i == 8 || i == 10) {
+    document.getElementById('key-' + notes[i] + j).style.backgroundColor = "#242424";
+   } else {
+    document.getElementById('key-' + notes[i] + j).style.backgroundColor = "white";
+   }
+  }
+  document.getElementById(notes[i]).checked = false;
+ }
+ var rootIndex = notes.indexOf(key.toLowerCase());
+ var ll;
+ if (crd == "maj") {
+  produceChord(rootIndex,[0,4,7]);
+ } else if (crd == "min") {
+  produceChord(rootIndex,[0,3,7]);
+ } else if (crd == "aug") {
+  produceChord(rootIndex,[0,4,8]);
+ } else if (crd == "o") {
+  produceChord(rootIndex,[0,3,6]);
+ } else if (crd == "7") {
+  produceChord(rootIndex,[0,4,7,10]);
+ } else if (crd == "maj7") {
+  produceChord(rootIndex,[0,4,7,11]);
+ } else if (crd == "min7") {
+  produceChord(rootIndex,[0,3,7,10]);
+ } else if (crd == "maj6") {
+  produceChord(rootIndex,[0,4,7,9]);
+ } else if (crd == "7") {
+  produceChord(rootIndex,[0,4,7,10]);
+ } else if (crd == "aug7") {
+  produceChord(rootIndex,[0,4,8,10]);
+ } else if (crd == "min6") {
+  produceChord(rootIndex,[0,3,7,10]);
+ } else if (crd == "mM7") {
+  produceChord(rootIndex,[0,3,7,11]);
+ } else if (crd == "o7") {
+  produceChord(rootIndex,[0,3,6,9]);
+ } else if (crd == "halfdim7") {
+  produceChord(rootIndex,[0,3,6,10]);
+ } else if (crd == "augM7") {
+  produceChord(rootIndex,[0,4,8,11]);
+ } else if (crd == "7flat5") {
+  produceChord(rootIndex,[0,4,6,10]);
+ } else if (crd == "maj9") {
+  produceChord(rootIndex,[0,2,4,7,11]);
+ } else if (crd == "9") {
+  produceChord(rootIndex,[0,2,4,7,10]);
+ } else if (crd == "7flat9") {
+  produceChord(rootIndex,[0,1,4,7,10]);
+ } else if (crd == "11") {
+  produceChord(rootIndex,[0,2,4,5,7,10]);
+ } else if (crd == "13") {
+  produceChord(rootIndex,[0,2,4,5,7,9,10]);
+ } else if (crd == "13") {
+  produceChord(rootIndex,[0,2,4,5,7,9,10]);
+ } else if (crd == "7aug5") {
+  produceChord(rootIndex,[0,4,8,10]);
+ } else if (crd == "7aug9") {
+  produceChord(rootIndex,[0,3,4,7,10]);
+ } else if (crd == "7aug11") {
+  produceChord(rootIndex,[0,2,4,6,7,10]);
+ } else if (crd == "7flat13") {
+  produceChord(rootIndex,[0,2,4,5,7,8,10]);
+ } else if (crd == "2") {
+  produceChord(rootIndex,[0,2,4,7]);
+ } else if (crd == "4") {
+  produceChord(rootIndex,[0,4,5,7]);
+ } else if (crd == "6") {
+  produceChord(rootIndex,[0,4,7,9]);
+ } else if (crd == "6-9") {
+  produceChord(rootIndex,[0,2,4,7,9]);
+ } else if (crd == "7-6") {
+  produceChord(rootIndex,[0,4,7,9,10]);
+ } else if (crd == "sus2") {
+  produceChord(rootIndex,[0,2,7]);
+ } else if (crd == "sus4") {
+  produceChord(rootIndex,[0,5,7]);
+ } else if (crd == "9sus4") {
+  produceChord(rootIndex,[0,2,4,7,10]);
+ }
+}
+function light(id, note, val) {
+ if (id.substring(5,6) == '♯') {
+  if (document.getElementById(id).style.backgroundColor != "rgb(255, 185, 0)") {
+   document.getElementById(id).style.backgroundColor = "#ffb900";
+   document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7)).style.opacity = "1";
+   document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7)).innerHTML = "o♯";
+  } else {
+   document.getElementById(id).style.backgroundColor = "#242424";
+   document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7)).style.opacity = "0";
+  }
+ } else {
+  if (document.getElementById(id).style.backgroundColor != "rgb(255, 185, 0)") {
+   document.getElementById(id).style.backgroundColor = "#ffb900";
+   document.getElementById("note-" + id.substring(4,6)).style.opacity = "1";
+   document.getElementById("note-" + id.substring(4,6)).innerHTML = "o";
+  } else {
+   document.getElementById(id).style.backgroundColor = "#ffffff";
+   document.getElementById("note-" + id.substring(4,6)).style.opacity = "0";
+  }
+ }
+ if (val != 1) {
+  if (document.getElementById(id.substring(0,id.length-1) + '0').style.backgroundColor != "rgb(255, 185, 0)" && document.getElementById(id.substring(0,id.length-1) + '1').style.backgroundColor != "rgb(255, 185, 0)" && document.getElementById(id.substring(0,id.length-1) + '2').style.backgroundColor != "rgb(255, 185, 0)") {
+   document.getElementById(note).checked = false;
+  } else {
+  document.getElementById(note).checked = true;
+ }
+ demo();
+ }
+}
+</script>
+</body>
+<style>
+:root {
+ --c1: #ffb900;
+}
+body, * {
+ margin: 0px auto;
+ text-align: center;
+ font-family: "Garamond";
+}
+body {
+ margin: 0px;
+}
+#content {
+ min-width: 870px;
+}
+#logo img {
+ width: 100px;
+}
+h2 {
+ font-size: 18px;
+ margin-bottom: 64px;
+}
+button {
+ text-decoration: none;
+ color: black;
+ background-color: white;
+ border: solid 2px black;
+ transition-duration: 0.25s;
+ cursor: pointer;
+ font-size: 16px;
+ padding: 8px;
+}
+button:hover {
+ background-color: #e7e7e7;
+}
+.key {
+ border: solid 2px black;
+ padding-left: 16px;
+ padding-right: 16px;
+ padding-top: 100px;
+ padding-bottom: 8px;
+ cursor: pointer;
+ color: white;
+ background-color: white;
+ transition-duration: 0.25s;
+ border-radius: 6%;
+ margin-left: 1px;
+ margin-right: 1px;
+}
+.key:hover {
+ background-color: #ccc;
+ color: #ccc;
+}
+.b-key {
+ background-color: #242424;
+ position: absolute;
+ width: 24px;
+ padding-top: 82px;
+ top: 170px;
+ margin-left: -16px;
+ border: solid black 2px;
+ color: black;
+ cursor: pointer;
+ border-radius: 6%;
+ transition-duration: 0.25s;
+}
+.black-key:hover {
+  background-color: #555;
+  color: #555;
+}
+input {
+ margin-left: 4px;
+ margin-right: 2px;
+}
+#left {
+ padding-bottom: 48px;
+ background-color: white;
+ margin-left: 24px;
+ margin-right: 24px;
+}
+#left button {
+ font-size: 24px;
+ width: 80px;
+ height: 60px;
+}
+#result {
+ position: relative;
+ top: 160px;
+ transition-duration: 0.25s;
+}
+#result2 {
+ opacity: 0;
+ transition-duration: 0.25s;
+ margin-top: -64px;
+}
+#section2 {
+ font-size: 36px;
+ padding: 48px;
+}
+#section3 h2 {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+td {
+ border-top: 2px solid black;
+ border-bottom: 2px solid black;
+ width: 100vh;
+ margin: 0px;
+ height: 24px;
+ padding: 0px;
+ line-height: 20px;
+ font-size: 28px;
+}
+.ln {
+ opacity:0;
+ position: absolute;
+ margin-left: -12px;
+ font-size: 48px;
+}
+table {
+ border-left: solid black 8px;
+ border-right: solid black 2px;
+ border-collapse: collapse;
+}
+#t2 {
+  margin-top: 6px;
+}
+#footer {
+ background-color: #242424;
+ color: white;
+ padding-top: 68px;
+ padding-bottom: 68px;
+ font-size: 24px;
+}
+a {
+ text-decoration: underline;
+ transition-duration: 0.25s;
+ cursor: pointer;
+ color: var(--c1);
+}
+a:hover {
+ color: #dd9700;
+}
+#checks {
+ display: none;
+}
+#tool {
+ margin-bottom: 96px;
+}
+#tool p{
+ width: 30%;
+ float: left;
+}
+#un {
+ margin-left: 2%;
+ margin-right: 18%;
+ color: var(--c1);
+ border-bottom: solid var(--c1) 2px;
+}
+#active {
+ margin-left: 18%;
+ margin-right: 2%;
+ cursor: pointer;
+}
+#buttons, #buttons2 {
+ padding: 48px;
+ font-size: 48px;
+}
+#buttons2 button, #buttons button {
+ font-size: 24px;
+ width: 100px;
+ height: 60px;
+ margin: 4px;
+}
+#section3 {
+ padding-top: 24px;
+ padding-bottom: 24px;
+ background-color: #e7e7e7;
+}
+#treble, #bass {
+ position: absolute;
+ left: 64px;
+}
+#treble {
+ margin-top: -28px;
+}
+#bass {
+ margin-top: 152px;
+}
+#treble img {
+ width: 64px;
+}
+#bass img {
+ width: 71px;
+}
+@media screen and (min-width: 1200px) {
+#buttons, #buttons2 {
+ width: 40%;
+ display: inline-block;
+ margin-left: 0px;
+ margin-right: 0px;
+}
+</style>
+</html>
