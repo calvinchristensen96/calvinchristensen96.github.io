@@ -4,8 +4,15 @@
   <title>Calvin Christensen</title>
 </head>
 <body>
-<div id="navbar">Calvin Christensen
+<div id="navbar" onClick="displayNavMenu()">Calvin Christensen
       <img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/pkmngo/menu.png">
+</div>
+<div id="navigation">
+  <ul>
+   <li><a onClick="displayNavMenu()" href="#about">About</a></li>
+   <li><a onClick="displayNavMenu()" href="#portfolio">Portfolio</a></li>
+   <li><a onClick="displayNavMenu()" href="#contact">Contact</a></li>
+ </ul>
 </div>
 <div id="header">
   <div id="colorbar">
@@ -21,7 +28,6 @@
   <div id="links">
     <ul>
       <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -38,7 +44,7 @@
  <h2>Portfolio</h2>
  <hr>
  <p>Take a look below to view projects that I've completed.</p>
- 
+
   <div class="project">
    <h3>Chordie</h3>
    <div id="column1">
@@ -49,7 +55,7 @@
      <button>Visit Site</button>
    </div>
  </div>
- 
+
   <div class="project">
    <h3>Pokemon Go Potential Maximizer</h3>
    <div id="column1">
@@ -60,7 +66,7 @@
      <button>Visit Site</button>
    </div>
  </div>
- 
+
  <div class="project">
    <h3>Golden Leaf Cafe</h3>
    <div id="column1">
@@ -71,7 +77,7 @@
      <button>Visit Site</button>
    </div>
  </div>
- 
+
  <div class="project">
    <h3>Cerveza Santa Maria</h3>
    <div id="column1">
@@ -82,7 +88,7 @@
      <button>View Source Code</button>
    </div>
  </div>
- 
+
 </div>
 
 <div class="section" id="contact">
@@ -95,7 +101,7 @@
    <h3>Email</h3><br>
    <input id="email" type="textbox">
    <h3>Message</h3><br>
-   <input id="message" type="textbox">
+   <input id="message" type="text">
  </div>
 </div>
 
@@ -112,6 +118,21 @@
 </div>
 
 
+<script>
+var navActive = false;
+function displayNavMenu() {
+ if (!navActive) {
+  document.getElementById("navigation").style.top = "64px";
+  navActive = true;
+ } else {
+  document.getElementById("navigation").style.top = "-72px";
+  navActive = false;
+ }
+
+
+}
+</script>
+
 
 <style>
 
@@ -120,7 +141,6 @@
   --c2: #403B3B;
   --c3: #8C8C8C;
   --c4: #959E7B;
-  
 }
 
 body, * {
@@ -130,18 +150,20 @@ body, * {
 
 body {
   color: var(--c1);
+  min-width: 600px;
 }
 
 #navbar {
   background-color: white;
   position: fixed;
   width: 100%;
+  min-width: 600px;
   color: black;
   text-shadow: var(--c4) 1px 1px;
   padding: 9px;
   font-size: 36px;
   border-bottom: solid 1px var(--c4);
-  z-index: 1;
+  z-index: 2;
 }
 
 #navbar img {
@@ -149,6 +171,27 @@ body {
   margin-right: 32px;
   cursor: pointer;
   width: 45px;
+}
+
+#navigation {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+  top: -72px;
+  transition-duration: 0.5s;
+  border-bottom: solid 1px var(--c4);
+}
+
+#navigation ul {
+  list-style: none;
+  padding: 0px;
+  font-size: 24px;
+}
+
+#navigation li {
+ padding: 9px;
+ width: 100%;
 }
 
 #header {
@@ -178,7 +221,7 @@ body {
   position: relative;
   top: -90px;
   right: 2px;
-  
+
 }
 
 #intro {
@@ -203,10 +246,9 @@ body {
   padding-left: 0px;
   position: absolute;
   bottom: 10%;
-  width: 95%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
+  width: 100%;
   text-align: center;
+  min-width: 600px;
 }
 
 #header li {
@@ -266,6 +308,7 @@ body {
 
 .project h3 {
   font-size: 30px;
+  margin-bottom: 48px;
 }
 
 .project img {
@@ -273,6 +316,11 @@ body {
   border-radius: 12px 12px 12px 12px;
   margin-top: 48px;
   margin-bottom: 48px;
+}
+
+.project p {
+ margin-top: 48px;
+ margin-bottom: 48px;
 }
 
 #column1 {
@@ -380,7 +428,7 @@ input {
     border-right: solid var(--c1) 120px;
     border-left: solid var(--c1) 120px;
   }
-  
+
   #form {
     margin-left: 180px;
     margin-right: 180px;
@@ -398,10 +446,11 @@ input {
   #form {
     margin: 120px;
   }
- 
+
 }
 
 </style>
+
 
 
 </body></html>
