@@ -187,10 +187,10 @@ var chordName = 'maj'
 var roots=['A','A♯','B','C','C♯','D','D♯','E','F','F♯','G'];
 var types=['maj','min','o','aug','7','maj7','min7','maj6','aug7','min6','mM7','o7','halfdim7','augM7','7flat5','maj9','9','7flat9','11','13','7aug5','7aug9','7aug11','7flat13','2','4','6','6-9','7-6','sus2','sus4','9sus4'];
 var typeNames = ['Major','Minor','Diminished','Augmented','7','Major 7','Minor 7','Major 6','Augmented 7','Minor 6','Minor Major 7','Diminished 7','Half Diminished 7','Augmented Major 7','7 Flat 5','Major 9','9','7 Flat 9','11','13','7 Augmented 5','7 Augmented 9','7 Augmented 11','7 Flat 13','2','4','6','6-9','7-6','Suspended 2','Suspended 4','9 Suspended 4'];
-foo('C');
-bar('maj');
+changeKey('C');
+changeChord('maj');
 
-function foo(note) {
+function changeKey(note) {
  resetLedger();
  for (mm=0;mm<roots.length;mm++) {
   if (roots[mm] == note) {
@@ -258,7 +258,7 @@ function resetLedger() {
   document.getElementById("note-b" + mm).style.opacity = "0";
  }
 }
-function bar(type) {
+function changeChord(type) {
  resetLedger();
  document.getElementById("name-chord").innerHTML = typeNames[types.indexOf(type)];
  for (mm=0;mm<types.length;mm++) {
