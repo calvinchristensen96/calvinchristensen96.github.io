@@ -1,185 +1,187 @@
 <!DOCTYPE html>
 <html>
-<head>
- <meta charset="utf-8">
-</head>
-<body>
- <div id="content">
-  <div id="logo">
-   <img src="https://calvinchristensen96.github.io/chordy/Chordy-logo.png">
-  </div>
-  <div id="tool">
-   <p id="active">Reverse Lookup</p>
-   <p id="un">Chord Dictionary</p>
-  </div>
-  <div id="left">
-   <br><br><br><br><br>
-    <span class="key" id="key-c0"></span>
-    <span class="b-key" id="key-c♯0"></span>
-    <span class="key" id="key-d0"></span>
-    <span class="b-key" id="key-d♯0"></span>
-    <span class="key" id="key-e0"></span>
-    <span class="key" id="key-f0"></span>
-    <span class="b-key" id="key-f♯0"></span>
-    <span class="key" id="key-g0"></span>
-    <span class="b-key" id="key-g♯0"></span>
-    <span class="key" id="key-a0"></span>
-    <span class="b-key" id="key-a♯0"></span>
-    <span class="key" id="key-b0"></span>
-    <span class="key" id="key-c1"></span>
-    <span class="b-key" id="key-c♯1"></span>
-    <span class="key" id="key-d1"></span>
-    <span class="b-key" id="key-d♯1"></span>
-    <span class="key" id="key-e1"></span>
-    <span class="key" id="key-f1"></span>
-    <span class="b-key" id="key-f♯1"></span>
-    <span class="key" id="key-g1"></span>
-    <span class="b-key" id="key-g♯1"></span>
-    <span class="key" id="key-a1"></span>
-    <span class="b-key" id="key-a♯1"></span>
-    <span class="key" id="key-b1"></span>
-    <span class="key" id="key-c2"></span>
-    <span class="b-key" id="key-c♯2"></span>
-    <span class="key" id="key-d2"></span>
-    <span class="b-key" id="key-d♯2"></span>
-    <span class="key" id="key-e2"></span>
-    <span class="key" id="key-f2"></span>
-    <span class="b-key" id="key-f♯2"></span>
-    <span class="key" id="key-g2"></span>
-    <span class="b-key" id="key-g♯2"></span>
-    <span class="key" id="key-a2"></span>
-    <span class="b-key" id="key-a♯2"></span>
-    <span class="key" id="key-b2"></span>
-    <br><br>
-    <div id="checks">
-     <input id="c" type="checkbox">C
-     <input id="c♯" type="checkbox">C♯
-     <input id="d" type="checkbox">D
-     <input id="d♯" type="checkbox">D♯
-     <input id="e" type="checkbox">E
-     <input id="f" type="checkbox">F
-     <input id="f♯" type="checkbox">F♯
-     <input id="g" type="checkbox">G
-     <input id="g♯" type="checkbox">G♯
-     <input id="a" type="checkbox">A
-     <input id="a♯" type="checkbox">A♯
-     <input id="b" type="checkbox">B
-    </div>
-    <p id="chord-name">
-     <span id="name-key">C</span>
-     <span id="name-accent"></span>
-     <span id="name-chord">Major</span>
-    </p>
-    <br><br><br><button onclick="reset()">Reset</button>
-    <button id="stof" onclick="sharpsToFlats()">Sharps</button>
-   </div>
-   <div id="section3">
-    <div id="buttons">
-     <h2>Key</h2>
-     <button onclick="changeKey('A')" id="btn0">A</button>
-     <button onclick="changeKey('A♯')" id="btn1"><span id="k-a">A</span><span id="a-a">♯</span></button>
-     <button onclick="changeKey('B')" id="btn2">B</button>
-     <button onclick="changeKey('C')" id="btn3">C</button>
-     <button onclick="changeKey('C♯')" id="btn4"><span id="k-c">C</span><span id="c-a">♯</span></button>
-     <button onclick="changeKey('D')" id="btn5">D</button>
-     <button onclick="changeKey('D♯')" id="btn6"><span id="k-d">D</span><span id="d-a">♯</span></button>
-     <button onclick="changeKey('E')" id="btn7">E</button>
-     <button onclick="changeKey('F')" id="btn8">F</button>
-     <button onclick="changeKey('F♯')" id="btn9"><span id="k-f">F</span><span id="f-a">♯</span></button>
-     <button onclick="changeKey('G')" id="btn10">G</button>
-    </div>
-    <div id="buttons2">
-     <h2>Chord</h2>
-     <button onclick="changeChord('maj')" id="maj">Cmaj</button>
-     <button onclick="changeChord('min')" id="min">Cmin</button>
-     <button onclick="changeChord('o')" id="o">Co</button>
-     <button onclick="changeChord('aug')" id="aug">C+</button>
-     <button onclick="changeChord('7')" id="7">C7</button>
-     <button onclick="changeChord('maj7')" id="maj7">Cmaj7</button>
-     <button onclick="changeChord('min7')" id="min7">Cmin7</button>
-     <button onclick="changeChord('maj6')" id="maj6">Cmaj6</button>
-     <button onclick="changeChord('aug7')" id="aug7">C+7</button>
-     <button onclick="changeChord('min6')" id="min6">Cmin6</button>
-     <button onclick="changeChord('mM7')" id="mM7">CmM7</button>
-     <button onclick="changeChord('o7')" id="o7">Co7</button>
-     <button onclick="changeChord('halfdim7')" id="halfdim7">Cø7</button>
-     <button onclick="changeChord('augM7')" id="augM7">C+M7</button>
-     <button onclick="changeChord('7flat5')" id="7flat5">C7♭5</button>
-     <button onclick="changeChord('maj9')" id="maj9">Cmaj9</button>
-     <button onclick="changeChord('9')" id="9">C9</button>
-     <button onclick="changeChord('7flat9')" id="7flat9">C7♭9</button>
-     <button onclick="changeChord('11')" id="11">C11</button>
-     <button onclick="changeChord('13')" id="13">C13</button>
-     <button onclick="changeChord('7aug5')" id="7aug5">C7+5</button>
-     <button onclick="changeChord('7aug9')" id="7aug9">C7+9</button>
-     <button onclick="changeChord('7aug11')" id="7aug11">C7+11</button>
-     <button onclick="changeChord('7flat13')" id="7flat13">C7♭13</button>
-     <button onclick="changeChord('2')" id="2">C2</button>
-     <button onclick="changeChord('4')" id="4">C4</button>
-     <button onclick="changeChord('6')" id="6">C6</button>
-     <button onclick="changeChord('6-9')" id="6-9">C6/9</button>
-     <button onclick="changeChord('7-6')" id="7-6">C7/6</button>
-     <button onclick="changeChord('sus2')" id="sus2">Csus2</button>
-     <button onclick="changeChord('sus4')" id="sus4">Csus4</button>
-     <button onclick="changeChord('9sus4')" id="9sus4">C9sus4</button>
-    </div>
-   </div>
-   <div id="section2">
-    <div id="card1">
-     <div id="treble">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/GClef.svg/60px-GClef.svg.png">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="content">
+      <div id="logo">
+        <img src="https://calvinchristensen96.github.io/chordy/Chordy-logo.png">
+      </div>
+      <div id="tool">
+        <p id="active">Reverse Lookup</p>
+        <p id="un">Chord Dictionary</p>
+      </div>
+      <div id="left">
+        <br><br><br><br><br>
+        <span class="key" id="key-c0"></span>
+        <span class="b-key" id="key-c♯0"></span>
+        <span class="key" id="key-d0"></span>
+        <span class="b-key" id="key-d♯0"></span>
+        <span class="key" id="key-e0"></span>
+        <span class="key" id="key-f0"></span>
+        <span class="b-key" id="key-f♯0"></span>
+        <span class="key" id="key-g0"></span>
+        <span class="b-key" id="key-g♯0"></span>
+        <span class="key" id="key-a0"></span>
+        <span class="b-key" id="key-a♯0"></span>
+        <span class="key" id="key-b0"></span>
+        <span class="key" id="key-c1"></span>
+        <span class="b-key" id="key-c♯1"></span>
+        <span class="key" id="key-d1"></span>
+        <span class="b-key" id="key-d♯1"></span>
+        <span class="key" id="key-e1"></span>
+        <span class="key" id="key-f1"></span>
+        <span class="b-key" id="key-f♯1"></span>
+        <span class="key" id="key-g1"></span>
+        <span class="b-key" id="key-g♯1"></span>
+        <span class="key" id="key-a1"></span>
+        <span class="b-key" id="key-a♯1"></span>
+        <span class="key" id="key-b1"></span>
+        <span class="key" id="key-c2"></span>
+        <span class="b-key" id="key-c♯2"></span>
+        <span class="key" id="key-d2"></span>
+        <span class="b-key" id="key-d♯2"></span>
+        <span class="key" id="key-e2"></span>
+        <span class="key" id="key-f2"></span>
+        <span class="b-key" id="key-f♯2"></span>
+        <span class="key" id="key-g2"></span>
+        <span class="b-key" id="key-g♯2"></span>
+        <span class="key" id="key-a2"></span>
+        <span class="b-key" id="key-a♯2"></span>
+        <span class="key" id="key-b2"></span>
+        <br><br>
+        <div id="checks">
+          <input id="c" type="checkbox">C
+          <input id="c♯" type="checkbox">C♯
+          <input id="d" type="checkbox">D
+          <input id="d♯" type="checkbox">D♯
+          <input id="e" type="checkbox">E
+          <input id="f" type="checkbox">F
+          <input id="f♯" type="checkbox">F♯
+          <input id="g" type="checkbox">G
+          <input id="g♯" type="checkbox">G♯
+          <input id="a" type="checkbox">A
+          <input id="a♯" type="checkbox">A♯
+          <input id="b" type="checkbox">B
+        </div>
+        <p id="chord-name">
+          <span id="name-key">C</span>
+          <span id="name-accent"></span>
+          <span id="name-chord">Major</span>
+        </p>
+        <br><br><br><button onclick="reset()">Reset</button>
+        <button id="stof" onclick="sharpsToFlats()">Sharps</button>
+      </div>
+      <div id="section3">
+        <div id="buttons">
+          <h2>Key</h2>
+          <button onclick="changeKey('A')" id="btn0">A</button>
+          <button onclick="changeKey('A♯')" id="btn1"><span id="k-a">A</span><span id="a-a">♯</span></button>
+          <button onclick="changeKey('B')" id="btn2">B</button>
+          <button onclick="changeKey('C')" id="btn3">C</button>
+          <button onclick="changeKey('C♯')" id="btn4"><span id="k-c">C</span><span id="c-a">♯</span></button>
+          <button onclick="changeKey('D')" id="btn5">D</button>
+          <button onclick="changeKey('D♯')" id="btn6"><span id="k-d">D</span><span id="d-a">♯</span></button>
+          <button onclick="changeKey('E')" id="btn7">E</button>
+          <button onclick="changeKey('F')" id="btn8">F</button>
+          <button onclick="changeKey('F♯')" id="btn9"><span id="k-f">F</span><span id="f-a">♯</span></button>
+          <button onclick="changeKey('G')" id="btn10">G</button>
+        </div>
+        <div id="buttons2">
+          <h2>Chord</h2>
+          <button onclick="changeChord('maj')" id="maj">Cmaj</button>
+          <button onclick="changeChord('min')" id="min">Cmin</button>
+          <button onclick="changeChord('o')" id="o">Co</button>
+          <button onclick="changeChord('aug')" id="aug">C+</button>
+          <button onclick="changeChord('7')" id="7">C7</button>
+          <button onclick="changeChord('maj7')" id="maj7">Cmaj7</button>
+          <button onclick="changeChord('min7')" id="min7">Cmin7</button>
+          <button onclick="changeChord('maj6')" id="maj6">Cmaj6</button>
+          <button onclick="changeChord('aug7')" id="aug7">C+7</button>
+          <button onclick="changeChord('min6')" id="min6">Cmin6</button>
+          <button onclick="changeChord('mM7')" id="mM7">CmM7</button>
+          <button onclick="changeChord('o7')" id="o7">Co7</button>
+          <button onclick="changeChord('halfdim7')" id="halfdim7">Cø7</button>
+          <button onclick="changeChord('augM7')" id="augM7">C+M7</button>
+          <button onclick="changeChord('7flat5')" id="7flat5">C7♭5</button>
+          <button onclick="changeChord('maj9')" id="maj9">Cmaj9</button>
+          <button onclick="changeChord('9')" id="9">C9</button>
+          <button onclick="changeChord('7flat9')" id="7flat9">C7♭9</button>
+          <button onclick="changeChord('11')" id="11">C11</button>
+          <button onclick="changeChord('13')" id="13">C13</button>
+          <button onclick="changeChord('7aug5')" id="7aug5">C7+5</button>
+          <button onclick="changeChord('7aug9')" id="7aug9">C7+9</button>
+          <button onclick="changeChord('7aug11')" id="7aug11">C7+11</button>
+          <button onclick="changeChord('7flat13')" id="7flat13">C7♭13</button>
+          <button onclick="changeChord('2')" id="2">C2</button>
+          <button onclick="changeChord('4')" id="4">C4</button>
+          <button onclick="changeChord('6')" id="6">C6</button>
+          <button onclick="changeChord('6-9')" id="6-9">C6/9</button>
+          <button onclick="changeChord('7-6')" id="7-6">C7/6</button>
+          <button onclick="changeChord('sus2')" id="sus2">Csus2</button>
+          <button onclick="changeChord('sus4')" id="sus4">Csus4</button>
+          <button onclick="changeChord('9sus4')" id="9sus4">C9sus4</button>
+        </div>
+      </div>
+      <div id="section2">
+        <div id="card1">
+          <div id="treble">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/GClef.svg/60px-GClef.svg.png">
+          </div>
+          <div id="bass">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/FClef.svg/60px-FClef.svg.png">
+          </div>
+          <span class="ln" id="note-b2"></span><span class="lna" id="note-b2-a"></span>
+          <span class="ln" id="note-a2"></span><span class="lna" id="note-a2-a"></span>
+          <span class="ln" id="note-g2"></span><span class="lna" id="note-g2-a"></span>
+          <span class="ln" id="note-f2"></span><span class="lna" id="note-f2-a"></span>
+          <span class="ln" id="note-e2"></span><span class="lna" id="note-e2-a"></span>
+          <span class="ln" id="note-d2"></span><span class="lna" id="note-d2-a"></span>
+          <span class="ln" id="note-c2"></span><span class="lna" id="note-c2-a"></span>
+          <span class="ln" id="note-b1"></span><span class="lna" id="note-b1-a"></span>
+          <span class="ln" id="note-a1"></span><span class="lna" id="note-a1-a"></span>
+          <span class="ln" id="note-g1"></span><span class="lna" id="note-g1-a"></span>
+          <span class="ln" id="note-f1"></span><span class="lna" id="note-f1-a"></span>
+          <span class="ln" id="note-e1"></span><span class="lna" id="note-e1-a"></span>
+          <span class="ln" id="note-d1"></span><span class="lna" id="note-d1-a"></span>
+          <span class="ln" id="note-c1"></span><span class="lna" id="note-c1-a"></span>
+          <span class="ln" id="note-b0"></span><span class="lna" id="note-b0-a"></span>
+          <span class="ln" id="note-a0"></span><span class="lna" id="note-a0-a"></span>
+          <span class="ln" id="note-g0"></span><span class="lna" id="note-g0-a"></span>
+          <span class="ln" id="note-f0"></span><span class="lna" id="note-f0-a"></span>
+          <span class="ln" id="note-e0"></span><span class="lna" id="note-e0-a"></span>
+          <span class="ln" id="note-d0"></span><span class="lna" id="note-d0-a"></span>
+          <span class="ln" id="note-c0"></span><span class="lna" id="note-c0-a"></span>
+          <table>
+            <tbody><tr><td></td></tr><tr>
+              <td></td></tr><tr>
+	            <td></td></tr><tr>
+              <td></td></tr><tr></tr>
+            </tbody>
+          </table><span id="space">—</span>
+          <table id="t2">
+            <tbody><tr><td></td></tr><tr>
+	           <td></td></tr><tr>
+	           <td></td></tr><tr>
+	           <td></td></tr><tr></tr>
+           </tbody>
+         </table>
+       </div>
      </div>
-     <div id="bass">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/FClef.svg/60px-FClef.svg.png">
+     <div id="footer">
+       <p>Chordy is a Web Application by Calvin Christensen, 2021</p><br>
+       <p><a>Blog</a> • <a>Contact</a> • <a>Github</a></p>
      </div>
-      <span class="ln" id="note-b2">o</span><span class="lna" id="note-b2-a"></span>
-      <span class="ln" id="note-a2">o</span><span class="lna" id="note-a2-a"></span>
-      <span class="ln" id="note-g2">o</span><span class="lna" id="note-g2-a"></span>
-      <span class="ln" id="note-f2">o</span><span class="lna" id="note-f2-a"></span>
-      <span class="ln" id="note-e2">o</span><span class="lna" id="note-e2-a"></span>
-      <span class="ln" id="note-d2">o</span><span class="lna" id="note-d2-a"></span>
-      <span class="ln" id="note-c2">o</span><span class="lna" id="note-c2-a"></span>
-      <span class="ln" id="note-b1">o</span><span class="lna" id="note-b1-a"></span>
-      <span class="ln" id="note-a1">o</span><span class="lna" id="note-a1-a"></span>
-      <span class="ln" id="note-g1">o</span><span class="lna" id="note-g1-a"></span>
-      <span class="ln" id="note-f1">o</span><span class="lna" id="note-f1-a"></span>
-      <span class="ln" id="note-e1">o</span><span class="lna" id="note-e1-a"></span>
-      <span class="ln" id="note-d1">o</span><span class="lna" id="note-d1-a"></span>
-      <span class="ln" id="note-c1">o</span><span class="lna" id="note-c1-a"></span>
-      <span class="ln" id="note-b0">o</span><span class="lna" id="note-b0-a"></span>
-      <span class="ln" id="note-a0">o</span><span class="lna" id="note-a0-a"></span>
-      <span class="ln" id="note-g0">o</span><span class="lna" id="note-g0-a"></span>
-      <span class="ln" id="note-f0">o</span><span class="lna" id="note-f0-a"></span>
-      <span class="ln" id="note-e0">o</span><span class="lna" id="note-e0-a"></span>
-      <span class="ln" id="note-d0">o</span><span class="lna" id="note-d0-a"></span>
-      <span class="ln" id="note-c0">o</span><span class="lna" id="note-c0-a"></span>
-      <table>
-       <tbody><tr><td></td></tr><tr>
-        <td></td></tr><tr>
-	    <td></td></tr><tr>
-        <td></td></tr><tr></tr>
-       </tbody>
-      </table><span id="space">—</span>
-      <table id="t2">
-	   <tbody><tr><td></td></tr><tr>
-	    <td></td></tr><tr>
-	    <td></td></tr><tr>
-	    <td></td></tr><tr>
-      </tr></tbody></table>
-     </div>
-    </div>
-    <div id="footer">
-     <p>Chordy is a Web Application by Calvin Christensen, 2021</p><br>
-     <p><a>Blog</a> • <a>Contact</a> • <a>Github</a></p>
    </div>
-  </div>
+
 <script>
 var ledger = ["c0","d0","e0","f0","g0","a0","b0","c1","d1","e1","f1","g1","a1","b1","c2","d2","e2","f2","g2","a2","b2"];
 var mm;
 for (mm=0;mm<ledger.length;mm++) {
   document.getElementById("note-" + ledger[mm]).style.marginTop = 180 - (12 * mm) + "px";
 }
-var notes = ["c","c#","d","d#","e","f","f#","g","g#","a","a#","b"];
+var notes = ["c","c♯","d","d♯","e","f","f♯","g","g♯","a","a♯","b"];
 var rootNote = "?";
 var order = [];
 var root = 'C';
@@ -191,236 +193,246 @@ changeKey('C');
 changeChord('maj');
 
 function changeKey(note) {
- resetLedger();
- for (mm=0;mm<roots.length;mm++) {
-  if (roots[mm] == note) {
-   document.getElementById("btn" + mm).style.backgroundColor = "#ffb900";
-   root=note;
-  } else {
-   document.getElementById("btn" + mm).style.backgroundColor = "white";
+  resetLedger();
+  for (mm=0;mm<roots.length;mm++) {
+    if (roots[mm] == note) {
+      document.getElementById("btn" + mm).style.backgroundColor = "#ffb900";
+      root=note;
+    } else {
+      document.getElementById("btn" + mm).style.backgroundColor = "white";
+    }
   }
- }
- var tmpRoot = root;
- if (!sharps) {
-  if(root == "A♯") {
-   tmpRoot = "B♭";
-  } else if(root == "C♯") {
-   tmpRoot = "D♭";
-  } else if(root == "D♯") {
-   tmpRoot = "E♭";
-  } else if(root == "F♯") {
-   tmpRoot = "G♭";
+
+  var tmpRoot = root;
+  if (!sharps) {
+    if(root == "A♯") {
+      tmpRoot = "B♭";
+    } else if(root == "C♯") {
+      tmpRoot = "D♭";
+    } else if(root == "D♯") {
+      tmpRoot = "E♭";
+    } else if(root == "F♯") {
+      tmpRoot = "G♭";
+    }
   }
- }
- document.getElementById("name-key").innerHTML = tmpRoot;
- document.getElementById("maj").innerHTML = tmpRoot + "maj";
- document.getElementById("min").innerHTML = tmpRoot + "min";
- document.getElementById("o").innerHTML = tmpRoot + "o";
- document.getElementById("aug").innerHTML = tmpRoot + "+";
- document.getElementById("7").innerHTML = tmpRoot + "7";
- document.getElementById("maj7").innerHTML = tmpRoot + "maj7";
- document.getElementById("min7").innerHTML = tmpRoot + "min7";
- document.getElementById("maj6").innerHTML = tmpRoot + "maj6";
- document.getElementById("aug7").innerHTML = tmpRoot + "+7";
- document.getElementById("min6").innerHTML = tmpRoot + "min6";
- document.getElementById("mM7").innerHTML = tmpRoot + "mM7";
- document.getElementById("o7").innerHTML = tmpRoot + "o7";
- document.getElementById("halfdim7").innerHTML = tmpRoot + "ø7";
- document.getElementById("augM7").innerHTML = tmpRoot + "+M7";
- document.getElementById("7flat5").innerHTML = tmpRoot + "7♭5";
- document.getElementById("maj9").innerHTML = tmpRoot + "maj9";
- document.getElementById("9").innerHTML = tmpRoot + "9";
- document.getElementById("7flat9").innerHTML = tmpRoot + "7♭9";
- document.getElementById("11").innerHTML = tmpRoot + "11";
- document.getElementById("13").innerHTML = tmpRoot + "13";
- document.getElementById("7aug5").innerHTML = tmpRoot + "7+5";
- document.getElementById("7aug9").innerHTML = tmpRoot + "7+9";
- document.getElementById("7aug11").innerHTML = tmpRoot + "7+11";
- document.getElementById("7flat13").innerHTML = tmpRoot + "7♭13";
- document.getElementById("2").innerHTML = tmpRoot + "2";
- document.getElementById("4").innerHTML = tmpRoot + "4";
- document.getElementById("6").innerHTML = tmpRoot + "6";
- document.getElementById("6-9").innerHTML = tmpRoot + "6/9";
- document.getElementById("7-6").innerHTML = tmpRoot + "7/6";
- document.getElementById("sus2").innerHTML = tmpRoot + "sus2";
- document.getElementById("sus4").innerHTML = tmpRoot + "sus4";
- document.getElementById("9sus4").innerHTML = tmpRoot + "9sus4";
- begin();
+  document.getElementById("name-key").innerHTML = tmpRoot;
+  document.getElementById("maj").innerHTML = tmpRoot + "maj";
+  document.getElementById("min").innerHTML = tmpRoot + "min";
+  document.getElementById("o").innerHTML = tmpRoot + "o";
+  document.getElementById("aug").innerHTML = tmpRoot + "+";
+  document.getElementById("7").innerHTML = tmpRoot + "7";
+  document.getElementById("maj7").innerHTML = tmpRoot + "maj7";
+  document.getElementById("min7").innerHTML = tmpRoot + "min7";
+  document.getElementById("maj6").innerHTML = tmpRoot + "maj6";
+  document.getElementById("aug7").innerHTML = tmpRoot + "+7";
+  document.getElementById("min6").innerHTML = tmpRoot + "min6";
+  document.getElementById("mM7").innerHTML = tmpRoot + "mM7";
+  document.getElementById("o7").innerHTML = tmpRoot + "o7";
+  document.getElementById("halfdim7").innerHTML = tmpRoot + "ø7";
+  document.getElementById("augM7").innerHTML = tmpRoot + "+M7";
+  document.getElementById("7flat5").innerHTML = tmpRoot + "7♭5";
+  document.getElementById("maj9").innerHTML = tmpRoot + "maj9";
+  document.getElementById("9").innerHTML = tmpRoot + "9";
+  document.getElementById("7flat9").innerHTML = tmpRoot + "7♭9";
+  document.getElementById("11").innerHTML = tmpRoot + "11";
+  document.getElementById("13").innerHTML = tmpRoot + "13";
+  document.getElementById("7aug5").innerHTML = tmpRoot + "7+5";
+  document.getElementById("7aug9").innerHTML = tmpRoot + "7+9";
+  document.getElementById("7aug11").innerHTML = tmpRoot + "7+11";
+  document.getElementById("7flat13").innerHTML = tmpRoot + "7♭13";
+  document.getElementById("2").innerHTML = tmpRoot + "2";
+  document.getElementById("4").innerHTML = tmpRoot + "4";
+  document.getElementById("6").innerHTML = tmpRoot + "6";
+  document.getElementById("6-9").innerHTML = tmpRoot + "6/9";
+  document.getElementById("7-6").innerHTML = tmpRoot + "7/6";
+  document.getElementById("sus2").innerHTML = tmpRoot + "sus2";
+  document.getElementById("sus4").innerHTML = tmpRoot + "sus4";
+  document.getElementById("9sus4").innerHTML = tmpRoot + "9sus4";
+  begin();
 }
+
 function resetLedger() {
- for (mm=0;mm<3;mm++) {
-  document.getElementById("note-c" + mm).style.opacity = "0";
-  document.getElementById("note-d" + mm).style.opacity = "0";
-  document.getElementById("note-e" + mm).style.opacity = "0";
-  document.getElementById("note-f" + mm).style.opacity = "0";
-  document.getElementById("note-g" + mm).style.opacity = "0";
-  document.getElementById("note-a" + mm).style.opacity = "0";
-  document.getElementById("note-b" + mm).style.opacity = "0";
- }
+  for (mm=0;mm<3;mm++) {
+    document.getElementById("note-c" + mm).style.opacity = "0";
+    document.getElementById("note-d" + mm).style.opacity = "0";
+    document.getElementById("note-e" + mm).style.opacity = "0";
+    document.getElementById("note-f" + mm).style.opacity = "0";
+    document.getElementById("note-g" + mm).style.opacity = "0";
+    document.getElementById("note-a" + mm).style.opacity = "0";
+    document.getElementById("note-b" + mm).style.opacity = "0";
+  }
 }
+
 function changeChord(type) {
- resetLedger();
- document.getElementById("name-chord").innerHTML = typeNames[types.indexOf(type)];
- for (mm=0;mm<types.length;mm++) {
-  if (types[mm] == type) {
-   document.getElementById(types[mm]).style.backgroundColor = "#ffb900";
-   chordName=type;
-  } else {
-   document.getElementById(types[mm]).style.backgroundColor = "white";
+  resetLedger();
+  document.getElementById("name-chord").innerHTML = typeNames[types.indexOf(type)];
+  for (mm=0;mm<types.length;mm++) {
+    if (types[mm] == type) {
+      document.getElementById(types[mm]).style.backgroundColor = "#ffb900";
+      chordName=type;
+    } else {
+      document.getElementById(types[mm]).style.backgroundColor = "white";
+    }
   }
- }
- begin();
+  begin();
 }
+
 function begin() {
- if (root != null && chordName != null) {
- checkChord(root,chordName);
- }
+  if (root != null && chordName != null) {
+    checkChord(root,chordName);
+  }
 }
+
 var sharps = true;
+
 function sharpsToFlats() {
- if (sharps) {
-  document.getElementById("btn1").innerHTML = "B♭";
-  document.getElementById("btn4").innerHTML = "D♭";
-  document.getElementById("btn6").innerHTML = "E♭";
-  document.getElementById("btn9").innerHTML = "G♭";
-  sharps = false;
- } else {
-  document.getElementById("btn1").innerHTML = "A♯";
-  document.getElementById("btn4").innerHTML = "C♯";
-  document.getElementById("btn6").innerHTML = "D♯";
-  document.getElementById("btn9").innerHTML = "F♯";
-  sharps = true;
- }
- foo(root);
+  if (sharps) {
+    document.getElementById("btn1").innerHTML = "B♭";
+    document.getElementById("btn4").innerHTML = "D♭";
+    document.getElementById("btn6").innerHTML = "E♭";
+    document.getElementById("btn9").innerHTML = "G♭";
+    sharps = false;
+  } else {
+    document.getElementById("btn1").innerHTML = "A♯";
+    document.getElementById("btn4").innerHTML = "C♯";
+    document.getElementById("btn6").innerHTML = "D♯";
+    document.getElementById("btn9").innerHTML = "F♯";
+    sharps = true;
+  }
+  changeKey(root);
 }
+
 function produceChord(rI, arr) {
- var pos = 1;
- var pos2 = 2;
- if (rI >= 7) {
-  pos = 0;
-  pos2 = 1;
- }
- var ee = 0;
- while (ee < arr.length) {
- if (rI + arr[ee] > 11) {
+  var pos = 1;
+  var pos2 = 2;
+  if (rI >= 7) {
+    pos = 0;
+    pos2 = 1;
+  }
+  var ee = 0;
+  while (ee < arr.length) {
+    if (rI + arr[ee] > 11) {
       light("key-" + notes[(rI + arr[ee]) - 12] + pos2,notes[rI + arr[ee]],"1");
-     } else {
+    } else {
       light("key-" + notes[rI + arr[ee]] + pos,notes[rI + arr[ee]],"1");
-     }
-   ee++;
- }
+    }
+    ee++;
+  }
 }
+
 function checkChord(key,crd) {
- for (i=0;i<notes.length;i++) {
-  for (j=0; j<3; j++) {
-   if (i == 1 || i == 3 || i == 6 || i == 8 || i == 10) {
-    document.getElementById('key-' + notes[i] + j).style.backgroundColor = "#242424";
-   } else {
-    document.getElementById('key-' + notes[i] + j).style.backgroundColor = "white";
-   }
+  for (i=0;i<notes.length;i++) {
+    for (j=0; j<3; j++) {
+      if (i == 1 || i == 3 || i == 6 || i == 8 || i == 10) {
+        document.getElementById('key-' + notes[i] + j).style.backgroundColor = "#242424";
+      } else {
+        document.getElementById('key-' + notes[i] + j).style.backgroundColor = "white";
+      }
+    }
+    document.getElementById(notes[i]).checked = false;
   }
-  document.getElementById(notes[i]).checked = false;
- }
- var rootIndex = notes.indexOf(key.toLowerCase());
- var ll;
- if (crd == "maj") {
-  produceChord(rootIndex,[0,4,7]);
- } else if (crd == "min") {
-  produceChord(rootIndex,[0,3,7]);
- } else if (crd == "aug") {
-  produceChord(rootIndex,[0,4,8]);
- } else if (crd == "o") {
-  produceChord(rootIndex,[0,3,6]);
- } else if (crd == "7") {
-  produceChord(rootIndex,[0,4,7,10]);
- } else if (crd == "maj7") {
-  produceChord(rootIndex,[0,4,7,11]);
- } else if (crd == "min7") {
-  produceChord(rootIndex,[0,3,7,10]);
- } else if (crd == "maj6") {
-  produceChord(rootIndex,[0,4,7,9]);
- } else if (crd == "7") {
-  produceChord(rootIndex,[0,4,7,10]);
- } else if (crd == "aug7") {
-  produceChord(rootIndex,[0,4,8,10]);
- } else if (crd == "min6") {
-  produceChord(rootIndex,[0,3,7,10]);
- } else if (crd == "mM7") {
-  produceChord(rootIndex,[0,3,7,11]);
- } else if (crd == "o7") {
-  produceChord(rootIndex,[0,3,6,9]);
- } else if (crd == "halfdim7") {
-  produceChord(rootIndex,[0,3,6,10]);
- } else if (crd == "augM7") {
-  produceChord(rootIndex,[0,4,8,11]);
- } else if (crd == "7flat5") {
-  produceChord(rootIndex,[0,4,6,10]);
- } else if (crd == "maj9") {
-  produceChord(rootIndex,[0,2,4,7,11]);
- } else if (crd == "9") {
-  produceChord(rootIndex,[0,2,4,7,10]);
- } else if (crd == "7flat9") {
-  produceChord(rootIndex,[0,1,4,7,10]);
- } else if (crd == "11") {
-  produceChord(rootIndex,[0,2,4,5,7,10]);
- } else if (crd == "13") {
-  produceChord(rootIndex,[0,2,4,5,7,9,10]);
- } else if (crd == "13") {
-  produceChord(rootIndex,[0,2,4,5,7,9,10]);
- } else if (crd == "7aug5") {
-  produceChord(rootIndex,[0,4,8,10]);
- } else if (crd == "7aug9") {
-  produceChord(rootIndex,[0,3,4,7,10]);
- } else if (crd == "7aug11") {
-  produceChord(rootIndex,[0,2,4,6,7,10]);
- } else if (crd == "7flat13") {
-  produceChord(rootIndex,[0,2,4,5,7,8,10]);
- } else if (crd == "2") {
-  produceChord(rootIndex,[0,2,4,7]);
- } else if (crd == "4") {
-  produceChord(rootIndex,[0,4,5,7]);
- } else if (crd == "6") {
-  produceChord(rootIndex,[0,4,7,9]);
- } else if (crd == "6-9") {
-  produceChord(rootIndex,[0,2,4,7,9]);
- } else if (crd == "7-6") {
-  produceChord(rootIndex,[0,4,7,9,10]);
- } else if (crd == "sus2") {
-  produceChord(rootIndex,[0,2,7]);
- } else if (crd == "sus4") {
-  produceChord(rootIndex,[0,5,7]);
- } else if (crd == "9sus4") {
-  produceChord(rootIndex,[0,2,4,7,10]);
- }
+  var rootIndex = notes.indexOf(key.toLowerCase());
+  var ll;
+  if (crd == "maj") {
+    produceChord(rootIndex,[0,4,7]);
+  } else if (crd == "min") {
+    produceChord(rootIndex,[0,3,7]);
+  } else if (crd == "aug") {
+    produceChord(rootIndex,[0,4,8]);
+  } else if (crd == "o") {
+    produceChord(rootIndex,[0,3,6]);
+  } else if (crd == "7") {
+    produceChord(rootIndex,[0,4,7,10]);
+  } else if (crd == "maj7") {
+    produceChord(rootIndex,[0,4,7,11]);
+  } else if (crd == "min7") {
+    produceChord(rootIndex,[0,3,7,10]);
+  } else if (crd == "maj6") {
+    produceChord(rootIndex,[0,4,7,9]);
+  } else if (crd == "7") {
+    produceChord(rootIndex,[0,4,7,10]);
+  } else if (crd == "aug7") {
+    produceChord(rootIndex,[0,4,8,10]);
+  } else if (crd == "min6") {
+    produceChord(rootIndex,[0,3,7,10]);
+  } else if (crd == "mM7") {
+    produceChord(rootIndex,[0,3,7,11]);
+  } else if (crd == "o7") {
+    produceChord(rootIndex,[0,3,6,9]);
+  } else if (crd == "halfdim7") {
+    produceChord(rootIndex,[0,3,6,10]);
+  } else if (crd == "augM7") {
+    produceChord(rootIndex,[0,4,8,11]);
+  } else if (crd == "7flat5") {
+    produceChord(rootIndex,[0,4,6,10]);
+  } else if (crd == "maj9") {
+    produceChord(rootIndex,[0,2,4,7,11]);
+  } else if (crd == "9") {
+    produceChord(rootIndex,[0,2,4,7,10]);
+  } else if (crd == "7flat9") {
+    produceChord(rootIndex,[0,1,4,7,10]);
+  } else if (crd == "11") {
+    produceChord(rootIndex,[0,2,4,5,7,10]);
+  } else if (crd == "13") {
+    produceChord(rootIndex,[0,2,4,5,7,9,10]);
+  } else if (crd == "13") {
+    produceChord(rootIndex,[0,2,4,5,7,9,10]);
+  } else if (crd == "7aug5") {
+    produceChord(rootIndex,[0,4,8,10]);
+  } else if (crd == "7aug9") {
+    produceChord(rootIndex,[0,3,4,7,10]);
+  } else if (crd == "7aug11") {
+    produceChord(rootIndex,[0,2,4,6,7,10]);
+  } else if (crd == "7flat13") {
+    produceChord(rootIndex,[0,2,4,5,7,8,10]);
+  } else if (crd == "2") {
+    produceChord(rootIndex,[0,2,4,7]);
+  } else if (crd == "4") {
+    produceChord(rootIndex,[0,4,5,7]);
+  } else if (crd == "6") {
+    produceChord(rootIndex,[0,4,7,9]);
+  } else if (crd == "6-9") {
+    produceChord(rootIndex,[0,2,4,7,9]);
+  } else if (crd == "7-6") {
+    produceChord(rootIndex,[0,4,7,9,10]);
+  } else if (crd == "sus2") {
+    produceChord(rootIndex,[0,2,7]);
+  } else if (crd == "sus4") {
+    produceChord(rootIndex,[0,5,7]);
+  } else if (crd == "9sus4") {
+    produceChord(rootIndex,[0,2,4,7,10]);
+  }
 }
+
 function light(id, note, val) {
- if (id.substring(5,6) == '♯') {
-  if (document.getElementById(id).style.backgroundColor != "rgb(255, 185, 0)") {
-   document.getElementById(id).style.backgroundColor = "#ffb900";
-   document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7)).style.opacity = "1";
-   document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7)).innerHTML = "o♯";
+  if (id.substring(5,6) == '♯') {
+    if (document.getElementById(id).style.backgroundColor != "rgb(255, 185, 0)") {
+      document.getElementById(id).style.backgroundColor = "#ffb900";
+      document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7)).style.opacity = "1";
+      document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7)).innerHTML = "o";
+      document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7) + "-a").style.opacity = "1";
+      document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7) + "-a").innerHTML = "♯";
+    } else {
+      document.getElementById(id).style.backgroundColor = "#242424";
+      document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7)).style.opacity = "0";
+    }
   } else {
-   document.getElementById(id).style.backgroundColor = "#242424";
-   document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7)).style.opacity = "0";
+    if (document.getElementById(id).style.backgroundColor != "rgb(255, 185, 0)") {
+      document.getElementById(id).style.backgroundColor = "#ffb900";
+      document.getElementById("note-" + id.substring(4,6)).style.opacity = "1";
+      document.getElementById("note-" + id.substring(4,6)).innerHTML = "♩";
+    } else {
+      document.getElementById(id).style.backgroundColor = "#ffffff";
+      document.getElementById("note-" + id.substring(4,6)).style.opacity = "0";
+    }
   }
- } else {
-  if (document.getElementById(id).style.backgroundColor != "rgb(255, 185, 0)") {
-   document.getElementById(id).style.backgroundColor = "#ffb900";
-   document.getElementById("note-" + id.substring(4,6)).style.opacity = "1";
-   document.getElementById("note-" + id.substring(4,6)).innerHTML = "o";
-  } else {
-   document.getElementById(id).style.backgroundColor = "#ffffff";
-   document.getElementById("note-" + id.substring(4,6)).style.opacity = "0";
+  if (val != 1) {
+    if (document.getElementById(id.substring(0,id.length-1) + '0').style.backgroundColor != "rgb(255, 185, 0)" && document.getElementById(id.substring(0,id.length-1) + '1').style.backgroundColor != "rgb(255, 185, 0)" && document.getElementById(id.substring(0,id.length-1) + '2').style.backgroundColor != "rgb(255, 185, 0)") {
+      document.getElementById(note).checked = false;
+    } else {
+      document.getElementById(note).checked = true;
+    }
   }
- }
- if (val != 1) {
-  if (document.getElementById(id.substring(0,id.length-1) + '0').style.backgroundColor != "rgb(255, 185, 0)" && document.getElementById(id.substring(0,id.length-1) + '1').style.backgroundColor != "rgb(255, 185, 0)" && document.getElementById(id.substring(0,id.length-1) + '2').style.backgroundColor != "rgb(255, 185, 0)") {
-   document.getElementById(note).checked = false;
-  } else {
-  document.getElementById(note).checked = true;
- }
- demo();
- }
 }
 </script>
 </body>
