@@ -9,7 +9,7 @@
         <img src="https://calvinchristensen96.github.io/chordy/Chordy-logo.png">
       </div>
       <div id="tool">
-        <p id="active">Reverse Lookup</p>
+        <p id="active"><a href="index.html">Reverse Lookup</a></p>
         <p id="un">Chord Dictionary</p>
       </div>
       <div id="left">
@@ -287,16 +287,24 @@ var sharps = true;
 
 function sharpsToFlats() {
   if (sharps) {
-    document.getElementById("btn1").innerHTML = "B♭";
-    document.getElementById("btn4").innerHTML = "D♭";
-    document.getElementById("btn6").innerHTML = "E♭";
-    document.getElementById("btn9").innerHTML = "G♭";
+    document.getElementById("k-a").innerHTML = "B";
+    document.getElementById("k-c").innerHTML = "D";
+    document.getElementById("k-d").innerHTML = "E";
+    document.getElementById("k-f").innerHTML = "G";
+    document.getElementById("a-a").innerHTML = "♭";
+    document.getElementById("c-a").innerHTML = "♭";
+    document.getElementById("d-a").innerHTML = "♭";
+    document.getElementById("f-a").innerHTML = "♭";
     sharps = false;
   } else {
-    document.getElementById("btn1").innerHTML = "A♯";
-    document.getElementById("btn4").innerHTML = "C♯";
-    document.getElementById("btn6").innerHTML = "D♯";
-    document.getElementById("btn9").innerHTML = "F♯";
+    document.getElementById("k-a").innerHTML = "A";
+    document.getElementById("k-c").innerHTML = "C";
+    document.getElementById("k-d").innerHTML = "D";
+    document.getElementById("k-f").innerHTML = "F";
+    document.getElementById("a-a").innerHTML = "♯";
+    document.getElementById("c-a").innerHTML = "♯";
+    document.getElementById("d-a").innerHTML = "♯";
+    document.getElementById("f-a").innerHTML = "♯";
     sharps = true;
   }
   changeKey(root);
@@ -420,7 +428,7 @@ function light(id, note, val) {
     if (document.getElementById(id).style.backgroundColor != "rgb(255, 185, 0)") {
       document.getElementById(id).style.backgroundColor = "#ffb900";
       document.getElementById("note-" + id.substring(4,6)).style.opacity = "1";
-      document.getElementById("note-" + id.substring(4,6)).innerHTML = "♩";
+      document.getElementById("note-" + id.substring(4,6)).innerHTML = "o";
     } else {
       document.getElementById(id).style.backgroundColor = "#ffffff";
       document.getElementById("note-" + id.substring(4,6)).style.opacity = "0";
@@ -441,219 +449,223 @@ function light(id, note, val) {
 --c1: #ffb900;
 }
 body, * {
-margin: 0px auto;
-text-align: center;
-font-family: "Garamond";
+  margin: 0px auto;
+  text-align: center;
+  font-family: "Garamond";
 }
 body {
-margin: 0px;
+  margin: 0px;
 }
 #content {
-min-width: 870px;
+  min-width: 870px;
 }
 #logo img {
-width: 100px;
-height: 100px;
+  width: 100px;
+  height: 100px;
 }
 h2 {
-font-size: 18px;
-margin-bottom: 64px;
+  font-size: 18px;
+  margin-bottom: 64px;
 }
 button {
-text-decoration: none;
-color: black;
-background-color: white;
-border: solid 2px black;
-transition-duration: 0.25s;
-cursor: pointer;
-font-size: 16px;
-padding: 8px;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  border: solid 2px black;
+  transition-duration: 0.25s;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px;
 }
 #a-a, #c-a, #d-a, #f-a {
-font-size: 18px;
+  font-size: 16px;
 }
 button:hover {
-background-color: #e7e7e7;
+  background-color: #e7e7e7;
 }
 .key {
-border: solid 2px black;
-padding-left: 16px;
-padding-right: 16px;
-padding-top: 100px;
-padding-bottom: 8px;
-cursor: pointer;
-color: white;
-background-color: white;
-transition-duration: 0.25s;
-border-radius: 6%;
-margin-left: 1px;
-margin-right: 1px;
+  border: solid 2px black;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 100px;
+  padding-bottom: 8px;
+  cursor: pointer;
+  color: white;
+  background-color: white;
+  transition-duration: 0.25s;
+  border-radius: 6%;
+  margin-left: 1px;
+  margin-right: 1px;
 }
 .key:hover {
-background-color: #ccc;
-color: #ccc;
+  background-color: #ccc;
+  color: #ccc;
 }
 .b-key {
-background-color: #242424;
-position: absolute;
-width: 24px;
-padding-top: 82px;
-top: 170px;
-margin-left: -16px;
-border: solid black 2px;
-color: black;
-cursor: pointer;
-border-radius: 6%;
-transition-duration: 0.25s;
+  background-color: #242424;
+  position: absolute;
+  width: 24px;
+  padding-top: 82px;
+  top: 170px;
+  margin-left: -16px;
+  border: solid black 2px;
+  color: black;
+  cursor: pointer;
+  border-radius: 6%;
+  transition-duration: 0.25s;
 }
 .black-key:hover {
-background-color: #555;
-color: #555;
+  background-color: #555;
+  color: #555;
 }
 #chord-name {
-font-size: 24px;
+  font-size: 24px;
 }
 #name-accent {
-font-size: 16px;
+  font-size: 16px;
 }
 input {
-margin-left: 4px;
-margin-right: 2px;
+  margin-left: 4px;
+  margin-right: 2px;
 }
 #left {
-padding-bottom: 48px;
-background-color: white;
-margin-left: 24px;
-margin-right: 24px;
+  padding-bottom: 48px;
+  background-color: white;
+  margin-left: 24px;
+  margin-right: 24px;
 }
 #left button {
-font-size: 24px;
-width: 80px;
-height: 60px;
+  font-size: 24px;
+  width: 120px;
+  height: 60px;
 }
 #result {
-position: relative;
-top: 160px;
-transition-duration: 0.25s;
+  position: relative;
+  top: 160px;
+  transition-duration: 0.25s;
 }
 #result2 {
-opacity: 0;
-transition-duration: 0.25s;
-margin-top: -64px;
+  opacity: 0;
+  transition-duration: 0.25s;
+  margin-top: -64px;
 }
 #section2 {
-font-size: 36px;
-padding: 48px;
+  font-size: 36px;
+  padding: 48px;
 }
 #section3 h2 {
-font-size: 48px;
-margin-bottom: 12px;
+  font-size: 48px;
+  margin-bottom: 12px;
 }
 td {
-border-top: 2px solid black;
-border-bottom: 2px solid black;
-width: 100vh;
-margin: 0px;
-height: 24px;
-padding: 0px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  width: 100vh;
+  margin: 0px;
+  height: 24px;
+  padding: 0px;
 }
 .ln, .lna {
-position: absolute;
-margin-left: -12px;
-font-size: 64px;
-line-height: 25px;
+  position: absolute;
+  margin-left: -12px;
+  font-size: 36px;
+  line-height: 54px;
 }
 .lna {
-margin-left: -32px;
-font-size: 28px;
+  margin-left: -32px;
+  font-size: 28px;
 }
 table {
-border-left: solid black 8px;
-border-right: solid black 2px;
-border-collapse: collapse;
-width: 90%;
+  border-left: solid black 8px;
+  border-right: solid black 2px;
+  border-collapse: collapse;
+  width: 90%;
 }
 #t2 {
-margin-top: 6px;
+  margin-top: 6px;
 }
 #footer {
-background-color: #242424;
-color: white;
-padding-top: 68px;
-padding-bottom: 68px;
-font-size: 24px;
+  background-color: #242424;
+  color: white;
+  padding-top: 68px;
+  padding-bottom: 68px;
+  font-size: 24px;
 }
 a {
-text-decoration: underline;
-transition-duration: 0.25s;
-cursor: pointer;
-color: var(--c1);
+  text-decoration: underline;
+  transition-duration: 0.25s;
+  cursor: pointer;
+  color: var(--c1);
 }
 a:hover {
-color: #dd9700;
+  color: #dd9700;
 }
 #checks {
-display: none;
+  display: none;
 }
 #tool {
-margin-bottom: 96px;
+  margin-bottom: 96px;
+}
+#tool a {
+  text-decoration: none;
+  color: black;
 }
 #tool p{
-width: 30%;
-float: left;
+  width: 30%;
+  float: left;
 }
 #un {
-margin-left: 2%;
-margin-right: 18%;
-color: var(--c1);
-border-bottom: solid var(--c1) 2px;
+  margin-left: 2%;
+  margin-right: 18%;
+  color: var(--c1);
+  border-bottom: solid var(--c1) 2px;
 }
 #active {
-margin-left: 18%;
-margin-right: 2%;
-cursor: pointer;
+  margin-left: 18%;
+  margin-right: 2%;
+  cursor: pointer;
 }
 #buttons, #buttons2 {
-padding: 48px;
-font-size: 48px;
+  padding: 48px;
+  font-size: 48px;
 }
 #buttons2 button, #buttons button {
-font-size: 24px;
-width: 100px;
-height: 60px;
-margin: 4px;
+  font-size: 24px;
+  width: 140px;
+  height: 60px;
+  margin: 4px;
 }
 #section3 {
-padding-top: 24px;
-padding-bottom: 24px;
-background-color: #e7e7e7;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  background-color: #e7e7e7;
 }
 #treble, #bass {
-position: absolute;
-left: 142px;
+  position: absolute;
+  left: 142px;
 }
 #treble {
-margin-top: -28px;
+  margin-top: -28px;
 }
 #bass {
-margin-top: 152px;
+  margin-top: 152px;
 }
 #treble img {
-width: 64px;
+  width: 64px;
 }
 #bass img {
-width: 71px;
+  width: 71px;
 }
 @media screen and (min-width: 1200px) {
-#buttons, #buttons2 {
-width: 40%;
-display: inline-table;
-margin-left: 0px;
-margin-right: 0px;
-}
-#treble, #bass {
-position: absolute;
-left: 10%;
-}
+  #buttons, #buttons2 {
+    width: 40%;
+    display: inline-table;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  #treble, #bass {
+    position: absolute;
+    left: 10%;
+  }
 </style>
 </html>
