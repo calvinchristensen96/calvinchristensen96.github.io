@@ -1,13 +1,17 @@
 <html>
-<head><meta charset="utf-8"></head>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Chordy | Reverse Lookup</title>
+</head>
 <body>
 <div id="content">
 	<div id="logo">
 		<img src="https://calvinchristensen96.github.io/chordy/Chordy-logo.png">
 	</div>
 	<div id="tool">
-		<p id="active">Reverse Lookup</p>
-		<p id="un">Chord Dictionary</p>
+		<p id="active"><a href="index.html">Reverse Lookup</a></p>
+		<p id="un"><a href="index2.html">Chord Dictionary</a></p>
 	</div>
 	<div id="left"><br><br><br><br><br>
 		<span class="key" id="key-c0" onclick="light('key-c0', 'c')"></span>
@@ -62,10 +66,10 @@
 		</div><br><br><br>
 		<button onclick="reset()">Reset</button>
 	</div>
+	<div id="section3">
+		<h3 id="result" style="opacity: 1;">Chord not found. Try removing or adding other notes.</h3>
+	</div>
 	<div id="section2">
-		<h2 id="result" style="opacity: 1;">Chord not found. Try removing or adding other notes.</h2>
-		<h2 id="result2" style="opacity: 0;">This is a D Minor chord.</h2>
-		<div id="card1">
 			<div id="treble">
 				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/GClef.svg/60px-GClef.svg.png">
 			</div>
@@ -132,6 +136,7 @@
 			</table>
 		</div>
 	</div>
+	</div>
 	<div id="footer">
 		<p>Chordy is a Web Application by Calvin Christensen, 2021 - 2022</p><br>
 		<p><a>Blog</a> • <a>Contact</a> • <a>Github</a></p>
@@ -142,7 +147,7 @@ var ledger = ["c0","d0","e0","f0","g0","a0","b0","c1","d1","e1","f1","g1","a1","
 
 var mm;
 for (mm=0;mm<ledger.length;mm++) {
-  document.getElementById("note-" + ledger[mm]).style.marginTop = 180 - (12 * mm) + "px";
+  document.getElementById("note-" + ledger[mm]).style.marginTop = 174 - (12 * mm) + "px";
 }
 
 var notes = ["c","c♯","d","d♯","e","f","f♯","g","g♯","a","a♯","b"];
@@ -150,11 +155,7 @@ var rootNote = "?";
 var order = [];
 
 function reset(val) {
-	if (val != 1) {
-		document.getElementById("result2").style.opacity = "0";
-	}   
-	if (val != 0) { 
-		document.getElementById("result").style.opacity = "1";
+	if (val != 0) {
 		document.getElementById("plural").innerHTML = "s";
 		document.getElementById("number").innerHTML = "3";
 		var jj;
@@ -193,17 +194,12 @@ function demo() {
 	}
 	if (selected.length < 3) {
 		reset(0);
-		document.getElementById("result").style.opacity = "1";
-		document.getElementById("result2").style.opacity = "0";
 		document.getElementById("number").innerHTML = 3 - selected.length;
 		if (selected.length == 2) {
 			document.getElementById("plural").innerHTML = "";
 		} else {
 			document.getElementById("plural").innerHTML = "s";
 		}
-	} else {
-		document.getElementById("result").style.opacity = "0";
-		document.getElementById("result2").style.opacity = "1";
 	}
 	// 3
 	if (selectedNum.length == 3) {
@@ -287,8 +283,6 @@ function chordCheck(values, intervals) {
 }
 
 function catchAll() {
-	document.getElementById("result2").style.opacity = "0";
-	document.getElementById("result").style.opacity = "1";
 	document.getElementById("result").innerHTML = "Chord not found. Try removing or adding other notes.";
 	reset(0);
 }
@@ -313,9 +307,9 @@ function getChord(note, chord) {
 		document.getElementById("card3").style.opacity = "1";
 	}, 200);
 	if (note.substring(0,1) == 'a' || note == 'e' || note.substring(0,1) == 'f') {
-		document.getElementById("result2").innerHTML = "This is an " + note.toUpperCase() + " " + chord + " chord.";
+		document.getElementById("result").innerHTML = "This is an " + note.toUpperCase() + " " + chord + " chord.";
 	} else {
-		document.getElementById("result2").innerHTML = "This is a " + note.toUpperCase() + " " + chord + " chord.";
+		document.getElementById("result").innerHTML = "This is a " + note.toUpperCase() + " " + chord + " chord.";
 	}
 }
 
@@ -328,7 +322,7 @@ function light(id, note, val) {
 		} else {
 			document.getElementById(id).style.backgroundColor = "#242424";
 			document.getElementById("note-" + id.substring(4,5)  + id.substring(6,7)).style.opacity = "0";
-		} 
+		}
 	} else {
 		if (document.getElementById(id).style.backgroundColor != "rgb(255, 185, 0)") {
 			document.getElementById(id).style.backgroundColor = "#ffb900";
@@ -345,200 +339,9 @@ function light(id, note, val) {
 		} else {
 			document.getElementById(note).checked = true;
 		}
-		demo();  
+		demo();
 	}
 }
 </script>
-<style>
-	:root {
-	--c1: #ffb900;
-}
-body, * {
-	margin: 0px auto;
-	text-align: center;
-	font-family: "Garamond";
-}
-body {
-	margin: 0px;
-}
-#content {
-	min-width: 870px;
-}
-#logo img {
-	width: 100px;
-	height: 100px;
-}
-h1 {
-	margin: 36px;
-	margin-bottom: 12px;
-}
-h2 {
-	font-size: 18px;
-	margin-bottom: 64px;
-}
-button {
-	text-decoration: none;
-	color: black;
-	background-color: white;
-	border: solid 2px black;
-	transition-duration: 0.25s;
-	cursor: pointer;
-	font-size: 16px;
-	padding: 8px;
-}
-button:hover {
-	background-color: #e7e7e7;
-}
-.key {
-	border: solid 2px black;
-	padding-left: 16px;
-	padding-right: 16px;
-	padding-top: 100px;
-	padding-bottom: 8px;
-	cursor: pointer;
-	color: white;
-	background-color: white;
-	transition-duration: 0.25s;
-	border-radius: 6%;
-	margin-left: 1px;
-	margin-right: 1px;
-}
-.key:hover {
-background-color: #ccc;
-color: #ccc;
-}
-.b-key {
-background-color: #242424;
-position: absolute;
-width: 24px;
-padding-top: 82px;
-top: 170px;
-margin-left: -16px;
-border: solid black 2px;
-color: black;
-cursor: pointer;
-border-radius: 6%;
-transition-duration: 0.25s;
-}
-.black-key:hover {
-background-color: #555;
-color: #555;
-}
-input {
- margin-left: 4px;
- margin-right: 2px;
-}
-#left {
- padding-bottom: 48px;
- background-color: white;
- margin-left: 24px;
- margin-right: 24px;
-}
-#section2 {
- background-color: #e7e7e7;
- padding-top: 36px;
- padding-bottom: 446px;
-}
-#result {
- position: relative;
- top: 160px;
- transition-duration: 0.25s;
-}
-#result2 {
- opacity: 0;
- transition-duration: 0.25s;
- margin-top: -64px;
-}
-#card1 {
- width: 100%;
- height: 120px;
- float: left;
- font-size: 36px;
- padding-top: 90px;
- padding-bottom: 180px;
- background-color: white;
- transition-duration: 0.5s;
- top: 240px;
-}
-td {
- border-top: 2px solid black;
- border-bottom: 2px solid black;
- width: 100vw;
- height: 24px;
- padding: 0px;
- line-height: 20px;
- font-size: 28px;
-}
-.ln {
- opacity:0;
- position: absolute;
- margin-left: -7px;
-}
-table {
- border-left: solid black 8px;
- border-right: solid black 2px;
- border-collapse: collapse;
-}
-#t2 {
-  margin-top: 6px;
-}
-#footer {
- background-color: #242424;
- color: white;
- padding-top: 68px;
- padding-bottom: 68px;
-}
-a {
- text-decoration: underline;
- transition-duration: 0.25s;
- cursor: pointer;
- color: #ffb900;
-}
-a:hover {
- color: #dd9700;
-}
-#checks {
- display: none;
-}
-#tool {
- margin-bottom: 96px;
-}
-
-#tool p{
- width: 30%;
- float: left;
-}
-#un {
- margin-left: 2%;
- margin-right: 18%;
-}
-#active {
- margin-left: 18%;
- margin-right: 2%;
- color: #ffb900;
- border-bottom: solid #ffb900 2px;
-}
-#treble, #bass {
-	position: absolute;
-	left: 142px;
-}
-#treble {
-	margin-top: -36px;
-}
-#bass {
-	margin-top: 146px;
-}
-#treble img {
-	width: 64px;
-}
-#bass img {
-	width: 71px;
-}
-</style>
-
-
-
-
-
-
-</body></html>
+</body>
+</html>
