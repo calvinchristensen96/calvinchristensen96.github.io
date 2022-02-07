@@ -5,11 +5,14 @@
 	<title>Calvin Christensen</title>
 </head>
 <body>
+  <div id="navbar-overlay" onclick="exitNav()"></div>
 	<div id="navbar" onclick="displayNavMenu()">
 		<img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/pkmngo/menu.png">
 	</div>
 	<div id="navigation">
 		<ul>
+      <li><a onclick="displayNavMenu()" id="close">X</a></li>
+      <li><a onclick="displayNavMenu()" href="#">Home</a></li>
 			<li><a onclick="displayNavMenu()" href="#about">About</a></li>
 			<li><a onclick="displayNavMenu()" href="#portfolio">Portfolio</a></li>
 			<li><a onclick="displayNavMenu()" href="#contact">Contact</a></li>
@@ -30,7 +33,6 @@
 				<li><a href="#about">About</a></li>
 				<li><a href="#portfolio">Portfolio</a></li>
 				<li><a href="#contact">Contact</a></li>
-                <li><a href="#contact">Github</a></li>
 			</ul>
 		</div>
 	</div>
@@ -51,18 +53,18 @@
 			</div>
 			<div id="column2">
 				<p>Chordy is a web application I developed to help identify musical chords. This chord dictionary includes two pages: one which gives visual representations of how to play the chords on piano, and the other which allows the user to lookup the name of a chord by selecting the notes which are played.</p>
-				<button>Visit Site</button>
+				<button><a href="https://calvinchristensen96.github.io/chordy/index.html" target="_blank">Visit Site</a></button>
 			</div>
 		</div>
 
 		<div class="project">
 			<h3>Pokemon Go Potential Maximizer</h3>
 			<div id="column1">
-				<img src="https://2331a.catapultweboffice.com/weboffice/resources/images/defaultItem.png">
+				<img src="">
 			</div>
 			<div id="column2">
 				<p>A web application that I created for use with the mobile video-game Pokemon Go, by Niantic. This application provides detailed stats to help the user identify which individual values a selected Pokemon needs to have in order to maximize it's level.</p>
-				<button>Visit Site</button>
+				<button><a href="https://calvinchristensen96.github.io/pkmngo/index.html" target="_blank">Visit Site</a></button>
 			</div>
 		</div>
 
@@ -72,8 +74,8 @@
 				<img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/GoldenLeafCafe/images/Golden_Leaf_Logo.png">
 			</div>
 			<div id="column2">
-				<p>The Golden Leaf Cafe is a coffeeshop in Menomonie, Wisconsin. I designed and developed the front-end and back-end of their commercial website on March 2020. This site consists 6 pages including an interactive menu and links to an online ordering platform.</p>
-				<button>Visit Site</button>
+				<p>The Golden Leaf Cafe is a coffeeshop in Menomonie, Wisconsin. I designed and developed the front-end and back-end of their commercial website on March 2020 until January 2022. This site consists 6 pages including an interactive menu and links to an online ordering platform.</p>
+				<button><a href="https://github.com/calvinchristensen96/calvinchristensen96.github.io/tree/master/GoldenLeafCafe" target="_blank">View Source Code</a></button>
 			</div>
 		</div>
 
@@ -84,7 +86,7 @@
 			</div>
 			<div id="column2">
 				<p>Cerveza Santa Maria is a brewery in Puebla, Mexico. I helped develop a version of their website during my internship with B!RTH in Puebla in the summer of 2018. The source code of my work is available on my Github.</p>
-				<button>View Source Code</button>
+				<button><a href="https://github.com/calvinchristensen96/Cerveza-Santa-Maria" target="_blank">View Source Code</a></button>
 			</div>
 		</div>
 	</div>
@@ -103,26 +105,38 @@
 		</div>
 	</div>
 	<div id="footer">
-		<p>Calvin Christensen<br>(608)931-3991<br>calvinchristensen96@gmail.com</p>
+    <div id="socials">
+        <img src="images/email.png">
+        <a href="https://www.linkedin.com/in/calvin-christensen-075026172/" target="_blank"><img src="images/linkedin.png"></a>
+        <a href="https://github.com/calvinchristensen96" target="_blank"><img src="images/GitHub-Mark-120px-plus.png"></a>
+    </div>
 		<div id="links">
 			<ul>
+        <li><a href="#">Home</a></li>
 				<li><a href="#about">About</a></li>
-				<li><a href="#experience">Experience</a></li>
 				<li><a href="#portfolio">Portfolio</a></li>
 				<li><a href="#contact">Contact</a></li>
 			</ul>
 		</div>
+    <p>Calvin Christensen<span> </span>(608)931-3991<span> </span>calvinchristensen96@gmail.com</p>
 	</div>
 <script>
 var navActive = false;
 function displayNavMenu() {
 	if (!navActive) {
-		document.getElementById("navigation").style.top = "0px";
+		document.getElementById("navigation").style.right = "0px";
+    document.getElementById("navbar-overlay").style.display = "block";
 		navActive = true;
 	} else {
-		document.getElementById("navigation").style.top = "-136px";
+		document.getElementById("navigation").style.right = "-240px";
+    document.getElementById("navbar-overlay").style.display = "none";
 		navActive = false;
 	}
+}
+
+function exitNav() {
+  document.getElementById("navbar-overlay").style.display = "none";
+  displayNavMenu();
 }
 </script>
 <style>
@@ -143,6 +157,16 @@ body {
 	min-width: 600px;
 }
 
+#navbar-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-color: black;
+  opacity: 0.5;
+  display: none;
+}
+
 #navbar {
 	position: fixed;
 	width: 100%;
@@ -157,17 +181,19 @@ body {
 #navbar img {
 	float: right;
 	margin-right: 32px;
+  margin-top: 20px;
 	cursor: pointer;
 	width: 45px;
 }
 
 #navigation {
 	position: fixed;
-	width: 100%;
-	z-index: 1;
+	height: 100vh;
+  width: 240px;
+	z-index: 11;
 	background-color: var(--c1);
-	top: -136px;
-	transition-duration: 0.5s;
+  right: -240px;
+	transition-duration: 0.2s;
 	border-bottom: solid 1px var(--c4);
 }
 
@@ -186,6 +212,13 @@ body {
 	color: white;
 	text-decoration: none;
 	padding: 12px;
+  cursor: pointer;
+}
+
+#close {
+  float: right;
+  margin-right: 24px;
+  margin-top: 4px;
 }
 
 #header {
@@ -195,6 +228,7 @@ body {
 	height: 98vh;
 	border-top: 1px solid var(--c1);
 	border-bottom: 24px solid var(--c4);
+  text-shadow: 4px 4px black;
 }
 
 #me {
@@ -256,6 +290,8 @@ body {
 #header a {
 	color: var(--c4);
 	transition-duration: 0.3s;
+  text-decoration: none;
+  text-shadow: 2px 2px black;
 }
 
 #header a:hover {
@@ -332,6 +368,11 @@ body {
 	color: white;
 }
 
+#column2 a {
+  text-decoration: none;
+  color: inherit;
+}
+
 #form {
 	margin: 12px;
 }
@@ -346,34 +387,51 @@ input {
 #footer {
 	background-color: var(--c1);
 	color: white;
-	text-align: center;
-    line-height: 2;
-    padding: 24px;
+	text-align: left;
+  line-height: 2;
+  padding: 48px;
 }
 
 #footer ul {
+  margin-top: 36px;
 	list-style: none;
 	padding-left: 0px;
-	text-align: center;
-	margin-top: 48px;
+	text-align: left;
 }
 
 #footer li {
-	margin-left: 12px;
-	margin-right: 12px;
+	margin-right: 18px;
 	width: 25%;
 	display: inline;
-	text-decoration: underline;
 	cursor: pointer;
 }
 
 #footer a {
-	color: var(--c4);
-	transition-duration: 0.3s;
+  color: white;
+  text-decoration: none;
+  text-decoration: bold;
 }
 
-#footer a:hover {
-	color: white;
+#links a:hover {
+	border-bottom: solid white 1px;
+}
+
+#footer p {
+  margin-top: 36px;
+  font-size: 14px;
+  margin-bottom: 36px;
+}
+
+#footer span {
+  margin-left: 24px;
+}
+
+#socials img {
+  margin-top: 36px;
+  width: 24px;
+  filter: invert();
+  cursor: pointer;
+  margin-right: 12px;
 }
 
 @media screen and (min-width: 1114px) {
