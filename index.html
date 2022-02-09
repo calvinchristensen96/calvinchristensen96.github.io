@@ -1,5 +1,4 @@
-<html>
-<head>
+<html><head>
 	<meta charset="UTF-8">
 	<meta name="author" content="Calvin Christensen">
 	<title>Calvin Christensen</title>
@@ -11,8 +10,10 @@
 	</div>
 	<div id="navigation">
 		<ul>
-      <li><a onclick="displayNavMenu()" id="close">X</a></li>
-      <li><a onclick="displayNavMenu()" href="#">Home</a></li>
+			<li><a onclick="displayNavMenu()" id="close">X</a></li>
+		</ul>
+        <ul id="nav-links">
+			<li><a onclick="displayNavMenu()" href="#">Home</a></li>
 			<li><a onclick="displayNavMenu()" href="#about">About</a></li>
 			<li><a onclick="displayNavMenu()" href="#portfolio">Portfolio</a></li>
 			<li><a onclick="displayNavMenu()" href="#contact">Contact</a></li>
@@ -74,7 +75,7 @@
 				<img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/GoldenLeafCafe/images/Golden_Leaf_Logo.png">
 			</div>
 			<div id="column2">
-				<p>The Golden Leaf Cafe is a coffeeshop in Menomonie, Wisconsin. I designed and developed the front-end and back-end of their commercial website on March 2020 until January 2022. This site consists 6 pages including an interactive menu and links to an online ordering platform.</p>
+				<p>The Golden Leaf Cafe is a coffeeshop in Menomonie, Wisconsin. I designed and developed the front-end and back-end of their commercial website. This site consists 6 pages including an interactive menu and links to an online ordering platform. The website was active from March 2020 until January 2022, and my work is available on my Github. </p>
 				<button><a href="https://github.com/calvinchristensen96/calvinchristensen96.github.io/tree/master/GoldenLeafCafe" target="_blank">View Source Code</a></button>
 			</div>
 		</div>
@@ -118,7 +119,7 @@
 				<li><a href="#contact">Contact</a></li>
 			</ul>
 		</div>
-    <p>Calvin Christensen<span> </span>(608)931-3991<span> </span>calvinchristensen96@gmail.com</p>
+    <p>Calvin Christensen<span>·</span>(608)931-3991<span>·</span>calvinchristensen96@gmail.com</p>
 	</div>
 <script>
 var navActive = false;
@@ -128,7 +129,7 @@ function displayNavMenu() {
     document.getElementById("navbar-overlay").style.display = "block";
 		navActive = true;
 	} else {
-		document.getElementById("navigation").style.right = "-240px";
+		document.getElementById("navigation").style.right = "-360px";
     document.getElementById("navbar-overlay").style.display = "none";
 		navActive = false;
 	}
@@ -158,13 +159,13 @@ body {
 }
 
 #navbar-overlay {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10;
-  background-color: black;
-  opacity: 0.5;
-  display: none;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: 10;
+	background-color: black;
+	opacity: 0.5;
+	display: none;
 }
 
 #navbar {
@@ -181,18 +182,18 @@ body {
 #navbar img {
 	float: right;
 	margin-right: 32px;
-  margin-top: 20px;
+	margin-top: 20px;
 	cursor: pointer;
-	width: 45px;
+	width: 48px;
 }
 
 #navigation {
 	position: fixed;
 	height: 100vh;
-  width: 240px;
+	width: 360px;
 	z-index: 11;
 	background-color: var(--c1);
-  right: -240px;
+	right: -360px;
 	transition-duration: 0.2s;
 	border-bottom: solid 1px var(--c4);
 }
@@ -200,7 +201,7 @@ body {
 #navigation ul {
 	list-style: none;
 	padding: 0px;
-	font-size: 24px;
+	font-size: 48px;
 }
 
 #navigation li {
@@ -212,13 +213,23 @@ body {
 	color: white;
 	text-decoration: none;
 	padding: 12px;
-  cursor: pointer;
+	cursor: pointer;
+	transition-duration: 0.2s;
+    text-shadow: 2px 2px black;
+}
+
+#nav-links a:hover {
+	text-decoration: underline;
 }
 
 #close {
   float: right;
   margin-right: 24px;
   margin-top: 4px;
+}
+
+#close a:hover {
+	border: none;
 }
 
 #header {
@@ -228,7 +239,7 @@ body {
 	height: 98vh;
 	border-top: 1px solid var(--c1);
 	border-bottom: 24px solid var(--c4);
-  text-shadow: 4px 4px black;
+	text-shadow: 4px 4px black;
 }
 
 #me {
@@ -254,13 +265,14 @@ body {
 #intro {
 	position: relative;
 	text-align: center;
-	font-size: 48px;
+	font-size: 56px;
 	border: solid white 2px;
-	padding-top: 96px;
-	padding-bottom: 96px;
+	padding-top: 15vh;
+	padding-bottom: 5vh;
 	margin-left: 48px;
 	margin-right: 48px;
-	margin-top: 10vh;
+	margin-top: 5vh;
+    height: 40vh;
 }
 
 #intro h2 {
@@ -289,9 +301,9 @@ body {
 
 #header a {
 	color: var(--c4);
-	transition-duration: 0.3s;
-  text-decoration: none;
-  text-shadow: 2px 2px black;
+	transition-duration: 0.2s;
+	text-decoration: none;
+	text-shadow: 2px 2px black;
 }
 
 #header a:hover {
@@ -410,6 +422,7 @@ input {
   color: white;
   text-decoration: none;
   text-decoration: bold;
+  font-size: 18px;
 }
 
 #links a:hover {
@@ -423,7 +436,8 @@ input {
 }
 
 #footer span {
-  margin-left: 24px;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 #socials img {
@@ -445,6 +459,18 @@ input {
 		margin-right: 32px;
 		width: 20px;
  	}
+
+    #navigation ul {
+		list-style: none;
+		padding: 0px;
+		font-size: 24px;
+	}
+
+	#close {
+		float: right;
+		margin-right: 24px;
+		margin-top: 4px;
+	}
 
  	.section {
 		padding: 192px;
@@ -491,5 +517,6 @@ input {
 	}
 }
 </style>
-</body>
-</html>
+
+
+</body></html>
