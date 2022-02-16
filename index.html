@@ -59,9 +59,8 @@
 		</div>
 
 		<div class="project">
-			<h3>Pokemon Go Potential Maximizer</h3>
+			<h3>Pokemon Go Combat Point Maximizer</h3>
 			<div id="column1">
-				<img src="">
 			</div>
 			<div id="column2">
 				<p>A web application that I created for use with the mobile video-game Pokemon Go, by Niantic. This application provides detailed stats to help the user identify which individual values a selected Pokemon needs to have in order to maximize it's level.</p>
@@ -96,35 +95,11 @@
 		<h2>Contact</h2>
 		<hr>
 		<p>Send a message to me through the form below.</p>
-
-
-
-
-		<form
-		  action="https://formspree.io/f/mwkyokwp"
-		  method="POST"
-		>
-		  <label>
-		    Your email:
-		    <input type="email" name="email">
-		  </label>
-		  <label>
-		    Your message:
-		    <textarea name="message"></textarea>
-		  </label>
-		  <!-- your other form fields go here -->
-		  <button type="submit">Send</button>
+		<form action="https://formspree.io/f/mwkyokwp" method="POST">
+			<label>Your Email:<br><input id="email" type="email" name="email"></label>
+			<label>Your message:<br><textarea id="message" name="message"></textarea></label><br>
+            <button id="submit" type="submit">Send</button>
 		</form>
-
-
-		<div id="form">
-			<h3>Name</h3><br>
-			<input id="name" type="textbox">
-			<h3>Email</h3><br>
-			<input id="email" type="textbox">
-			<h3>Message</h3><br>
-			<input id="message" type="text">
-		</div>
 	</div>
 	<div id="footer">
     <div id="socials">
@@ -140,7 +115,7 @@
 				<li><a href="#contact">Contact</a></li>
 			</ul>
 		</div>
-    <p>Calvin Christensen<span>·</span>(608)931-3991<span>·</span>calvinchristensen96@gmail.com</p>
+    <p>Calvin Christensen<span>·</span>(608) 931-3991<span>·</span>calvinchristensen96@gmail.com</p>
 	</div>
 <script>
 var navActive = false;
@@ -227,6 +202,7 @@ body {
 
 #navigation li {
 	padding: 9px;
+    padding-bottom: 36px;
 	width: 100%;
 }
 
@@ -384,7 +360,7 @@ body {
 	text-align: center;
 }
 
-#column2 button {
+#column2 button, #contact button{
 	color: var(--c4);
 	border: solid 2px var(--c4);
 	border-radius: 12px 12px 12px 12px;
@@ -396,7 +372,7 @@ body {
 	font-size: 24px;
 }
 
-#column2 button:hover {
+#column2 button:hover, #contact button:hover {
 	background-color: var(--c4);
 	color: white;
 }
@@ -406,9 +382,25 @@ body {
   color: inherit;
 }
 
-#form {
-	margin: 12px;
+form {
+	margin-top: 36px;
 }
+
+label {
+	font-size: 20px;
+}
+
+#email, #message {
+	padding: 6px;
+	font-size: 18px;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+#message {
+	height: 138px;
+}
+
 
 input {
 	width: 100%;
@@ -421,8 +413,8 @@ input {
 	background-color: var(--c1);
 	color: white;
 	text-align: left;
-  line-height: 2;
-  padding: 48px;
+	line-height: 2;
+	padding: 48px;
 }
 
 #footer ul {
@@ -469,7 +461,7 @@ input {
   margin-right: 12px;
 }
 
-@media screen and (min-width: 1114px) {
+@media screen and (min-width: 1314px) {
 
  	#navbar {
 		padding: 9px;
@@ -538,6 +530,7 @@ input {
 	}
 }
 </style>
+
 
 
 </body></html>
