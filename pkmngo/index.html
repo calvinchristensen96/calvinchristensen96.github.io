@@ -1,11 +1,17 @@
 <html><head>
 	<meta name="viewport" content="width=1280, initial-scale=1">
+    <meta charset="utf-8">
 	<title>CP Maximizer</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
-	<div id="content">  
+	<div id="content">
+		<div id="overlay" onclick="modalOpen()">
+		</div>
+		<div id="menu">
+			<img onclick="modalOpen(0)" src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/pkmngo/menu.png">
+		</div>
 		<div id="overview">
 			<div id="nav">
 				<button id="restart" onclick="startOver()">←</button>
@@ -876,13 +882,6 @@
 				</table>
 			</div>
 		</div>
-		<div id="footer">
-			<ul>
-				<li onclick="modalOpen(0)">About</li>
-				<li onclick="modalOpen(1)">Updates</li>
-				<li onclick="modalOpen(2)">Contact</li>
-			</ul>
-		</div>
 		<div id="modal">
 			<button onclick="modalOpen()" id="modal-close">X</button>
 			<h2 id="modal-title">Updates</h2>
@@ -933,13 +932,15 @@ var base_sta_armored = [214];
 var base_atk_deoxys = [414,114,230];
 var base_def_deoxys = [46,330,218];
 var base_sta_deoxys = [137,137,137];
-	
+
 function modalOpen(val) {
 	document.getElementById("modal").style.display = "none";
+	document.getElementById("overlay").style.display = "none";
 	if (val==0) {
 		document.getElementById("modal").style.display = "block";
+		document.getElementById("overlay").style.display = "block";
 		document.getElementById("modal-title").innerHTML = "About";
-		document.getElementById("modal-content").innerHTML = "<p>Pokemon Go Potential Maximizer is a tool that can be used to find every IV combination a Pokemon can have to reach a specific CP.</p><br><br><br><br><hr>Pokémon And All Respective Names are Trademark & © of Nintendo 1996-2022<br>Pokémon GO is Trademark & © of Niantic, Inc.<br>I am not affiliated with Niantic Inc., The Pokemon Company, or Nintendo.<br>Pokemon images used from img.pokemondb.net.<br>For inquiries, contact calvinchristensen96@gmail.com";
+		document.getElementById("modal-content").innerHTML = "<p>Combat Point Maximizer is a tool that can be used to find every IV combination a Pokemon can have to reach a specific CP.</p><br><br><br><br><hr>Pokémon And All Respective Names are Trademark & © of Nintendo 1996-2022<br>Pokémon GO is Trademark & © of Niantic, Inc.<br>I am not affiliated with Niantic Inc., The Pokemon Company, or Nintendo.<br>Pokemon images used from img.pokemondb.net.<br>For inquiries, contact calvinchristensen96@gmail.com";
 	} else if (val==1) {
 		document.getElementById("modal").style.display = "block";
 		document.getElementById("modal-title").innerHTML = "Updates";
@@ -947,7 +948,7 @@ function modalOpen(val) {
 	} else if (val==2) {
 		document.getElementById("modal").style.display = "block";
 		document.getElementById("modal-title").innerHTML = "Contact";
-		document.getElementById("modal-content").innerHTML = "If you want to report any bugs, have any suggestions, or need to contact me for any reason, please email me at calvinchristensen96@gmail.com.";
+		document.getElementById("modal-content").innerHTML = "If you want to report any bugs, have any suggestions, or need to contact me for, please email me at calvinchristensen96@gmail.com.";
 	}
 }
 
@@ -976,7 +977,7 @@ function selectForme() {
 		calculate(base_atk_armored[armored.indexOf(parseInt(species))], base_def_armored[armored.indexOf(parseInt(species))], base_sta_armored[armored.indexOf(parseInt(species))]);
 	} else if (choice == "Origin") {
 		changeImage("_f2"); calculate(base_atk_giratina[giratina.indexOf(parseInt(species))], base_def_giratina[giratina.indexOf(parseInt(species))], base_sta_giratina[giratina.indexOf(parseInt(species))]);
-	} else if (choice == "Plant") { 
+	} else if (choice == "Plant") {
 		calculate(base_atk_wormadam[0], base_def_wormadam[0], base_sta_wormadam[0]);
 	} else if (choice == "Sandy") {
 		changeImage("_f2");
@@ -1002,7 +1003,7 @@ function openTab(evt, tabName) {
 	evt.currentTarget.className += " active";
 }
 
- 
+
 
 function changeMinIV() {
 	var tempIV = document.getElementById("minIV").value;
@@ -1034,7 +1035,7 @@ function checkFormes(arr) {
 	}
 }
 
-function begin(val) {    
+function begin(val) {
 	var str = document.getElementById("input").value;
 	species = str.substring(0, str.indexOf("."));
 	checkFormes(alolan);
@@ -1056,25 +1057,25 @@ function begin(val) {
 		document.getElementById("pokemon-image").src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" + species + ".png";
 		document.getElementById("overview").style.height = "33vh";
 		document.getElementById("content").style.backgroundColor = "#545454";
-		document.getElementById("nav").style.opacity = "1";   
+		document.getElementById("nav").style.opacity = "1";
 		document.getElementById("settings").style.display = "inline";
-		document.getElementById("nav").style.marginTop = "0px";   
+		document.getElementById("nav").style.marginTop = "0px";
 		document.getElementById("pokemon").style.display = "none";
 		document.getElementById("selected-mon").innerHTML = pkmn;
-		document.getElementById("table-div").style.opacity = "1";  
+		document.getElementById("table-div").style.opacity = "1";
 	}
 }
 
 function startOver() {
 	document.getElementById('forme-input').value = "";
 	document.getElementById("formes").style.display = "none";
-	document.getElementById("settings").style.display = "none";  
+	document.getElementById("settings").style.display = "none";
 	document.getElementById("restart").style.cursor = "default";
-	document.getElementById("pokemon").style.display = "block";  
+	document.getElementById("pokemon").style.display = "block";
 	document.getElementById("content").style.backgroundColor = "#eee";
 	document.getElementById("nav").style.opacity = "0";
 	document.getElementById("nav").style.marginTop = "24px";
-	document.getElementById("input").value = "";     
+	document.getElementById("input").value = "";
 	document.getElementById("overview").style.height = "100vh";
 }
 
@@ -1093,8 +1094,8 @@ function sortTable(value) {
 				if (invert[value]) {
 					if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
 						shouldSwitch = true;
-						break; 
-					}        
+						break;
+					}
 				} else {
 					if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
 						shouldSwitch = true;
@@ -1255,7 +1256,7 @@ function clearTable(tableNum) {
 		document.getElementById('ultra-table-content').innerHTML = "";
 	} else if (tableNum == 3) {
 		var table = document.getElementById("myTable3");
-		var x = document.getElementById("myTable3").rows.length;  
+		var x = document.getElementById("myTable3").rows.length;
 		document.getElementById("myTable3").style.display = "inline";
 		document.getElementById('custom-table-content').innerHTML = "";
 	}
@@ -1276,15 +1277,15 @@ function addRow(l,a,d,s, tableId) {
 	cell1.innerHTML = level[l];
 	cell2.innerHTML = a;
 	cell3.innerHTML = d;
-	cell4.innerHTML = s;  
+	cell4.innerHTML = s;
 	if (a + d + s == 45) {
-		cell5.innerHTML = "★★★★"; 
+		cell5.innerHTML = "★★★★";
 	} else if (a + d + s >= 37) {
-		cell5.innerHTML = "★★★☆"; 
+		cell5.innerHTML = "★★★☆";
 	} else if (a + d + s >= 30) {
-		cell5.innerHTML = "★★☆☆"; 
+		cell5.innerHTML = "★★☆☆";
 	} else if (a + d + s >= 23) {
-		cell5.innerHTML = "★☆☆☆"; 
+		cell5.innerHTML = "★☆☆☆";
 	} else {
 		cell5.innerHTML = "☆☆☆☆";
 	}
@@ -1301,6 +1302,25 @@ body, * {
 	text-align: center;
 	background-color: #ffffff;
 	background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c1c1c1' fill-opacity='0.67' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+#menu {
+	position: fixed;
+	right: 0px;
+	margin: 24px;
+	cursor: pointer;
+	z-index: 30;
+}
+
+#overlay {
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	margin: 0px;
+	background-color: black;
+	opacity: 0.5;
+	z-index: 29;
+	display: none;
 }
 
 #pokemon {
@@ -1517,6 +1537,7 @@ th {
 	border: solid black 4px;
 	text-align: left;
 	display: none;
+	z-index: 30;
 }
 
 #modal-close {
