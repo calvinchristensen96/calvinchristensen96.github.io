@@ -156,8 +156,7 @@ var order = [];
 
 function reset(val) {
 	if (val != 0) {
-		document.getElementById("plural").innerHTML = "s";
-		document.getElementById("number").innerHTML = "3";
+		document.getElementById("result").innerHTML = "Chord not found. Try removing or adding other notes.";
 		var jj;
 		for (jj=0;jj<ledger.length;jj++) {
 			document.getElementById("note-" + ledger[jj]).style.opacity = "0";
