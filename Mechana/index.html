@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Three.js app</title>
+    <style>
+      body { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <script src="https://threejs.org/build/three.js"></script>
+      <script>
+
+
+
+
+
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        document.body.appendChild( renderer.domElement );
+
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+        const cube = new THREE.Mesh( geometry, material );
+        scene.add( cube );
+
+        camera.position.z = 15;
+        var count =0;
+
+        function animate() {
+          requestAnimationFrame( animate );
+
+          //cube.position.z -= 0.01;
+          cube.rotation.z += 0.01;
+
+          renderer.render( scene, camera );
+        };
+
+        animate();
+
+        var aimUp, aimDown, aimLeft, aimRight = false;
+        var velocity = new THREE.Vector3();
+        var prevTime = performance.now();
+
+        //Detect key inputs
+        var onKeyDown = function ( event ) {
+          switch ( event.keyCode ) {
+
+            case 90: // Z
+              fire();
+              break;
+
+            case 37: // Left
+              aimLeft = true;
+              console.log("onKeyDown! moveForward is now: " + moveForward)
+              break;
+
+            case 38: //up
+              aimUp = true;
+              console.log("onKeyDown! moveForward is now: " + moveForward)
+              break;
+
+            case 39: // Right
+              aimRight = true;
+              console.log("onKeyDown! moveForward is now: " + moveForward)
+              break;
+
+            case 40: // Down
+              aimDown = true;
+              console.log("onKeyDown! moveForward is now: " + moveForward)
+              break;
+          }
+        }
+
+        // Detect when key becomes unpressed
+        var onKeyUp = function ( event ) {
+        switch( event.keyCode ) {
+          case 37: // Left
+            aimLeft = false;
+            console.log("onKeyUp! moveForward is now: " + moveForward)
+            break;
+          case 38: // up
+            aimUp = false;
+            console.log("onKeyUp! moveForward is now: " + moveForward)
+            break;
+          case 39: // up
+            aimRight = false;
+            console.log("onKeyUp! moveForward is now: " + moveForward)
+            break;
+          case 40: // up
+            aimDown = false;
+            console.log("onKeyUp! moveForward is now: " + moveForward)
+            break;
+        }
+      }
+      document.addEventListener( 'keydown', onKeyDown, false );
+      document.addEventListener( 'keyup', onKeyUp, false );
+
+
+
+
+	// Render the movement every frame
+    function render() {
+      renderer.render(scene, camera)
+
+      // Smooth object movement based on user's performance
+      var time = performance.now();
+      var delta = ( time - prevTime ) / 1000;
+
+      if (cube.position.x >= 5) {
+        velocity.x = 0;
+        cube.position.x = 4.99;
+      } else if (cube.position.x <= -5) {
+        velocity.x = 0;
+        cube.position.x = -4.99;
+      }
+
+      if (cube.position.y >= 5) {
+        velocity.y = 0;
+        cube.position.y = 4.99;
+      } else if (cube.position.y <= -5) {
+        velocity.y = 0;
+        cube.position.y = -4.99;
+      }
+
+      //if the user pressed 'up' or 'w', set velocity.z to a value > 0.
+      if ( aimUp ) velocity.y -= 60.0 * delta;
+      if ( aimDown ) velocity.y += 60.0 * delta;
+      if ( aimLeft ) velocity.x += 60.0 * delta;
+      if ( aimRight ) velocity.x -= 60.0 * delta;
+
+
+      //pass velocity as an argument to translateZ and call it on camera.
+      //camera.translateZ( velocity.z * delta * .1 );
+
+      cube.position.y -= velocity.y * 1 * delta;
+      cube.position.x -= velocity.x * 1 * delta;
+      	prevTime = time;
+
+
+        //Return crosshair to netural if no direction is input
+        if (!aimUp && !aimDown) {
+          if (cube.position.y > 0.1) {
+            velocity.y += 30 * delta;
+          } else if (cube.position.y < -0.1) {
+            velocity.y -= 30 * delta;
+          } else {
+            velocity.y = 0;
+            cube.position.y = 0;
+          }
+        }
+
+        if (!aimLeft && !aimRight) {
+          if (cube.position.x > 0.1) {
+            velocity.x += 30 * delta;
+          } else if (cube.position.x < -0.1) {
+            velocity.x -= 30 * delta;
+          } else {
+            velocity.x = 0;
+            cube.position.x = 0;
+          }
+        }
+
+      	laser.position.z -= 1;
+        laser.position.x += laserDirection.x * 0.1;
+        laser.position.y += laserDirection.y * 0.1;
+
+        if (laser.position.z < -30) {
+        	scene.remove( laser );
+        }
+
+      //ignore this
+      //activateParticleWave();
+    }
+
+
+
+	function draw() {
+      count += 0.1;
+      requestAnimationFrame( draw );
+      render();
+    }
+
+    const laserGeometry = new THREE.SphereGeometry();
+    const laserMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00, size: 0.001 } );
+    const laser = new THREE.Mesh( laserGeometry, laserMaterial );
+    var laserDirection = new THREE.Vector2();
+
+
+    function fire() {
+
+		laser.position.z = 10;
+        laser.position.x = 0;
+        laser.position.y = 0;
+        scene.add( laser );
+        laserDirection.x = cube.position.x;
+        laserDirection.y = cube.position.y;
+
+    }
+
+                function onWindowResize() {
+      windowHalfX = window.innerWidth / 2;
+      windowHalfY = window.innerHeight / 2;
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+    window.addEventListener( 'resize', onWindowResize, false );
+
+    function activateParticleWave() {
+      particleSystem.geometry.verticesNeedUpdate = true;
+      var i = 0;
+      for ( var iy = 0; iy < particleSystem.geometry.vertices.length; iy ++ ) {
+        particleSystem.geometry.vertices[iy].y = ( Math.sin( ( iy + count ) * 0.5 ) * 3 )
+
+      }
+    }
+
+            draw();
+
+
+
+		</script>
+	</body>
+</html>
