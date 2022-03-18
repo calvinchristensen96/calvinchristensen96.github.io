@@ -1,228 +1,313 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Three.js app</title>
-    <style>
-      body { margin: 0; }
-    </style>
-  </head>
-  <body>
-    <script src="https://threejs.org/build/three.js"></script>
-      <script>
+	<head>
+		<meta charset="utf-8">
+		<title>Three.js app</title>
+		<style>
+			body { margin: 0; }
+            #debug { position: fixed; color: white; }
+		</style>
+	</head>
+<body>
+<p id="debug"> foo</p>
+<script src="https://threejs.org/build/three.js"></script>
+<script>
 
+class PlayerShip {
+	constructor(armor, laserLv) {
+		this.armor = armor;
+		this.laserLv = laserLv;
+		this.speed = 0.1;
+	}
+}
 
+class Asteroid {
+	constructor (hp, scrap) {
+    	this.hp = hp;
+		this.scrap = scrap;
+		this.geometry = new THREE.SphereGeometry(5);
+		this.material = new THREE.MeshBasicMaterial( { 
+			color: 0xff0000, wireframe: true
+		} );
+		this.mesh = new THREE.Mesh(this.geometry, this.material);
+		this.mesh.position.z = -200;
+		this.mesh.position.x = 3;
+	}
+}
 
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+var player = new PlayerShip(30, 1);
+var enemy = new Asteroid(1, 5);
+scene.add(enemy.mesh);
 
+// Create the two crosshairs
+const crossGeometry = new THREE.BoxGeometry(.5,.5,.1);
+const crossMaterial = new THREE.MeshBasicMaterial( { 
+	color: 0xfff600, wireframe: true
+} );
+const crosshair = new THREE.Mesh( crossGeometry, crossMaterial );
+crosshair.position.z = 5;
+scene.add( crosshair );
 
+const crossGeometry2 = new THREE.BoxGeometry(1,1,.2);
+const crossMaterial2 = new THREE.MeshBasicMaterial( {
+	color: 0x00ff00, wireframe: true
+} );
+const crosshair2 = new THREE.Mesh( crossGeometry2, crossMaterial2 );
+scene.add( crosshair2 );
 
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        document.body.appendChild( renderer.domElement );
+const playerGeometry = new THREE.ConeGeometry(.2, .4);
+const playerMaterial = new THREE.MeshBasicMaterial( {
+	color: 0xffffff, wireframe: true
+} );
+const playerShip = new THREE.Mesh( playerGeometry, playerMaterial );
+playerShip.position.z = 10;
+playerShip.rotation.x = 90;
+scene.add( playerShip );
 
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-        const cube = new THREE.Mesh( geometry, material );
-        scene.add( cube );
+camera.position.z = 15;
+var count =0;
 
-        camera.position.z = 15;
-        var count =0;
+function animate() {
+	requestAnimationFrame( animate );
+	crosshair.rotation.z -= 0.01;
+	crosshair2.rotation.z += 0.01;
+	renderer.render( scene, camera );
+};
+animate();
 
-        function animate() {
-          requestAnimationFrame( animate );
+var aimUp, aimDown, aimLeft, aimRight = false;
+var boost, breaks = false;
+var velocity = new THREE.Vector3();
+var prevTime = performance.now();
 
-          //cube.position.z -= 0.01;
-          cube.rotation.z += 0.01;
+//Detect key inputs
+var onKeyDown = function ( event ) {
+	switch ( event.keyCode ) {
+		case 88: // X
+			takeDamage(1);
+			break;     
+		case 90: // Z
+			fire();
+			break;      
+		case 65: // A
+			boost = true;
+			break; 
+		case 83: // S
+			breaks = true;
+			break; 
+		case 37: // Left
+			aimLeft = true;
+			break;
+		case 38: //up
+			aimUp = true;
+			break;
+		case 39: // Right
+			aimRight = true;
+			break;
+		case 40: // Down
+			aimDown = true;
+			break;
+	}
+}
+  
+// Detect when key becomes unpressed
+var onKeyUp = function ( event ) {
+	switch( event.keyCode ) {
+		case 65: // A
+			boost = false;
+			break; 
+		case 83: // A
+			breaks = false;
+			break; 
+		case 37: // Left
+			aimLeft = false;
+			break;
+		case 38: // up
+			aimUp = false;
+			break;
+		case 39: // up
+			aimRight = false;
+			break;
+		case 40: // up
+			aimDown = false;
+			break;
+	}
+}
+document.addEventListener( 'keydown', onKeyDown, false );
+document.addEventListener( 'keyup', onKeyUp, false );
+            
+// Render the movement every frame
+function render() {
+	renderer.render(scene, camera)
+      
+	// Smooth object movement based on user's performance
+	var time = performance.now();
+	var delta = ( time - prevTime ) / 1000;
+    
+    // Update player's ship's armor
+    document.getElementById("debug").innerHTML = player.armor;
+    
+    if (boost) { 
+		player.speed = 0.5;
+	} else if (breaks) {
+		player.speed = 0.03;
+	} else {
+    	player.speed = 0.1;
+    }
+    
+    
+	// Move player forward
+	camera.position.z -= player.speed;
+    playerShip.position.z -= player.speed;
+    crosshair.position.z -= player.speed;
+    crosshair2.position.z -= player.speed;
+    
+    
+    // Line up both crosshairs
+    crosshair.position.x = ( crosshair2.position.x * 0.5) ;
+    crosshair.position.y = ( crosshair2.position.y * 0.5) ;
+    
+	if (crosshair2.position.x >= 5) {
+		velocity.x = 0;
+		crosshair2.position.x = 4.99;
+	} else if (crosshair2.position.x <= -5) {
+		velocity.x = 0;
+		crosshair2.position.x = -4.99;
+	}
+      
+	if (crosshair2.position.y >= 5) {
+		velocity.y = 0;
+		crosshair2.position.y = 4.99;
+	} else if (crosshair2.position.y <= -5) {
+		velocity.y = 0;
+		crosshair2.position.y = -4.99;
+	}
+	//if the user pressed a direction, set velocity.z to a value > 0.  
+	if (aimUp) {
+		velocity.y -= 60.0 * delta;
+	}
+	if (aimDown) {
+		velocity.y += 60.0 * delta;
+	}
+	if (aimLeft) { 
+		velocity.x += 60.0 * delta;
+	}
+	if (aimRight) { 
+		velocity.x -= 60.0 * delta;
+	}
+    
+	crosshair2.position.y -= velocity.y * 1 * delta;
+	crosshair2.position.x -= velocity.x * 1 * delta;
+	prevTime = time;
+        
+        
+	//Return crosshair to netural if no direction is input
+	if (!aimUp && !aimDown) {
+		if (crosshair2.position.y > 0.1) {
+			velocity.y += 30 * delta;
+		} else if (crosshair2.position.y < -0.1) {
+			velocity.y -= 30 * delta;
+		} else {
+			velocity.y = 0;
+			crosshair2.position.y = 0;
+		}
+        if (playerShip.rotation.x < 89.9) {
+			playerShip.rotation.x += 1.5 * delta;
+		} else if (playerShip.rotation.x > 90.1) {
+			playerShip.rotation.x -= 1.5 * delta;
+		} else {
+			playerShip.rotation.x = 90;
+		}
+	} 
+        
+	if (!aimLeft && !aimRight) {
+		if (crosshair2.position.x > 0.1) {
+			velocity.x += 30 * delta;
+		} else if (crosshair2.position.x < -0.1) {
+			velocity.x -= 30 * delta;
+		} else {
+			velocity.x = 0;
+			crosshair2.position.x = 0;
+		}
+		if (playerShip.rotation.z < -0.1) {
+			playerShip.rotation.z += 1.5 * delta;
+		} else if (playerShip.rotation.z > 0.1) {
+			playerShip.rotation.z -= 1.5 * delta;
+		} else {
+			playerShip.rotation.z = 0;
+		}
+	} 
+    
+    // Rotate player to aim towards crosshairs
+    playerShip.rotation.z = 0 - crosshair2.position.x * 0.15;
+    playerShip.rotation.x = 80 + crosshair2.position.y * 0.15;
 
-          renderer.render( scene, camera );
-        };
+	if (laserActive) {
+		laser.position.z -= 1;
+		laser.position.x += laserDirection.x * 0.1;
+		laser.position.y += laserDirection.y * 0.1;
+	}
+        
+	if (playerShip.position.z - laser.position.z > 30) {
+		scene.remove( laser );
+        laserActive = false;
+	}
+    
+    if (laser.position.x > enemy.mesh.position.x - 1 && laser.position.x < enemy.mesh.position.x + 1 && laser.position.z == enemy.mesh.position.z) {
+    	scene.remove(enemy.mesh);
+    }
+}
 
-        animate();
+function takeDamage(val) {
+	player.armor -= val;
+}
 
-        var aimUp, aimDown, aimLeft, aimRight = false;
-        var velocity = new THREE.Vector3();
-        var prevTime = performance.now();
+function draw() {
+	count += 0.1;
+	requestAnimationFrame( draw );
+	render();
+}
+    
+const laserGeometry = new THREE.ConeGeometry(.2,.2);
+const laserMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00, size: 0.001 } );
+const laser = new THREE.Mesh( laserGeometry, laserMaterial );
+var laserDirection = new THREE.Vector2();
 
-        //Detect key inputs
-        var onKeyDown = function ( event ) {
-          switch ( event.keyCode ) {
+var laserActive = false;
+function fire() {
+	laserActive = true;
+	laser.position.z = playerShip.position.z;
+	laser.rotation.x = 90;
+	laser.position.x = 0;
+	laser.position.y = 0;
+	scene.add( laser );
+	laserDirection.x = crosshair2.position.x;
+	laserDirection.y = crosshair2.position.y;
+}
 
-            case 90: // Z
-              fire();
-              break;
+function onWindowResize() {
+	windowHalfX = window.innerWidth / 2;
+	windowHalfY = window.innerHeight / 2;
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+}
+window.addEventListener( 'resize', onWindowResize, false );
 
-            case 37: // Left
-              aimLeft = true;
-              console.log("onKeyDown! moveForward is now: " + moveForward)
-              break;
-
-            case 38: //up
-              aimUp = true;
-              console.log("onKeyDown! moveForward is now: " + moveForward)
-              break;
-
-            case 39: // Right
-              aimRight = true;
-              console.log("onKeyDown! moveForward is now: " + moveForward)
-              break;
-
-            case 40: // Down
-              aimDown = true;
-              console.log("onKeyDown! moveForward is now: " + moveForward)
-              break;
-          }
-        }
-
-        // Detect when key becomes unpressed
-        var onKeyUp = function ( event ) {
-        switch( event.keyCode ) {
-          case 37: // Left
-            aimLeft = false;
-            console.log("onKeyUp! moveForward is now: " + moveForward)
-            break;
-          case 38: // up
-            aimUp = false;
-            console.log("onKeyUp! moveForward is now: " + moveForward)
-            break;
-          case 39: // up
-            aimRight = false;
-            console.log("onKeyUp! moveForward is now: " + moveForward)
-            break;
-          case 40: // up
-            aimDown = false;
-            console.log("onKeyUp! moveForward is now: " + moveForward)
-            break;
-        }
+function activateParticleWave() {
+	particleSystem.geometry.verticesNeedUpdate = true;
+	var i = 0;
+	for ( var iy = 0; iy < particleSystem.geometry.vertices.length; iy ++ ) {
+		particleSystem.geometry.vertices[iy].y = ( Math.sin( ( iy + count ) * 0.5 ) * 3 )
       }
-      document.addEventListener( 'keydown', onKeyDown, false );
-      document.addEventListener( 'keyup', onKeyUp, false );
+}
 
-
-
-
-	// Render the movement every frame
-    function render() {
-      renderer.render(scene, camera)
-
-      // Smooth object movement based on user's performance
-      var time = performance.now();
-      var delta = ( time - prevTime ) / 1000;
-
-      if (cube.position.x >= 5) {
-        velocity.x = 0;
-        cube.position.x = 4.99;
-      } else if (cube.position.x <= -5) {
-        velocity.x = 0;
-        cube.position.x = -4.99;
-      }
-
-      if (cube.position.y >= 5) {
-        velocity.y = 0;
-        cube.position.y = 4.99;
-      } else if (cube.position.y <= -5) {
-        velocity.y = 0;
-        cube.position.y = -4.99;
-      }
-
-      //if the user pressed 'up' or 'w', set velocity.z to a value > 0.
-      if ( aimUp ) velocity.y -= 60.0 * delta;
-      if ( aimDown ) velocity.y += 60.0 * delta;
-      if ( aimLeft ) velocity.x += 60.0 * delta;
-      if ( aimRight ) velocity.x -= 60.0 * delta;
-
-
-      //pass velocity as an argument to translateZ and call it on camera.
-      //camera.translateZ( velocity.z * delta * .1 );
-
-      cube.position.y -= velocity.y * 1 * delta;
-      cube.position.x -= velocity.x * 1 * delta;
-      	prevTime = time;
-
-
-        //Return crosshair to netural if no direction is input
-        if (!aimUp && !aimDown) {
-          if (cube.position.y > 0.1) {
-            velocity.y += 30 * delta;
-          } else if (cube.position.y < -0.1) {
-            velocity.y -= 30 * delta;
-          } else {
-            velocity.y = 0;
-            cube.position.y = 0;
-          }
-        }
-
-        if (!aimLeft && !aimRight) {
-          if (cube.position.x > 0.1) {
-            velocity.x += 30 * delta;
-          } else if (cube.position.x < -0.1) {
-            velocity.x -= 30 * delta;
-          } else {
-            velocity.x = 0;
-            cube.position.x = 0;
-          }
-        }
-
-      	laser.position.z -= 1;
-        laser.position.x += laserDirection.x * 0.1;
-        laser.position.y += laserDirection.y * 0.1;
-
-        if (laser.position.z < -30) {
-        	scene.remove( laser );
-        }
-
-      //ignore this
-      //activateParticleWave();
-    }
-
-
-
-	function draw() {
-      count += 0.1;
-      requestAnimationFrame( draw );
-      render();
-    }
-
-    const laserGeometry = new THREE.SphereGeometry();
-    const laserMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00, size: 0.001 } );
-    const laser = new THREE.Mesh( laserGeometry, laserMaterial );
-    var laserDirection = new THREE.Vector2();
-
-
-    function fire() {
-
-		laser.position.z = 10;
-        laser.position.x = 0;
-        laser.position.y = 0;
-        scene.add( laser );
-        laserDirection.x = cube.position.x;
-        laserDirection.y = cube.position.y;
-
-    }
-
-                function onWindowResize() {
-      windowHalfX = window.innerWidth / 2;
-      windowHalfY = window.innerHeight / 2;
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize( window.innerWidth, window.innerHeight );
-    }
-    window.addEventListener( 'resize', onWindowResize, false );
-
-    function activateParticleWave() {
-      particleSystem.geometry.verticesNeedUpdate = true;
-      var i = 0;
-      for ( var iy = 0; iy < particleSystem.geometry.vertices.length; iy ++ ) {
-        particleSystem.geometry.vertices[iy].y = ( Math.sin( ( iy + count ) * 0.5 ) * 3 )
-
-      }
-    }
-
-            draw();
-
-
-
-		</script>
-	</body>
+draw();
+</script>
+</body>
 </html>
