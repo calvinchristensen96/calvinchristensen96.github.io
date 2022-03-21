@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Three.js app</title>
+		<title>Might of Mechana</title>
 		<style>
 			body { margin: 0; }
             #debug { position: fixed; color: white; }
@@ -22,31 +22,81 @@ class PlayerShip {
 }
 
 class Asteroid {
-	constructor (hp, scrap) {
+	constructor (hp, scrap, size, pos) {
     	this.hp = hp;
 		this.scrap = scrap;
-		this.geometry = new THREE.SphereGeometry(5);
-		this.material = new THREE.MeshBasicMaterial( { 
+		this.geometry = new THREE.BoxGeometry(size, size, size);
+		this.material = new THREE.MeshBasicMaterial( {
 			color: 0xff0000, wireframe: true
 		} );
 		this.mesh = new THREE.Mesh(this.geometry, this.material);
-		this.mesh.position.z = -200;
-		this.mesh.position.x = 3;
+		this.mesh.position.z = pos[2];
+		this.mesh.position.x = pos[0];
+        this.mesh.position.y = pos[1];
 	}
 }
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 const renderer = new THREE.WebGLRenderer();
+const color = 0x000000;  // white
+const near = 10;
+const far = 200;
+scene.fog = new THREE.Fog(color, near, far);
+
+
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
+
+
+
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+
+function onPointerMove( event ) {
+
+	// calculate pointer position in normalized device coordinates
+	// (-1 to +1) for both components
+
+	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+}
+
+
+const groundGeometry = new THREE.BoxGeometry(50,10,2000);
+const groundMaterial = new THREE.MeshBasicMaterial( {
+	color: 0xdddddd, wireframe: true
+} );
+const ground = new THREE.Mesh( groundGeometry, groundMaterial );
+scene.add( ground );
+
+
+
+
+
 var player = new PlayerShip(30, 1);
-var enemy = new Asteroid(1, 5);
+
+
+
+var enemy = new Asteroid(1, 5, 100, [0,0,-200]);
+
+var enemy2 = new Asteroid(1, 5, 5, [3, 3, -50]);
+
+var enemy3 = new Asteroid(1, 5, 3, [-2, -2, -75]);
+
+scene.add(enemy3.mesh);
+scene.add(enemy2.mesh);
 scene.add(enemy.mesh);
+
+var foes = [];
+foes.push(enemy2.mesh);
+foes.push(enemy.mesh);
+foes.push(enemy3.mesh);
 
 // Create the two crosshairs
 const crossGeometry = new THREE.BoxGeometry(.5,.5,.1);
-const crossMaterial = new THREE.MeshBasicMaterial( { 
+const crossMaterial = new THREE.MeshBasicMaterial( {
 	color: 0xfff600, wireframe: true
 } );
 const crosshair = new THREE.Mesh( crossGeometry, crossMaterial );
@@ -65,6 +115,7 @@ const playerMaterial = new THREE.MeshBasicMaterial( {
 	color: 0xffffff, wireframe: true
 } );
 const playerShip = new THREE.Mesh( playerGeometry, playerMaterial );
+
 playerShip.position.z = 10;
 playerShip.rotation.x = 90;
 scene.add( playerShip );
@@ -83,23 +134,28 @@ animate();
 var aimUp, aimDown, aimLeft, aimRight = false;
 var boost, breaks = false;
 var velocity = new THREE.Vector3();
+var playerVelocity = new THREE.Vector3();
 var prevTime = performance.now();
+
+
+
+var tt = 0;
 
 //Detect key inputs
 var onKeyDown = function ( event ) {
 	switch ( event.keyCode ) {
 		case 88: // X
 			takeDamage(1);
-			break;     
+			break;
 		case 90: // Z
 			fire();
-			break;      
+			break;
 		case 65: // A
 			boost = true;
-			break; 
+			break;
 		case 83: // S
 			breaks = true;
-			break; 
+			break;
 		case 37: // Left
 			aimLeft = true;
 			break;
@@ -114,16 +170,16 @@ var onKeyDown = function ( event ) {
 			break;
 	}
 }
-  
+
 // Detect when key becomes unpressed
 var onKeyUp = function ( event ) {
 	switch( event.keyCode ) {
 		case 65: // A
 			boost = false;
-			break; 
+			break;
 		case 83: // A
 			breaks = false;
-			break; 
+			break;
 		case 37: // Left
 			aimLeft = false;
 			break;
@@ -138,40 +194,91 @@ var onKeyUp = function ( event ) {
 			break;
 	}
 }
+
+
+
+
+
+
 document.addEventListener( 'keydown', onKeyDown, false );
 document.addEventListener( 'keyup', onKeyUp, false );
-            
+
+
+
 // Render the movement every frame
 function render() {
 	renderer.render(scene, camera)
-      
+
 	// Smooth object movement based on user's performance
 	var time = performance.now();
 	var delta = ( time - prevTime ) / 1000;
-    
+
     // Update player's ship's armor
     document.getElementById("debug").innerHTML = player.armor;
-    
-    if (boost) { 
+		document.getElementById("debug").innerHTML = enemy3.geometry.parameters.depth;
+
+
+
+  if (boost) {
 		player.speed = 0.5;
 	} else if (breaks) {
 		player.speed = 0.03;
 	} else {
-    	player.speed = 0.1;
-    }
-    
-    
+    player.speed = 0.1;
+  }
+
+
+
+
+
+/*
+
+	// Raycaster collision detection
+  playerMaterial.color.set( 0xffffff );
+
+
+	raycaster.setFromCamera( pointer, camera );
+
+		// calculate objects intersecting the picking ray
+		const intersects = raycaster.intersectObjects( scene.children );
+
+		for ( let i = 0; i < intersects.length; i ++ ) {
+			tt++;
+
+			intersects[ 0 ].object.material.color.set( 0xff00ff );
+
+			if (tt < 8) {
+			//  alert(scene.children[i].id);
+		  }
+			playerMaterial.color.set( 0xff00ff );
+		}
+
+
+*/
+
+
+
+
+
+
+
+
+    enemy.mesh.rotation.z += .0005;
+    enemy2.mesh.rotation.z -= .01;
+
 	// Move player forward
 	camera.position.z -= player.speed;
     playerShip.position.z -= player.speed;
     crosshair.position.z -= player.speed;
     crosshair2.position.z -= player.speed;
-    
-    
+
+
     // Line up both crosshairs
-    crosshair.position.x = ( crosshair2.position.x * 0.5) ;
-    crosshair.position.y = ( crosshair2.position.y * 0.5) ;
-    
+    crosshair.position.x = (crosshair2.position.x + playerShip.position.x) / 2;
+    crosshair.position.y = (crosshair2.position.y + playerShip.position.y) / 2;
+
+
+    // Prevent crosshairs from going out of bounds
 	if (crosshair2.position.x >= 5) {
 		velocity.x = 0;
 		crosshair2.position.x = 4.99;
@@ -179,7 +286,7 @@ function render() {
 		velocity.x = 0;
 		crosshair2.position.x = -4.99;
 	}
-      
+
 	if (crosshair2.position.y >= 5) {
 		velocity.y = 0;
 		crosshair2.position.y = 4.99;
@@ -187,52 +294,81 @@ function render() {
 		velocity.y = 0;
 		crosshair2.position.y = -4.99;
 	}
-	//if the user pressed a direction, set velocity.z to a value > 0.  
+
+    // Prevent player from going out of bounds
+    if (playerShip.position.x >= 1.8) {
+		playerVelocity.x = 0;
+		playerShip.position.x = 1.8;
+	} else if (playerShip.position.x <= -1.8) {
+		playerVelocity.x = 0;
+		playerShip.position.x = -1.8;
+	}
+
+	if (playerShip.position.y >= 1.8) {
+		playerVelocity.y = 0;
+		playerShip.position.y = 1.8;
+	} else if (playerShip.position.y <= -1.8) {
+		playerVelocity.y = 0;
+		playerShip.position.y = -1.8;
+	}
+
+	//if the user pressed a direction, set velocity.z to a value > 0.
 	if (aimUp) {
 		velocity.y -= 60.0 * delta;
+        playerVelocity.y -= 60.0 * delta;
+        playerShip.position.y -= playerVelocity.y * .1 * delta;
 	}
 	if (aimDown) {
 		velocity.y += 60.0 * delta;
+        playerVelocity.y += 60.0 * delta;
+        playerShip.position.y -= playerVelocity.y * .1 * delta;
 	}
-	if (aimLeft) { 
+	if (aimLeft) {
 		velocity.x += 60.0 * delta;
+        playerVelocity.x += 60.0 * delta;
+        playerShip.position.x -= playerVelocity.x * .1 * delta;
 	}
-	if (aimRight) { 
+	if (aimRight) {
 		velocity.x -= 60.0 * delta;
+        playerVelocity.x -= 60.0 * delta;
+        playerShip.position.x -= playerVelocity.x * .1 * delta;
 	}
-    
+
 	crosshair2.position.y -= velocity.y * 1 * delta;
 	crosshair2.position.x -= velocity.x * 1 * delta;
+
 	prevTime = time;
-        
-        
+
+
 	//Return crosshair to netural if no direction is input
 	if (!aimUp && !aimDown) {
-		if (crosshair2.position.y > 0.1) {
+    	playerVelocity.y = 0;
+		if (crosshair2.position.y - 2.75 * playerShip.position.y > 0.15) {
 			velocity.y += 30 * delta;
-		} else if (crosshair2.position.y < -0.1) {
+		} else if (crosshair2.position.y - 2.75 * playerShip.position.y < -0.15) {
 			velocity.y -= 30 * delta;
 		} else {
 			velocity.y = 0;
-			crosshair2.position.y = 0;
+			crosshair2.position.y = 2.75 * playerShip.position.y;
 		}
         if (playerShip.rotation.x < 89.9) {
-			playerShip.rotation.x += 1.5 * delta;
+			playerShip.rotation.x += 2.75 * delta;
 		} else if (playerShip.rotation.x > 90.1) {
-			playerShip.rotation.x -= 1.5 * delta;
+			playerShip.rotation.x -= 2.75 * delta;
 		} else {
 			playerShip.rotation.x = 90;
 		}
-	} 
-        
+	}
+
 	if (!aimLeft && !aimRight) {
-		if (crosshair2.position.x > 0.1) {
+    	playerVelocity.x = 0;
+		if (crosshair2.position.x - 2.75 * playerShip.position.x > 0.15) {
 			velocity.x += 30 * delta;
-		} else if (crosshair2.position.x < -0.1) {
+		} else if (crosshair2.position.x - 2.75 * playerShip.position.x < -0.15) {
 			velocity.x -= 30 * delta;
 		} else {
 			velocity.x = 0;
-			crosshair2.position.x = 0;
+			crosshair2.position.x = 2.75 * playerShip.position.x;
 		}
 		if (playerShip.rotation.z < -0.1) {
 			playerShip.rotation.z += 1.5 * delta;
@@ -241,27 +377,44 @@ function render() {
 		} else {
 			playerShip.rotation.z = 0;
 		}
-	} 
-    
+	}
+
     // Rotate player to aim towards crosshairs
     playerShip.rotation.z = 0 - crosshair2.position.x * 0.15;
     playerShip.rotation.x = 80 + crosshair2.position.y * 0.15;
 
+
+	// detect if laser hits an enemy
 	if (laserActive) {
 		laser.position.z -= 1;
 		laser.position.x += laserDirection.x * 0.1;
 		laser.position.y += laserDirection.y * 0.1;
+		var j;
+		for (j=0;j<foes.length;j++) {
+			detectCollision(laser, foes[j]);
+		}
 	}
-        
-	if (playerShip.position.z - laser.position.z > 30) {
+
+	//remove laser when goes too far
+	if (playerShip.position.z - laser.position.z > 60) {
 		scene.remove( laser );
         laserActive = false;
 	}
-    
-    if (laser.position.x > enemy.mesh.position.x - 1 && laser.position.x < enemy.mesh.position.x + 1 && laser.position.z == enemy.mesh.position.z) {
-    	scene.remove(enemy.mesh);
-    }
 }
+
+
+
+function detectCollision(v1, v2) {
+	if (v1.position.x < (v2.position.x + (v2.geometry.parameters.width / 2)) && v1.position.x > (v2.position.x - (v2.geometry.parameters.width / 2)) &&
+	    v1.position.y < (v2.position.y + (v2.geometry.parameters.height / 2)) && v1.position.y > (v2.position.y - (v2.geometry.parameters.height / 2)) &&
+		  v1.position.z < (v2.position.z + (v2.geometry.parameters.depth / 2)) && v1.position.z > (v2.position.z - (v2.geometry.parameters.depth / 2))) {
+		scene.remove(v2);
+		scene.remove(v1);
+		foes.splice(foes.indexOf(v2),1);
+		laserActive = false;
+	}
+}
+
 
 function takeDamage(val) {
 	player.armor -= val;
@@ -272,7 +425,7 @@ function draw() {
 	requestAnimationFrame( draw );
 	render();
 }
-    
+
 const laserGeometry = new THREE.ConeGeometry(.2,.2);
 const laserMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00, size: 0.001 } );
 const laser = new THREE.Mesh( laserGeometry, laserMaterial );
@@ -283,8 +436,8 @@ function fire() {
 	laserActive = true;
 	laser.position.z = playerShip.position.z;
 	laser.rotation.x = 90;
-	laser.position.x = 0;
-	laser.position.y = 0;
+	laser.position.x = playerShip.position.x;
+	laser.position.y = playerShip.position.y;
 	scene.add( laser );
 	laserDirection.x = crosshair2.position.x;
 	laserDirection.y = crosshair2.position.y;
