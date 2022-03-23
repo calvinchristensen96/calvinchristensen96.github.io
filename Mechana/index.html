@@ -8,7 +8,7 @@
 		</style>
 	</head>
 <body>
-<p id="debug">3</p>
+<p id="debug">hp: 30<br>Laser: false<br>Coordinates (0, 0, -149.6)</p>
 
 <script src="https://threejs.org/build/three.js"></script>
 <script>
@@ -49,25 +49,17 @@ const near = 10;
 const far = 100;
 scene.fog = new THREE.Fog(color, near, far);
 
-
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
-
-
 
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 
 function onPointerMove( event ) {
-
 	// calculate pointer position in normalized device coordinates
-	// (-1 to +1) for both components
-
 	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-
 }
-
 
 const groundGeometry = new THREE.BoxGeometry(50,10,2000);
 const groundMaterial = new THREE.MeshBasicMaterial( {
@@ -76,13 +68,7 @@ const groundMaterial = new THREE.MeshBasicMaterial( {
 const ground = new THREE.Mesh( groundGeometry, groundMaterial );
 scene.add( ground );
 
-
-
-
-
 var player = new PlayerShip(30, 1, 24);
-
-
 
 var enemy = new Asteroid(1, 5, 100, [0,0,-200]);
 var enemy2 = new Asteroid(1, 5, 5, [3, 3, -50]);
@@ -125,10 +111,10 @@ const playerShip = new THREE.Mesh( playerGeometry, playerMaterial );
 
 playerShip.position.z = 11;
 playerShip.rotation.x = 90;
-scene.add( playerShip );
+scene.add(playerShip);
 
 camera.position.z = 15;
-var count =0;
+var count = 0;
 
 function animate() {
 	requestAnimationFrame( animate );
@@ -141,16 +127,13 @@ animate();
 var aimUp, aimDown, aimLeft, aimRight = false;
 var moving = false;
 var boost, breaks = false;
+var returnCrosshair = false;
 var velocity = new THREE.Vector3();
 var playerVelocity = new THREE.Vector3();
 var prevTime = performance.now();
 
-
 // location flags for map events
 var flags = [[false,-20]];
-
-
-
 var tt = 0;
 
 //Detect key inputs
@@ -159,7 +142,7 @@ var onKeyDown = function ( event ) {
 		case 88: // X
 			break;
 		case 90: // Z
-        	if (!laserActive) {
+			if (!laserActive[0] || !laserActive[1] || !laserActive[2]) {
 				fire();
 			}
 			break;
@@ -208,13 +191,8 @@ var onKeyUp = function ( event ) {
 	}
 }
 
-
-
-
-
-
-document.addEventListener( 'keydown', onKeyDown, false );
-document.addEventListener( 'keyup', onKeyUp, false );
+document.addEventListener('keydown', onKeyDown, false);
+document.addEventListener('keyup', onKeyUp, false);
 
 
 
@@ -229,56 +207,38 @@ function render() {
     // Update player's ship's armor
     document.getElementById("debug").innerHTML = "hp: " + player.armor + "<br>Laser: " + laserActive + "<br>Coordinates (" + Math.round(playerShip.position.x * 100) / 100 + ", " + Math.round(playerShip.position.y * 100) / 100 + ", " + Math.round(playerShip.position.z * 100) / 100 + ")";
 
-  if (boost) {
+	if (boost) {
 		player.speed = 0.5;
 	} else if (breaks) {
 		player.speed = 0.03;
 	} else {
-    player.speed = 0.1;
-  }
-
-
-
-
-
+		player.speed = 0.1;
+	}
 /*
-
 	// Raycaster collision detection
-  playerMaterial.color.set( 0xffffff );
-
-
+	playerMaterial.color.set( 0xffffff );
 	raycaster.setFromCamera( pointer, camera );
-
-		// calculate objects intersecting the picking ray
-		const intersects = raycaster.intersectObjects( scene.children );
-
-		for ( let i = 0; i < intersects.length; i ++ ) {
-			tt++;
-
-			intersects[ 0 ].object.material.color.set( 0xff00ff );
-
-			if (tt < 8) {
-			//  alert(scene.children[i].id);
-		  }
-			playerMaterial.color.set( 0xff00ff );
+	// calculate objects intersecting the picking ray
+	const intersects = raycaster.intersectObjects( scene.children );
+	for ( let i = 0; i < intersects.length; i ++ ) {
+		tt++;
+		intersects[ 0 ].object.material.color.set( 0xff00ff );
+		if (tt < 8) {
+			// alert(scene.children[i].id);
 		}
-
-
+		playerMaterial.color.set( 0xff00ff );
+	}
 */
-
-
 	// Enemy AI routines
-    
-    
-    if (flags.length > 0) {
+	if (flags.length > 0) {
 		if (playerShip.position.z <= flags[0][1]) {
-        	flags[0][0] = true;
-        }
-	    if (flags[0][0]) {
+			flags[0][0] = true;
+		}
+		if (flags[0][0]) {
 			ee0.mesh.position.z = playerShip.position.z + 10;
 			ee1.mesh.position.z = playerShip.position.z + 10;
 			ee2.mesh.position.z = playerShip.position.z + 10;
-            can = true;
+			can = true;
 			scene.add(ee0.mesh);
 			scene.add(ee1.mesh);
 			scene.add(ee2.mesh);
@@ -288,62 +248,60 @@ function render() {
 			flags.splice(0,1);
 		}
 	}
+	enemy.mesh.rotation.z += .0005;
+	enemy2.mesh.rotation.z -= .01;
     
-    enemy.mesh.rotation.z += .0005;
-    enemy2.mesh.rotation.z -= .01;
-    
-    if (ee0.mesh.position.z < playerShip.position.z - 10) {
-        ee0.mesh.position.z -= player.speed + .01;
-    	ee1.mesh.position.z -= player.speed + .01;
-    	ee2.mesh.position.z -= player.speed + .01;
-        if (canAttack(ee0)) {
-        	enemyAttack(ee0.mesh);
-        }
-    } else {
-    	ee0.mesh.position.z -= player.speed + .1;
-    	ee1.mesh.position.z -= player.speed + .1;
-    	ee2.mesh.position.z -= player.speed + .1;
-    }
+	if (ee0.mesh.position.z < playerShip.position.z - 10) {
+		ee0.mesh.position.z -= player.speed + .01;
+		ee1.mesh.position.z -= player.speed + .01;
+		ee2.mesh.position.z -= player.speed + .01;
+		if (canAttack(ee0)) {
+			enemyAttack(ee0.mesh);
+		}
+	} else {
+		ee0.mesh.position.z -= player.speed + .1;
+		ee1.mesh.position.z -= player.speed + .1;
+		ee2.mesh.position.z -= player.speed + .1;
+	}
 
 	if (foeActive) {
-    	foe.position.z += .0001;
+		foe.position.z += .0001;
 		foe.position.x += foeDirection.x * 0.2;
 		foe.position.y += foeDirection.y * 0.2;
-    }
-
-
+		if (foe.position.z > playerShip.position.z + 3) {
+			can = true;
+		}
+	}
 
 	// Move player forward
 	camera.position.z -= player.speed;
-    playerShip.position.z -= player.speed;
-    crosshair.position.z -= player.speed;
-    crosshair2.position.z -= player.speed;
+	playerShip.position.z -= player.speed;
+	crosshair.position.z -= player.speed;
+	crosshair2.position.z -= player.speed;
+    
+	// Line up both crosshairs
+	crosshair.position.x = (crosshair2.position.x + playerShip.position.x) / 2;
+	crosshair.position.y = (crosshair2.position.y + playerShip.position.y) / 2;
 
-
-    // Line up both crosshairs
-    crosshair.position.x = (crosshair2.position.x + playerShip.position.x) / 2;
-    crosshair.position.y = (crosshair2.position.y + playerShip.position.y) / 2;
-
-
-    // Prevent crosshairs from going out of bounds
-	if (crosshair2.position.x >= 5) {
+	// Prevent crosshairs from going out of bounds
+	if (crosshair2.position.x >= 8) {
 		velocity.x = 0;
-		crosshair2.position.x = 4.99;
-	} else if (crosshair2.position.x <= -5) {
+		crosshair2.position.x = 7.99;
+	} else if (crosshair2.position.x <= -8) {
 		velocity.x = 0;
-		crosshair2.position.x = -4.99;
+		crosshair2.position.x = -7.99;
 	}
 
-	if (crosshair2.position.y >= 5) {
+	if (crosshair2.position.y >= 8) {
 		velocity.y = 0;
-		crosshair2.position.y = 4.99;
-	} else if (crosshair2.position.y <= -5) {
+		crosshair2.position.y = 7.99;
+	} else if (crosshair2.position.y <= -8) {
 		velocity.y = 0;
-		crosshair2.position.y = -4.99;
+		crosshair2.position.y = -7.99;
 	}
 
-    // Prevent player from going out of bounds
-    if (playerShip.position.x >= 1.8) {
+	// Prevent player from going out of bounds
+	if (playerShip.position.x >= 1.8) {
 		playerVelocity.x = 0;
 		playerShip.position.x = 1.8;
 	} else if (playerShip.position.x <= -1.8) {
@@ -361,45 +319,48 @@ function render() {
 
 	//if the user pressed a direction, set velocity.z to a value > 0.
 	if (aimUp) {
-		velocity.y -= 60.0 * delta;
-        playerVelocity.y -= 60.0 * delta;
-        playerShip.position.y -= playerVelocity.y * .1 * delta;
+	//	velocity.y -= 60.0 * delta;
+		velocity.y -= .81;
+		playerVelocity.y -= 60.0 * delta;
+		playerShip.position.y -= playerVelocity.y * .1 * delta;
 	}
 	if (aimDown) {
-		velocity.y += 60.0 * delta;
-        playerVelocity.y += 60.0 * delta;
-        playerShip.position.y -= playerVelocity.y * .1 * delta;
+	//	velocity.y += 60.0 * delta;
+		velocity.y += .81;
+		playerVelocity.y += 60.0 * delta;
+		playerShip.position.y -= playerVelocity.y * .1 * delta;
 	}
 	if (aimLeft) {
-		velocity.x += 60.0 * delta;
-        playerVelocity.x += 60.0 * delta;
-        playerShip.position.x -= playerVelocity.x * .1 * delta;
+	//	velocity.x += 60.0 * delta;
+		velocity.x += .81;
+		playerVelocity.x += 60.0 * delta;
+		playerShip.position.x -= playerVelocity.x * .1 * delta;
 	}
 	if (aimRight) {
-		velocity.x -= 60.0 * delta;
-        playerVelocity.x -= 60.0 * delta;
-        playerShip.position.x -= playerVelocity.x * .1 * delta;
+	//	velocity.x -= 60.0 * delta;
+		velocity.x -= .81;
+		playerVelocity.x -= 60.0 * delta;
+		playerShip.position.x -= playerVelocity.x * .1 * delta;
 	}
 
-	crosshair2.position.y -= velocity.y * 1 * delta;
-	crosshair2.position.x -= velocity.x * 1 * delta;
+	crosshair2.position.y -= velocity.y * .03 ;
+	crosshair2.position.x -= velocity.x * .03 ;
 
 	prevTime = time;
 
-
 	//Return crosshair to netural if no direction is input
 	if (!aimUp && !aimDown) {
-    	playerVelocity.y = 0;
-        velocity.y = 0;
+		playerVelocity.y = 0;
+		velocity.y = 0;
 		if (crosshair2.position.y - 2.75 * playerShip.position.y > 0.25) {
-			velocity.y += 1;
+			velocity.y += 8;
 		} else if (crosshair2.position.y - 2.75 * playerShip.position.y < -0.25) {
-			velocity.y -= 1;
+			velocity.y -= 8;
 		} else {
 			velocity.y = 0;
 			crosshair2.position.y = 2.75 * playerShip.position.y;
 		}
-        if (playerShip.rotation.x < 89.9) {
+		if (playerShip.rotation.x < 89.9) {
 			playerShip.rotation.x += 2.75 * delta;
 		} else if (playerShip.rotation.x > 90.1) {
 			playerShip.rotation.x -= 2.75 * delta;
@@ -410,11 +371,11 @@ function render() {
 
 	if (!aimLeft && !aimRight) {
     	playerVelocity.x = 0;
-        velocity.x = 0;
+		velocity.x = 0;
 		if (crosshair2.position.x - 2.75 * playerShip.position.x > 0.25) {
-			velocity.x += 1;
+			velocity.x += 8;
 		} else if (crosshair2.position.x - 2.75 * playerShip.position.x < -0.25) {
-			velocity.x -= 1;
+			velocity.x -= 8;
 		} else {
 			velocity.x = 0;
 			crosshair2.position.x = 2.75 * playerShip.position.x;
@@ -428,71 +389,66 @@ function render() {
 		}
 	}
 
-    // Rotate player to aim towards crosshairs
-    playerShip.rotation.z = 0 - crosshair2.position.x * 0.07;
-    playerShip.rotation.x = 80 + crosshair2.position.y * 0.07;
-
+	// Rotate player to aim towards crosshairs
+	playerShip.rotation.z = 0 - crosshair2.position.x * 0.07;
+	playerShip.rotation.x = 80 + crosshair2.position.y * 0.07;
 
 	// detect if player hits an enemy
-    if (!player.damaged) {
-	    if (foes.length > 0) {
-    		var k;
+	if (!player.damaged) {
+		if (foes.length > 0) {
+			var k;
 			for (k=0;k<foes.length;k++) {
 				if (detectCollision(playerShip, foes[k])) {
-           	 		takeDamage(1);
-           	 }
+					takeDamage(1);
+				}
 			}
-    	}
+		}
 	}
-    
-    if (player.damaged) {
+	if (player.damaged) {
 		player.i++;
-        playerMaterial.color.set( 0xff9999 );
+		playerMaterial.color.set( 0xff9999 );
 		if (player.i >= player.iframes) {
-        	player.damaged = false;
-            player.i = 0;
-            playerMaterial.color.set( 0xffffff );
-        }
-    }
-	
-	// detect if laser hits an enemy
-	if (laserActive) {
-		laser.position.z -= 2;
-		laser.position.x += laserDirection.x * 0.2;
-		laser.position.y += laserDirection.y * 0.2;
-		var j;
-		for (j=0;j<foes.length;j++) {
-			if (detectCollision(laser, foes[j])) {
-            	scene.remove(foes[j]);
-				scene.remove(laser);
-                player.activeLasers--;
-				foes.splice(foes.indexOf(foes[j]),1);
-				laserActive = false;
-            }
+			player.damaged = false;
+			player.i = 0;
+			playerMaterial.color.set( 0xffffff );
 		}
 	}
 
-	//remove laser when goes too far
-	if (playerShip.position.z - laser.position.z > 100) {
-		scene.remove( laser );
-        player.activeLasers--;
-        laserActive = false;
+	// detect if laser hits an enemy
+	var n;
+	for (n=0;n<3;n++) {
+		if (laserActive[n]) {
+			laser[n].position.z -= 3;
+			laser[n].position.x += laserDirection[n].x * 0.2;
+			laser[n].position.y += laserDirection[n].y * 0.2;
+			var j;
+			for (j=0;j<foes.length;j++) {
+				if (detectCollision(laser[n], foes[j])) {
+					scene.remove(foes[j]);
+					scene.remove(laser[n]);
+					player.activeLasers--;
+					foes.splice(foes.indexOf(foes[j]),1);
+					laserActive[n] = false;
+				}
+			}
+			if (playerShip.position.z - laser[n].position.z > 100) {
+				scene.remove( laser[n] );
+				player.activeLasers--;
+				laserActive[n] = false;
+			}
+		}
 	}
 }
-
 
 var can = false;
 function canAttack(en) {
 	if (can) {
     	can = false;
-        return true;
-    } else {
-    	return false;
-    }
+		return true;
+	} else {
+		return false;
+	}
 }
-
-
-
 
 const foeGeometry = new THREE.ConeGeometry(.2,.2);
 const foeMaterial = new THREE.MeshBasicMaterial( { color: 0xff00ff, size: 0.001 } );
@@ -506,28 +462,22 @@ function enemyAttack(en) {
 	foe.position.x = en.position.x;
 	foe.position.y = en.position.y;
 	scene.add( foe );
-    foeActive = true;
+	foeActive = true;
 	foeDirection.x = playerShip.position.x * .6;
 	foeDirection.y = playerShip.position.y * .6;
 }
 
 function detectCollision(v1, v2) {
-	if (v1.position.x < (v2.position.x + (v2.geometry.parameters.width / 2)) && v1.position.x > (v2.position.x - (v2.geometry.parameters.width / 2)) &&
-	    v1.position.y < (v2.position.y + (v2.geometry.parameters.height / 2)) && v1.position.y > (v2.position.y - (v2.geometry.parameters.height / 2)) &&
-		  v1.position.z < (v2.position.z + (v2.geometry.parameters.depth / 2)) && v1.position.z > (v2.position.z - (v2.geometry.parameters.depth / 2))) {
+	if (v1.position.x < (v2.position.x + (v2.geometry.parameters.width / 2)) && v1.position.x > (v2.position.x - (v2.geometry.parameters.width / 2)) && v1.position.y < (v2.position.y + (v2.geometry.parameters.height / 2)) && v1.position.y > (v2.position.y - (v2.geometry.parameters.height / 2)) && v1.position.z < (v2.position.z + (v2.geometry.parameters.depth / 2)) && v1.position.z > (v2.position.z - (v2.geometry.parameters.depth / 2))) {
 		return true;
 	} else {
-    	return false;
-    }
+		return false;
+	}
 }
 
-
-
-
 function takeDamage(val) {
-
 	player.armor -= val;
-    player.damaged = true;
+	player.damaged = true;
 }
 
 function draw() {
@@ -536,22 +486,30 @@ function draw() {
 	render();
 }
 
-const laserGeometry = new THREE.ConeGeometry(.2,.2);
+const laserGeometry = new THREE.ConeGeometry(.2,2);
 const laserMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00, size: 0.001 } );
-const laser = new THREE.Mesh( laserGeometry, laserMaterial );
-var laserDirection = new THREE.Vector2();
+const laser = [new THREE.Mesh( laserGeometry, laserMaterial ), new THREE.Mesh( laserGeometry, laserMaterial ), new THREE.Mesh( laserGeometry, laserMaterial )];
+var laserDirection = [new THREE.Vector2(), new THREE.Vector2(), new THREE.Vector2()];
 
-var laserActive = false;
+var laserActive = [false, false, false];
 function fire() {
-	laserActive = true;
-	laser.position.z = playerShip.position.z;
-	laser.rotation.x = 90;
-	laser.position.x = playerShip.position.x;
-	laser.position.y = playerShip.position.y;
-	scene.add( laser );
-    player.activeLasers++;
-	laserDirection.x = crosshair2.position.x * .6;
-	laserDirection.y = crosshair2.position.y * .6;
+	var index = 0;
+	if (laserActive[0]) {
+		if (laserActive[1]) {
+			index = 2;
+		} else {
+			index = 1;
+		}
+	}
+	laserActive[index] = true;
+	laser[index].position.z = playerShip.position.z;
+	laser[index].rotation.x = -playerShip.rotation.x;
+	laser[index].position.x = playerShip.position.x;
+	laser[index].position.y = playerShip.position.y;
+	scene.add(laser[index]);
+	player.activeLasers++;
+	laserDirection[index].x = crosshair2.position.x * .6;
+	laserDirection[index].y = crosshair2.position.y * .6;
 }
 
 function onWindowResize() {
@@ -561,18 +519,15 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }
-window.addEventListener( 'resize', onWindowResize, false );
+window.addEventListener('resize', onWindowResize, false);
 
 function activateParticleWave() {
 	particleSystem.geometry.verticesNeedUpdate = true;
 	var i = 0;
 	for ( var iy = 0; iy < particleSystem.geometry.vertices.length; iy ++ ) {
 		particleSystem.geometry.vertices[iy].y = ( Math.sin( ( iy + count ) * 0.5 ) * 3 )
-      }
+	}
 }
 
 draw();
-</script>
-
-
-</body></html>
+</script></body></html>
