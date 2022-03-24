@@ -8,7 +8,8 @@
 		</style>
 	</head>
 <body>
-<p id="debug">hp: 30<br>Laser: false<br>Coordinates (0, 0, -149.6)</p>
+<p id="debug">hp: 30<br>Laser: false,false,false<br>Coordinates (0, 0, -68.4)</p>
+
 
 <script src="https://threejs.org/build/three.js"></script>
 <script>
@@ -26,6 +27,55 @@ class PlayerShip {
 	}
 }
 
+class Ship {
+	constructor (hp, scrap, size, pos) {
+    	this.hp = hp;
+		this.scrap = scrap;
+		this.geometry = new THREE.BoxGeometry(size, size, size);
+		this.material = new THREE.MeshBasicMaterial( {
+			color: 0xff0000, wireframe: true
+		} );
+		this.mesh = new THREE.Mesh(this.geometry, this.material);
+		this.mesh.position.z = pos[2];
+		this.mesh.position.x = pos[0];
+        this.mesh.position.y = pos[1];
+		this.frameCount = 0;
+		this.state = 0;
+	}
+	routine() {
+		//update framecount
+		this.frameCount++;
+
+		//perform based on current state
+		if (this.state == 0) {
+			this.mesh.position.z = camera.position.z;
+			scene.add(this.mesh);
+		//	foes.push(this);
+			this.state = 1;
+		} else if (this.state == 1) {
+			this.mesh.position.z -= .2;
+		} else if (this.state == 2) {
+			this.mesh.position.z -= 0.2;
+		} else if (this.state == 3) {
+			this.mesh.position.y += .3;
+		} else if (this.state == 4) {
+			foes.splice(foes.indexOf(this,1));
+			scene.remove(this.mesh);
+		}
+
+		//update state
+		if (this.mesh.position.z <= playerShip.position.z - 5) {
+			this.state = 2;
+		}
+		if (this.frameCount >= 400) {
+			this.state = 3;    
+		}
+        if (this.frameCount >= 500) {
+        	this.state = 4;
+        }
+	}
+}
+
 class Asteroid {
 	constructor (hp, scrap, size, pos) {
     	this.hp = hp;
@@ -38,8 +88,20 @@ class Asteroid {
 		this.mesh.position.z = pos[2];
 		this.mesh.position.x = pos[0];
         this.mesh.position.y = pos[1];
+		this.frameCount = 0;
+		this.state = 0;
+	}
+	routine() {
+		if (this.state == 0) {
+			scene.add(this.mesh);
+			this.state = 1;
+		} else {
+        	this.mesh.rotation.x += .01;
+            this.mesh.rotation.z += .005;
+        }
 	}
 }
+
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -73,19 +135,17 @@ var player = new PlayerShip(30, 1, 24);
 var enemy = new Asteroid(1, 5, 100, [0,0,-200]);
 var enemy2 = new Asteroid(1, 5, 5, [3, 3, -50]);
 var enemy3 = new Asteroid(1, 5, 3, [-2, -2, -75]);
-
-var ee0 = new Asteroid(1, 1, 1.5, [0, 2.5, 0]);
-var ee1 = new Asteroid(1, 1, 1.5, [2, 2, 0]);
-var ee2 = new Asteroid(1, 1, 1.5, [-2, 2, 0]);
-
-scene.add(enemy.mesh);
-scene.add(enemy2.mesh);
-scene.add(enemy3.mesh);
+var ee0 = new Ship(1, 1, 1.5, [0, 2.5, 0]);
+var ee1 = new Ship(1, 1, 1.5, [2, 2, 0]);
+var ee2 = new Ship(1, 1, 1.5, [-2, 2, 0]);
 
 var foes = [];
-foes.push(enemy.mesh);
-foes.push(enemy2.mesh);
-foes.push(enemy3.mesh);
+foes.push(enemy);
+foes.push(enemy2);
+foes.push(enemy3);
+foes.push(ee0);
+foes.push(ee1);
+foes.push(ee2);
 
 // Create the two crosshairs
 const crossGeometry = new THREE.BoxGeometry(.5,.5,.1);
@@ -214,65 +274,13 @@ function render() {
 	} else {
 		player.speed = 0.1;
 	}
-/*
-	// Raycaster collision detection
-	playerMaterial.color.set( 0xffffff );
-	raycaster.setFromCamera( pointer, camera );
-	// calculate objects intersecting the picking ray
-	const intersects = raycaster.intersectObjects( scene.children );
-	for ( let i = 0; i < intersects.length; i ++ ) {
-		tt++;
-		intersects[ 0 ].object.material.color.set( 0xff00ff );
-		if (tt < 8) {
-			// alert(scene.children[i].id);
-		}
-		playerMaterial.color.set( 0xff00ff );
-	}
-*/
-	// Enemy AI routines
-	if (flags.length > 0) {
-		if (playerShip.position.z <= flags[0][1]) {
-			flags[0][0] = true;
-		}
-		if (flags[0][0]) {
-			ee0.mesh.position.z = playerShip.position.z + 10;
-			ee1.mesh.position.z = playerShip.position.z + 10;
-			ee2.mesh.position.z = playerShip.position.z + 10;
-			can = true;
-			scene.add(ee0.mesh);
-			scene.add(ee1.mesh);
-			scene.add(ee2.mesh);
-			foes.push(ee0.mesh);
-			foes.push(ee1.mesh);
-			foes.push(ee2.mesh);
-			flags.splice(0,1);
-		}
-	}
-	enemy.mesh.rotation.z += .0005;
-	enemy2.mesh.rotation.z -= .01;
     
-	if (ee0.mesh.position.z < playerShip.position.z - 10) {
-		ee0.mesh.position.z -= player.speed + .01;
-		ee1.mesh.position.z -= player.speed + .01;
-		ee2.mesh.position.z -= player.speed + .01;
-		if (canAttack(ee0)) {
-			enemyAttack(ee0.mesh);
-		}
-	} else {
-		ee0.mesh.position.z -= player.speed + .1;
-		ee1.mesh.position.z -= player.speed + .1;
-		ee2.mesh.position.z -= player.speed + .1;
-	}
-
-	if (foeActive) {
-		foe.position.z += .0001;
-		foe.position.x += foeDirection.x * 0.2;
-		foe.position.y += foeDirection.y * 0.2;
-		if (foe.position.z > playerShip.position.z + 3) {
-			can = true;
-		}
-	}
-
+    // Perform active enemy routines
+    var jj;
+    for (jj=0;jj<foes.length;jj++) {
+    	foes[jj].routine();
+    }
+    
 	// Move player forward
 	camera.position.z -= player.speed;
 	playerShip.position.z -= player.speed;
@@ -398,7 +406,7 @@ function render() {
 		if (foes.length > 0) {
 			var k;
 			for (k=0;k<foes.length;k++) {
-				if (detectCollision(playerShip, foes[k])) {
+				if (detectCollision(playerShip, foes[k].mesh)) {
 					takeDamage(1);
 				}
 			}
@@ -423,8 +431,8 @@ function render() {
 			laser[n].position.y += laserDirection[n].y * 0.2;
 			var j;
 			for (j=0;j<foes.length;j++) {
-				if (detectCollision(laser[n], foes[j])) {
-					scene.remove(foes[j]);
+				if (detectCollision(laser[n], foes[j].mesh)) {
+					scene.remove(foes[j].mesh);
 					scene.remove(laser[n]);
 					player.activeLasers--;
 					foes.splice(foes.indexOf(foes[j]),1);
@@ -530,4 +538,4 @@ function activateParticleWave() {
 }
 
 draw();
-</script></body></html>
+</script>
