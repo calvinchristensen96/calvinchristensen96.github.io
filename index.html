@@ -1,420 +1,170 @@
-<html><head>
-	<meta charset="UTF-8">
-	<meta name="author" content="Calvin Christensen">
-	<title>Calvin Christensen</title>
-</head>
-<body>
-  <div id="navbar-overlay" onclick="exitNav()"></div>
-	<div id="navbar" onclick="displayNavMenu()">
-		<img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/pkmngo/menu.png">
-	</div>
-	<div id="navigation">
-		<ul>
-			<li><a onclick="displayNavMenu()" id="close">X</a></li>
-		</ul>
-        <ul id="nav-links">
-			<li><a onclick="displayNavMenu()" href="#">Home</a></li>
-			<li><a onclick="displayNavMenu()" href="#about">About</a></li>
-			<li><a onclick="displayNavMenu()" href="#portfolio">Portfolio</a></li>
-			<li><a onclick="displayNavMenu()" href="#contact">Contact</a></li>
-		</ul>
-	</div>
-	<div id="header">
-		<div id="colorbar">
-		</div>
-		<div id="intro">
-			<h2>Calvin Christensen</h2>
-			<p>Web Developer</p>
-		</div>
-		<div id="me">
-			<img src="https://calvinchristensen96.github.io/images/me.jpg">
-		</div>
-		<div id="links">
-			<ul>
-				<li><a href="#about">About</a></li>
-				<li><a href="#portfolio">Portfolio</a></li>
-				<li><a href="#contact">Contact</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="section" id="about">
-		<h2>About Me</h2>
-		<hr>
-		<p>Hi! My name is Calvin Christensen. I am a web developer based out of Wisconsin, USA. I graduated from the University of Wisconsin - Eau Claire in December, 2018 with a degree in Computer Science, Mathematics, and Spanish language. <br><br>During my time at the university I interned as a web developer. Since graduation, I have volunteered as a WordPress developer, freelanced as a Full-Stack developer and designer, and currently work full-time in IT. Continue reading below for more details on my experience.</p>
-	</div>
-	<div class="section" id="portfolio">
-		<h2>Portfolio</h2>
-		<hr>
-		<p>Take a look below to view projects that I've completed.</p>
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="initial-scale=1">
+      <meta name="author" content="Calvin Christensen">
+      <title>Calvin Christensen</title>
+      <link href="https://fonts.googleapis.com/css?family=Spectral&display=swap" rel="stylesheet">
 
-		<div class="project">
-			<h3>Chordy</h3>
-			<div id="column1">
-				<img src="https://calvinchristensen96.github.io/chordy/Chordy-logo.png">
-			</div>
-			<div id="column2">
-				<p>Chordy is a web application I developed to help identify musical chords. This chord dictionary includes two pages: one which gives visual representations of how to play the chords on piano, and the other which allows the user to lookup the name of a chord by selecting the notes which are played.</p>
-				<button><a href="https://calvinchristensen96.github.io/chordy/index.html" target="_blank">Visit Site</a></button>
-			</div>
-		</div>
 
-		<div class="project">
-			<h3>Pokemon Go Combat Point Maximizer</h3>
-			<div id="column1">
-			</div>
-			<div id="column2">
-				<p>A web application that I created for use with the mobile video-game Pokemon Go, by Niantic. This application provides detailed stats to help the user identify which individual values a selected Pokemon needs to have in order to maximize it's level.</p>
-				<button><a href="https://calvinchristensen96.github.io/pkmngo/index.html" target="_blank">Visit Site</a></button>
-			</div>
-		</div>
-
-		<div class="project">
-			<h3>Golden Leaf Cafe</h3>
-			<div id="column1">
-				<img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/GoldenLeafCafe/images/Golden_Leaf_Logo.png">
-			</div>
-			<div id="column2">
-				<p>The Golden Leaf Cafe is a coffeeshop in Menomonie, Wisconsin. I designed and developed the front-end and back-end of their commercial website. This site consists 6 pages including an interactive menu and links to an online ordering platform. The website was active from March 2020 until January 2022, and my work is available on my Github. </p>
-				<button><a href="https://github.com/calvinchristensen96/calvinchristensen96.github.io/tree/master/GoldenLeafCafe" target="_blank">View Source Code</a></button>
-			</div>
-		</div>
-
-		<div class="project">
-			<h3>Cerveza Santa Maria</h3>
-			<div id="column1">
-				<img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/images/cerveza.png">
-			</div>
-			<div id="column2">
-				<p>Cerveza Santa Maria is a brewery in Puebla, Mexico. I helped develop a version of their website during my internship with B!RTH in Puebla in the summer of 2018. The source code of my work is available on my Github.</p>
-				<button><a href="https://github.com/calvinchristensen96/Cerveza-Santa-Maria" target="_blank">View Source Code</a></button>
-			</div>
-		</div>
-	</div>
-
-	<div class="section" id="contact">
-		<h2>Contact</h2>
-		<hr>
-		<p>Send a message to me through the form below.</p>
-		<form action="https://formspree.io/f/mwkyokwp" method="POST">
-			<label>Your Email:<br><input id="email" type="email" name="email"></label>
-			<label>Your message:<br><textarea id="message" name="message"></textarea></label><br>
-            <button id="submit" type="submit">Send</button>
-		</form>
-	</div>
-	<div id="footer">
-    <div id="socials">
-	<a href="mailto:calvinchristensen96@gmail.com"><img src="images/email.png"></a>
-        <a href="https://www.linkedin.com/in/calvin-christensen-075026172/" target="_blank"><img src="images/linkedin.png"></a>
-        <a href="https://github.com/calvinchristensen96" target="_blank"><img src="images/GitHub-Mark-120px-plus.png"></a>
-    </div>
-		<div id="links">
-			<ul>
-        <li><a href="#">Home</a></li>
-				<li><a href="#about">About</a></li>
-				<li><a href="#portfolio">Portfolio</a></li>
-				<li><a href="#contact">Contact</a></li>
-			</ul>
-		</div>
-    <p>Calvin Christensen<span>·</span>(608) 931-3991<span>·</span>calvinchristensen96@gmail.com</p>
-	</div>
-<script>
-var navActive = false;
-function displayNavMenu() {
-	if (!navActive) {
-		document.getElementById("navigation").style.right = "0px";
-    document.getElementById("navbar-overlay").style.display = "block";
-		navActive = true;
-	} else {
-		document.getElementById("navigation").style.right = "-360px";
-    document.getElementById("navbar-overlay").style.display = "none";
-		navActive = false;
-	}
-}
-
-function exitNav() {
-  document.getElementById("navbar-overlay").style.display = "none";
-  displayNavMenu();
-}
-</script>
 <style>
-:root {
-	--c1: #241C15;
-	--c2: #403B3B;
-	--c3: #8C8C8C;
-	--c4: #959E7B;
-}
 
-body, * {
-	margin: 0px;
-	font-family: georgia, serif;
+* {
+  box-sizing: border-box;
+  font-family: georgia;
 }
 
 body {
-	color: var(--c1);
-	min-width: 600px;
+  margin: 0;
+  padding: 0;
+  font-family: 'Spectral', serif;
+  color: black;
+  line-height: 48px;
+  font-size: 20px;
 }
 
-#navbar-overlay {
-	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	z-index: 10;
-	background-color: black;
-	opacity: 0.5;
-	display: none;
-}
-
-#navbar {
-	position: fixed;
-	width: 100%;
-	min-width: 600px;
-	color: black;
-	text-shadow: var(--c4) 1px 1px;
-	padding: 9px;
-	font-size: 36px;
-	z-index: 2;
-}
-
-#navbar img {
-	float: right;
-	margin-right: 32px;
-	margin-top: 20px;
-	cursor: pointer;
-	width: 48px;
-}
-
-#navigation {
-	position: fixed;
-	height: 100vh;
-	width: 360px;
-	z-index: 11;
-	background-color: var(--c1);
-	right: -360px;
-	transition-duration: 0.2s;
-	border-bottom: solid 1px var(--c4);
-}
-
-#navigation ul {
-	list-style: none;
-	padding: 0px;
-	font-size: 48px;
-}
-
-#navigation li {
-	padding: 9px;
-    padding-bottom: 36px;
-	width: 100%;
-}
-
-#navigation a {
-	color: white;
-	text-decoration: none;
-	padding: 12px;
-	cursor: pointer;
-	transition-duration: 0.2s;
-    text-shadow: 2px 2px black;
-}
-
-#nav-links a:hover {
-	text-decoration: underline;
-}
-
-#close {
-  float: right;
-  margin-right: 24px;
-  margin-top: 4px;
-}
-
-#close a:hover {
-	border: none;
-}
-
-#header {
-	background-image: url("https://calvinchristensen96.github.io/images/background.png");
+.section1 {
+  width: 100%;
+  padding-bottom: 128px;
+  padding-top: 128px;
+  background-image: url("https://calvinchristensen96.github.io/images/background.png");
 	background-repeat: repeat;
-	color: white;
-	height: 98vh;
-	border-top: 1px solid var(--c1);
-	border-bottom: 24px solid var(--c4);
-	text-shadow: 4px 4px black;
+  margin-left: 0px;
+  margin-right: 0px;
+  color: white;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-bottom: 120px;
 }
 
-#me {
-	text-align: center;
-	position: relative;
-	top: -2px;
-	border-right: solid var(--c1) 60px;
-	border-left: solid var(--c1) 60px;
-	margin: 0 auto;
-	width: 160px;
-	height: 4px;
+p {
+  color: #777;
 }
 
-#header img {
-	width: 160px;
-	border-radius: 50%;
-	border: solid 3px white;
-	position: relative;
-	top: -90px;
-	right: 2px;
+.me img {
+  width: 120px;
+  height: auto;
+  border-radius: 50%;
+  float: left;
+  margin-right: 2.5%;
 }
 
-#intro {
-	position: relative;
-	text-align: center;
-	font-size: 56px;
-	border: solid white 2px;
-	padding-top: 15vh;
-	padding-bottom: 5vh;
-	margin-left: 48px;
-	margin-right: 48px;
-	margin-top: 5vh;
-    height: 40vh;
+.section1 h1 {
+  margin-bottom: 0px;
+  margin-top: 20px;
 }
 
-#intro h2 {
-	padding-left: 12px;
-	padding-right: 12px;
+.section1 h2 {
+  margin-top: 0px;
 }
 
-#header ul {
-	list-style: none;
-	padding-left: 0px;
-	position: absolute;
-	bottom: 10%;
-	width: 100%;
-	text-align: center;
-	min-width: 600px;
+.links img {
+  height: 32px;
+  filter: invert();
+  cursor: pointer;
 }
 
-#header li {
-	margin-left: 12px;
-	margin-right: 12px;
-	width: 25%;
-	display: inline;
-	cursor: pointer;
-	font-size: 24px;
-}
-
-#header a {
-	color: var(--c4);
-	transition-duration: 0.2s;
-	text-decoration: none;
-	text-shadow: 2px 2px black;
-}
-
-#header a:hover {
-	color: white;
-}
-
-.section {
-	padding: 32px;
-	padding-top: 96px;
-	line-height: 1.5;
-}
-
-.section hr {
-	margin-top: 36px;
-	margin-bottom: 36px;
-}
-
-.section h2 {
-	color: var(--c4);
-}
-
-.section h3, .section h4, .section ul {
-	color: var(--c2);
-}
-
-.project {
-	margin: 6px;
-	margin-top: 48px;
-	margin-bottom: 48px;
-	padding: 24px;
-	border: solid 1px var(--c3);
-	border-radius: 12px 12px 12px 12px;
-}
-
-.project h3 {
-	font-size: 30px;
-	margin-bottom: 48px;
-}
-
-.project img {
-	width: 120px;
-	border-radius: 12px 12px 12px 12px;
-	margin-top: 48px;
-	margin-bottom: 48px;
-}
-
-.project p {
-	margin-top: 48px;
-	margin-bottom: 48px;
-}
-
-#column1 {
-	text-align: center;
-}
-
-#column2 {
-	text-align: center;
-}
-
-#column2 button, #contact button{
-	color: var(--c4);
-	border: solid 2px var(--c4);
-	border-radius: 12px 12px 12px 12px;
-	padding: 8px;
-	background-color: white;
-	margin-top: 24px;
-	cursor: pointer;
-	transition-duration: 0.3s;
-	font-size: 24px;
-}
-
-#column2 button:hover, #contact button:hover {
-	background-color: var(--c4);
-	color: white;
-}
-
-#column2 a {
+.links a {
+  color: white;
+  cursor: pointer;
+  border:solid white 2px;
+  padding: 16px;
   text-decoration: none;
-  color: inherit;
 }
 
-form {
-	margin-top: 36px;
+.links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-label {
-	font-size: 20px;
+.section2, .section3, .section4 {
+  margin: 5%;
+  margin-bottom: 240px;
 }
 
-#email, #message {
-	padding: 6px;
-	font-size: 18px;
-    max-width: 100%;
-    min-width: 100%;
+.section2 p {
+  font-size: 24px;
+  line-height: 48px;
 }
 
-#message {
-	height: 138px;
+#project {
+  margin-bottom: 180px;
 }
 
+#project h1 {
+  text-decoration: underline;
+}
+
+#project img {
+  cursor: pointer;
+  width: 90%;
+  max-width: 550px;
+  filter: drop-shadow(16px 16px 16px black);
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 36px;
+}
+
+#project p {
+  margin-top: 36px;
+}
+
+li {
+  text-decoration: none;
+  display: inline-block;
+  margin: 24px;
+  float: right;
+}
+
+h1, h2 {
+  font-family: 'Spectral', serif;
+}
+
+.resume {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.resume hr {
+  border-color: black;
+}
+
+#form {
+	margin: 12px;
+}
 
 input {
-	width: 100%;
+	width: 240px;
 	font-size: 16px;
 	padding: 8px;
 	margin-bottom: 36px;
+  border: black solid 1px;
+}
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+  border: black solid 1px;
+}
+
+form button {
+  cursor: pointer;
+  border: solid black 2px;
+  padding: 8px;
+  font-size: 16px;
+  background-color: white;
+}
+
+form button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 #footer {
-	background-color: var(--c1);
+	background-color: #2e2e2e;
 	color: white;
 	text-align: left;
-	line-height: 2;
-	padding: 48px;
+  line-height: 2;
+  padding: 48px;
 }
 
 #footer ul {
@@ -425,10 +175,10 @@ input {
 }
 
 #footer li {
-	margin-right: 18px;
-	width: 25%;
 	display: inline;
 	cursor: pointer;
+  float: none;
+  margin-left: 0px;
 }
 
 #footer a {
@@ -448,11 +198,6 @@ input {
   margin-bottom: 36px;
 }
 
-#footer span {
-  margin-left: 12px;
-  margin-right: 12px;
-}
-
 #socials img {
   margin-top: 36px;
   width: 24px;
@@ -461,76 +206,143 @@ input {
   margin-right: 12px;
 }
 
-@media screen and (min-width: 1314px) {
-
- 	#navbar {
-		padding: 9px;
-		font-size: 16px;
- 	}
-
- 	#navbar img {
-		margin-right: 32px;
-		width: 20px;
- 	}
-
-    #navigation ul {
-		list-style: none;
-		padding: 0px;
-		font-size: 24px;
-	}
-
-	#close {
-		float: right;
-		margin-right: 24px;
-		margin-top: 4px;
-	}
-
- 	.section {
-		padding: 192px;
-		padding-top: 96px;
-		padding-bottom: 32px;
- 	}
-
- 	.exp {
-		margin: 180px;
-		margin-top: 48px;
-		margin-bottom: 48px;
- 	}
-
- 	.project {
-		margin: 180px;
-		margin-top: 48px;
-		margin-bottom: 48px;
-	}
-
-	#intro {
-		font-size: 64px;
-	}
-
-	#me {
-		border-right: solid var(--c1) 120px;
-		border-left: solid var(--c1) 120px;
-	}
-
-	#form {
-		margin-left: 180px;
-		margin-right: 180px;
-	}
+#footer span {
+  display: inline;
 }
 
-@media screen and (min-width: 1560px) {
-	.section {
-		padding: 384px;
-		padding-top: 96px;
-		padding-bottom: 32px;
-	}
+@media only screen and (min-width: 0px) {
+  .section1 {
+    text-align: center;
+  }
 
-	#form {
-		margin: 120px;
-	}
+  .me img {
+    width: 30%;
+    margin-right: 35%;
+    margin-left: 35%;
+  }
+
+  li {
+    float: none;
+  }
+
+  ul {
+    margin: 0px;
+    padding: 0px;
+  }
 }
+
+@media only screen and (min-width: 1100px) {
+
+  .section1 {
+    text-align: left;
+  }
+
+  .me img {
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+    float: left;
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+  }
+
+  li {
+    text-decoration: none;
+    display: inline-block;
+    margin: 24px;
+    float: right;
+  }
+
+  #footer span {
+    display: none;
+  }
+}
+
 </style>
 
+</head>
+  <body>
+    <div class="section1">
+      <div class="me">
+        <img src="images/me.jpg">
+      </div>
+      <h1>Calvin Christensen</h1>
+      <h2>Web Developer</h2>
+      <ul class="links">
+        <li><a href="https://drive.google.com/file/d/13En3uB-taY0PpDlQ_Ht-ReyAZ21Ak8F_/view?usp=sharing" target="_blank">Resume</a></li>
+        <li><a href="https://github.com/calvinchristensen96" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/calvin-christensen-075026172/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
 
 
-</body></html>
+    <div class="section2" id="about">
+      <p>Hi, I'm Calvin. I'm a Web Developer based out of Wisconsin, USA. I have professional experience in HTML, CSS, PHP, SQL, Visual Basic, and JavaScript including JQuery, as well as working knowledge of React, Java, and Python. Please scroll down to see some of my most recent work, look at my resume to see my relevant work history, or visit my GitHub to see source code.</p>
+    </div>
+
+    <div class="section3" id="portfolio">
+      <div id="project">
+        <h1>Golden Leaf Cafe</h1>
+        <p>The Golden Leaf Cafe is a coffeeshop in Menomonie, Wisconsin. I designed and developed the front-end and back-end of their commercial website. This site consists 6 pages including an interactive menu and links to an online ordering platform. The website was active from March 2020 until January 2022. An archive of my work is available on my Github.</p>
+        <a href="https://calvinchristensen96.github.io/GoldenLeafCafe/index.html" target="_blank"><img src="images/goldenleaf-preview.png"></a>
+      </div>
+      <div id="project">
+        <h1>Chordy</h1>
+        <p>Chordy is a web application I developed to help identify musical chords. This chord dictionary includes two pages: one which gives visual representations of how to play the chords on piano, and the other which allows the user to lookup the name of a chord by selecting the notes which are played.</p>
+        <a href="https://calvinchristensen96.github.io/chordy/index.html" target="_blank"><img src="images/chordy-preview.png"></a>
+      </div>
+      <div id="project">
+        <h1>Pokémon Go: Combat Point Maximizer</h1>
+        <p>A web application I created to be used alongside the mobile video-game <i>Pokemon Go</i>, by Niantic. This application provides detailed stats to help the user identify which individual values a selected Pokemon needs to have in order to maximize it's level. *I am not affiliated with Niantic Inc., The Pokemon Company, or Nintendo.</p>
+        <a href="https://calvinchristensen96.github.io/pkmngo/index.html" target="_blank"><img src="images/pokemon-preview.png"></a>
+      </div>
+    </div>
+
+    <div class="section4" id="contact">
+      <h1>Contact</h1>
+      <p>Send a message to me through the form below.</p>
+
+
+
+
+      <form
+        action="https://formspree.io/f/mwkyokwp"
+        method="POST"
+      >
+        <label>
+          Your email:<br>
+          <input type="email" name="email">
+        </label><br>
+        <label>
+          Your message:<br>
+          <textarea name="message"></textarea>
+        </label>
+        <!-- your other form fields go here -->
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <div id="footer">
+      <div id="socials">
+          <a href="mailto:calvinchristensen96@gmail.com"><img src="images/email.png"></a>
+          <a href="https://www.linkedin.com/in/calvin-christensen-075026172/" target="_blank"><img src="images/linkedin.png"></a>
+          <a href="https://github.com/calvinchristensen96" target="_blank"><img src="images/GitHub-Mark-120px-plus.png"></a>
+      </div>
+      <div id="links">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <p>Calvin Christensen&nbsp&nbsp&nbsp<span><br></span>(608)931-3991&nbsp&nbsp&nbsp<span><br></span>calvinchristensen96@gmail.com</p>
+    </div>
+
+
+<script>
+
+</script>
+
+  </body>
+</html>
