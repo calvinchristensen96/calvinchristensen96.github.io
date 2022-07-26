@@ -6,6 +6,9 @@
 </head>
 <body>
 <div id="content">
+  <div id="head">
+    <h1>Tetris-Clone</h1>
+  </div>
   <div id="board">
     <table>
       <td id="0-0"></td>
@@ -232,6 +235,7 @@
   </div>
 
   <div id="queue">
+    Up Next<br><br>
     <table>
       <td id="q0-0-0"></td>
       <td id="q0-0-1"></td>
@@ -361,13 +365,15 @@
   </div>
 
   <button id="btn-start" onClick="start()">Start</button>
+  <br><br>
   <div id="buttons">
     <button id="rotate" onClick="rotate(1)">⤵</button>
     <button id="move" onClick="move(0)">◄</button>
     <button id="move" onClick="move(1)">►</button>
     <button id="rotate" onClick="rotate(0)">⤴</button>
   </div>
-  <span id="demo"></span>
+  <span id="demo"></span><br><br>
+  <span id="demo2"></span>
 </div>
 
 
@@ -377,23 +383,46 @@ var boardHeight = 20;
 var boardWidth = 10;
 var activeCell = [-3,3];
 
+var occupiedCells = [[false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false],
+                     [false,false,false,false,false,false,false,false,false,false]];
+
 class block {
-  constructor(name, body, color) {
+  constructor(name, body, color, rotations) {
     this.name = name;
     this.body = body;
     this.color = color;
+    this.rotations = rotations;
+    this.activeRotation = 0;
 
     this.canDrop = true;
   }
 }
 
-var squareBlock = new block("Square Block", [[1,1],[1,2],[2,1],[2,2]], "yellow");
-var sBlock = new block("S Block", [[2,0],[2,1],[1,1],[1,2]], "green");
-var zBlock = new block("Z Block", [[2,2],[2,1],[1,1],[1,0]], "red");
-var lBlock = new block("L Block", [[1,2],[2,2],[2,1],[2,0]], "orange");
-var jBlock = new block("J Block", [[1,0],[2,0],[2,1],[2,2]], "blue");
-var tBlock = new block("T Block", [[2,1],[1,1],[1,2],[1,0]], "purple");
-var lineBlock = new block("Line Block", [[1,3],[1,2],[1,1],[1,0]], "cyan");
+var squareBlock = new block("Square Block", [[1,1],[1,2],[2,1],[2,2]], "yellow", [[[1,1],[1,2],[2,1],[2,2]]]);
+var sBlock = new block("S Block", [[2,0],[2,1],[1,1],[1,2]], "green", [[[2,0],[2,1],[1,1],[1,2]], [[0,1],[1,1],[1,2],[2,2]]]);
+var zBlock = new block("Z Block", [[2,2],[2,1],[1,1],[1,0]], "red", [[[2,2],[2,1],[1,1],[1,0]],[[1,1],[2,1],[0,2],[1,2]]]);
+var lBlock = new block("L Block", [[1,2],[2,2],[2,1],[2,0]], "orange", [[[1,2],[2,2],[2,1],[2,0]],[[1,1],[2,1],[3,1],[3,2]],[[1,0],[2,0],[1,1],[1,2]],[[3,2],[2,2],[1,2],[1,1]]]);
+var jBlock = new block("J Block", [[1,0],[2,0],[2,1],[2,2]], "blue", [[[1,0],[2,0],[2,1],[2,2]],[[0,1],[0,2],[1,1],[2,1]],[[1,0],[1,1],[1,2],[2,2]],[[0,2],[1,2],[2,2],[2,1]]]);
+var tBlock = new block("T Block", [[2,1],[1,1],[1,2],[1,0]], "purple", [[[2,1],[1,1],[1,2],[1,0]],[[0,2],[1,1],[1,2],[2,2]],[[2,0],[1,1],[2,1],[2,2]],[[0,2],[1,2],[1,3],[2,2]]]);
+var lineBlock = new block("Line Block", [[1,3],[1,2],[1,1],[1,0]], "cyan", [[[1,3],[1,2],[1,1],[1,0]], [[0,1],[1,1],[2,1],[3,1]]]);
 
 var queue = [squareBlock, sBlock, zBlock, lineBlock, jBlock, tBlock];
 var reserveBlocks = [squareBlock, sBlock, zBlock, lBlock, jBlock, tBlock, lineBlock];
@@ -405,14 +434,16 @@ function start() {
   document.getElementById("btn-start").style.display = "none";
   setInterval(function(){
     nextTurn();
-  }, 100);
+  }, 200);
 }
 
 function updateTable() {
   var i, j, k;
   for (i=0;i<boardWidth;i++) {
     for (j=0;j<boardHeight;j++) {
-      document.getElementById(j + '-' + i).style.backgroundColor = "white";
+      if (!occupiedCells[j][i]) {
+        document.getElementById(j + '-' + i).style.backgroundColor = "white";
+      }
     }
   }
   //color cells for active block
@@ -427,6 +458,7 @@ function updateTable() {
   }
   // debug
   document.getElementById("demo").innerHTML = "<br>Active Cell: " + activeCell + "<br> Active Block: " + activeBlock.name;
+  document.getElementById("demo2").innerHTML = occupiedCells[19];
 }
 
 
@@ -486,11 +518,17 @@ function nextTurn() {
     if (activeCell[0]+activeBlock.body[i][0] >= boardHeight - 1) {
       drop++;
     }
+    if (activeCell[0]+activeBlock.body[i][0] >= 0 && activeCell[0]+activeBlock.body[i][0] < boardHeight - 1) {
+      if(occupiedCells[activeCell[0]+activeBlock.body[i][0]+1][activeCell[1]+activeBlock.body[i][1]]) {
+        drop++;
+      }
+    }
   }
 
   if (drop != 0) {
     activeBlock.canDrop = false;
     cementBlock();
+    checkForLineClears();
     dropNextBlock();
   } else {
     activeBlock.canDrop = true;
@@ -502,9 +540,37 @@ function nextTurn() {
   updateTable();
 }
 
+function checkForLineClears() {
+  var i,j;
+  var result;
+  for(i=0;i<boardHeight;i++) {
+    j = 0;
+    result = occupiedCells[i][0];
+    while (result && j < 10) {
+      result = occupiedCells[i][j];
+      j++;
+    }
+
+    while(result)
+    if (j >= 10 && result) {
+      clearLine(i);
+      break;
+    }
+  }
+}
+
+function clearLine(row) {
+  var i;
+  for (i=0;i<boardWidth;i++) {
+    occupiedCells[row][i] = false;
+  }
+}
+
 function cementBlock() {
-  var body = [Number(activeBlock.body[0]) + Number(activeCell[0]), Number(activeBlock[1]) + activeCell[1]];
-  activeBlock.body
+  var i;
+  for (i=0;i<activeBlock.body.length;i++) {
+    occupiedCells[activeBlock.body[i][0] + activeCell[0]][activeBlock.body[i][1] + activeCell[1]] = true;
+  }
 }
 
 function dropNextBlock() {
@@ -552,9 +618,16 @@ function move(direction) {
 }
 
 function rotate(direction) {
+  // [2,0],[2,1],[1,1],[1,2] to [0,1],[1,1],[1,2],[2,2]
+  if (activeBlock.activeRotation < activeBlock.rotations.length - 1) {
+    activeBlock.activeRotation++;
+  } else {
+    activeBlock.activeRotation = 0;
+  }
+  activeBlock.body = activeBlock.rotations[activeBlock.activeRotation];
 
 }
-
+/*
 function isOccupied(y, x) {
   if (document.getElementById(y + "-" + x).style.backgroundColor == "white" ) {
       return false;
@@ -562,32 +635,40 @@ function isOccupied(y, x) {
     return true;
   }
 }
+*/
 </script>
 
 <style>
   body {
     background-color: black;
-    color: green;
+    color: white;
+    text-align: center;
   }
 
   #content {
     margin: auto;
     display: block;
-    width: 60%;
+  }
+
+  #head {
+    color: white;
+    text-align: center;
   }
 
   table {
     border-collapse: collapse;
     border: solid 2px white;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
   #board td {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     border: solid gray 1px;
     background-color: white;
   }
-
 
   #queue td {
     width: 16px;
@@ -597,18 +678,33 @@ function isOccupied(y, x) {
 
   #queue {
     position: fixed;
-    right: 5%;
-    top: 20px;
+    left: 80vw;
+    top: 67px;
+  }
+
+  #btn-start {
+    position: fixed;
+    left: 45vw;
+    top: 40%;
+    font-size: 64px;
   }
 
   #rotate {
-    width: 42px;
-    height: 42px;
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
   }
 
   #move {
-    width: 78px;
-    height: 64px;
+    width: 120px;
+    height: 80px;
+    font-size: 32px;
+  }
+
+  #buttons {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
 </style>
