@@ -1,6 +1,6 @@
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1">
   <meta name="author" content="Calvin Christensen">
 <!--  <link rel="stylesheet" href="style.css"> -->
@@ -8,8 +8,28 @@
 </head>
 <body>
 <div id="content">
+
+<!-- Background -->
+  <section class="sticky">
+    <div class="bubbles">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </div>
+  </section>
+
   <div id="head">
     <h1>Tetris-Clone</h1>
+    <h3 id="score">Score: 0</h3>
+  </div>
+  <div id="nav">
+    <img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/pkmngo/menu.png">
   </div>
   <div id="board">
     <table>
@@ -369,18 +389,30 @@
   <button id="btn-start" onClick="start()">Start</button>
   <br><br>
   <div id="buttons">
-    <button id="rotate" onClick="rotate(1)">⤵</button>
+    <button id="rotate" onClick="rotate(0)">⤵</button>
     <button id="move" onClick="move(0)">◄</button>
     <button id="move" onClick="move(1)">►</button>
-    <button id="rotate" onClick="rotate(0)">⤴</button>
+    <button id="rotate" onClick="rotate(1)">⤴</button><br><br>
+    <button id="drop" onClick="dropBlock()">Drop</button>
+    <button id="pause" onClick="pause()">Pause</button>
   </div>
+
   <span id="demo"></span><br><br>
   <span id="demo2"></span>
 </div>
 
 
 <script>
-
+/* TO-DO
+- save score to cookies
+- fix drop button
+- add move down button
+- delay timer on ground move or rotate
+- check that movement is legal
+- check that rotations are legal
+- fix rotations showing up in queue
+- center start/resume button
+*/
 var boardHeight = 20;
 var boardWidth = 10;
 var activeCell = [-3,3];
@@ -412,11 +444,14 @@ class block {
     this.body = body;
     this.color = color;
     this.rotations = rotations;
-    this.activeRotation = 0;
 
+    this.activeRotation = 0;
     this.canDrop = true;
   }
 }
+
+var score = 0;
+var level = 0;
 
 var squareBlock = new block("Square Block", [[1,1],[1,2],[2,1],[2,2]], "yellow", [[[1,1],[1,2],[2,1],[2,2]]]);
 var sBlock = new block("S Block", [[2,0],[2,1],[1,1],[1,2]], "green", [[[2,0],[2,1],[1,1],[1,2]], [[0,1],[1,1],[1,2],[2,2]]]);
@@ -431,12 +466,24 @@ var reserveBlocks = [squareBlock, sBlock, zBlock, lBlock, jBlock, tBlock, lineBl
 queue = shuffle(queue);
 
 var activeBlock = reserveBlocks[0];
+var interval;
+var paused = true;
 
 function start() {
   document.getElementById("btn-start").style.display = "none";
-  setInterval(function(){
+  paused = false;
+  interval = setInterval(function(){
     nextTurn();
   }, 200);
+}
+
+function pause() {
+  if (!paused) {
+    paused = true;
+    document.getElementById("btn-start").style.display = "block";
+    document.getElementById("btn-start").innerHTML = "Resume";
+    clearInterval(interval);
+  }
 }
 
 function updateTable() {
@@ -454,13 +501,8 @@ function updateTable() {
       document.getElementById( (activeCell[0]+activeBlock.body[k][0]) + '-' + (activeCell[1]+activeBlock.body[k][1])).style.backgroundColor = activeBlock.color;
       document.getElementById( (activeCell[0]+activeBlock.body[k][0]) + '-' + (activeCell[1]+activeBlock.body[k][1])).style.border = "solid black 1px";
     }
-
   // color cells for placed blocks
-
   }
-  // debug
-  document.getElementById("demo").innerHTML = "<br>Active Cell: " + activeCell + "<br> Active Block: " + activeBlock.name;
-  document.getElementById("demo2").innerHTML = occupiedCells[19];
 }
 
 
@@ -562,10 +604,25 @@ function checkForLineClears() {
 }
 
 function clearLine(row) {
+  // Clear complete row
+  score+= 40;
   var i;
   for (i=0;i<boardWidth;i++) {
     occupiedCells[row][i] = false;
   }
+
+  var tempRow = row;
+  // Move above rows down
+  while(tempRow > 0) {
+    for (i=0;i<boardWidth;i++) {
+      occupiedCells[tempRow][i] = occupiedCells[tempRow-1][i];
+      document.getElementById((tempRow + '-' + i)).style.backgroundColor = document.getElementById(((tempRow-1) + '-' + i)).style.backgroundColor;
+      document.getElementById((tempRow + '-' + i)).style.border = document.getElementById(((tempRow-1) + '-' + i)).style.border;
+    }
+    tempRow--;
+  }
+  // Update score
+  document.getElementById("score").innerHTML = "Score: " + score;
 }
 
 function cementBlock() {
@@ -615,19 +672,35 @@ function move(direction) {
       activeCell[1]++;
     }
   }
-
   updateTable();
 }
 
+function dropBlock() {
+  var droppable = true;
+  var dropToRow = activeCell[0];
+  while (droppable && dropToRow < boardHeight-1) {
+    dropToRow++;
+  }
+  activeCell = [16, activeCell[1]];
+}
+
 function rotate(direction) {
-  // [2,0],[2,1],[1,1],[1,2] to [0,1],[1,1],[1,2],[2,2]
-  if (activeBlock.activeRotation < activeBlock.rotations.length - 1) {
-    activeBlock.activeRotation++;
-  } else {
-    activeBlock.activeRotation = 0;
+  // Clockwise
+  if (direction == 0) {
+    if (activeBlock.activeRotation < activeBlock.rotations.length - 1) {
+      activeBlock.activeRotation++;
+    } else {
+      activeBlock.activeRotation = 0;
+    }
+  // Counterclockwise
+  } else if (direction == 1) {
+    if (activeBlock.activeRotation > 0) {
+      activeBlock.activeRotation--;
+    } else {
+      activeBlock.activeRotation = activeBlock.rotations.length - 1;
+    }
   }
   activeBlock.body = activeBlock.rotations[activeBlock.activeRotation];
-
 }
 /*
 function isOccupied(y, x) {
@@ -642,9 +715,19 @@ function isOccupied(y, x) {
 
 <style>
   body {
+    font-family: Georgia, serif;
     background-color: black;
     color: white;
     text-align: center;
+  }
+
+  #nav {
+    filter: invert(50%);
+    float: right;
+    position: fixed;
+    right: 12px;
+    top: 12px;
+    cursor: pointer;
   }
 
   #content {
@@ -666,39 +749,47 @@ function isOccupied(y, x) {
   }
 
   #board td {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
     border: solid gray 1px;
     background-color: white;
   }
 
   #queue td {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     background-color: white;
   }
 
   #queue {
     position: fixed;
     left: 80vw;
-    top: 67px;
+    top: 120px;
+  }
+
+  button {
+    background: none;
+    color: white;
+    border: solid 2px white;
+    font-size: 32px;
   }
 
   #btn-start {
+    background-color: black;
     position: fixed;
-    left: 45vw;
+    left: 5vw;
     top: 40%;
     font-size: 64px;
   }
 
   #rotate {
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
     font-size: 32px;
   }
 
   #move {
-    width: 120px;
+    width: 100px;
     height: 80px;
     font-size: 32px;
   }
@@ -708,6 +799,108 @@ function isOccupied(y, x) {
     margin-right: auto;
     text-align: center;
   }
+  /* background */
+.bubbles{
+  position:absolute;
+  width:100%;
+  height: 100%;
+  z-index:-1;
+  overflow:hidden;
+  top:0;
+  left:0;
+}
+.bubble{
+  position: absolute;
+  bottom:-100px;
+  width:40px;
+  height: 40px;
+  background:#f1f1f1;
+  border-radius:50%;
+  opacity:0.5;
+  animation: rise 10s infinite ease-in;
+}
+.bubble:nth-child(1){
+  width:40px;
+  height:40px;
+  left:10%;
+  animation-duration:8s;
+}
+.bubble:nth-child(2){
+  width:20px;
+  height:20px;
+  left:20%;
+  animation-duration:5s;
+  animation-delay:1s;
+}
+.bubble:nth-child(3){
+  width:50px;
+  height:50px;
+  left:35%;
+  animation-duration:7s;
+  animation-delay:2s;
+}
+.bubble:nth-child(4){
+  width:80px;
+  height:80px;
+  left:50%;
+  animation-duration:11s;
+  animation-delay:0s;
+}
+.bubble:nth-child(5){
+  width:35px;
+  height:35px;
+  left:55%;
+  animation-duration:6s;
+  animation-delay:1s;
+}
+.bubble:nth-child(6){
+  width:45px;
+  height:45px;
+  left:65%;
+  animation-duration:8s;
+  animation-delay:3s;
+}
+.bubble:nth-child(7){
+  width:90px;
+  height:90px;
+  left:70%;
+  animation-duration:12s;
+  animation-delay:2s;
+}
+.bubble:nth-child(8){
+  width:25px;
+  height:25px;
+  left:80%;
+  animation-duration:6s;
+  animation-delay:2s;
+}
+.bubble:nth-child(9){
+  width:15px;
+  height:15px;
+  left:70%;
+  animation-duration:5s;
+  animation-delay:1s;
+}
+.bubble:nth-child(10){
+  width:90px;
+  height:90px;
+  left:25%;
+  animation-duration:10s;
+  animation-delay:4s;
+}
+@keyframes rise{
+  0%{
+    bottom:-100px;
+    transform:translateX(0);
+  }
+  50%{
+    transform:translate(100px);
+  }
+  100%{
+    bottom:1080px;
+    transform:translateX(-200px);
+  }
+}
 
 </style>
 
