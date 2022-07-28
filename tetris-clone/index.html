@@ -387,7 +387,7 @@
   </div>
 
   <button id="btn-start" onClick="start()">Start</button>
-  <br><br>
+  <br>
   <div id="buttons">
     <button id="rotate" onClick="rotate(0)">⤵</button>
     <button id="move" onClick="move(0)">◄</button>
@@ -405,17 +405,17 @@
 <script>
 /* TO-DO
 - save score to cookies
+- add levels
 - fix drop button
 - add move down button
 - delay timer on ground move or rotate
-- check that movement is legal
 - check that rotations are legal
-- fix rotations showing up in queue
 - center start/resume button
 */
 var boardHeight = 20;
 var boardWidth = 10;
 var activeCell = [-3,3];
+var linesCleared = 0;
 
 var occupiedCells = [[false,false,false,false,false,false,false,false,false,false],
                      [false,false,false,false,false,false,false,false,false,false],
@@ -516,8 +516,8 @@ function updateQueue() {
     for(j=0;j<4;j++) {
       for(k=0;k<4;k++) {
         for(l=0;l<queue[i].body.length;l++) {
-          document.getElementById("q"+i+"-"+queue[i].body[l][0] + "-"+queue[i].body[l][1]).style.backgroundColor = queue[i].color;
-          document.getElementById("q"+i+"-"+queue[i].body[l][0] + "-"+queue[i].body[l][1]).style.border = "solid black 1px";
+          document.getElementById("q"+i+"-"+queue[i].rotations[0][l][0] + "-"+queue[i].rotations[0][l][1]).style.backgroundColor = queue[i].color;
+          document.getElementById("q"+i+"-"+queue[i].rotations[0][l][0] + "-"+queue[i].rotations[0][l][1]).style.border = "solid black 1px";
         }
       }
     }
@@ -605,7 +605,7 @@ function checkForLineClears() {
 
 function clearLine(row) {
   // Clear complete row
-  score+= 40;
+  linesCleared++;
   var i;
   for (i=0;i<boardWidth;i++) {
     occupiedCells[row][i] = false;
@@ -621,8 +621,6 @@ function clearLine(row) {
     }
     tempRow--;
   }
-  // Update score
-  document.getElementById("score").innerHTML = "Score: " + score;
 }
 
 function cementBlock() {
@@ -633,7 +631,12 @@ function cementBlock() {
 }
 
 function dropNextBlock() {
+  if (linesCleared  > 0) {
+    addPoints(linesCleared);
+    linesCleared = 0;
+  }
   activeBlock = queue.shift();
+  rotate(2);
   reserveBlocks = shuffle(reserveBlocks);
   while (reserveBlocks[0] == queue[5]) {
     reserveBlocks = shuffle(reserveBlocks);
@@ -643,6 +646,20 @@ function dropNextBlock() {
   activeCell = [-3,3];
 }
 
+function addPoints(lines) {
+  if (lines == 1) {
+    score+= 40;
+  } else if (lines == 2) {
+    score+= 100;
+  } else if (lines == 3) {
+    score += 300;
+  } else if (lines == 4) {
+    score += 1200;
+  }
+  // Update score
+  document.getElementById("score").innerHTML = "Score: " + score;
+}
+
 function move(direction) {
   var canMove = 0;
   var i;
@@ -650,7 +667,7 @@ function move(direction) {
   if (direction == 0) {
     // check entire body of block to ensure no part can go outside the board
     for (i=0;i<activeBlock.body.length;i++) {
-      if (activeCell[1] + activeBlock.body[i][1] > 0) {
+      if (activeCell[1] + activeBlock.body[i][1] > 0 && !occupiedCells[activeCell[0] + activeBlock.body[i][0]][activeCell[1] + activeBlock.body[i][1]-1]) {
       } else {
         canMove++;
         break;
@@ -662,7 +679,7 @@ function move(direction) {
   } else if (direction == 1) {
     // check entire body of block to ensure no part can go outside the board
     for (i=0;i<activeBlock.body.length;i++) {
-      if (activeCell[1] + activeBlock.body[i][1] < boardWidth - 1) {
+      if (activeCell[1] + activeBlock.body[i][1] < boardWidth - 1 && !occupiedCells[activeCell[0] + activeBlock.body[i][0]][activeCell[1] + activeBlock.body[i][1]+1]) {
       } else {
         canMove++;
         break;
@@ -699,6 +716,10 @@ function rotate(direction) {
     } else {
       activeBlock.activeRotation = activeBlock.rotations.length - 1;
     }
+  }
+  // reset
+  else {
+    activeBlock.activeRotation = 0;
   }
   activeBlock.body = activeBlock.rotations[activeBlock.activeRotation];
 }
@@ -743,11 +764,8 @@ function isOccupied(y, x) {
   table {
     border-collapse: collapse;
     border: solid 2px white;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+    margin-left: 5%;
   }
-
   #board td {
     width: 22px;
     height: 22px;
@@ -770,7 +788,7 @@ function isOccupied(y, x) {
   button {
     background: none;
     color: white;
-    border: solid 2px white;
+    border: solid 1px white;
     font-size: 32px;
   }
 
@@ -783,14 +801,14 @@ function isOccupied(y, x) {
   }
 
   #rotate {
-    width: 72px;
-    height: 72px;
+    width: 64px;
+    height: 60px;
     font-size: 32px;
   }
 
   #move {
     width: 100px;
-    height: 80px;
+    height: 68px;
     font-size: 32px;
   }
 
@@ -901,6 +919,27 @@ function isOccupied(y, x) {
     transform:translateX(-200px);
   }
 }
+
+@media screen and (min-width: 800px) {
+  table {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  #board td {
+    width: 26px;
+    height: 26px;
+    border: solid gray 1px;
+    background-color: white;
+  }
+  #queue td {
+    width: 16px;
+    height: 16px;
+    background-color: white;
+  }
+}
+
 </style>
+
 </body>
 </html>
