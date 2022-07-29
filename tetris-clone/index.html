@@ -404,8 +404,8 @@
 
 <script>
 /* TO-DO
+- add save block functionality
 - save score to cookies
-- add levels
 - fix drop button
 - add move down button
 - delay timer on ground move or rotate
@@ -451,7 +451,8 @@ class block {
 }
 
 var score = 0;
-var level = 0;
+var totalLinesCleared = 0;
+var level = 1;
 
 var squareBlock = new block("Square Block", [[1,1],[1,2],[2,1],[2,2]], "yellow", [[[1,1],[1,2],[2,1],[2,2]]]);
 var sBlock = new block("S Block", [[2,0],[2,1],[1,1],[1,2]], "green", [[[2,0],[2,1],[1,1],[1,2]], [[0,1],[1,1],[1,2],[2,2]]]);
@@ -635,6 +636,9 @@ function dropNextBlock() {
     addPoints(linesCleared);
     linesCleared = 0;
   }
+  while (totalLinesCleared > (level * 10)) {
+    level++;
+  }
   activeBlock = queue.shift();
   rotate(2);
   reserveBlocks = shuffle(reserveBlocks);
@@ -648,14 +652,15 @@ function dropNextBlock() {
 
 function addPoints(lines) {
   if (lines == 1) {
-    score+= 40;
+    score+= 40 * level;
   } else if (lines == 2) {
-    score+= 100;
+    score+= 100 * level;
   } else if (lines == 3) {
-    score += 300;
+    score += 300 * level;
   } else if (lines == 4) {
-    score += 1200;
+    score += 1200 * level;
   }
+  totalLinesCleared += lines;
   // Update score
   document.getElementById("score").innerHTML = "Score: " + score;
 }
