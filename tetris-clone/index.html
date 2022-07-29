@@ -256,6 +256,31 @@
     </table>
   </div>
 
+  <div id="hold">
+    Hold<br><br>
+    <table>
+      <td id="h-0-0"></td>
+      <td id="h-0-1"></td>
+      <td id="h-0-2"></td>
+      <td id="h-0-3"></td>
+      <tr></tr>
+      <td id="h-1-0"></td>
+      <td id="h-1-1"></td>
+      <td id="h-1-2"></td>
+      <td id="h-1-3"></td>
+      <tr></tr>
+      <td id="h-2-0"></td>
+      <td id="h-2-1"></td>
+      <td id="h-2-2"></td>
+      <td id="h-2-3"></td>
+      <tr></tr>
+      <td id="h-3-0"></td>
+      <td id="h-3-1"></td>
+      <td id="h-3-2"></td>
+      <td id="h-3-3"></td>
+    </table>
+  </div>
+
   <div id="queue">
     Up Next<br><br>
     <table>
@@ -393,6 +418,7 @@
     <button id="move" onClick="move(0)">◄</button>
     <button id="move" onClick="move(1)">►</button>
     <button id="rotate" onClick="rotate(1)">⤴</button><br><br>
+    <button id="btn-hold" onClick="hold()">Hold</block>
     <button id="drop" onClick="dropBlock()">Drop</button>
     <button id="pause" onClick="pause()">Pause</button>
   </div>
@@ -404,8 +430,8 @@
 
 <script>
 /* TO-DO
-- add save block functionality
 - save score to cookies
+- speed increase on level increase
 - fix drop button
 - add move down button
 - delay timer on ground move or rotate
@@ -466,6 +492,8 @@ var queue = [squareBlock, sBlock, zBlock, lineBlock, jBlock, tBlock];
 var reserveBlocks = [squareBlock, sBlock, zBlock, lBlock, jBlock, tBlock, lineBlock];
 queue = shuffle(queue);
 
+var heldBlock = null;
+var droppedThisTurn = false;
 var activeBlock = reserveBlocks[0];
 var interval;
 var paused = true;
@@ -632,6 +660,7 @@ function cementBlock() {
 }
 
 function dropNextBlock() {
+  droppedThisTurn = false;
   if (linesCleared  > 0) {
     addPoints(linesCleared);
     linesCleared = 0;
@@ -704,6 +733,40 @@ function dropBlock() {
     dropToRow++;
   }
   activeCell = [16, activeCell[1]];
+}
+
+function hold() {
+  if (!droppedThisTurn) {
+    droppedThisTurn = true;
+    clearHold();
+    var i, j;
+    for(i=0;i<4;i++) {
+      for(j=0;j<activeBlock.body.length;j++) {
+        document.getElementById("h"+"-"+activeBlock.rotations[0][j][0] + "-"+activeBlock.rotations[0][j][1]).style.backgroundColor = activeBlock.color;
+        document.getElementById("h"+"-"+activeBlock.rotations[0][j][0] + "-"+activeBlock.rotations[0][j][1]).style.border = "solid black 1px";
+      }
+    }
+    if (heldBlock == null) {
+      heldBlock = activeBlock;
+      dropNextBlock();
+    } else {
+      var temp = heldBlock;
+      heldBlock = activeBlock;
+      activeBlock = temp;
+      activeCell = [-3, 3];
+    }
+  }
+
+}
+
+function clearHold() {
+  var i, j;
+  for(i=0;i<4;i++) {
+    for(j=0;j<4;j++) {
+      document.getElementById("h"+"-"+i + "-"+j).style.backgroundColor = "white";
+      document.getElementById("h"+"-"+i + "-"+j).style.border = "none";
+    }
+  }
 }
 
 function rotate(direction) {
@@ -788,6 +851,18 @@ function isOccupied(y, x) {
     position: fixed;
     left: 80vw;
     top: 120px;
+  }
+
+  #hold td {
+    width: 8px;
+    height: 8px;
+    background-color: white;
+  }
+
+  #hold {
+    position: fixed;
+    left: 6vw;
+    top: 18px;
   }
 
   button {
@@ -941,6 +1016,12 @@ function isOccupied(y, x) {
     width: 16px;
     height: 16px;
     background-color: white;
+  }
+
+  #hold {
+    position: fixed;
+    left: 25vw;
+    top: 120px;
   }
 }
 
