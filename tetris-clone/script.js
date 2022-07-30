@@ -1,7 +1,6 @@
 /* TO-DO
 - save score to cookies
 - speed increase on level increase
-- fix drop button
 - add move down button
 - delay timer on ground move or rotate
 - check that rotations are legal
@@ -299,9 +298,14 @@ function dropBlock() {
   var droppable = true;
   var dropToRow = activeCell[0];
   while (droppable && dropToRow < boardHeight-1) {
-    dropToRow++;
+
+    if (occupiedCells[activeBlock.body[0][0] + dropToRow][activeBlock.body[0][1] + activeCell[1]]) {
+      droppable = false;
+    } else {
+      dropToRow++;
+    }
   }
-  activeCell = [16, activeCell[1]];
+  activeCell = [dropToRow-4, activeCell[1]];
 }
 
 function hold() {
@@ -318,6 +322,7 @@ function hold() {
     if (heldBlock == null) {
       heldBlock = activeBlock;
       dropNextBlock();
+      droppedThisTurn = true;
     } else {
       var temp = heldBlock;
       heldBlock = activeBlock;
@@ -325,7 +330,6 @@ function hold() {
       activeCell = [-3, 3];
     }
   }
-
 }
 
 function clearHold() {
