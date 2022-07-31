@@ -1,11 +1,13 @@
 /* TO-DO
 - save score to cookies
 - speed increase on level increase
+- fix drop button
 - add move down button
 - delay timer on ground move or rotate
 - check that rotations are legal
 - center start/resume button
 */
+
 var boardHeight = 20;
 var boardWidth = 10;
 var activeCell = [-3,3];
@@ -66,8 +68,28 @@ var activeBlock = reserveBlocks[0];
 var interval;
 var paused = true;
 
+document.addEventListener('keydown', function(e) {
+  if (e.keyCode == 13) {
+    pause();
+  } else if (e.keyCode == 16) {
+    hold();
+  } else if (e.keyCode == 32) {
+    dropBlock();
+  } else if (e.keyCode == 40) {
+    //dropBlock();
+  } else if (e.keyCode == 37) {
+    move(0);
+  } else if (e.keyCode == 38) {
+    rotate(0);
+  } else if (e.keyCode == 39) {
+    move(1);
+  } else {
+    //alert(e.keyCode);
+  }
+});
+
 function start() {
-  document.getElementById("btn-start").style.display = "none";
+  document.getElementById("modal").style.display = "none";
   paused = false;
   interval = setInterval(function(){
     nextTurn();
@@ -76,6 +98,7 @@ function start() {
 
 function pause() {
   if (!paused) {
+    document.getElementById("modal").style.display = "block";
     paused = true;
     document.getElementById("btn-start").style.display = "block";
     document.getElementById("btn-start").innerHTML = "Resume";
@@ -298,14 +321,13 @@ function dropBlock() {
   var droppable = true;
   var dropToRow = activeCell[0];
   while (droppable && dropToRow < boardHeight-1) {
-
-    if (occupiedCells[activeBlock.body[0][0] + dropToRow][activeBlock.body[0][1] + activeCell[1]]) {
+    if (occupiedCells[activeBlock.body[0][0] + dropToRow][activeBlock.body[1][1] + activeCell[1]] || occupiedCells[activeBlock.body[1][0] + dropToRow][activeBlock.body[1][1] + activeCell[1]] || occupiedCells[activeBlock.body[2][0] + dropToRow][activeBlock.body[2][1] + activeCell[1]] || occupiedCells[activeBlock.body[3][0] + dropToRow][activeBlock.body[3][1] + activeCell[1]]) {
       droppable = false;
     } else {
       dropToRow++;
     }
   }
-  activeCell = [dropToRow-4, activeCell[1]];
+  activeCell = [dropToRow-2, activeCell[1]];
 }
 
 function hold() {

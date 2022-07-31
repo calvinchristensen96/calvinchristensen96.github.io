@@ -3,6 +3,7 @@
     background-color: black;
     color: white;
     text-align: center;
+    overflow-y: hidden;
   }
 
   #nav {
@@ -22,6 +23,23 @@
   #head {
     color: white;
     text-align: center;
+  }
+
+  #modal {
+    position: fixed;
+    border: solid white 2px;
+    padding: 24px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    background-color: black;
+  }
+
+  #modal span {
+    font-size: 24px;
+    border: solid white 1px;
+    padding: 4px;
   }
 
   table {
@@ -68,10 +86,6 @@
   }
 
   #btn-start {
-    background-color: black;
-    position: fixed;
-    left: 5vw;
-    top: 40%;
     font-size: 64px;
   }
 
