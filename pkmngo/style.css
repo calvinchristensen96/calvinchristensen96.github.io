@@ -1,0 +1,254 @@
+body, * {
+	margin: 0 auto;
+	overflow-y: hidden;
+}
+
+#content {
+	background-color: #eee;
+	height: 100vh;
+	text-align: center;
+	background-color: #ffffff;
+	background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c1c1c1' fill-opacity='0.67' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+#menu {
+	position: fixed;
+	right: 0px;
+	margin: 24px;
+	cursor: pointer;
+	z-index: 30;
+}
+
+#overlay {
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	margin: 0px;
+	background-color: black;
+	opacity: 0.5;
+	z-index: 29;
+	display: none;
+}
+
+#pokemon {
+	font-size: 300%;
+	margin-left: 24px;
+	margin-right: 24px;
+	margin-bottom: 20%;
+}
+
+#input, #custom-cp {
+	max-width: 480px;
+	min-width: 50%;
+	margin-left: 36px;
+	margin-right: 36px;
+	font-size: 36px;
+}
+
+#nav {
+	opacity: 0;
+	color: white;
+	text-align: center;
+	transition-duration: 0.3s;
+	margin-top: 24px;
+}
+
+#restart {
+	position: fixed;
+	left: 12px;
+	font-size: 72px;
+	border-color: white;
+	border: none;
+	text-decoration: none;
+	width: 108px;
+	height: 108px;
+	border-radius: 50%;
+	margin: 0px;
+	padding: 0px;
+	color: white;
+	background-color: transparent;
+	text-shadow: 4px 4px black;
+	z-index: 5;
+}
+
+#info {
+	position: fixed;
+	right: 12px;
+	top: 12px;
+	border-color: white;
+	border: none;
+	text-decoration: none;
+	margin: 24px;
+	padding: 0px;
+	color: black;
+	background-color: transparent;
+	cursor: pointer;
+	width: 48px;
+	z-index: 20;
+}
+
+#selected-mon {
+	font-size: 72px;
+	text-align: left;
+	padding-left: 124px;
+	padding-top: 12px;
+	text-shadow: 4px 4px black;
+	position: relative;
+	z-index: 4;
+}
+
+#maxCp {
+	font-size: 32px;
+	text-align: left;
+	padding-left: 124px;
+	text-shadow: 4px 4px black;
+	position: relative;
+	z-index: 4;
+}
+
+#overview {
+	height: 100vh;
+	transition-duration: 0.3s;
+}
+
+#table-div {
+	background-color: white;
+	border-radius: 24px 0px 0px 0px;
+	height: 67vh;
+	overflow-y: overlay;
+	z-index: 24;
+}
+
+table {
+	font-size: 24px;
+}
+
+#th-level {
+	margin-right: 24px;
+}
+
+#nav img {
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+	float: center;
+	z-index: 1;
+}
+
+#settings {
+	position: absolute;
+	top: 25vh;
+	right: 0px;
+	text-align: left;
+	font-size: 24px;
+	width: 164px;
+	color: white;
+	text-shadow: 4px 4px black;
+	display: none;
+}
+
+#settings input {
+	width: 72px;
+	float: right;
+	background-color: none;
+}
+
+#formes {
+	display: none;
+}
+
+#image {
+	position: absolute;
+	float: center;
+	width: 96vw;
+	height: 33vh;
+	margin-left: 2vw;
+	margin-right: 2vw;
+	top: 12px;
+	pointer-events: none;
+}
+
+#great-table-content, #ultra-table-content, #custom-table-content {
+	font-size: 28px;
+}
+
+.tab {
+	overflow: hidden;
+	border-bottom: 1px solid #ccc;
+	background-color: white;
+}
+
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 28px;
+	width: 33.33%;
+}
+
+.tab button:hover {
+	background-color: #ddd;
+}
+
+.tab button.active {
+	background-color: #ccc;
+}
+
+.tabcontent {
+	text-align: center;
+	padding: 6px 12px;
+	border-top: none;
+}
+
+#custom, #ultra{
+	display: none;
+}
+
+th {
+	cursor: pointer;
+}
+
+#footer {
+	background-color: #242424;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	color: white;
+	height: 48px;
+}
+
+#footer ul {
+	padding: 0px;
+}
+
+#footer li {
+	width: 33%;
+	float: left;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	cursor: pointer;
+}
+
+#modal {
+	position: fixed;
+	top: 100px;
+	width: 75%;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 12px;
+	background-color: white;
+	border: solid black 4px;
+	text-align: left;
+	display: none;
+	z-index: 30;
+}
+
+#modal-close {
+	position: absolute;
+	right: 12px;
+	background-color: white;
+}
