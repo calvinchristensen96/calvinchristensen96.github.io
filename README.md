@@ -4,7 +4,7 @@ View projects that are in a completed state. These are functional, but I may mak
 ### [Chordy](https://calvinchristensen96.github.io/chordy/index.html)  
 - An online chord dictionary. This web application helps the user identify musical chords.
 
-### [Pokémon Go: Combat Point Maximizer](https://calvinchristensen96.github.io/pkmngo/index.html)  
+### [Pokémon Go: Combat Power Maximizer](https://calvinchristensen96.github.io/pkmngo/index.html)  
 - Web application to be used alongside the mobile video-game Pokémon Go, by Niantic. This application provides detailed stats to help the user identify which ivs a selected Pokemon needs to have in order to maximize it's CP.
 
 ### [Golden Leaf Cafe](https://calvinchristensen96.github.io/GoldenLeafCafe/index.html)  
