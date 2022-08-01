@@ -1,13 +1,9 @@
 /* TO-DO
 - save score to cookies
 - speed increase on level increase
-- fix drop button
-- add move down button
 - delay timer on ground move or rotate
 - check that rotations are legal
-- center start/resume button
 */
-
 var boardHeight = 20;
 var boardWidth = 10;
 var activeCell = [-3,3];
@@ -64,19 +60,29 @@ queue = shuffle(queue);
 
 var heldBlock = null;
 var droppedThisTurn = false;
+var speedUp = 1;
 var activeBlock = reserveBlocks[0];
 var interval;
 var paused = true;
 
 document.addEventListener('keydown', function(e) {
   if (e.keyCode == 13) {
-    pause();
+    if (paused) {
+      start();
+    } else {
+      pause();
+    }
   } else if (e.keyCode == 16) {
     hold();
   } else if (e.keyCode == 32) {
     dropBlock();
   } else if (e.keyCode == 40) {
-    //dropBlock();
+    if (speedUp != 4) {
+      clearInterval(interval);
+      nextTurn();
+      speedUp = 4;
+      start();
+    }
   } else if (e.keyCode == 37) {
     move(0);
   } else if (e.keyCode == 38) {
@@ -88,12 +94,22 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+
+document.addEventListener('keyup', function(e) {
+  if (e.keyCode == 40) {
+    if (speedUp != 1) {
+      clearInterval(interval);
+      speedUp = 1;
+      start();
+    }
+  }
+});
 function start() {
   document.getElementById("modal").style.display = "none";
   paused = false;
   interval = setInterval(function(){
     nextTurn();
-  }, 200);
+  }, 200 / speedUp);
 }
 
 function pause() {
@@ -320,7 +336,7 @@ function move(direction) {
 function dropBlock() {
   var droppable = true;
   var dropToRow = activeCell[0];
-  while (droppable && dropToRow < boardHeight-1) {
+  while (droppable && dropToRow < boardHeight-2) {
     if (occupiedCells[activeBlock.body[0][0] + dropToRow][activeBlock.body[1][1] + activeCell[1]] || occupiedCells[activeBlock.body[1][0] + dropToRow][activeBlock.body[1][1] + activeCell[1]] || occupiedCells[activeBlock.body[2][0] + dropToRow][activeBlock.body[2][1] + activeCell[1]] || occupiedCells[activeBlock.body[3][0] + dropToRow][activeBlock.body[3][1] + activeCell[1]]) {
       droppable = false;
     } else {
