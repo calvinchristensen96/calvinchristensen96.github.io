@@ -1,8 +1,6 @@
 /* TO-DO
-- save score to cookies
-- speed increase on level increase
-- delay timer on ground move or rotate
-- check that rotations are legal
+Change queue logic to reduce duplicate blocks
+Add game over screen on loss
 */
 var boardHeight = 20;
 var boardWidth = 10;
@@ -110,6 +108,36 @@ function start() {
   interval = setInterval(function(){
     nextTurn();
   }, 200 / speedUp);
+}
+
+function resetGame() {
+   occupiedCells = [[false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false],
+                    [false,false,false,false,false,false,false,false,false,false]];
+   score = 0;
+   queue = shuffle(queue);
+   heldBlock = null;
+   clearHold();
+   pause();
+   document.getElementById("btn-start").innerHTML = "Start";
+   document.getElementById("score").innerHTML = "Score: " + score;
 }
 
 function pause() {
@@ -267,6 +295,9 @@ function cementBlock() {
 }
 
 function dropNextBlock() {
+  if (occupiedCells[0][3] || occupiedCells[0][4]) {
+    gameOver();
+  }
   droppedThisTurn = false;
   if (linesCleared  > 0) {
     addPoints(linesCleared);
@@ -278,10 +309,12 @@ function dropNextBlock() {
   activeBlock = queue.shift();
   rotate(2);
   reserveBlocks = shuffle(reserveBlocks);
-  while (reserveBlocks[0] == queue[5]) {
-    reserveBlocks = shuffle(reserveBlocks);
+  var i=0;
+  var lastThree = [queue[queue.length-1],queue[queue.length-2],queue[queue.length-3]];
+  while (lastThree.indexOf(reserveBlocks[i]) > -1) {
+    i++;
   }
-  queue.push(reserveBlocks[0]);
+  queue.push(reserveBlocks[i]);
   updateQueue();
   activeCell = [-3,3];
 }
@@ -299,6 +332,12 @@ function addPoints(lines) {
   totalLinesCleared += lines;
   // Update score
   document.getElementById("score").innerHTML = "Score: " + score;
+}
+
+function gameOver() {
+  clearInterval(interval);
+  alert("Game Over\n\nFinal Score: " + score);
+  resetGame();
 }
 
 function move(direction) {
@@ -384,6 +423,7 @@ function rotate(direction) {
   // Clockwise
   if (direction == 0) {
     if (activeBlock.activeRotation < activeBlock.rotations.length - 1) {
+
       activeBlock.activeRotation++;
     } else {
       activeBlock.activeRotation = 0;
