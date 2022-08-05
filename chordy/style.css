@@ -12,11 +12,11 @@ body {
 }
 #content {
 	min-height: 100vh;
-	min-width: 870px;
+	min-width: 500px;
 }
 #logo img {
-	width: 180px;
-	height: 180px;
+	width: 100px;
+	height: 100px;
 }
 h2 {
 	font-size: 18px;
@@ -40,8 +40,8 @@ button:hover {
 }
 .key {
 	border: solid 2px black;
-	padding-left: 16px;
-	padding-right: 16px;
+	padding-left: 12px;
+	padding-right: 12px;
 	padding-top: 100px;
 	padding-bottom: 8px;
 	cursor: pointer;
@@ -59,10 +59,10 @@ button:hover {
 .b-key {
 	background-color: #242424;
 	position: absolute;
-	width: 24px;
+	width: 18px;
 	padding-top: 82px;
-	top: 250px;
-	margin-left: -16px;
+	top: 170px;
+	margin-left: -10px;
 	border: solid black 2px;
 	color: black;
 	cursor: pointer;
@@ -90,9 +90,9 @@ input {
 	margin-right: 24px;
 }
 #left button {
-	font-size: 24px;
-	width: 120px;
-	height: 60px;
+	font-size: 16px;
+	width: 80px;
+	height: 40px;
 }
 #result {
 	position: relative;
@@ -104,12 +104,12 @@ input {
 	padding: 48px;
 }
 #section3 h2 {
-	font-size: 48px;
+	font-size: 18px;
 	margin-bottom: 12px;
 }
 #section3 h3 {
-	font-size: 24px;
-	padding: 24px;
+	font-size: 16px;
+	padding: 36px;
 }
 td {
 	border-top: 2px solid black;
@@ -143,7 +143,7 @@ table {
 	color: white;
 	padding-top: 68px;
 	padding-bottom: 68px;
-	font-size: 24px;
+	font-size: 16px;
 }
 a {
 	text-decoration: underline;
@@ -159,7 +159,7 @@ a:hover {
 }
 #tool {
 	margin-bottom: 96px;
-	font-size: 24px;
+	font-size: 20px;
 	width: 80%;
 	margin-left: 10%;
 	margin-right: 10%;
@@ -169,9 +169,9 @@ a:hover {
 	color: black;
 }
 #tool p{
-	width: 30%;
-	margin-left: 10%;
-	margin-right: 10%;
+	width: 40%;
+	margin-left: 5%;
+	margin-right: 5%;
 	float: left;
 }
 #active {
