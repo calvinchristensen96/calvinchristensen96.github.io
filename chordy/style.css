@@ -11,6 +11,7 @@ body {
 	margin: 0px;
 }
 #content {
+	min-height: 100vh;
 	min-width: 870px;
 }
 #logo img {
