@@ -28,7 +28,7 @@
   #modal {
     position: fixed;
     border: solid white 2px;
-    padding: 24px;
+    padding: 32px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -42,14 +42,22 @@
     padding: 4px;
   }
 
+  #modal button {
+    text-align: center;
+  }
+
+  #start {
+    text-align: center;
+  }
+
   table {
     border-collapse: collapse;
     border: solid 2px white;
     margin-left: 5%;
   }
   #board td {
-    width: 22px;
-    height: 22px;
+    width: 16px;
+    height: 16px;
     border: solid gray 1px;
     background-color: white;
   }

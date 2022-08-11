@@ -1,7 +1,3 @@
-/* TO-DO
-Change queue logic to reduce duplicate blocks
-Add game over screen on loss
-*/
 var boardHeight = 20;
 var boardWidth = 10;
 var activeCell = [-3,3];
@@ -52,7 +48,7 @@ var jBlock = new block("J Block", [[1,0],[2,0],[2,1],[2,2]], "blue", [[[1,0],[2,
 var tBlock = new block("T Block", [[2,1],[1,1],[1,2],[1,0]], "purple", [[[2,1],[1,1],[1,2],[1,0]],[[0,2],[1,1],[1,2],[2,2]],[[2,0],[1,1],[2,1],[2,2]],[[0,1],[1,1],[1,2],[2,1]]]);
 var lineBlock = new block("Line Block", [[1,3],[1,2],[1,1],[1,0]], "cyan", [[[1,3],[1,2],[1,1],[1,0]], [[0,1],[1,1],[2,1],[3,1]]]);
 
-var queue = [squareBlock, sBlock, zBlock, lineBlock, jBlock, tBlock];
+var queue = [tBlock, sBlock, zBlock, lineBlock, jBlock, lBlock];
 var reserveBlocks = [squareBlock, sBlock, zBlock, lBlock, jBlock, tBlock, lineBlock];
 queue = shuffle(queue);
 
@@ -442,12 +438,3 @@ function rotate(direction) {
   }
   activeBlock.body = activeBlock.rotations[activeBlock.activeRotation];
 }
-/*
-function isOccupied(y, x) {
-  if (document.getElementById(y + "-" + x).style.backgroundColor == "white" ) {
-      return false;
-  } else {
-    return true;
-  }
-}
-*/
