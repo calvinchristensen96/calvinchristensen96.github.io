@@ -1,0 +1,82 @@
+
+:root {
+	--c1: #060CE9;
+	--c2: #FFD700;
+}
+body, * {
+  margin: 0px;
+  background-color: var(--c1);
+  color: white;
+  font-family: Impact;
+	text-shadow: black 4px 4px;
+}
+
+#clue-modal {
+	position: fixed;
+	font-size: 32px;
+	border: solid black 2px;
+	text-align: center;
+	width: 70%;
+	height: 90vh;
+	margin-left: 5%;
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 36px;
+	display: none;
+}
+
+#buttons {
+	position:	absolute;
+	bottom: 0px;
+}
+
+#category {
+  text-align: center;
+  border: solid black 2px;
+	margin: 12px;
+	margin-bottom: 24px;
+	padding: 6px;
+}
+
+#category table {
+  width: 100%;
+}
+
+#category td {
+	cursor: pointer;
+  border: solid black 2px;
+	color: var(--c2);
+	padding: 4px;
+}
+
+#scores {
+	text-align: center;
+}
+
+.player {
+	width: 25%;
+	display: inline-block;
+}
+
+@media only screen and (min-width: 1100px) {
+	#category {
+		width: 10%;
+		float: left;
+	  text-align: center;
+	  border: solid black 2px;
+		margin: 12px;
+		margin-bottom: 24px;
+		padding: 6px;
+	}
+
+	#category td {
+		cursor: pointer;
+	  border: solid black 2px;
+		color: var(--c2);
+		padding: 4px;
+	}
+
+	.break {
+		display: inline-block;
+	}
+}

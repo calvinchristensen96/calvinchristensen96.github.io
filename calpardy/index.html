@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1">
+  <meta name="author" content="Calvin Christensen">
+  <link rel="stylesheet" href="style.css">
+  <title>Calpardy!</title>
+</head>
+<body>
+  <div id="clue-modal">
+    <p id="question"></p>
+    <span id="buttons">
+      <button onClick="hideClue()">Close</button>
+      <button onClick="showAnswer()">Reveal Answer</button>
+    </span>
+  </div>
+  <div id="category">
+    <h1 id="cat0"></h1>
+    <table>
+      <td onClick="showClue(0)">$200</td><span class="break"><tr></span><td onClick="showClue(1)">$400</td><span class="break"><tr></span><td onClick="showClue(2)">$600</td><span class="break"><tr></span><td onClick="showClue(3)">$800</td><span class="break"><tr></span><td onClick="showClue(4)">$1000</td>
+    </table>
+  </div>
+  <div id="category">
+    <h1>cat1</h1>
+    <table>
+      <td>$200</td><td>$400</td><td>$600</td><td>$800</td><td>$1000</td>
+    </table>
+  </div>
+  <div id="category">
+    <h1>cat2</h1>
+    <table>
+      <td>$200</td><td>$400</td><td>$600</td><td>$800</td><td>$1000</td>
+    </table>
+  </div>
+  <div id="category">
+    <h1>cat3</h1>
+    <table>
+      <td>$200</td><td>$400</td><td>$600</td><td>$800</td><td>$1000</td>
+    </table>
+  </div>
+  <div id="category">
+    <h1>cat4</h1>
+    <table>
+      <td>$200</td><td>$400</td><td>$600</td><td>$800</td><td>$1000</td>
+    </table>
+  </div>
+  <div id="category">
+    <h1>cat5</h1>
+    <table>
+      <td>$200</td><td>$400</td><td>$600</td><td>$800</td><td>$1000</td>
+    </table>
+  </div>
+
+  <div id="scores">
+    <div id="player0" class="player">
+      <p id="name0" class="name">
+        Player0
+      </p>
+      <p id="score0" class="score">
+        <span id="minus">-</span>
+        $0
+        <span id="plus">+</span>
+      </p>
+    </div>
+
+    <div id="player1" class="player">
+      <p id="name1" class="name">
+        Player1
+      </p>
+      <p id="score1" class="score">
+        <span id="minus">-</span>
+        $0
+        <span id="plus">+</span>
+      </p>
+    </div>
+
+    <div id="player2" class="player">
+      <p id="name2" class="name">
+        Player2
+      </p>
+        <span id="minus">-</span>
+        $0
+        <span id="plus">+</span>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+<script type="text/javascript" src="script.js"></script>
