@@ -6,6 +6,8 @@
       <meta name="author" content="Calvin Christensen">
       <title>Calvin Christensen</title>
       <link href="https://fonts.googleapis.com/css?family=Spectral&display=swap" rel="stylesheet">
+
+
 <style>
 
 * {
@@ -37,7 +39,10 @@ body {
 #nav-menu li {
   margin-bottom: 24px;
   margin-top: 24px;
+}
 
+#nav-menu a {
+  color: black;
 }
 
 #nav {
@@ -72,17 +77,17 @@ body {
 }
 
 #header {
-  background-image: url("images/background.png");
+  background-image: url("background.png");
   background-size: 80%, 80%;
   background-position: center;
   background-repeat: no-repeat;
-  font-size: 11vw;
+  font-size: 9vw;
   line-height: 1.4;
   margin-bottom: 100px;
 }
 
 #header p {
-  margin-left: 6vw;
+  margin-left: 13vw;
 }
 
 #header span {
@@ -322,7 +327,9 @@ ul span, #footer p span {
     display: none;
   }
 }
+
 </style>
+
 </head>
 <body>
   <div onclick="toggleNav(1)" id="dim"></div>
@@ -405,7 +412,7 @@ ul span, #footer p span {
     <div class="project" id="pkmngo">
       <img src="images/pokemon-preview.png">
       <div class="project-title">
-        Pokémon Go: Combat Point Maximizer
+        Pokémon Go: CP Maximizer
       </div>
       <div class="project-summary">
         A web application I created to be used alongside the mobile video-game Pokemon Go, by Niantic. This application provides detailed stats to help the user identify which individual values a selected Pokemon needs to have in order to maximize it's level. *I am not affiliated with Niantic Inc., The Pokemon Company, or Nintendo.
@@ -455,8 +462,11 @@ ul span, #footer p span {
     </div>
     <p>Calvin Christensen&nbsp&nbsp&nbsp<span><br></span>(608)931-3991&nbsp&nbsp&nbsp<span><br></span>calvinchristensen96@gmail.com</p>
   </div>
-</div>
-	  
+  </div>
+
+
+
+
 <script>
 var navActive = false;
 function toggleNav(val) {
