@@ -6,8 +6,6 @@
       <meta name="author" content="Calvin Christensen">
       <title>Calvin Christensen</title>
       <link href="https://fonts.googleapis.com/css?family=Spectral&display=swap" rel="stylesheet">
-
-
 <style>
 
 * {
@@ -16,148 +14,165 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Spectral', serif;
+  margin: 0px;
+  line-height: 2;
+  font-size: 18px;
+}
+
+#nav-menu {
+  position: fixed;
+  top: -212px;
+  transition-duration: 0.3s;
+  background-color: white;
+  width: 100%;
+  z-index: 9;
+  text-align: center;
+}
+
+#nav-menu ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+#nav-menu li {
+  margin-bottom: 24px;
+  margin-top: 24px;
+
+}
+
+#nav {
+  display: none;
+}
+
+#nav a {
   color: black;
-  line-height: 48px;
-  font-size: 20px;
 }
 
-.section1 {
-  width: 100%;
-  padding-bottom: 128px;
-  padding-top: 128px;
-  background-image: url("https://calvinchristensen96.github.io/images/background.png");
-	background-repeat: repeat;
-  margin-left: 0px;
-  margin-right: 0px;
+#dim {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  opacity: .5;
+  transition-duration: 0.3s;
+  top: 0;
+  z-index: 1;
+  visibility: hidden;
+}
+
+#navbar {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+}
+
+#navbar img {
+  cursor: pointer;
+}
+
+#header {
+  background-image: url("background.png");
+  background-size: 80%, 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-size: 11vw;
+  line-height: 1.4;
+  margin-bottom: 100px;
+}
+
+#header p {
+  margin-left: 6vw;
+}
+
+#header span {
+  margin-right: 7vw;
+}
+
+hr {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.section {
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-top: 84px;
+  padding-bottom: 84px;
+}
+
+#portfolio {
+  background-color: #323232;
   color: white;
-  padding-left: 5%;
-  padding-right: 5%;
-  margin-bottom: 120px;
 }
 
-p {
-  color: #777;
+.project {
+  margin-bottom: 280px;
+  margin-top: 108px;
 }
 
-.me img {
-  width: 120px;
-  height: auto;
-  border-radius: 50%;
-  float: left;
-  margin-right: 2.5%;
-  margin-bottom: 0px;
+#pkmngo {
+  margin-bottom: 108px;
 }
 
-.section1 h1 {
-  margin-bottom: 0px;
-  margin-top: 20px;
+.project img {
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  filter: opacity(50%) drop-shadow(16px 16px 16px black);
+  margin-bottom: -12px;
 }
 
-.section1 h2 {
-  margin-top: 0px;
+.project-title {
+  position: absolute;
+  background-color: orange;
+  padding: 6px;
+  margin-top: -48px;
+  left: 10vw;
+  text-shadow: 1px 1px black;
 }
 
-.links img {
-  height: 32px;
-  filter: invert();
-  cursor: pointer;
-}
-
-.links a {
-  color: white;
-  cursor: pointer;
-  border:solid white 2px;
-  padding: 16px;
-  text-decoration: none;
-}
-
-.links a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.section2, .section3, .section4 {
-  margin: 5%;
-  margin-bottom: 240px;
-}
-
-.section2 p {
-  font-size: 24px;
-  line-height: 48px;
-}
-
-#project {
-  margin-bottom: 180px;
-}
-
-#project h1 {
-  text-decoration: underline;
-}
-
-#project img {
-  cursor: pointer;
-  width: 90%;
-  max-width: 550px;
+.project-summary {
+  background-color: white;
+  color: black;
+  padding: 18px;
   filter: drop-shadow(16px 16px 16px black);
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 36px;
 }
 
-#project p {
-  margin-top: 36px;
+.buttons {
+  margin-top: 16px;
+  text-align: right;
 }
 
-li {
+.buttons a {
   text-decoration: none;
-  display: inline-block;
-  margin: 24px;
-  float: right;
-}
-
-h1, h2 {
-  font-family: 'Spectral', serif;
-}
-
-.resume {
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-.resume hr {
-  border-color: black;
-}
-
-#form {
-	margin: 12px;
-}
-
-input {
-	width: 240px;
-	font-size: 16px;
-	padding: 8px;
-	margin-bottom: 36px;
-  border: black solid 1px;
-}
-
-textarea {
-  width: 100%;
-  max-width: 100%;
-  border: black solid 1px;
-}
-
-form button {
-  cursor: pointer;
+  color: black;
+  margin-left: 12px;
   border: solid black 2px;
   padding: 8px;
-  font-size: 16px;
-  background-color: white;
 }
 
-form button:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+#contact input, #contact textarea {
+  max-width: 100%;
+  min-width: 100%;
+  font-size: 18px;
+  line-height: 2;
+  margin-bottom: 24px;
+  padding: 6px;
+}
+
+#send {
+  text-align: right;
+}
+
+#contact button {
+  text-decoration: none;
+  color: black;
+  border: solid black 2px;
+  padding: 8px;
+  font-size: 18px;
+  background-color: white;
+  cursor: pointer;
 }
 
 #footer {
@@ -187,6 +202,7 @@ form button:hover {
   text-decoration: none;
   text-decoration: bold;
   font-size: 18px;
+  margin-right: 12px;
 }
 
 #links a:hover {
@@ -207,149 +223,257 @@ form button:hover {
   margin-right: 12px;
 }
 
+#github img {
+  width: 20px;
+  margin-left: -2px;
+}
+
 ul span, #footer p span {
   display: inline;
 }
 
-@media only screen and (min-width: 0px) {
-  .section1 {
-    text-align: center;
-  }
-
-  .me img {
-    width: 30%;
-    margin-right: 35%;
-    margin-left: 35%;
-    margin-bottom: 36px;
-  }
-
-  li {
-    float: none;
-  }
-
-  ul {
-    margin: 0px;
-    padding: 0px;
-  }
+#footer p {
+  color: gray;
 }
 
-@media only screen and (min-width: 1100px) {
-
-  .section1 {
-    text-align: left;
+@media only screen and (min-width: 840px) {
+  #nav-menu {
+    display: none;
   }
 
-  .me img {
-    width: 120px;
-    height: auto;
-    border-radius: 50%;
-    float: left;
-    margin-right: 2.5%;
-    margin-left: 2.5%;
+  #dim {
+    display: none;
   }
 
-  li {
-    text-decoration: none;
-    display: inline-block;
-    margin: 24px;
-    float: right;
+  #navbar {
+    display: none;
+  }
+
+  #nav {
+    display: block;
+    position: fixed;
+    text-align: right;
+    width: 90vw;
+    right: 15vw;
+    top: 24px;
+    z-index: 10;
+  }
+
+  #nav a {
+    margin-left: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  #header {
+    font-size: 6vw;
+    background-size: 60%, 60%;
+  }
+
+  #header p {
+    margin-left: 24vw;
+  }
+
+  #header span {
+    margin-right: 5.7vw;
+  }
+
+  hr {
+    margin-left: 15vw;
+    margin-right: 15vw;
+  }
+
+  .section {
+    padding-left: 15vw;
+    padding-right: 15vw;
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+
+  .project img {
+    width: 60%;
+    margin-right: 40%;
+    margin-left: 0px;
+    filter: opacity(50%) drop-shadow(16px 16px 16px black);
+    margin-bottom: -12px;
+  }
+
+  .project-title {
+    position: absolute;
+    background-color: orange;
+    padding: 6px;
+    margin-top: -248px;
+    left: 45vw;
+    text-shadow: 1px 1px black;
+  }
+
+  .project-summary {
+    background-color: white;
+    color: black;
+    padding: 18px;
+    filter: drop-shadow(16px 16px 16px black);
+    width: 60%;
+    margin-left: 40%;
+    margin-top: -200px;
+    margin-bottom: 400px;
   }
 
   ul span, #footer p span {
     display: none;
   }
 }
-
 </style>
-
 </head>
-  <body>
-    <div class="section1">
-      <div class="me">
-        <img src="images/me.jpg">
+<body>
+  <div onclick="toggleNav(1)" id="dim"></div>
+  <div id="nav-menu">
+    <ul>
+      <li><a href="#about" onclick="toggleNav(1)">About</a></li>
+      <li><a href="#portfolio" onclick="toggleNav(1)">Projects</a></li>
+      <li><a href="#contact" onclick="toggleNav(1)">Contact</a></li>
+    </ul>
+  </div>
+
+  <div id="navbar">
+    <img onclick="toggleNav()" src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/pkmngo/menu.png">
+  </div>
+  <div id="nav">
+    <a href="#about">About</a>
+    <a href="#portfolio">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div id="header">
+    <p>
+      Calvin<br>
+      <span></span>Christensen<br>
+      <span></span><span></span>Web Developer<br>
+    </p>
+  </div>
+  <hr>
+  <div class="section" id="about">
+    <h1>About</h1>
+    <p>
+      Hi, I'm Calvin. I'm a Web Developer based out of Wisconsin, USA. I have professional experience in HTML, CSS, PHP, SQL, Visual Basic, and JavaScript including JQuery, as well as working knowledge of React, Java, and Python. Please scroll down to see some of my most recent work, look at my resume to see my relevant work history, or visit my GitHub to see source code.
+    </p>
+  </div>
+
+  <div class="section" id="portfolio">
+    <h1>Projects</h1>
+    <div class="project" id="golden-leaf">
+      <img src="images/goldenleaf-preview.png">
+      <div class="project-title">
+        Golden Leaf Cafe
       </div>
-      <h1>Calvin Christensen</h1>
-      <h2>Web Developer</h2>
-      <ul class="links">
-        <li><a href="https://drive.google.com/file/d/13En3uB-taY0PpDlQ_Ht-ReyAZ21Ak8F_/view?usp=sharing" target="_blank">Resume</a></li><span><br></span>
-        <li><a href="https://github.com/calvinchristensen96" target="_blank">GitHub</a></li><span><br></span>
-        <li><a href="https://www.linkedin.com/in/calvin-christensen-075026172/" target="_blank">LinkedIn</a></li>
+      <div class="project-summary">
+        The Golden Leaf Cafe is a coffeeshop in Menomonie, Wisconsin. I designed and developed the front-end and back-end of their commercial website. This site consists 6 pages including an interactive menu and links to an online ordering platform.<br><br>
+        The website was active from March 2020 until January 2022. An archive of my work is available on my Github.
+        <div class="buttons">
+          <a href="https://calvinchristensen96.github.io/GoldenLeafCafe/index.html">Visit Site</a>
+          <a href="https://github.com/calvinchristensen96/calvinchristensen96.github.io/tree/master/GoldenLeafCafe">View Code</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project" id="chordy">
+      <img src="images/chordy-preview.png">
+      <div class="project-title">
+        Chordy
+      </div>
+      <div class="project-summary">
+        Chordy is a web application I developed to help identify musical chords. This chord dictionary includes two pages: one which gives visual representations of how to play the chords on piano, and the other which allows the user to lookup the name of a chord by selecting the notes which are played.
+        <div class="buttons">
+          <a href="https://calvinchristensen96.github.io/chordy/index.html">Visit Site</a>
+          <a href="https://github.com/calvinchristensen96/calvinchristensen96.github.io/tree/master/chordy">View Code</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project" id="tetris-clone">
+      <img src="images/tetris-preview.png">
+      <div class="project-title">
+        Tetris Clone
+      </div>
+      <div class="project-summary">
+        Tetris-Clone is my take on the puzzle game Tetris. I wrote this game in JavaScript and it can be played in the browser using keyboard controls, or on mobile devices using on-screen buttons. *I am not affiliated with The Tetris Company, Inc.
+        <div class="buttons">
+          <a href="https://calvinchristensen96.github.io/tetris-clone/index.html">Visit Site</a>
+          <a href="https://github.com/calvinchristensen96/calvinchristensen96.github.io/tree/master/tetris-clone">View Code</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project" id="pkmngo">
+      <img src="images/pokemon-preview.png">
+      <div class="project-title">
+        Pokémon Go: Combat Point Maximizer
+      </div>
+      <div class="project-summary">
+        A web application I created to be used alongside the mobile video-game Pokemon Go, by Niantic. This application provides detailed stats to help the user identify which individual values a selected Pokemon needs to have in order to maximize it's level. *I am not affiliated with Niantic Inc., The Pokemon Company, or Nintendo.
+        <div class="buttons">
+          <a href="https://calvinchristensen96.github.io/pkmngo/index.html">Visit Site</a>
+          <a href="https://github.com/calvinchristensen96/calvinchristensen96.github.io/tree/master/pkmngo">View Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <h1>Contact</h1>
+    <form
+      action="https://formspree.io/f/mwkyokwp"
+      method="POST"
+    >
+      <label>
+        <input type="name" name="name" placeholder="Name">
+      </label><br>
+      <label>
+        <input type="email" name="email" placeholder="Email">
+      </label><br>
+      <label>
+        <textarea name="message" placeholder="Message"></textarea>
+      </label>
+      <div id="send">
+        <button type="submit">Send</button>
+      </div>
+    </form>
+  </div>
+
+
+  <div id="footer">
+    <div id="socials">
+        <span id="email"><a href="mailto:calvinchristensen96@gmail.com"><img src="images/email.png"></a></span>
+        <span id="linkedin"><a href="https://www.linkedin.com/in/calvin-christensen-075026172/" target="_blank"><img src="images/linkedin.png"></a></span>
+        <span id="github"><a href="https://github.com/calvinchristensen96" target="_blank"><img src="images/GitHub-Mark-120px-plus.png"></a></span>
+    </div>
+    <div id="links">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
-
-
-    <div class="section2" id="about">
-      <p>Hi, I'm Calvin. I'm a Web Developer based out of Wisconsin, USA. I have professional experience in HTML, CSS, PHP, SQL, Visual Basic, and JavaScript including JQuery, as well as working knowledge of React, Java, and Python. Please scroll down to see some of my most recent work, look at my resume to see my relevant work history, or visit my GitHub to see source code.</p>
-    </div>
-
-    <div class="section3" id="portfolio">
-      <div id="project">
-        <h1>Golden Leaf Cafe</h1>
-        <p>The Golden Leaf Cafe is a coffeeshop in Menomonie, Wisconsin. I designed and developed the front-end and back-end of their commercial website. This site consists 6 pages including an interactive menu and links to an online ordering platform. The website was active from March 2020 until January 2022. An archive of my work is available on my Github.</p>
-        <a href="https://calvinchristensen96.github.io/GoldenLeafCafe/index.html" target="_blank"><img src="images/goldenleaf-preview.png"></a>
-      </div>
-      <div id="project">
-        <h1>Chordy</h1>
-        <p>Chordy is a web application I developed to help identify musical chords. This chord dictionary includes two pages: one which gives visual representations of how to play the chords on piano, and the other which allows the user to lookup the name of a chord by selecting the notes which are played.</p>
-        <a href="https://calvinchristensen96.github.io/chordy/index.html" target="_blank"><img src="images/chordy-preview.png"></a>
-      </div>
-      <div id="project">
-        <h1>Tetris-Clone</h1>
-        <p>Tetris-Clone is my take on the puzzle game <i>Tetris</i>. I wrote this game in JavaScript and it can be played in the browser using keyboard controls, or on mobile devices using on-screen buttons. *I am not affiliated with The Tetris Company, Inc.</p>
-        <a href="https://calvinchristensen96.github.io/tetris-clone/index.html" target="_blank"><img src="images/tetris-preview.png"></a>
-      </div>
-      <div id="project">
-        <h1>Pokémon Go: Combat Point Maximizer</h1>
-        <p>A web application I created to be used alongside the mobile video-game <i>Pokemon Go</i>, by Niantic. This application provides detailed stats to help the user identify which individual values a selected Pokemon needs to have in order to maximize it's level. *I am not affiliated with Niantic Inc., The Pokemon Company, or Nintendo.</p>
-        <a href="https://calvinchristensen96.github.io/pkmngo/index.html" target="_blank"><img src="images/pokemon-preview.png"></a>
-      </div>
-    </div>
-
-    <div class="section4" id="contact">
-      <h1>Contact</h1>
-      <p>Send a message to me through the form below.</p>
-
-
-
-
-      <form
-        action="https://formspree.io/f/mwkyokwp"
-        method="POST"
-      >
-        <label>
-          Your email:<br>
-          <input type="email" name="email">
-        </label><br>
-        <label>
-          Your message:<br>
-          <textarea name="message"></textarea>
-        </label>
-        <!-- your other form fields go here -->
-        <button type="submit">Send</button>
-      </form>
-    </div>
-
-    <div id="footer">
-      <div id="socials">
-          <a href="mailto:calvinchristensen96@gmail.com"><img src="images/email.png"></a>
-          <a href="https://www.linkedin.com/in/calvin-christensen-075026172/" target="_blank"><img src="images/linkedin.png"></a>
-          <a href="https://github.com/calvinchristensen96" target="_blank"><img src="images/GitHub-Mark-120px-plus.png"></a>
-      </div>
-      <div id="links">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <p>Calvin Christensen&nbsp&nbsp&nbsp<span><br></span>(608)931-3991&nbsp&nbsp&nbsp<span><br></span>calvinchristensen96@gmail.com</p>
-    </div>
-
-
+    <p>Calvin Christensen&nbsp&nbsp&nbsp<span><br></span>(608)931-3991&nbsp&nbsp&nbsp<span><br></span>calvinchristensen96@gmail.com</p>
+  </div>
+</div>
+	  
 <script>
+var navActive = false;
+function toggleNav(val) {
+  if (navActive) {
+    document.getElementById("nav-menu").style.top = "-212px";
+    document.getElementById("dim").style.opacity = "0";
+    document.getElementById("dim").style.visibility = "hidden";
 
+    navActive = false;
+  } else if (val != 1) {
+    document.getElementById("nav-menu").style.top = "0px";
+    document.getElementById("dim").style.opacity = ".5";
+    document.getElementById("dim").style.visibility = "visible";
+    navActive = true;
+  }
+}
 </script>
 
-  </body>
+</body>
 </html>
