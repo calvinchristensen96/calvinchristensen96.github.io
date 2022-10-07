@@ -1,137 +1,565 @@
+<!DOCTYPE html>
 <html>
-<head>
+ <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1">
   <meta name="author" content="Calvin Christensen">
-  <link rel="stylesheet" href="style.css">
-  <title>Chordy | Reverse Lookup</title>
-</head>
+  <title>Chordy | Chord Lookup Tool</title>
+ </head>
 <body>
-<div id="content">
-	<div id="logo">
-		<img src="https://calvinchristensen96.github.io/chordy/Chordy-logo.png">
-	</div>
-	<div id="tool">
-		<p id="active"><a href="index.html">Reverse Lookup</a></p>
-		<p id="un"><a href="index2.html">Chord Dictionary</a></p>
-	</div>
-	<div id="left"><br><br><br><br><br>
-		<span class="key" id="key-c0" onclick="light('key-c0', 'c')"></span>
-		<span class="b-key" id="key-c♯0" onclick="light('key-c♯0', 'c♯')"></span>
-		<span class="key" id="key-d0" onclick="light('key-d0', 'd')" ></span>
-		<span class="b-key" id="key-d♯0" onclick="light('key-d♯0', 'd♯')"></span>
-		<span class="key" id="key-e0" onclick="light('key-e0', 'e')"></span>
-		<span class="key" id="key-f0" onclick="light('key-f0', 'f')" ></span>
-		<span class="b-key" id="key-f♯0" onclick="light('key-f♯0', 'f♯')" ></span>
-		<span class="key" id="key-g0" onclick="light('key-g0', 'g')" ></span>
-		<span class="b-key" id="key-g♯0" onclick="light('key-g♯0', 'g♯')"></span>
-		<span class="key" id="key-a0" onclick="light('key-a0', 'a')" ></span>
-		<span class="b-key" id="key-a♯0" onclick="light('key-a♯0', 'a♯')"></span>
-		<span class="key" id="key-b0" onclick="light('key-b0', 'b')"></span>
-		<span class="key" id="key-c1" onclick="light('key-c1', 'c')"></span>
-		<span class="b-key" id="key-c♯1" onclick="light('key-c♯1', 'c♯')"></span>
-		<span class="key" id="key-d1" onclick="light('key-d1', 'd')" ></span>
-		<span class="b-key" id="key-d♯1" onclick="light('key-d♯1', 'd♯')"></span>
-		<span class="key" id="key-e1" onclick="light('key-e1', 'e')"></span>
-		<span class="key" id="key-f1" onclick="light('key-f1', 'f')"></span>
-		<span class="b-key" id="key-f♯1" onclick="light('key-f♯1', 'f♯')"></span>
-		<span class="key" id="key-g1" onclick="light('key-g1', 'g')"></span>
-		<span class="b-key" id="key-g♯1" onclick="light('key-g♯1', 'g♯')"></span>
-		<span class="key" id="key-a1" onclick="light('key-a1', 'a')"></span>
-		<span class="b-key" id="key-a♯1" onclick="light('key-a♯1', 'a♯')"></span>
-		<span class="key" id="key-b1" onclick="light('key-b1', 'b')"></span><br><br>
-		<div id="checks">
-			<input id="c" type="checkbox">C
-			<input id="c♯" type="checkbox">C♯
-			<input id="d" type="checkbox">D
-			<input id="d♯" type="checkbox">D♯
-			<input id="e" type="checkbox">E
-			<input id="f" type="checkbox">F
-			<input id="f♯" type="checkbox">F♯
-			<input id="g" type="checkbox">G
-			<input id="g♯" type="checkbox">G♯
-			<input id="a" type="checkbox">A
-			<input id="a♯" type="checkbox">A♯
-			<input id="b" type="checkbox">B
-		</div><br>
-		<button onclick="reset()">Reset</button>
-	</div>
-	<div id="section3">
-		<h3 id="result" style="opacity: 1;">Chord not found. Try removing or adding other notes.</h3>
-	</div>
-	<div id="section2">
-			<div id="treble">
-				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/GClef.svg/60px-GClef.svg.png">
-			</div>
-		<div id="bass">
-			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/FClef.svg/60px-FClef.svg.png">
-		</div>
-			<span class="ln" id="note-b2" style="margin-top: -60px; opacity: 0;"></span>
-			<span class="lna" id="note-b2-a" style="margin-top: -60px;"></span>
-			<span class="ln" id="note-a2" style="margin-top: -48px; opacity: 0;"></span>
-			<span class="lna" id="note-a2-a" style="margin-top: -48px;"></span>
-			<span class="ln" id="note-g2" style="margin-top: -36px; opacity: 0;"></span>
-			<span class="lna" id="note-g2-a" style="margin-top: -36px;"></span>
-			<span class="ln" id="note-f2" style="margin-top: -24px; opacity: 0;"></span>
-			<span class="lna" id="note-f2-a" style="margin-top: -24px;"></span>
-			<span class="ln" id="note-e2" style="margin-top: -12px; opacity: 0;"></span>
-			<span class="lna" id="note-e2-a" style="margin-top: -12px;"></span>
-			<span class="ln" id="note-d2" style="margin-top: 0px; opacity: 0;"></span>
-			<span class="lna" id="note-d2-a" style="margin-top: 0px;"></span>
-			<span class="ln" id="note-c2" style="margin-top: 12px; opacity: 0;"></span>
-			<span class="lna" id="note-c2-a" style="margin-top: 12px;"></span>
-			<span class="ln" id="note-b1" style="margin-top: 24px; opacity: 0;"></span>
-			<span class="lna" id="note-b1-a" style="margin-top: 24px;"></span>
-			<span class="ln" id="note-a1" style="margin-top: 36px; opacity: 0;"></span>
-			<span class="lna" id="note-a1-a" style="margin-top: 36px;"></span>
-			<span class="ln" id="note-g1" style="margin-top: 48px; opacity: 1;"></span>
-			<span class="lna" id="note-g1-a" style="margin-top: 48px;"></span>
-			<span class="ln" id="note-f1" style="margin-top: 60px; opacity: 0;"></span>
-			<span class="lna" id="note-f1-a" style="margin-top: 60px;"></span>
-			<span class="ln" id="note-e1" style="margin-top: 72px; opacity: 1;"></span>
-			<span class="lna" id="note-e1-a" style="margin-top: 72px;"></span>
-			<span class="ln" id="note-d1" style="margin-top: 84px; opacity: 0;"></span>
-			<span class="lna" id="note-d1-a" style="margin-top: 84px;"></span>
-			<span class="ln" id="note-c1" style="margin-top: 96px; opacity: 1;"></span>
-			<span class="lna" id="note-c1-a" style="margin-top: 96px;"></span>
-			<span class="ln" id="note-b0" style="margin-top: 108px; opacity: 0;"></span>
-			<span class="lna" id="note-b0-a" style="margin-top: 108px;" ></span>
-			<span class="ln" id="note-a0" style="margin-top: 120px; opacity: 0;"></span>
-			<span class="lna" id="note-a0-a" style="margin-top: 120px;"></span>
-			<span class="ln" id="note-g0" style="margin-top: 132px; opacity: 0;"></span>
-			<span class="lna" id="note-g0-a" style="margin-top: 132px;" ></span>
-			<span class="ln" id="note-f0" style="margin-top: 144px; opacity: 0;"></span>
-			<span class="lna" id="note-f0-a" style="margin-top: 144px;"></span>
-			<span class="ln" id="note-e0" style="margin-top: 156px; opacity: 0;"></span>
-			<span class="lna" id="note-e0-a" style="margin-top: 156px;"></span>
-			<span class="ln" id="note-d0" style="margin-top: 168px; opacity: 0;"></span>
-			<span class="lna" id="note-d0-a" style="margin-top: 168px;"></span>
-			<span class="ln" id="note-c0" style="margin-top: 180px; opacity: 0;"></span>
-			<span class="lna" id="note-c0-a" style="margin-top: 180px;"></span>
-			<table>
-				<tbody>
-					<tr><td></td></tr><tr>
-					<td></td></tr><tr>
-					<td></td></tr><tr>
-					<td></td></tr><tr></tr>
-				</tbody>
-			</table><span id="space">—</span>
-			<table id="t2">
-				<tbody>
-					<tr><td></td></tr><tr>
-					<td></td></tr><tr>
-					<td></td></tr><tr>
-					<td></td></tr><tr></tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	</div>
-	<div id="footer">
-		<p>Chordy is a Web Application by Calvin Christensen, 2021 - 2022</p><br>
-		<p><a href="https://calvinchristensen96.github.io/#contact">Contact</a> &nbsp•&nbsp <a href="https://github.com/calvinchristensen96/calvinchristensen96.github.io/tree/master/chordy">Github</a></p>
-	</div>
+<div onclick="toggleNav(1)" id="dim"></div>
+  <div id="nav-menu">
+    <ul>
+      <li><a href="#section1" onclick="toggleNav(1)">Chord Tool</a></li>
+      <li><a href="#contact" onclick="toggleNav(1)">GitHub</a></li>
+      <li><a href="#contact" onclick="toggleNav(1)">Other Projects</a></li>
+    </ul>
+  </div>
+<div id="nav">
+ <div id="logo">
+  <img src="Chordy-logo.png">
+ </div>
+ <div id="options">
+  <img onclick="toggleNav()" src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/pkmngo/menu.png">
+  </div>
 </div>
+<div id="intro">
+ <h1>Chordy</h1><br>
+ <p>A visual tool to help discover and learn piano chords.</p><br>
+ <a href="#section1"><button>Get Started</button><br></a>
+</div>
+<div id="section1">
+ <div id="menu">
+   <a id="option1" onclick="changeTool(0)">Chord Dictionary</a>
+   <a id="option2" onclick="changeTool(1)">Reverse Lookup</a>
+ </div>
+ <div id="piano-roll">
+  <span class="key" id="key-c0" onclick="light('key-c0', 'c')"></span>
+  <span class="b-key" id="key-c♯0" onclick="light('key-c♯0', 'c♯')"></span>
+  <span class="key" id="key-d0" onclick="light('key-d0', 'd')"></span>
+  <span class="b-key" id="key-d♯0" onclick="light('key-d♯0', 'd♯')"></span>
+  <span class="key" id="key-e0" onclick="light('key-e0', 'e')"></span>
+  <span class="key" id="key-f0" onclick="light('key-f0', 'f')"></span>
+  <span class="b-key" id="key-f♯0" onclick="light('key-f♯0', 'f♯')"></span>
+  <span class="key" id="key-g0" onclick="light('key-g0', 'g')"></span>
+  <span class="b-key" id="key-g♯0" onclick="light('key-g♯0', 'g♯')"></span>
+  <span class="key" id="key-a0" onclick="light('key-a0', 'a')"></span>
+  <span class="b-key" id="key-a♯0" onclick="light('key-a♯0', 'a♯')"></span>
+  <span class="key" id="key-b0" onclick="light('key-b0', 'b')"></span>
+
+  <span class="key" id="key-c1" onclick="light('key-c1', 'c')"></span>
+  <span class="b-key" id="key-c♯1" onclick="light('key-c♯1', 'c♯')"></span>
+  <span class="key" id="key-d1" onclick="light('key-d1', 'd')"></span>
+  <span class="b-key" id="key-d♯1" onclick="light('key-d♯1', 'd♯')"></span>
+  <span class="key" id="key-e1" onclick="light('key-e1', 'e')"></span>
+  <span class="key" id="key-f1" onclick="light('key-f1', 'f')"></span>
+  <span class="b-key" id="key-f♯1" onclick="light('key-f♯1', 'f♯')"></span>
+  <span class="key" id="key-g1" onclick="light('key-g1', 'g')"></span>
+  <span class="b-key" id="key-g♯1" onclick="light('key-g♯1', 'g♯')"></span>
+  <span class="key" id="key-a1" onclick="light('key-a1', 'a')"></span>
+  <span class="b-key" id="key-a♯1" onclick="light('key-a♯1', 'a♯')"></span>
+  <span class="key" id="key-b1" onclick="light('key-b1', 'b')"></span>
+ </div>
+
+ <div id="section2">
+  <div id="options-dictionary">
+   <table>
+    <td>
+     <h2>Key</h2>
+    </td>
+    <td>
+     <h2>Chord</h2>
+    </td>
+    <tr>
+    <td>
+     <select id="select-key" onChange="changeKey(this.value)">
+      <option value="C">C</option>
+      <option value="C♯">C♯/B♭</option>
+      <option value="D">D</option>
+      <option value="D♯">D♯/E♭</option>
+      <option value="E">E</option>
+      <option value="F">F</option>
+      <option value="F♯">F♯/G♭</option>
+      <option value="G">G</option>
+      <option value="G♯">G♯/A♭</option>
+      <option value="A">A</option>
+      <option value="A♯">A♯/B♭</option>
+      <option value="B">B</option>
+     </select>
+    </td>
+    <td>
+     <select id="select-chord" name="select-chord" onChange="changeChord(this.value)">
+      <option value="maj" selected>Major</option>
+      <option value="min">Minor</option>
+      <option value="dim">Diminished</option>
+      <option value="aug">Augmented</option>
+      <option value="7">Seventh</option>
+     </select>
+    </td>
+   </table>
+  </div>
+
+  <div id="section3">
+   <p>Choose more notes please</div>
+  </div>
+ </div>
+</div>
+
+<div id="staff">
+ <div id="treble">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/GClef.svg/60px-GClef.svg.png">
+ </div>
+ <span class="ln" id="note-b1" style="margin-top: 18px; opacity: 0;"></span>
+ <span class="lna" id="note-b1-a" style="margin-top: 24px;"></span>
+ <span class="ln" id="note-a1" style="margin-top: 30px; opacity: 0;"></span>
+ <span class="lna" id="note-a1-a" style="margin-top: 36px;"></span>
+ <span class="ln" id="note-g1" style="margin-top: 42px; opacity: 1;"></span>
+ <span class="lna" id="note-g1-a" style="margin-top: 48px;"></span>
+ <span class="ln" id="note-f1" style="margin-top: 54px; opacity: 0;"></span>
+ <span class="lna" id="note-f1-a" style="margin-top: 60px;"></span>
+ <span class="ln" id="note-e1" style="margin-top: 66px; opacity: 1;"></span>
+ <span class="lna" id="note-e1-a" style="margin-top: 72px;"></span>
+ <span class="ln" id="note-d1" style="margin-top: 78px; opacity: 0;"></span>
+ <span class="lna" id="note-d1-a" style="margin-top: 84px;"></span>
+ <span class="ln" id="note-c1" style="margin-top: 90px; opacity: 1;"></span>
+ <span class="lna" id="note-c1-a" style="margin-top: 96px;"></span>
+ <span class="ln" id="note-b0" style="margin-top: 102px; opacity: 0;"></span>
+ <span class="lna" id="note-b0-a" style="margin-top: 108px;"></span>
+ <span class="ln" id="note-a0" style="margin-top: 114px; opacity: 0;"></span>
+ <span class="lna" id="note-a0-a" style="margin-top: 120px;"></span>
+ <span class="ln" id="note-g0" style="margin-top: 126px; opacity: 0;"></span>
+ <span class="lna" id="note-g0-a" style="margin-top: 132px;"></span>
+ <span class="ln" id="note-f0" style="margin-top: 138px; opacity: 0;"></span>
+ <span class="lna" id="note-f0-a" style="margin-top: 144px;"></span>
+ <span class="ln" id="note-e0" style="margin-top: 150px; opacity: 0;"></span>
+ <span class="lna" id="note-e0-a" style="margin-top: 156px;"></span>
+ <span class="ln" id="note-d0" style="margin-top: 162px; opacity: 0;"></span>
+ <span class="lna" id="note-d0-a" style="margin-top: 168px;"></span>
+ <span class="ln" id="note-c0" style="margin-top: 174px; opacity: 0;"></span>
+ <span class="lna" id="note-c0-a" style="margin-top: 180px;"></span>
+ <table>
+  <tbody>
+   <tr><td></td></tr><tr>
+   <td></td></tr><tr>
+   <td></td></tr><tr>
+   <td></td></tr><tr></tr>
+  </tbody>
+ </table><span id="space">—</span>
+</div>
+
+
+<div id="footer">
+		<p>Chordy is a Web Application by Calvin Christensen, 2021 - 2022</p><br>
+		<p><a href="https://calvinchristensen96.github.io/#contact">Contact</a> &nbsp;•&nbsp; <a href="https://github.com/calvinchristensen96/calvinchristensen96.github.io/tree/master/chordy">Github</a></p>
+	</div>
 </body>
+
+<style>
+body, * {
+ margin: 0px;
+}
+
+#nav {
+ position: absolute;
+ background: none;
+ mix-blend-mode: multiply;
+ width: 100%;
+}
+
+#nav img {
+ width: 64px;
+ position: absolute;
+ top: 12px;
+ cursor: pointer;
+}
+
+#nav-menu {
+  position: fixed;
+  top: -212px;
+  transition-duration: 0.3s;
+  background-color: white;
+  width: 100%;
+  z-index: 9;
+  text-align: center;
+}
+
+#nav-menu ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+#nav-menu li {
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+#nav-menu a {
+  color: black;
+}
+
+
+#nav a {
+  color: black;
+}
+
+#dim {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  opacity: .5;
+  transition-duration: 0.3s;
+  top: 0;
+  z-index: 1;
+  visibility: hidden;
+}
+
+#navbar {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+}
+
+#navbar img {
+  cursor: pointer;
+}
+#logo img {
+ left: 36px;
+}
+
+#options img {
+ width: 32px;
+ margin-top: 12px;
+ right: 36px;
+}
+
+#intro {
+ background-image: url('pexels-bryan-geraldo-586415.jpg');
+ background-size: cover;
+ padding: 24px;
+ height: 100vh;
+ font-size: 24px;
+ color: white;
+ text-shadow: black 2px 2px;
+}
+
+#intro h1 {
+  margin-top: 30vh;
+}
+
+#intro p {
+ width: 70%;
+}
+
+#intro button {
+ font-size: 18px;
+ padding: 18px;
+ border: none;
+ background-color: orange;
+ cursor: pointer;
+ transition-duration: 0.3s;
+}
+
+#intro button:hover {
+ background-color: white;
+ color: black;
+}
+
+#image {
+ padding-top: 64px;
+ text-align: center;
+}
+
+#section1 {
+ background-color: #2e2e2e;
+ color: white;
+ font-size: 20px;
+ text-align: center;
+ padding: 24px;
+ padding-top: 64px;
+ padding-bottom: 64px;
+}
+
+#section1 h1 {
+ padding: 24px;
+ padding-top: 104px;
+}
+
+#section1 a {
+ cursor: pointer;
+}
+
+#option1 {
+ color: orange;
+ border-bottom: 1px orange solid;
+ margin-right: 24px;
+}
+
+#option2 {
+ color: #777;
+ margin-left: 24px;
+}
+
+#menu {
+ margin-bottom: 64px;
+}
+
+#result {
+ padding-top: 128px;
+}
+
+#piano-roll {
+ height: 200px;
+ text-align: center;
+ filter: drop-shadow(16px 16px 16px black);
+}
+
+.key {
+ border: solid black 2px;
+ padding: 14px;
+ padding-bottom: 96px;
+ background-color: white;
+ position: relative;
+ top: 72px;
+ cursor: pointer;
+ margin-left: 1px;
+ margin-right: 1px;
+ border-radius: 4px 4px 4px 4px;
+ transition-duration: 0.25s;
+}
+
+.b-key {
+ border: solid black 2px;
+ padding: 12px;
+ padding-bottom: 64px;
+ background-color: #121212;
+ position: relative;
+ top: 48px;
+ cursor: pointer;
+ margin-left: -14px;
+ margin-right: -14px;
+ z-index: 1;
+ border-radius: 4px 4px 4px 4px;
+ transition-duration: 0.25s;
+}
+
+#section2 {
+ text-align: center;
+ padding-top: 128px;
+}
+
+#section2 table {
+ width: 400px;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+#section2 select {
+ font-size: 16px;
+ background-color: orange;
+ color: white;
+}
+
+#section3 {
+ visibility: hidden;
+}
+
+#section3 p {
+ position: relative;
+ top: -64px;
+}
+#staff {
+ font-size: 36px;
+ padding: 48px;
+ padding-top: 64px;
+ padding-bottom: 64px;
+}
+
+#staff td {
+ border-top: 2px solid black;
+ border-bottom: 2px solid black;
+ width: 100vh;
+ margin: 0px;
+ height: 24px;
+ padding: 0px;
+}
+
+#treble {
+ position: absolute;
+ left: 64px;
+}
+#treble {
+ margin-top: -36px;
+}
+
+#treble img {
+ width: 64px;
+}
+
+.ln, .lna {
+	position: absolute;
+	font-size: 36px;
+	line-height: 54px;
+
+}
+.lna {
+	margin-left: -32px;
+	font-size: 28px;
+}
+#staff table {
+	border-left: solid black 8px;
+	border-right: solid black 2px;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#staff {
+  text-align: center;
+}
+
+#space {
+  margin-right: -18px;
+}
+
+#footer {
+ background-color: #2e2e2e;
+ color: white;
+ font-size: 16px;
+ padding: 24px;
+ text-align: center;
+}
+
+#footer a {
+ color: orange;
+}
+
+@media only screen and (min-width: 840px) {
+
+}
+</style>
+
+<script>
+
+var navActive = false;
+function toggleNav(val) {
+  if (navActive) {
+    document.getElementById("nav-menu").style.top = "-212px";
+    document.getElementById("dim").style.opacity = "0";
+    document.getElementById("dim").style.visibility = "hidden";
+
+    navActive = false;
+  } else if (val != 1) {
+    document.getElementById("nav-menu").style.top = "0px";
+    document.getElementById("dim").style.opacity = ".5";
+    document.getElementById("dim").style.visibility = "visible";
+    navActive = true;
+  }
+}
+
+function changeTool(val) {
+ if (val == 0) {
+  document.getElementById("option1").style.color = "orange";
+  document.getElementById("option1").style.borderBottom = "1px orange solid";
+  document.getElementById("section2").style.visibility = "visible";
+  document.getElementById("option2").style.color = "#777";
+  document.getElementById("option2").style.border = "none";
+  document.getElementById("section3").style.visibility = "hidden";
+
+ } else {
+  document.getElementById("option2").style.color = "orange";
+  document.getElementById("option2").style.borderBottom = "1px orange solid";
+  document.getElementById("section3").style.visibility = "visible";
+  document.getElementById("option1").style.color = "#777";
+  document.getElementById("option1").style.border = "none";
+  document.getElementById("section2").style.visibility = "hidden";
+ }
+}
+
+
+var notes = ["c","c♯","d","d♯","e","f","f♯","g","g♯","a","a♯","b"];
+var piano = ["c0","c♯0","d0","d♯0","e0","f0","f♯0","g0","g♯0","a0","a♯0","b0","c1","c♯1","d1","d♯1","e1","f1","f♯1","g1","g♯1","a1","a♯1","b1"];
+var ledger = ["c0","d0","e0","f0","g0","a0","b0","c1","d1","e1","f1","g1","a1","b1"];
+var currKey = "c";
+var currChord = [0,4,7];
+changeKey('c');
+
+
+
+// Position the notes on the staff
+var mm;
+for (mm=0;mm<ledger.length;mm++) {
+ document.getElementById("note-" + ledger[mm]).style.marginTop = 98 - (12.5 * mm) + "px";
+}
+
+function changeKey(val) {
+ reset();
+ currKey = val.toLowerCase();
+ var index = 0;
+ var octave = 0;
+ if (piano.indexOf(val.toLowerCase() + '0') + currChord[0] > piano.length - piano.indexOf(val.toLowerCase() + '0') - currChord[currChord.length - 1] - 12) {
+  index = piano.indexOf(val.toLowerCase() + '0');
+ } else {
+  index = piano.indexOf(val.toLowerCase() + '1');
+ }
+ var i;
+ for (i=0;i<currChord.length;i++) {
+  keyOn(piano[index + currChord[i]]);
+  if(piano[index + currChord[i]].charAt(1) == '♯') {
+   document.getElementById("note-" + piano[index + currChord[i] -1]).innerHTML = "♯o";
+   document.getElementById("note-" + piano[index + currChord[i] -1]).style.opacity = 1;
+   document.getElementById("note-" + piano[index + currChord[i] -1]).style.marginLeft = "-18px";
+  } else {
+   document.getElementById("note-" + piano[index + currChord[i]]).innerHTML = "o";
+   document.getElementById("note-" + piano[index + currChord[i]]).style.opacity = 1;
+  }
+ }
+}
+
+function changeChord(val) {
+ if (val == 'maj') {
+  currChord = [0,4,7];
+ } else if (val == 'min') {
+  currChord = [0,3,7];
+ } else if (val == 'min') {
+  currChord = [0,3,7];
+ } else if (val == 'dim') {
+  currChord = [0,3,6];
+ } else if (val == 'aug') {
+  currChord = [0,4,8];
+ } else if (val == '7') {
+  currChord = [0,4,7,10];
+ }
+ changeKey(currKey);
+}
+
+function keyOn(note) {
+ document.getElementById("key-" + note).style.backgroundColor = "orange";
+}
+
+function keyOff(val) {
+ document.getElementById(val).style.backgroundColor = "white";
+}
+
+function reset() {
+ var i;
+ var j;
+ for (i=0;i<notes.length;i++) {
+  for (j=0;j<2;j++) {
+   if (notes[i].length == 1) {
+    document.getElementById("key-" + notes[i] + j).style.backgroundColor = "white";
+
+   } else {
+    document.getElementById("key-" + notes[i] + j).style.backgroundColor = "#121212";
+   }
+  }
+ }
+ for (mm=0;mm<ledger.length;mm++) {
+  document.getElementById("note-" + ledger[mm]).innerHTML = "";
+  document.getElementById("note-" + ledger[mm]).style.opacity = 0;
+  document.getElementById("note-" + ledger[mm]).style.marginLeft = "0px";
+ }
+}
+
+</script>
 </html>
-<script src="script.js"></script>
