@@ -100,7 +100,8 @@
   </div>
 
   <div id="section3">
-   <p>Choose more notes please</div>
+   <p id="results">Choose more notes please</p>
+   <button id="reset" onClick="reset()">Reset</button>
   </div>
  </div>
 </div>
@@ -110,33 +111,33 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/GClef.svg/60px-GClef.svg.png">
  </div>
  <span class="ln" id="note-b1" style="margin-top: 18px; opacity: 0;"></span>
- <span class="lna" id="note-b1-a" style="margin-top: 24px;"></span>
+ <span class="lna" id="note-b♯1" style="margin-top: 24px;"></span>
  <span class="ln" id="note-a1" style="margin-top: 30px; opacity: 0;"></span>
- <span class="lna" id="note-a1-a" style="margin-top: 36px;"></span>
+ <span class="lna" id="note-a♯1" style="margin-top: 36px;"></span>
  <span class="ln" id="note-g1" style="margin-top: 42px; opacity: 1;"></span>
- <span class="lna" id="note-g1-a" style="margin-top: 48px;"></span>
+ <span class="lna" id="note-g♯1" style="margin-top: 48px;"></span>
  <span class="ln" id="note-f1" style="margin-top: 54px; opacity: 0;"></span>
- <span class="lna" id="note-f1-a" style="margin-top: 60px;"></span>
+ <span class="lna" id="note-f♯1" style="margin-top: 60px;"></span>
  <span class="ln" id="note-e1" style="margin-top: 66px; opacity: 1;"></span>
- <span class="lna" id="note-e1-a" style="margin-top: 72px;"></span>
+ <span class="lna" id="note-e♯1" style="margin-top: 72px;"></span>
  <span class="ln" id="note-d1" style="margin-top: 78px; opacity: 0;"></span>
- <span class="lna" id="note-d1-a" style="margin-top: 84px;"></span>
+ <span class="lna" id="note-d♯1" style="margin-top: 84px;"></span>
  <span class="ln" id="note-c1" style="margin-top: 90px; opacity: 1;"></span>
- <span class="lna" id="note-c1-a" style="margin-top: 96px;"></span>
+ <span class="lna" id="note-c♯1" style="margin-top: 96px;"></span>
  <span class="ln" id="note-b0" style="margin-top: 102px; opacity: 0;"></span>
- <span class="lna" id="note-b0-a" style="margin-top: 108px;"></span>
+ <span class="lna" id="note-b♯0" style="margin-top: 108px;"></span>
  <span class="ln" id="note-a0" style="margin-top: 114px; opacity: 0;"></span>
- <span class="lna" id="note-a0-a" style="margin-top: 120px;"></span>
+ <span class="lna" id="note-a♯0" style="margin-top: 120px;"></span>
  <span class="ln" id="note-g0" style="margin-top: 126px; opacity: 0;"></span>
- <span class="lna" id="note-g0-a" style="margin-top: 132px;"></span>
+ <span class="lna" id="note-g♯0" style="margin-top: 132px;"></span>
  <span class="ln" id="note-f0" style="margin-top: 138px; opacity: 0;"></span>
- <span class="lna" id="note-f0-a" style="margin-top: 144px;"></span>
+ <span class="lna" id="note-f♯0" style="margin-top: 144px;"></span>
  <span class="ln" id="note-e0" style="margin-top: 150px; opacity: 0;"></span>
- <span class="lna" id="note-e0-a" style="margin-top: 156px;"></span>
+ <span class="lna" id="note-e♯0" style="margin-top: 156px;"></span>
  <span class="ln" id="note-d0" style="margin-top: 162px; opacity: 0;"></span>
- <span class="lna" id="note-d0-a" style="margin-top: 168px;"></span>
+ <span class="lna" id="note-d♯0" style="margin-top: 168px;"></span>
  <span class="ln" id="note-c0" style="margin-top: 174px; opacity: 0;"></span>
- <span class="lna" id="note-c0-a" style="margin-top: 180px;"></span>
+ <span class="lna" id="note-c♯0" style="margin-top: 180px;"></span>
  <table>
   <tbody>
    <tr><td></td></tr><tr>
@@ -369,6 +370,21 @@ body, * {
  position: relative;
  top: -64px;
 }
+
+#section3 button {
+ font-size: 16px;
+ padding: 12px;
+ border: none;
+ background-color: orange;
+ cursor: pointer;
+ transition-duration: 0.3s;
+}
+
+#section3 button:hover {
+ background-color: white;
+ color: black;
+}
+
 #staff {
  font-size: 36px;
  padding: 48px;
@@ -484,8 +500,11 @@ function toggleNav(val) {
   }
 }
 
+var pianoActive = false;
 function changeTool(val) {
  if (val == 0) {
+  pianoActive = false;
+  changeKey(currKey);
   document.getElementById("option1").style.color = "orange";
   document.getElementById("option1").style.borderBottom = "1px orange solid";
   document.getElementById("section2").style.visibility = "visible";
@@ -494,6 +513,8 @@ function changeTool(val) {
   document.getElementById("section3").style.visibility = "hidden";
 
  } else {
+  reset();
+  pianoActive = true;
   document.getElementById("option2").style.color = "orange";
   document.getElementById("option2").style.borderBottom = "1px orange solid";
   document.getElementById("section3").style.visibility = "visible";
@@ -505,18 +526,20 @@ function changeTool(val) {
 
 
 var notes = ["c","c♯","d","d♯","e","f","f♯","g","g♯","a","a♯","b"];
+var chordList = [[[0,4,7], [0,3,7], [0,3,6], [0,4,8], [0,4,7,10]], ['maj', 'min', 'dim', 'aug', '7']];
+
 var piano = ["c0","c♯0","d0","d♯0","e0","f0","f♯0","g0","g♯0","a0","a♯0","b0","c1","c♯1","d1","d♯1","e1","f1","f♯1","g1","g♯1","a1","a♯1","b1"];
 var ledger = ["c0","d0","e0","f0","g0","a0","b0","c1","d1","e1","f1","g1","a1","b1"];
-var currKey = "c";
-var currChord = [0,4,7];
-changeKey('c');
+var currKey = notes[0];
+var currChord = chordList[0][0];
+var activeNotes = [];
 
-
+changeKey(currKey);
 
 // Position the notes on the staff
 var mm;
 for (mm=0;mm<ledger.length;mm++) {
- document.getElementById("note-" + ledger[mm]).style.marginTop = 98 - (12.5 * mm) + "px";
+ document.getElementById("note-" + ledger[mm]).style.marginTop = 99 - (12.7 * mm) + "px";
 }
 
 function changeKey(val) {
@@ -532,43 +555,62 @@ function changeKey(val) {
  var i;
  for (i=0;i<currChord.length;i++) {
   keyOn(piano[index + currChord[i]]);
-  if(piano[index + currChord[i]].charAt(1) == '♯') {
-   document.getElementById("note-" + piano[index + currChord[i] -1]).innerHTML = "♯o";
-   document.getElementById("note-" + piano[index + currChord[i] -1]).style.opacity = 1;
-   document.getElementById("note-" + piano[index + currChord[i] -1]).style.marginLeft = "-18px";
-  } else {
-   document.getElementById("note-" + piano[index + currChord[i]]).innerHTML = "o";
-   document.getElementById("note-" + piano[index + currChord[i]]).style.opacity = 1;
-  }
  }
 }
 
 function changeChord(val) {
- if (val == 'maj') {
-  currChord = [0,4,7];
- } else if (val == 'min') {
-  currChord = [0,3,7];
- } else if (val == 'min') {
-  currChord = [0,3,7];
- } else if (val == 'dim') {
-  currChord = [0,3,6];
- } else if (val == 'aug') {
-  currChord = [0,4,8];
- } else if (val == '7') {
-  currChord = [0,4,7,10];
- }
+ currChord = chordList[0][chordList[1].indexOf(val)];
  changeKey(currKey);
 }
 
 function keyOn(note) {
  document.getElementById("key-" + note).style.backgroundColor = "orange";
+
+ if(note.indexOf('♯') >= 0) {
+  document.getElementById("note-" + note.substring(0,1) + note.substring(2,3)).innerHTML = "♯o";
+  document.getElementById("note-" + note.substring(0,1) + note.substring(2,3)).style.opacity = 1;
+  document.getElementById("note-" + note.substring(0,1) + note.substring(2,3)).style.marginLeft = "-36px";
+ } else {
+  document.getElementById("note-" + note).innerHTML = "o";
+  document.getElementById("note-" + note).style.opacity = 1;
+ }
 }
 
 function keyOff(val) {
- document.getElementById(val).style.backgroundColor = "white";
+ if (val.indexOf('♯') < 0) {
+   document.getElementById("key-" + val).style.backgroundColor = "white";
+ } else {
+   document.getElementById("key-" + val).style.backgroundColor = "#121212";
+ }
+ document.getElementById("note-" + val).innerHTML = "";
+ document.getElementById("note-" + val).style.opacity = 0;
+}
+
+function light(key, note) {
+  if (pianoActive) {
+    if (activeNotes.indexOf(note) < 0) {
+      keyOn(key.substring(4, key.length));
+      activeNotes.push(note);
+    } else {
+      keyOff(key.substring(4, key.length));
+      activeNotes.splice(activeNotes.indexOf(note), 1);
+    }
+  }
+  //document.getElementById("results").innerHTML = activeNotes;
+  if (activeNotes.length == 3) {
+    getChord(activeNotes);
+  }
+}
+
+function getChord(arr) {
+  document.getElementById("results").innerHTML = notes.indexOf(arr[0]);
+  if(notes.indexOf(arr[0]) + notes.indexOf(arr[1]) == 4 && notes.indexOf(arr[0]) + notes.indexOf(arr[2]) == 7) {
+    document.getElementById("results").innerHTML = "Major";
+  }
 }
 
 function reset() {
+ activeNotes = [];
  var i;
  var j;
  for (i=0;i<notes.length;i++) {
