@@ -30,11 +30,11 @@ body {
 }
 #title-logo {
 	position: relative;
-	top: 45vh;
+	top: 35vh;
 }
 #title-buttons {
 	position: relative;
-    	top: 70vh;
+    	top: 60vh;
 }
 #title button {
 	width: 150px;
@@ -63,14 +63,14 @@ body {
     	width: 80%;
     	margin-left: 10%;
     	margin-right: 10%;
-    	padding-top: 12px;
-    	padding-bottom: 12px;
+    	padding-top: 8px;
+    	padding-bottom: 8px;
     	border-radius: 12px 12px 12px 12px;
     	filter: drop-shadow(8px 8px 4px black);
 }
 
 .game-category {
-	font-size: 24px;
+	font-size: 16px;
     	text-decoration: bold;
     	margin-bottom: 12px;
 }
@@ -119,7 +119,7 @@ body {
     	padding: 4%;
     	padding-top: 36px;
     	padding-bottom: 36px;
-    	height: 55vh;
+    	height: 45vh;
     	color: black;
     	background-color: white;
     	filter: drop-shadow(8px 8px 4px black);
