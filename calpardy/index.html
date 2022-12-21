@@ -7,89 +7,87 @@
   <title>Calpardy!</title>
 </head>
 <body>
-  <div id="head">
-    <h1>Calpardy!</h1>
-  </div>
-  <div id="nav" onclick="refreshCategories()">
-    <img src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/pkmngo/menu.png">
-  </div>
-  <div id="clue-modal">
-    <p id="question"></p>
-    <span id="buttons">
-      <button onclick="hideClue()">X</button>
-      <button onclick="showAnswer()">?</button>
-    </span>
-  </div>
-  <span id="game-table">
-  <div id="category">
-    <h1 id="cat0">...</h1>
-   <table>
-      <tbody><tr><td id="0-200" onclick="showClue(0,0)">$200</td><td id="0-400" onclick="showClue(0,1)">$400</td><td id="0-600" onclick="showClue(0,2)">$600</td><td id="0-800" onclick="showClue(0,3)">$800</td><td id="0-1000" onclick="showClue(0,4)">$1000</td>
-    </tr></tbody></table>
-  </div>
-  <div id="category">
-    <h1 id="cat1">...</h1>
-   <table>
-      <tbody><tr><td id="1-200" onclick="showClue(1,0)">$200</td><td id="1-400" onclick="showClue(1,1)">$400</td><td id="1-600" onclick="showClue(1,2)">$600</td><td id="1-800" onclick="showClue(1,3)">$800</td><td id="1-1000" onclick="showClue(1,4)">$1000</td>
-    </tr></tbody></table>
-  </div>
-  <div id="category">
-    <h1 id="cat2">...</h1>
-       <table>
-      <tbody><tr><td id="2-200" onclick="showClue(2,0)">$200</td><td id="2-400" onclick="showClue(2,1)">$400</td><td id="2-600" onclick="showClue(2,2)">$600</td><td id="2-800" onclick="showClue(2,3)">$800</td><td id="2-1000" onclick="showClue(2,4)">$1000</td>
-    </tr></tbody></table>
-  </div>
-  <div id="category">
-    <h1 id="cat3">...</h1>
-       <table>
-      <tbody><tr><td id="3-200" onclick="showClue(3,0)">$200</td><td id="3-400" onclick="showClue(3,1)">$400</td><td id="3-600" onclick="showClue(3,2)">$600</td><td id="3-800" onclick="showClue(3,3)">$800</td><td id="3-1000" onclick="showClue(3,4)">$1000</td>
-    </tr></tbody></table>
-  </div>
-  <div id="category">
-    <h1 id="cat4">...</h1>
-      <table>
-      <tbody><tr><td id="4-200" onclick="showClue(4,0)">$200</td><td id="4-400" onclick="showClue(4,1)">$400</td><td id="4-600" onclick="showClue(4,2)">$600</td><td id="4-800" onclick="showClue(4,3)">$800</td><td id="4-1000" onclick="showClue(4,4)">$1000</td>
-    </tr></tbody></table>
-  </div>
-  <div id="category">
-    <h1 id="cat5">...</h1>
-      <table>
-      <tbody><tr><td id="5-200" onclick="showClue(5,0)">$200</td><td id="5-400" onclick="showClue(5,1)">$400</td><td id="5-600" onclick="showClue(5,2)">$600</td><td id="5-800" onclick="showClue(5,3)">$800</td><td id="5-1000" onclick="showClue(5,4)">$1000</td>
-    </tr></tbody></table>
-  </div>
-  </span>
-  <div id="scores">
-    <div id="player0" class="player">
-      <p id="name0" class="name">
-        Player0
-      </p>
-      <p class="score">
-        <span onClick="subScore(0)" id="minus">-</span>
-        <span id="score0">$0</span>
-        <span onClick="addScore(0)" id="plus">+</span>
-      </p>
+<div id="transition-layer"></div>
+  <div id="title">
+  	<div id="title-logo">Calpardy!</div>
+    <div id="title-buttons">
+    	<button id="button-start" onClick="start()">Start Playing</button><br>
+      <button>Practice Mode</button>
     </div>
-
-    <div id="player1" class="player">
-      <p id="name1" class="name">
-        Player1
-      </p>
-      <p id="score1" class="score">
-        <span id="minus">-</span>
-        $0
-        <span id="plus">+</span>
-      </p>
+  </div>
+  
+  <div id="game">
+    <div id="game-board">
+      <div class="game-section">
+        <div class="game-category" id="cat-0">?</div>
+        <table class="game-table" id="table-0">
+      	  <td id="0-200" onClick="showClue(0,0)"></td>
+          <td id="0-400" onClick="showClue(0,1)"></td>
+          <td id="0-600" onClick="showClue(0,2)"></td>
+          <td id="0-800" onClick="showClue(0,3)"></td>
+          <td id="0-1000" onClick="showClue(0,4)"></td>
+        </table>
+      </div>
+      <div class="game-section">
+        <div class="game-category" id="cat-1">?</div>
+        <table class="game-table" id="table-1">
+      	  <td id="1-200" onClick="showClue(1,0)"></td>
+          <td id="1-400" onClick="showClue(1,1)"></td>
+          <td id="1-600" onClick="showClue(1,2)"></td>
+          <td id="1-800" onClick="showClue(1,3)"></td>
+          <td id="1-1000" onClick="showClue(1,4)"></td>
+        </table>
+      </div>
+      <div class="game-section">
+        <div class="game-category" id="cat-2">?</div>
+        <table class="game-table" id="table-2">
+      	  <td id="2-200" onClick="showClue(2,0)"></td>
+          <td id="2-400" onClick="showClue(2,1)"></td>
+          <td id="2-600" onClick="showClue(2,2)"></td>
+          <td id="2-800" onClick="showClue(2,3)"></td>
+          <td id="2-1000" onClick="showClue(2,4)"></td>
+        </table>
+      </div>
+      <div class="game-section">
+        <div class="game-category" id="cat-3">?</div>
+        <table class="game-table" id="table-3">
+      	  <td id="3-200" onClick="showClue(3,0)"></td>
+          <td id="3-400" onClick="showClue(3,1)"></td>
+          <td id="3-600" onClick="showClue(3,2)"></td>
+          <td id="3-800" onClick="showClue(3,3)"></td>
+          <td id="3-1000" onClick="showClue(3,4)"></td>
+        </table>
+      </div>
+      <div class="game-section">
+        <div class="game-category" id="cat-4">?</div>
+        <table class="game-table" id="table-4">
+      	  <td id="4-200" onClick="showClue(4,0)"></td>
+          <td id="4-400" onClick="showClue(4,1)"></td>
+          <td id="4-600" onClick="showClue(4,2)"></td>
+          <td id="4-800" onClick="showClue(4,3)"></td>
+          <td id="4-1000" onClick="showClue(4,4)"></td>
+        </table>
+      </div>
+      <div class="game-section">
+        <div class="game-category" id="cat-5">?</div>
+        <table class="game-table" id="table-5">
+      	  <td id="5-200" onClick="showClue(5,0)"></td>
+          <td id="5-400" onClick="showClue(5,1)"></td>
+          <td id="5-600" onClick="showClue(5,2)"></td>
+          <td id="5-800" onClick="showClue(5,3)"></td>
+          <td id="5-1000" onClick="showClue(5,4)"></td>
+        </table>
+      </div>
     </div>
-
-    <div id="player2" class="player">
-      <p id="name2" class="name">
-        Player2
-      </p>
-        <span id="minus">-</span>
-        $0
-        <span id="plus">+</span>
-      <p></p>
+  </div>
+  
+  <div id="question">
+  	<div id="question-category">Category</div>
+    <div id="question-card">?</div>
+    <div id="question-buttons">
+    	<button onClick="showAnswer()">Show Answer</button><br>
+      <button onClick="closeQuestion()">Close</button>
     </div>
   </div>
 </html>
-<script type="text/javascript" src="script.js"></script>
+<type="text/javascript" src="script.js"></script>
