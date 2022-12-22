@@ -78,9 +78,11 @@ body {
 .game-date {
 	color: #cfcfcf;
 	position: absolute;
-    right: 12px;
-    top: 6px;
-	font-size: 24px;
+	right: 12px;
+	top: 6px;
+	font-size: 15px;
+	writing-mode: vertical-rl;
+	text-orientation: upright;
 }
 
 .game-table {
