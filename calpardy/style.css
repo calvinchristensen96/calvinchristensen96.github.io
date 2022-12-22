@@ -75,6 +75,14 @@ body {
     	margin-bottom: 12px;
 }
 
+.game-date {
+	color: #cfcfcf;
+	position: absolute;
+    right: 12px;
+    top: 6px;
+	font-size: 24px;
+}
+
 .game-table {
 	color: black;
     	width: 80%;
@@ -87,7 +95,7 @@ body {
 	width: 20%;
     	border: solid black 2px;
     	cursor: pointer;
-    	background-color: var(--c2);
+    	background: none;
     	padding-top: 4px;
     	padding-bottom: 4px;
 }
