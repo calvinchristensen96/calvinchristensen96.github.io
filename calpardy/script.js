@@ -54,7 +54,7 @@ function updateCategories() {
         if (category[i].clues.length > 2) {
 			document.getElementById(i + "-600").innerHTML = "$600";
 			document.getElementById(i + "-600").style.backgroundColor = "var(--c2)";
-        } 
+        }
 		if (category[i].clues.length > 3) {
 			document.getElementById(i + "-800").innerHTML = "$800";
 			document.getElementById(i + "-800").style.backgroundColor = "var(--c2)";
