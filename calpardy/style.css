@@ -147,83 +147,83 @@ a {
 }
 
 .game-category {
-	font-size: 16px;
-    	text-decoration: bold;
-    	margin-bottom: 12px;
+  font-size: 16px;
+  text-decoration: bold;
+  margin-bottom: 12px;
 }
 
 .game-date {
-	color: #cfcfcf;
-	position: absolute;
-	right: 12px;
-	top: 6px;
-	font-size: 15px;
-	writing-mode: vertical-rl;
-	text-orientation: upright;
+  color: #cfcfcf;
+  position: absolute;
+  right: 12px;
+  top: 6px;
+  font-size: 15px;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 
 .game-table {
-	color: black;
-    	width: 80%;
-	text-align: center;
-    	margin-left: auto;
-    	margin-right: auto;
+  color: black;
+  width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .game-table td {
-	width: 20%;
-    	border: solid black 2px;
-    	cursor: pointer;
-    	background: none;
-    	padding-top: 4px;
-    	padding-bottom: 4px;
+  width: 20%;
+  border: solid black 2px;
+  cursor: pointer;
+  background: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #question {
-	text-align: center;
-	display: none;
+  text-align: center;
+  display: none;
 }
 
 #question-category {
   position: absolute;
   background-color: var(--c2);
   width: 256px;
-    	left: 50%;
-    	padding-top: 6px;
-    	padding-bottom: 6px;
-    	margin-left: -128px;
-    	margin-top: -12px;
-    	color: black;
-    	z-index: 1;
+  left: 50%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-left: -128px;
+  margin-top: -12px;
+  color: black;
+  z-index: 1;
 }
 
 #question-card {
-	width: 80%;
-    	margin-top: 96px;
-    	margin-left: 6%;
-    	margin-right: 6%;
-    	border-radius: 12px 12px 12px 12px;
-    	padding: 4%;
-    	padding-top: 36px;
-    	padding-bottom: 36px;
-    	height: 45vh;
-    	color: black;
-    	background-color: white;
-    	filter: drop-shadow(8px 8px 4px black);
-   	z-index: 0;
+  width: 80%;
+  margin-top: 96px;
+  margin-left: 6%;
+  margin-right: 6%;
+  border-radius: 12px 12px 12px 12px;
+  padding: 4%;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  height: 45vh;
+  color: black;
+  background-color: white;
+  filter: drop-shadow(8px 8px 4px black);
+  z-index: 0;
 }
 
 #question-buttons {
-	margin-top: 36px;
-    	filter: drop-shadow(8px 8px 4px black);
+  margin-top: 36px;
+  filter: drop-shadow(8px 8px 4px black);
 }
 
 #question button {
-	width: 150px;
-    	padding: 12px;
-    	margin: 6px;
-    	color: black;
-    	background-color: white;
-    	border-radius: 12px 12px 12px 12px;
-    	cursor: pointer;
+  width: 150px;
+  padding: 12px;
+  margin: 6px;
+  color: black;
+  background-color: white;
+  border-radius: 12px 12px 12px 12px;
+  cursor: pointer;
 }
