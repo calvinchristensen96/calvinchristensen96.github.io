@@ -49,7 +49,7 @@ body {
 #title {
   text-align: center;
   text-shadow: black 4px 4px;
-  font-size: 76px;
+  font-size: 64px;
   font-weight: bold;
 }
 #title-logo {
@@ -61,7 +61,7 @@ body {
 }
 #title-buttons {
   position: relative;
-  top: 65vh;
+  top: 50vh;
 }
 
 #button-start {
