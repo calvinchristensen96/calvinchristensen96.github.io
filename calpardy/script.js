@@ -1,5 +1,5 @@
 var gameBoard = [[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]];
-// 0 = main menu,  1 = options, 2 = game, 3 = question
+// 0 = main menu,  1 = options, 2 = game, 3 = question 
 var scene = 0;
 var category = [];
 var tempIndex = 0;
