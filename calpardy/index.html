@@ -8,7 +8,7 @@
 <body>
 <div id="transition-layer"></div>
 <div id="header">
-  <span id="header-back">←</span>
+  <span onclick="back()" id="header-back">←</span>
 </div>
 <div id="title-logo" onClick="changeTheme()">Calpardy!</div>
 
@@ -53,6 +53,7 @@
   </div>
   <div id="game">
     <div id="game-header">
+      
     </div>
     <div id="game-board">
       <div class="game-section" id="game-section-0">
@@ -126,9 +127,12 @@
 
   <div id="question">
   	<div id="question-category">Category</div>
-    <div id="question-card">?</div>
+    <div id="question-card">
+      <div id="question-q">?</div>
+      <div id="question-a"></div>
+    </div>
     <div id="question-buttons">
-    	<button onclick="showAnswer()">Show Answer</button><br>
+      <button class="question-show" onclick="showAnswer()">Show Answer</button><br>
       <button onclick="closeQuestion()">Close</button>
     </div>
   </div>
