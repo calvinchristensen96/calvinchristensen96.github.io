@@ -31,7 +31,6 @@ body {
   background-color: var(--c1);
   color: white;
   font-family: 'gill sans', sans-serif;
-  overflow: hidden;
   height: 100vh;
 }
 
@@ -181,7 +180,6 @@ a {
 }
 
 #game-board {
-  height: 100vh;
   margin-top: 2vh;
 }
 
@@ -268,14 +266,14 @@ a {
   padding: 4%;
   padding-top: 36px;
   padding-bottom: 36px;
-  height: 45vh;
+  height: 35vh;
   color: black;
   background-color: white;
   z-index: 0;
 }
 
 #question-buttons {
-  margin-top: 36px;
+  margin-top: 12px;
 }
 
 #question button {
