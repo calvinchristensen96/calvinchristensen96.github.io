@@ -7,11 +7,11 @@
 @keyframes riseFade {
     0% {
         opacity: 0;
-        top: 20vh;
+        top: 100px;
     }
     100% {
         opacity: 1;
-        top: 0vh;
+        top: 0px;
      }
 }
 
@@ -32,6 +32,7 @@ body {
   	color: white;
   	font-family: 'gill sans', sans-serif;
   	overflow: hidden;
+    height: 100vh;
 }
 
 #transition-layer {
@@ -46,10 +47,10 @@ body {
 }
 
 #title {
-			text-align: center;
-    	text-shadow: black 8px 8px;
-    	font-size: 96px;
-			font-weight: bold;
+  text-align: center;
+  text-shadow: black 4px 4px;
+  font-size: 76px;
+  font-weight: bold;
 }
 #title-logo {
 	position: relative;
@@ -59,8 +60,8 @@ body {
 	animation-fill-mode: forwards;
 }
 #title-buttons {
-	position: relative;
-	top: 60vh;
+  position: relative;
+  top: 65vh;
 }
 
 #button-start {
@@ -81,17 +82,35 @@ body {
 }
 
 #title button {
-	width: 150px;
-    	padding: 12px;
-    	margin: 6px;
-    	color: black;
-    	border-radius: 12px 12px 12px 12px;
-    	cursor: pointer;
-    	filter: drop-shadow(8px 8px 4px black);
+  width: 250px;
+  padding: 18px;
+  margin: 6px;
+  font-size: 18px;
+  color: black;
+  border-radius: 24px 24px 24px 24px;
+  cursor: pointer;
+  border: none;
 }
 
 #button-start {
 	background-color: var(--c2);
+}
+
+#title-disclaimer {
+  opacity: 0;
+  font-size: 12px;
+  margin-top: 48px;
+  animation: fade ease .75s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: .75s;
+  text-shadow: none;
+  margin-right: 24px;
+  margin-left: 24px;
+}
+
+a {
+  color: var(--c2);
 }
 
 #game {
@@ -100,25 +119,31 @@ body {
 }
 
 #game-board {
-			height: 100vh;
-			margin-top: 2vh;
+  height: 100vh;
+  margin-top: 2vh;
+}
+
+#game-header {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+}
+
+#game-header-text {
+  font-size: 24px;
 }
 
 .game-section {
-			background-color: white;
-    	color: black;
-/*			margin-top: 24px;
-    	margin-bottom: 24px;
-			padding-top: 8px; */
-			height: 11vh;
-			margin-top: 3vh;
-			margin-bottom: 3vh;
-			padding-top: 2vh;
-    	width: 80%;
-    	margin-left: 10%;
-    	margin-right: 10%;
-    	border-radius: 12px 12px 12px 12px;
-    	filter: drop-shadow(8px 8px 4px black);
+  background-color: white;
+  color: black;
+  height: 9vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  padding-top: 2vh;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-radius: 12px 12px 12px 12px;
+  filter: drop-shadow(8px 8px 4px black);
 }
 
 .game-category {
@@ -160,9 +185,9 @@ body {
 }
 
 #question-category {
-	position: absolute;
-    	background-color: var(--c2);
-	width: 256px;
+  position: absolute;
+  background-color: var(--c2);
+  width: 256px;
     	left: 50%;
     	padding-top: 6px;
     	padding-bottom: 6px;
