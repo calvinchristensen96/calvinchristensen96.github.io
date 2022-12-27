@@ -258,32 +258,32 @@ a {
 }
 
 #question-card {
-	width: 80%;
-    	margin-top: 96px;
-    	margin-left: 6%;
-    	margin-right: 6%;
-    	border-radius: 12px 12px 12px 12px;
-    	padding: 4%;
-    	padding-top: 36px;
-    	padding-bottom: 36px;
-    	height: 45vh;
-    	color: black;
-    	background-color: white;
-    	filter: drop-shadow(8px 8px 4px black);
-   	z-index: 0;
+  width: 80%;
+  margin-top: 96px;
+  margin-left: 6%;
+  margin-right: 6%;
+  border-radius: 12px 12px 12px 12px;
+  padding: 4%;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  height: 45vh;
+  color: black;
+  background-color: white;
+  filter: drop-shadow(8px 8px 4px black);
+  z-index: 0;
 }
 
 #question-buttons {
-	margin-top: 36px;
-    	filter: drop-shadow(8px 8px 4px black);
+  margin-top: 36px;
+  filter: drop-shadow(8px 8px 4px black);
 }
 
 #question button {
   width: 150px;
-      padding: 12px;
-    	margin: 6px;
-    	color: black;
-    	background-color: white;
-    	border-radius: 12px 12px 12px 12px;
-    	cursor: pointer;
+  padding: 12px;
+  margin: 6px;
+  color: black;
+  background-color: white;
+  border-radius: 12px 12px 12px 12px;
+  cursor: pointer;
 }
