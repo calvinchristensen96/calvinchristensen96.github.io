@@ -1,5 +1,5 @@
-var gameBoard = [[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]];
-// 0 = main menu,  1 = options, 2 = game, 3 = question 
+var gameBoard = [[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]];
+// 0 = main menu,  1 = options, 2 = game, 3 = question , 5 = free play
 var scene = 0;
 var category = [];
 var tempIndex = 0;
@@ -15,7 +15,7 @@ function start(val) {
     document.getElementById("header-back").style.left = "20px";
     updateCategories();
     scene = 1;
-  } else {
+  } else if (val == 1) {
     transition("title","game");
     document.getElementById("title-logo").style.top = "24px";
     document.getElementById("title-logo").style.fontSize = "24px";
@@ -23,6 +23,12 @@ function start(val) {
     document.getElementById("question-a").innerHTML = "";
     refreshCategories();
     scene = 2;
+  } else if (val == 2) {
+  	//Regular Game
+  } else if (val == 3) {
+    transition("options","free-play");
+    freePlay();
+    scene = 5;
   }
 }
 
@@ -33,6 +39,8 @@ function back() {
     transition("game","title");
   }	 else if (scene == 3) {
     transition("question","title");
+  } else if (scene == 5) {
+    transition("free-play","title");
   }
   document.getElementById("title-logo").style.top = "25vh";
   document.getElementById("title-logo").style.fontSize = "64px";
@@ -67,9 +75,9 @@ function closeQuestion() {
   gameBoard[tempCat][tempIndex] = 0;
   document.getElementById("question-a").innerHTML = "";
   scene = 2;
+  document.getElementById("header-back").style.display = "inline";
   // grey out a finished category
   if (gameBoard[tempCat].every((val, i, arr) => val === 0 )) {
-    document.getElementById("game-section-" + tempCat).style.color = "#454545";
     document.getElementById("game-section-" + tempCat).style.opacity = "0.5";
   }
 }
@@ -83,6 +91,7 @@ function updateCategories() {
   for (i=0;i<6;i++) {
     document.getElementById("cat-" + i).innerHTML = category[i].title.toUpperCase();
     document.getElementById("cat-" + i + "-date").innerHTML = category[i].clues[0].airdate.substring(0,4);
+    document.getElementById("game-section-" + i).style.opacity = "1";
     if (category[i].clues.length > 0) {
       document.getElementById(i + "-200").innerHTML = "$200";
       document.getElementById(i + "-200").style.backgroundColor = "var(--c2)";
@@ -135,9 +144,78 @@ function showClue(cat, index) {
   document.getElementById("question-q").innerHTML = category[cat].clues[index].question;
   tempIndex = index;
   tempCat = cat;
+  document.getElementById("header-back").style.display = "none";
   scene = 3;
 }
 
 function showAnswer() {
   document.getElementById("question-a").innerHTML = category[tempCat].clues[tempIndex].answer;
+}
+
+var players = 3;
+function addPlayer(val) {
+  players += val;
+  if (players < 1) {
+    players = 1;
+  } else if (players > 5) {
+    players = 5;
+  }
+  document.getElementById("option-number").innerHTML = players;
+}
+
+
+
+var select = document.getElementById("category-select");
+var freePlayOptions = [];
+var freePlayIds = [];
+var categoryId = 0;
+
+function freePlay() {
+fetch('https://jservice.io/api/categories?count=1000')
+  .then(response => response.text())
+  .then((data) => {
+    var raw = JSON.parse(data);
+    for (i=0;i<100;i++) {
+      freePlayOptions.push(raw[i].title.toUpperCase());
+      freePlayIds.push(raw[i].id);
+    }
+    populate();
+  })
+}
+
+function populate() {
+  for(var i = 0; i < freePlayOptions.length; i++) {
+    var opt = freePlayOptions[i];
+    var optId = freePlayIds[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = optId;
+    select.appendChild(el);
+  }
+}
+
+function freePlayChange() {
+  document.getElementById("free-play-questions").style.display = "block";
+  freePlayGetClues(document.getElementById("category-select").value);
+}
+
+function freePlayGetClues(val) {
+  fetch('https://jservice.io/api/category?id=' + val)
+  .then(response => response.text())
+  .then((data) => {
+    var raw = JSON.parse(data);
+    freePlayCreateTable(raw);
+  })
+}
+
+function freePlayCreateTable(raw) {
+  var curDate = raw.clues[0].airdate;
+  var result = raw.clues_count + '<br>' + raw.clues[0].airdate;
+  for (i=0;i<raw.clues.length;i++) {
+    if (raw.clues[i].airdate != curDate) {
+      result += '<br>' + raw.clues[i].airdate;
+      curDate = raw.clues[i].airdate;
+    }
+  }
+  document.getElementById("free-play-questions").innerHTML = result;
 }
