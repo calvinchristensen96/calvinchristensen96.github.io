@@ -10,7 +10,7 @@
 <div id="header">
   <span onclick="back()" id="header-back">←</span>
 </div>
-<div id="title-logo" onClick="changeTheme()">Calpardy!</div>
+<div id="title-logo"><span onClick="changeTheme()">Calpardy!</span></div>
 
   <div id="title">
     <div id="title-buttons">
@@ -30,12 +30,12 @@
         </div>
         <div class="option-players">
           Players: 
-          <span id="option-minus">-</span>
+          <span onclick="addPlayer(-1)" id="option-minus">-</span>
           <span id="option-number">3</span>
-          <span id="option-plus">+</span>
+          <span onclick="addPlayer(1)" id="option-plus">+</span>
         </div>
-        <div class="option-button">
-          <button class="option-play">Start</button>
+        <div class="option-button-off">
+          <button class="option-play">Coming Soon</button>
         </div>
       </div>
       <div id="option-2" class="option">
@@ -46,14 +46,25 @@
           Search for specific categories and answer questions at your own pace.
         </div>
         <div class="option-button">
-          <button class="option-play">Start</button>
+          <button onClick="start(3)" class="option-play">Start</button>
+        </div>
+      </div>
+    </div>
+    <div id="option-3" class="option">
+        <div class="option-name">
+          Custom Game
+        </div>
+        <div class="option-desc">
+          Create your own game board with your own questions and answers.
+        </div>
+        <div class="option-button-off">
+          <button class="option-play">Coming Soon</button>
         </div>
       </div>
     </div>
   </div>
   <div id="game">
     <div id="game-header">
-      
     </div>
     <div id="game-board">
       <div class="game-section" id="game-section-0">
@@ -134,6 +145,15 @@
     <div id="question-buttons">
       <button class="question-show" onclick="showAnswer()">Show Answer</button><br>
       <button onclick="closeQuestion()">Close</button>
+    </div>
+  </div>
+  
+  <div id="free-play">
+    <div id="free-play-board">
+      <select onchange="freePlayChange()" id="category-select"></select>
+    </div>
+    <div id="free-play-questions">
+      <div></div>
     </div>
   </div>
 </html>
