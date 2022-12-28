@@ -4,6 +4,10 @@
   --c3: #F8D496;
 }
 
+::selection {
+  background: var(--c2);
+}
+
 @keyframes riseFade {
   0% {
     opacity: 0;
@@ -31,7 +35,7 @@ body {
   background-color: var(--c1);
   color: white;
   font-family: 'gill sans', sans-serif;
-  height: 100vh;
+  min-width: 260px;
 }
 
 #transition-layer {
@@ -170,8 +174,34 @@ a {
 
 }
 
-.option-button {
+.option-button, .option-button-off {
   text-align: right;
+}
+
+.option-button button {
+  text-decoration: none;
+  background-color: var(--c2);
+  width: 125px;
+  padding: 14px;
+  margin: 6px;
+  font-size: 14px;
+  color: black;
+  border-radius: 24px 24px 24px 24px;
+  cursor: pointer;
+  border: none;
+}
+
+.option-button-off button {
+  text-decoration: none;
+  background-color: #d3d4d5;
+  width: 125px;
+  padding: 14px;
+  margin: 6px;
+  font-size: 14px;
+  color: black;
+  border-radius: 24px 24px 24px 24px;
+  cursor: pointer;
+  border: none;
 }
 
 #game {
@@ -293,4 +323,36 @@ a {
 
 #question-a {
   margin-top: 128px;
+}
+
+#free-play {
+  display: none;
+  width: 100%;
+}
+
+#category-select {
+  background-color: var(--c2);
+  font-size: 16px;
+  padding: 12px;
+}
+
+#free-play-board {
+  margin-top: 48px;
+  text-align: center;
+}
+
+#free-play-questions {
+  display: none;
+  text-align: center;
+  width: 80%;
+  margin-top: -22px;
+  margin-left: 6%;
+  margin-right: 6%;
+  border-radius: 12px 12px 12px 12px;
+  padding: 4%;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  height: 35vh;
+  color: black;
+  background-color: white;
 }
