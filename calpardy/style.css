@@ -228,7 +228,7 @@ a {
   height: 9vh;
   margin-top: 3vh;
   margin-bottom: 3vh;
-  padding-top: 2vh;
+  padding-top: 1vh;
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
@@ -237,9 +237,9 @@ a {
 }
 
 .game-category {
-  font-size: 16px;
+  font-size: 14px;
   text-decoration: bold;
-  margin-bottom: 12px;
+  margin-bottom: 4px;
 }
 
 .game-date {
@@ -265,8 +265,8 @@ a {
   border: solid black 2px;
   cursor: pointer;
   background: none;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 #question {
@@ -352,7 +352,25 @@ a {
   padding: 4%;
   padding-top: 36px;
   padding-bottom: 36px;
-  height: 35vh;
+  max-height: 55vh;
   color: black;
   background-color: white;
+  overflow: auto;
 } 
+
+.free-play-table {
+  color: black;
+  width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.free-play-table td {
+  width: 20%;
+  border: solid black 2px;
+  cursor: pointer;
+  background: none;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
