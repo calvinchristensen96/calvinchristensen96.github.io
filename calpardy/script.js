@@ -210,12 +210,55 @@ function freePlayGetClues(val) {
 
 function freePlayCreateTable(raw) {
   var curDate = raw.clues[0].airdate;
-  var result = raw.clues_count + '<br>' + raw.clues[0].airdate;
+  var table = false;
+  var result = getDate(raw.clues[0].airdate) + '<br>';
   for (i=0;i<raw.clues.length;i++) {
     if (raw.clues[i].airdate != curDate) {
-      result += '<br>' + raw.clues[i].airdate;
+      result += '</table>';
+      table = false;
+      result += '<br>' + getDate(raw.clues[i].airdate) + '<br>';
       curDate = raw.clues[i].airdate;
+    } else {
+      if (!table) {
+	    result += '<table class="free-play-table">';
+        table = true;
+      }
+      result += '<td style="background-color: var(--c2);">' + raw.clues[i].value + '</td>';
     }
   }
   document.getElementById("free-play-questions").innerHTML = result;
+}
+
+// Takes a string in format YYYY-MM-DD and returns in Month Day, Year.
+function getDate(str) {
+  var month = str.substring(5,7);
+  if (month == '01') {
+    month = 'January';
+  } else if (month == '02') {
+    month = 'February';
+  } else if (month == '03') {
+    month = 'March';
+  } else if (month == '04') {
+    month = 'April';
+  } else if (month == '05') {
+    month = 'May';
+  } else if (month == '06') {
+    month = 'June';
+  } else if (month == '07') {
+    month = 'July';
+  } else if (month == '08') {
+    month = 'August';
+  } else if (month == '09') {
+    month = 'September';
+  } else if (month == '10') {
+    month = 'October';
+  } else if (month == '11') {
+    month = 'November';
+  } else if (month == '12') {
+    month = 'December';
+  }
+  var day = str.substring(8,10);
+  var year = str.substring(0,4);
+  var result = month + ' ' + day + ', ' + year;
+  return result;
 }
