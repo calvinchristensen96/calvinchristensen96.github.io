@@ -9,8 +9,9 @@
 <div id="transition-layer"></div>
 <div id="header">
   <span onclick="back()" id="header-back">←</span>
+  <span onclick="refreshCategories()" id="header-refresh">⟳</span>
 </div>
-<div id="title-logo"><span onClick="changeTheme()">Calpardy!</span></div>
+<div id="title-logo"><span onclick="changeTheme()">Calpardy!</span></div>
 
   <div id="title">
     <div id="title-buttons">
@@ -46,7 +47,7 @@
           Search for specific categories and answer questions at your own pace.
         </div>
         <div class="option-button">
-          <button onClick="start(3)" class="option-play">Start</button>
+          <button onclick="start(3)" class="option-play">Start</button>
         </div>
       </div>
     </div>
@@ -62,13 +63,13 @@
         </div>
       </div>
     </div>
-  </div>
+  
   <div id="game">
     <div id="game-header">
     </div>
     <div id="game-board">
       <div class="game-section" id="game-section-0">
-        <div class="game-category" id="cat-0">ENDS WITH DOUBLE LETTERS</div>
+        <div class="game-category" id="cat-0">CHURCHES</div>
         <span class="game-date" id="cat-0-date">1996</span>
         <table class="game-table" id="table-0">
       	  <tbody><tr><td id="0-200" onclick="showClue(0,0)"></td>
@@ -79,7 +80,7 @@
         </tr></tbody></table>
       </div>
       <div class="game-section" id="game-section-1">
-        <div class="game-category" id="cat-1">?</div>
+        <div class="game-category" id="cat-1">BIRD WORDS</div>
         <span class="game-date" id="cat-1-date">1996</span>
         <table class="game-table" id="table-1">
       	  <tbody><tr><td id="1-200" onclick="showClue(1,0)"></td>
@@ -123,7 +124,7 @@
         </tr></tbody></table>
       </div>
       <div class="game-section" id="game-section-5">
-        <div class="game-category" id="cat-5">NOTRE DAME</div>
+        <div class="game-category" id="cat-5">CAMPAIGN '88</div>
         <span class="game-date" id="cat-5-date">1996</span>
         <table class="game-table" id="table-5">
       	  <tbody><tr><td id="5-200" onclick="showClue(5,0)"></td>
