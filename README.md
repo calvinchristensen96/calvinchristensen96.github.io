@@ -1,7 +1,10 @@
-## Completed Projects
-View projects that are in a completed state. These are functional, but I may make updates to them as necessary.
+## My Projects
+View different applications and websites I've made here so far. These are in a functional state, but I may make updates to them as necessary.
 
-### [Chordy](https://calvinchristensen96.github.io/chordy/index.html)  
+### [Calpardy!](https://calvinchristensen96.github.io/calpardy/index.html)  
+- A trivia game you can play by yourself or together with friends locally. All questions and answers are from the game show Jeopardy, and are used from the [jService](https://jservice.io/) api. A quick play mode is playable now and I plan to continue adding other game modes. 
+
+### [Chordy](https://calvinchristensen96.github.io/chordy/index2.html)  
 - An online chord dictionary. This web application helps the user identify musical chords.
 
 ### [Pokémon Go: Combat Power Maximizer](https://calvinchristensen96.github.io/pkmngo/index.html)  
