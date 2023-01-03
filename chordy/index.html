@@ -17,7 +17,7 @@
   </div>
 <div id="nav">
  <div id="logo">
-  <img src="Chordy-logo.png">
+  <img src="https://github.com/calvinchristensen96/calvinchristensen96.github.io/blob/master/chordy/Chordy-logo.png?raw=true">
  </div>
  <div id="options">
   <img onclick="toggleNav()" src="https://raw.githubusercontent.com/calvinchristensen96/calvinchristensen96.github.io/master/pkmngo/menu.png">
@@ -90,17 +90,25 @@
     <td>
      <select id="select-chord" name="select-chord" onChange="changeChord(this.value)">
       <option value="maj" selected>Major</option>
-      <option value="min">Minor</option>
-      <option value="dim">Diminished</option>
+      <option value="maj6">Major Sixth</option>
+      <option value="7">Dominant Seventh</option>
+      <option value="maj7">Major Seventh</option>
       <option value="aug">Augmented</option>
-      <option value="7">Seventh</option>
+      <option value="aug7">Augmented Seventh</option>
+      <option value="min">Minor</option>
+      <option value="min6">Minor Sixth</option>
+      <option value="min7">Minor Seventh</option>
+      <option value="min/maj7">Minor-Major Seventh</option>
+      <option value="dim">Diminished</option>
+      <option value="dim7">Diminished Seventh</option>
+      <option value="halfdim7">Half-Diminished Seventh</option>
      </select>
     </td>
    </table>
   </div>
 
   <div id="section3">
-   <p id="results">Choose more notes please</p>
+   <p id="results">Choose more notes by clicking the piano keys</p>
    <button id="reset" onClick="reset()">Reset</button>
   </div>
  </div>
@@ -150,7 +158,8 @@
 
 
 <div id="footer">
-		<p>Chordy is a Web Application by Calvin Christensen, 2021 - 2022</p><br>
+		<p>Chordy is a Web Application by Calvin Christensen, 2021 - 2023<br><br>
+        Piano Photo by <a href="https://www.pexels.com/photo/macro-photography-of-piano-586415/">Bryan Geraldo</a> from Pexels</p><br>
 		<p><a href="https://calvinchristensen96.github.io/#contact">Contact</a> &nbsp;•&nbsp; <a href="https://github.com/calvinchristensen96/calvinchristensen96.github.io/tree/master/chordy">Github</a></p>
 	</div>
 </body>
@@ -162,7 +171,6 @@ body, * {
 
 #nav {
  position: absolute;
- background: none;
  mix-blend-mode: multiply;
  width: 100%;
 }
@@ -236,7 +244,7 @@ body, * {
 }
 
 #intro {
- background-image: url('pexels-bryan-geraldo-586415.jpg');
+ background-image: url('https://images.pexels.com/photos/586415/pexels-photo-586415.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
  background-size: cover;
  padding: 24px;
  height: 100vh;
@@ -294,12 +302,12 @@ body, * {
 #option1 {
  color: orange;
  border-bottom: 1px orange solid;
- margin-right: 24px;
+ margin-right: 3%;
 }
 
 #option2 {
  color: #777;
- margin-left: 24px;
+ margin-left: 3%;
 }
 
 #menu {
@@ -511,6 +519,7 @@ function changeTool(val) {
   document.getElementById("option2").style.color = "#777";
   document.getElementById("option2").style.border = "none";
   document.getElementById("section3").style.visibility = "hidden";
+  document.getElementById("reset").style.display = "none";
 
  } else {
   reset();
@@ -521,12 +530,13 @@ function changeTool(val) {
   document.getElementById("option1").style.color = "#777";
   document.getElementById("option1").style.border = "none";
   document.getElementById("section2").style.visibility = "hidden";
+  document.getElementById("reset").style.display = "inline";
  }
 }
 
 
 var notes = ["c","c♯","d","d♯","e","f","f♯","g","g♯","a","a♯","b"];
-var chordList = [[[0,4,7], [0,3,7], [0,3,6], [0,4,8], [0,4,7,10]], ['maj', 'min', 'dim', 'aug', '7']];
+var chordList = [[[0,4,7], [0,3,7], [0,3,6], [0,4,8], [0,4,7,10], [0,4,7,9], [0,4,7,11], [0,4,8,10], [0,3,7,9], [0,3,7,10], [0,3,7,11], [0,3,6,9], [0,3,6,10]], ['maj', 'min', 'dim', 'aug', '7', 'maj6', 'maj7', 'aug7', 'min6', 'min7', 'min/maj7', 'dim7', 'halfdim7'], ['Major', 'Minor', 'Diminished', 'Augmented', 'Dominant Seventh', 'Major Sixth', 'Major Seventh', 'Augmented Seventh', 'Minor Sixth', 'Minor Seventh', 'Minor-Major Seventh', 'Diminished Seventh', 'Half-Diminished Seventh']];
 
 var piano = ["c0","c♯0","d0","d♯0","e0","f0","f♯0","g0","g♯0","a0","a♯0","b0","c1","c♯1","d1","d♯1","e1","f1","f♯1","g1","g♯1","a1","a♯1","b1"];
 var ledger = ["c0","d0","e0","f0","g0","a0","b0","c1","d1","e1","f1","g1","a1","b1"];
@@ -539,7 +549,7 @@ changeKey(currKey);
 // Position the notes on the staff
 var mm;
 for (mm=0;mm<ledger.length;mm++) {
- document.getElementById("note-" + ledger[mm]).style.marginTop = 99 - (12.7 * mm) + "px";
+ document.getElementById("note-" + ledger[mm]).style.marginTop = 99 - (12.9 * mm) + "px";
 }
 
 function changeKey(val) {
@@ -569,10 +579,11 @@ function keyOn(note) {
  if(note.indexOf('♯') >= 0) {
   document.getElementById("note-" + note.substring(0,1) + note.substring(2,3)).innerHTML = "♯o";
   document.getElementById("note-" + note.substring(0,1) + note.substring(2,3)).style.opacity = 1;
-  document.getElementById("note-" + note.substring(0,1) + note.substring(2,3)).style.marginLeft = "-36px";
+  document.getElementById("note-" + note.substring(0,1) + note.substring(2,3)).style.marginLeft = "-18px";
  } else {
   document.getElementById("note-" + note).innerHTML = "o";
   document.getElementById("note-" + note).style.opacity = 1;
+  document.getElementById("note-" + note).style.marginLeft = "0px";
  }
 }
 
@@ -588,25 +599,44 @@ function keyOff(val) {
 
 function light(key, note) {
   if (pianoActive) {
-    if (activeNotes.indexOf(note) < 0) {
+    if (activeNotes.indexOf(key.substring(4, key.length)) < 0) {
       keyOn(key.substring(4, key.length));
-      activeNotes.push(note);
+      activeNotes.push(key.substring(4, key.length));
     } else {
       keyOff(key.substring(4, key.length));
-      activeNotes.splice(activeNotes.indexOf(note), 1);
+      activeNotes.splice(activeNotes.indexOf(key.substring(4, key.length)), 1);
     }
   }
   //document.getElementById("results").innerHTML = activeNotes;
-  if (activeNotes.length == 3) {
+  if (activeNotes.length >= 3) {
     getChord(activeNotes);
+  } else {
+    document.getElementById("results").innerHTML = "Choose more notes by clicking the piano keys"
   }
 }
 
 function getChord(arr) {
-  document.getElementById("results").innerHTML = notes.indexOf(arr[0]);
-  if(notes.indexOf(arr[0]) + notes.indexOf(arr[1]) == 4 && notes.indexOf(arr[0]) + notes.indexOf(arr[2]) == 7) {
-    document.getElementById("results").innerHTML = "Major";
-  }
+  var chordFound = false;
+  arr.sort((a, b) => piano.indexOf(a) - piano.indexOf(b));
+  document.getElementById("results").innerHTML = "Chord not found, try selecting different notes";
+  var i;
+  if (arr.length == 3) {
+    for (i=0;i<4;i++) {
+      if(piano.indexOf(arr[1]) - piano.indexOf(arr[0]) == chordList[0][i][1] && piano.indexOf(arr[2]) - piano.indexOf(arr[0]) == chordList[0][i][2]) {
+        document.getElementById("results").innerHTML = arr[0].substring(0, arr[0].length - 1).toUpperCase() + " " + chordList[2][i];
+        chordFound = true;
+        break;
+      }
+    }
+  } else if (arr.length == 4) {
+    for (i=4;i<13;i++) {
+      if(piano.indexOf(arr[1]) - piano.indexOf(arr[0]) == chordList[0][i][1] && piano.indexOf(arr[2]) - piano.indexOf(arr[0]) == chordList[0][i][2] && piano.indexOf(arr[3]) - piano.indexOf(arr[0]) == chordList[0][i][3]) {
+        document.getElementById("results").innerHTML = arr[0].substring(0, arr[0].length - 1).toUpperCase() + " " + chordList[2][i];
+        chordFound = true;
+        break;
+      } 
+    }
+  }  
 }
 
 function reset() {
