@@ -154,7 +154,7 @@
       <div id="question-q">?</div>
       <div id="question-a"></div>
       <div id="daily-correct">
-        <button onClick="dailyCorrect(0)">X</button><button onClick="dailyCorrect(1)">+</button>
+        <button id="daily-wrong1" onClick="dailyCorrect(0)"><span id="daily-wrong">X</span></button><button id="daily-right" onClick="dailyCorrect(1)">✓</button>
       </div>
     </div>
     <div id="question-buttons">
@@ -212,6 +212,9 @@
           <td onClick="dailyQ(1,2)" class="dailyQ" id="daily1-q2">
           
           </td>
+          <td onClick="dailyQ(1,3)" class="dailyQ" id="daily1-q3">
+          
+          </td>
         </table>
       </div>
       <div class="daily-section">
@@ -228,9 +231,16 @@
           <td onClick="dailyQ(2,2)" class="dailyQ" id="daily2-q2">
           
           </td>
+          <td onClick="dailyQ(2,3)" class="dailyQ" id="daily2-q3">
+          
+          </td>
         </table>
       </div>
     </div>  
+    <div id="daily-button">
+      <button id="daily-share" onClick="share()">Share Score</button><br>
+      <textarea value="" id="myScore"></textarea>
+    </div>
   </div>
 </html> 
 <script type="text/javascript" src="script.js"></script>
