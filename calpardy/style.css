@@ -35,7 +35,7 @@ body {
   background-color: var(--c1);
   color: white;
   font-family: 'gill sans', sans-serif;
-  min-width: 260px;
+  min-width: 360px;
 }
 
 #transition-layer {
@@ -395,4 +395,79 @@ a {
   background: none;
   padding-top: 2px;
   padding-bottom: 2px;
+}
+
+#daily {
+  display: none;
+  width: 100%;
+}
+
+#daily-board {
+  margin-top: 120px;
+  max-width: 700px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-radius: 12px 12px 12px 12px;
+  background-color: white;
+  color: black;
+  padding: 4%;
+}
+
+.daily-category {
+  margin-top: 24px;
+}
+
+#daily table {
+   border-collapse: collapse;
+   border-spacing: 6vw 12px;
+   border-collapse: separate;
+}
+
+#daily-date {
+  position: absolute;
+  background-color: var(--c2);
+  width: 128px;
+  left: 50%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-left: -64px;
+  margin-top: -12px;
+  color: black;
+  z-index: 1;
+  text-align: center;
+}
+
+.daily-table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.daily-table td {
+  
+}
+
+.daily-section {
+
+}
+
+.dailyQ {
+  width: 48px;
+  height: 48px;
+  border: solid var(--c2) 2px;
+  background-color: var(--c2);
+  cursor: pointer;
+}
+
+#daily0-q3, #daily1-q3, #daily2-q3 {
+  display: none;
+}
+
+#daily-correct {
+  display: none;
+}
+
+#daily-correct button {
+  width: 56px;
 }
