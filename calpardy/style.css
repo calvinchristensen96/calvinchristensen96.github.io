@@ -456,8 +456,8 @@ a {
 }
 
 .dailyQ {
-  width: 48px;
-  height: 48px;
+  width: 38px;
+  height: 38px;
   border: solid var(--c2) 2px;
   background-color: var(--c2);
   cursor: pointer;
