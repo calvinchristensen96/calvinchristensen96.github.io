@@ -333,8 +333,14 @@ function share() {
   var copyText = document.getElementById("myScore");
   copyText.select();
   copyText.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(copyText.value);
-  alert("Your score has been copied to your clipboard.\n\nThank you for playing!");
+  navigator.clipboard
+  .writeText(copyText.value)
+  .then(() => {
+    alert("Your score has been copied to your clipboard.\n\nThank you for playing!");
+  })
+  .catch(() => {
+    alert("Something went wrong.");
+  });
 }
 
 function populate() {
