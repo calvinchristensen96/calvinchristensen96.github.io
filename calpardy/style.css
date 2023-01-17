@@ -412,7 +412,10 @@ a {
   border-radius: 12px 12px 12px 12px;
   background-color: white;
   color: black;
-  padding: 4%;
+  padding-left: 4%;
+  padding-right: 4%;
+  padding-bottom: 48px;
+  padding-top: 24px;
 }
 
 .daily-category {
@@ -470,4 +473,45 @@ a {
 
 #daily-correct button {
   width: 56px;
+  border: solid var(--c1) 2px;
+  color: white;
+  margin: 24px;
+}
+
+#daily-share {
+  display: none;
+}
+
+#daily-button {
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+  text-align: center;
+}
+
+#daily-button button {
+  width: 250px;
+  padding: 18px;
+  margin: 6px;
+  font-size: 18px;
+  border-radius: 24px 24px 24px 24px;
+  cursor: pointer;
+}
+
+#daily-wrong {
+  color: var(--c1);
+}
+
+#daily-wrong1 {
+  background-color: white;
+}
+
+#daily-right {
+  background-color: var(--c1);
+  border: solid var(--c1) 2px;
+  color: white;
+}
+
+#myScore {
+  visibility: hidden;
 }
