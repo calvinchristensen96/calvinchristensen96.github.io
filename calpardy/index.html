@@ -15,8 +15,8 @@
 
   <div id="title">
     <div id="title-buttons">
-      <button id="button-start" onclick="start(0)">New Game</button><br>
-      <button id="button-practice" onclick="start(1)">Quick Play</button>
+      <button id="button-start" onclick="start(8)">Daily</button><br>
+      <button id="button-practice" onclick="start(0)">New Game</button>
       <div id="title-disclaimer">Calpardy is a trivia game by <a href="https://calvinchristensen96.github.io">Calvin Christensen</a><br>Questions and answers are supplied from <a href="https://jservice.io/">jService</a>, an open source archive of Jeopardy clues.</div>
     </div>
   </div>
@@ -24,7 +24,18 @@
     <div id="options-settings">
       <div id="option-2" class="option">
         <div class="option-name">
-          Free play
+          Quick Play
+        </div>
+        <div class="option-desc">
+          Jump in and start playing now. Categories are chosen randomly and can be reset. This mode isn't played for score.
+        </div>
+        <div class="option-button">
+          <button onclick="start(1)" class="option-play">Start</button>
+        </div>
+      </div>
+      <div id="option-2" class="option">
+        <div class="option-name">
+          Free Play
         </div>
         <div class="option-desc">
           Search for specific categories and answer questions at your own pace.
@@ -69,7 +80,7 @@
     </div>
     <div id="game-board">
       <div class="game-section" id="game-section-0">
-        <div class="game-category" id="cat-0">GREETINGS</div>
+        <div class="game-category" id="cat-0">KINGS &amp; QUEENS</div>
         <span class="game-date" id="cat-0-date">1996</span>
         <table class="game-table" id="table-0">
       	  <tbody><tr><td id="0-200" onclick="showClue(0,0)"></td>
@@ -91,7 +102,7 @@
         </tr></tbody></table>
       </div>
       <div class="game-section" id="game-section-2">
-        <div class="game-category" id="cat-2">HISTORIC BANDS</div>
+        <div class="game-category" id="cat-2">"A" ON THE MAP</div>
         <span class="game-date" id="cat-2-date">1996</span>
         <table class="game-table" id="table-2">
       	  <tbody><tr><td id="2-200" onclick="showClue(2,0)"></td>
@@ -113,7 +124,7 @@
         </tr></tbody></table>
       </div>
       <div class="game-section" id="game-section-4">
-        <div class="game-category" id="cat-4">CLASSIC SONG LYRICS</div>
+        <div class="game-category" id="cat-4">GROUPS</div>
         <span class="game-date" id="cat-4-date">1996</span>
         <table class="game-table" id="table-4">
       	  <tbody><tr><td id="4-200" onclick="showClue(4,0)"></td>
@@ -124,7 +135,7 @@
         </tr></tbody></table>
       </div>
       <div class="game-section" id="game-section-5">
-        <div class="game-category" id="cat-5">WHIPS &amp; CHAINS</div>
+        <div class="game-category" id="cat-5">REALLY BIG MOUNTAINS</div>
         <span class="game-date" id="cat-5-date">1996</span>
         <table class="game-table" id="table-5">
       	  <tbody><tr><td id="5-200" onclick="showClue(5,0)"></td>
@@ -142,11 +153,15 @@
     <div id="question-card">
       <div id="question-q">?</div>
       <div id="question-a"></div>
+      <div id="daily-correct">
+        <button onClick="dailyCorrect(0)">X</button><button onClick="dailyCorrect(1)">+</button>
+      </div>
     </div>
     <div id="question-buttons">
       <button class="question-show" onclick="showAnswer()">Show Answer</button><br>
-      <button onclick="closeQuestion()">Close</button>
+      <button id="question-close" onclick="closeQuestion()">Close</button>
     </div>
+
   </div>
   
   <div id="free-play">
@@ -156,6 +171,66 @@
     <div id="free-play-questions">
     <div></div>
     </div>
+  </div>
+  
+  <div id="daily">
+      <div id="daily-date">
+      
+      </div>
+    <div id="daily-board">
+
+      <div class="daily-section">
+        <div id="daily-category0" class="daily-category">
+          Category 0
+        </div>
+        <table class="daily-table">
+          <td onClick="dailyQ(0,0)" class="dailyQ" id="daily0-q0">
+          
+          </td>
+          <td onClick="dailyQ(0,1)" class="dailyQ" id="daily0-q1">
+          
+          </td>
+          <td onClick="dailyQ(0,2)" class="dailyQ" id="daily0-q2">
+          
+          </td>
+          <td onClick="dailyQ(0,3)" class="dailyQ" id="daily0-q3">
+          
+          </td>
+        </table>
+      </div>
+      <div class="daily-section">
+        <div id="daily-category1" class="daily-category">
+          Category 1
+        </div>
+        <table class="daily-table">
+          <td onClick="dailyQ(1,0)" class="dailyQ" id="daily1-q0">
+          
+          </td>
+          <td onClick="dailyQ(1,1)" class="dailyQ" id="daily1-q1">
+          
+          </td>
+          <td onClick="dailyQ(1,2)" class="dailyQ" id="daily1-q2">
+          
+          </td>
+        </table>
+      </div>
+      <div class="daily-section">
+        <div id="daily-category2" class="daily-category">
+          Category 2
+        </div>
+        <table class="daily-table">
+          <td onClick="dailyQ(2,0)" class="dailyQ" id="daily2-q0">
+          
+          </td>
+          <td onClick="dailyQ(2,1)" class="dailyQ" id="daily2-q1">
+          
+          </td>
+          <td onClick="dailyQ(2,2)" class="dailyQ" id="daily2-q2">
+          
+          </td>
+        </table>
+      </div>
+    </div>  
   </div>
 </html> 
 <script type="text/javascript" src="script.js"></script>
