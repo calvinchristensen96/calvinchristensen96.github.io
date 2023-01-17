@@ -20,7 +20,7 @@ function start(val) {
     updateCategories();
     scene = 1;
   } else if (val == 1) {
-    transition("title","game",750);
+    transition("options","game",750);
     document.getElementById("title-logo").style.top = "24px";
     document.getElementById("title-logo").style.fontSize = "24px";
     document.getElementById("header-back").style.left = "20px";
@@ -34,7 +34,15 @@ function start(val) {
     transition("options","free-play");
     freePlay();
     scene = 5;
+  } else if (val == 8) {
+    transition("title", "daily");
+    daily();
+    document.getElementById("title-logo").style.top = "24px";
+    document.getElementById("title-logo").style.fontSize = "24px";
+    document.getElementById("header-back").style.left = "20px";
+    scene = 8;
   }
+   
 }
 
 function back() {
@@ -46,6 +54,8 @@ function back() {
     transition("question","title");
   } else if (scene == 5) {
     transition("free-play","title");
+  } else if (scene == 8) {
+    transition("daily","title");
   }
   document.getElementById("title-logo").style.top = "25vh";
   document.getElementById("title-logo").style.fontSize = "64px";
@@ -95,6 +105,11 @@ function closeQuestion() {
     document.getElementById("question").style.display = "none";
     document.getElementById("free-play").style.display = "inline";
     document.getElementById("question-a").innerHTML = "";
+  } else if (scene == 8) {
+    document.getElementById("question").style.display = "none";
+    document.getElementById("daily").style.display = "inline";
+    document.getElementById("question-a").innerHTML = "";
+    document.getElementById("daily-correct").style.display = "none";
   }
 }
 
@@ -162,6 +177,7 @@ function showClue(cat, index) {
   tempCat = cat;
   document.getElementById("header-back").style.display = "none";
   document.getElementById("header-refresh").style.display = "none";
+  document.getElementById("question-close").style.display = "inline";
   scene = 3;
 }
 
@@ -170,6 +186,9 @@ function showAnswer() {
     document.getElementById("question-a").innerHTML = category[tempCat].clues[tempIndex].answer;
   } else if (scene == 5) {
     document.getElementById("question-a").innerHTML = freePlayCategoryData.clues[freePlayIndex].answer;
+  } else if (scene == 8) {
+    document.getElementById("daily-correct").style.display = "inline";
+    document.getElementById("question-a").innerHTML = "foo";
   }
 }
 
@@ -201,6 +220,50 @@ fetch('https://jservice.io/api/categories?count=100&offset=1500')
     populate();
   })
 }
+
+function daily() {
+  var dailyScore = [[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+  document.getElementById("daily-date").innerHTML = today;
+}
+
+var dailyCat = 0;
+var dailyQues = 0;
+function dailyQ(cat,ques) {
+  showClueDaily(cat,ques);
+  dailyCat = cat;
+  dailyQues = ques;  
+}
+
+function dailyCorrect(val) {
+  document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.borderColor = "var(--c1)";
+  document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.cursor = "auto";
+  if (val == 0) {
+      document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.backgroundColor = "white";
+  } else {
+    document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.backgroundColor = "var(--c1)";
+  }
+  closeQuestion();
+}
+
+function showClueDaily(cat, index) {
+  document.getElementById("question").style.display = "inline";
+  document.getElementById("daily").style.display = "none";
+  document.getElementById("question-category").innerHTML = category[cat].title.toUpperCase();
+  document.getElementById("question-q").innerHTML = category[cat].clues[index].question;
+  tempIndex = index;
+  tempCat = cat;
+  document.getElementById("header-back").style.display = "none";
+  document.getElementById("header-refresh").style.display = "none";
+  document.getElementById("question-close").style.display = "none";
+}
+
+
 
 function populate() {
   //document.getElementById("free-play-board").innerHTML = freePlayOptions + "<br><br>" + freePlayIds;
