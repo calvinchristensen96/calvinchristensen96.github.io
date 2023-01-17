@@ -188,7 +188,13 @@ function showAnswer() {
     document.getElementById("question-a").innerHTML = freePlayCategoryData.clues[freePlayIndex].answer;
   } else if (scene == 8) {
     document.getElementById("daily-correct").style.display = "inline";
-    document.getElementById("question-a").innerHTML = "foo";
+    if (dailyCat == 0) {
+      document.getElementById("question-a").innerHTML = daily0[2][dailyQues];
+    } else if (dailyCat == 1) {
+      document.getElementById("question-a").innerHTML = daily1[2][dailyQues];
+    } else if (dailyCat == 2) {
+      document.getElementById("question-a").innerHTML = daily2[2][dailyQues];
+    }
   }
 }
 
@@ -221,41 +227,86 @@ fetch('https://jservice.io/api/categories?count=100&offset=1500')
   })
 }
 
+var dailyScore = [[0,0,0,'x'],[0,0,0,'x'],[0,0,0,'x']];
+var dailyTurn = 0;
+var bonus = false;
+var dailyDate;
+var score = 0;
+
+var daily0 = ["Metals",["The Statue of Liberty is sheathed in more than 31 tons of this metal mined in Norway", "Discovered in Colorado in the 1950s, coffinite is an ore that is more than 60% this radioactive metal","An oxide of this light metal, discovered in 1791, is used extensively as a white pigment","This metal used to make semiconductors was discovered by Clemens Winkler & named for his homeland"],["Copper","Uranium","Titanium","Germanium"]];
+
+var daily1 = ["The Revolutionary War",["The British passed the Intolerable Acts to punish Massachusetts for this event","General Richard Montgomery was killed December 31, 1775 leading a hopeless attack on this Canadian city","Born in Connecticut, Nathan Hale was a graduate of this Ivy League university","In the 1760s painter Charles Willson Peale joined this patriot group, angering Loyalist creditors"],["Boston Tea Party","Quebec","Yale","Sons of Liberty"]];
+
+var daily2 = ["Lakes & Rivers",["Famous for its monster, it forms part of the Caledonian Canal","At 2,485 miles, the Parana is this continent's second-longest river","This largest lake in Africa is also the main reservoir of the Nile River","The pre-Incan Uros people still inhabit floating islands high in the Andes in this lake"],["Loch Ness","South America","Lake Victoria","Lake Titicaca"]];
+
 function daily() {
-  var dailyScore = [[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  document.getElementById("daily-category0").innerHTML = daily0[0];
+  document.getElementById("daily-category1").innerHTML = daily1[0];
+  document.getElementById("daily-category2").innerHTML = daily2[0];
+  score = 0;
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0');
   var yyyy = today.getFullYear();
 
   today = mm + '/' + dd + '/' + yyyy;
+  dailyDate = today;
   document.getElementById("daily-date").innerHTML = today;
 }
 
 var dailyCat = 0;
 var dailyQues = 0;
 function dailyQ(cat,ques) {
-  showClueDaily(cat,ques);
-  dailyCat = cat;
-  dailyQues = ques;  
+  if (dailyTurn < 10) {
+    showClueDaily(cat,ques);
+    dailyCat = cat;
+    dailyQues = ques;  
+  }
 }
 
 function dailyCorrect(val) {
   document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.borderColor = "var(--c1)";
   document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.cursor = "auto";
   if (val == 0) {
-      document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.backgroundColor = "white";
+    document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.backgroundColor = "white";
+    dailyScore[dailyCat][dailyQues] = 0;
   } else {
     document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.backgroundColor = "var(--c1)";
+    dailyScore[dailyCat][dailyQues] = 1;
+    score++;
   }
+  dailyTurn++;
   closeQuestion();
+  if (dailyTurn == 9) {
+    document.getElementById("daily0-q3").style.display = "inline-block";
+    document.getElementById("daily1-q3").style.display = "inline-block";
+    document.getElementById("daily2-q3").style.display = "inline-block";
+  } else if (dailyTurn == 10) {
+    document.getElementById("daily-share").style.display = "inline-block";
+    var i;
+    for (i=0;i<3;i++) {
+      if (dailyScore[i][3] == 'x') {
+        document.getElementById("daily" + i + "-q3").style.backgroundColor = "white";
+        document.getElementById("daily" + i + "-q3").style.border = "white";
+        document.getElementById("daily" + i + "-q3").style.cursor = "auto";
+      }
+    }
+  }
 }
 
 function showClueDaily(cat, index) {
   document.getElementById("question").style.display = "inline";
   document.getElementById("daily").style.display = "none";
-  document.getElementById("question-category").innerHTML = category[cat].title.toUpperCase();
-  document.getElementById("question-q").innerHTML = category[cat].clues[index].question;
+  if (cat == 0) {
+    document.getElementById("question-category").innerHTML = daily0[0];
+    document.getElementById("question-q").innerHTML = daily0[1][index];
+  } else if (cat == 1) {
+    document.getElementById("question-category").innerHTML = daily1[0];
+    document.getElementById("question-q").innerHTML = daily1[1][index];
+  } else if (cat == 2) {
+    document.getElementById("question-category").innerHTML = daily2[0];
+    document.getElementById("question-q").innerHTML = daily2[1][index];
+  }
   tempIndex = index;
   tempCat = cat;
   document.getElementById("header-back").style.display = "none";
@@ -263,7 +314,28 @@ function showClueDaily(cat, index) {
   document.getElementById("question-close").style.display = "none";
 }
 
-
+function share() {
+  var result = "";
+  var i;
+  var j;
+  for (i=0;i<3;i++) {
+    for (j=0;j<4;j++) {
+      if (dailyScore[i][j] == 0) {
+        result += "⬜";
+      } else if (dailyScore[i][j] == 1) {
+        result += "🟧";
+      }
+    }
+    result += "\n";
+  }
+  result += "\nCalpardy Daily\n" + dailyDate + "\n" + score*10 + "%" + "\n\ncalvinchristensen96.github.io/calpardy";
+  document.getElementById("myScore").value = result;
+  var copyText = document.getElementById("myScore");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+  alert("Your score has been copied to your clipboard.\n\nThank you for playing!");
+}
 
 function populate() {
   //document.getElementById("free-play-board").innerHTML = freePlayOptions + "<br><br>" + freePlayIds;
