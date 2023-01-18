@@ -34,9 +34,12 @@ function start(val) {
     transition("options","free-play");
     freePlay();
     scene = 5;
-  } else if (val == 8) {
-    transition("title", "daily");
+  } else if (val == 7) {
+    transition("daily-how-to-play", "daily");
     daily();
+    scene = 8;
+  } else if (val == 8) {
+    transition("title", "daily-how-to-play");
     document.getElementById("title-logo").style.top = "24px";
     document.getElementById("title-logo").style.fontSize = "24px";
     document.getElementById("header-back").style.left = "20px";
@@ -227,22 +230,45 @@ fetch('https://jservice.io/api/categories?count=100&offset=1500')
   })
 }
 
-var dailyScore = [[0,0,0,'x'],[0,0,0,'x'],[0,0,0,'x']];
+var dailyScore = [['x','x','x','x'],['x','x','x','x'],['x','x','x','x']];
 var dailyTurn = 0;
 var bonus = false;
 var dailyDate;
 var score = 0;
 
-var daily0 = ["Metals",["The Statue of Liberty is sheathed in more than 31 tons of this metal mined in Norway", "Discovered in Colorado in the 1950s, coffinite is an ore that is more than 60% this radioactive metal","An oxide of this light metal, discovered in 1791, is used extensively as a white pigment","This metal used to make semiconductors was discovered by Clemens Winkler & named for his homeland"],["Copper","Uranium","Titanium","Germanium"]];
 
-var daily1 = ["The Revolutionary War",["The British passed the Intolerable Acts to punish Massachusetts for this event","General Richard Montgomery was killed December 31, 1775 leading a hopeless attack on this Canadian city","Born in Connecticut, Nathan Hale was a graduate of this Ivy League university","In the 1760s painter Charles Willson Peale joined this patriot group, angering Loyalist creditors"],["Boston Tea Party","Quebec","Yale","Sons of Liberty"]];
 
-var daily2 = ["Lakes & Rivers",["Famous for its monster, it forms part of the Caledonian Canal","At 2,485 miles, the Parana is this continent's second-longest river","This largest lake in Africa is also the main reservoir of the Nile River","The pre-Incan Uros people still inhabit floating islands high in the Andes in this lake"],["Loch Ness","South America","Lake Victoria","Lake Titicaca"]];
+var daily0;
+var daily1;
+var daily2;
+var iteration;
+
+function getDailyQuestions(val) {
+  if (val == "01/17/2023") {
+    iteration = 1;
+    daily0 = ["Metals",["The Statue of Liberty is sheathed in more than 31 tons of this metal mined in Norway", "Discovered in Colorado in the 1950s, coffinite is an ore that is more than 60% this radioactive metal","An oxide of this light metal, discovered in 1791, is used extensively as a white pigment","This metal used to make semiconductors was discovered by Clemens Winkler & named for his homeland"],["Copper","Uranium","Titanium","Germanium"]];
+
+  daily1 = ["The Revolutionary War",["The British passed the Intolerable Acts to punish Massachusetts for this event","General Richard Montgomery was killed December 31, 1775 leading a hopeless attack on this Canadian city","Born in Connecticut, Nathan Hale was a graduate of this Ivy League university","In the 1760s painter Charles Willson Peale joined this patriot group, angering Loyalist creditors"],["Boston Tea Party","Quebec","Yale","Sons of Liberty"]];
+
+  daily2 = ["Lakes & Rivers",["Famous for its monster, it forms part of the Caledonian Canal","At 2,485 miles, the Parana is this continent's second-longest river","This largest lake in Africa is also the main reservoir of the Nile River","The pre-Incan Uros people still inhabit floating islands high in the Andes in this lake"],["Loch Ness","South America","Lake Victoria","Lake Titicaca"]];
+  } else if (val == "01/18/2023") {
+    iteration = 2;
+    daily0 = ["Car Talk",["When fixing cars, \"R & R\" means remove & do this to an auto part","This converter reduces the level of harmful pollutants in a car's exhaust","Manual shifters used to come in \"4 on the floor\" & \"3 on\" this arboreal word for the steering column","Inspect the master cylinder, part of the hydraulics sending fluid through the lines for this drum or disc system"],["restore (or replace or repair)","a catalytic converter","tree","the brakes"]];
+    daily1 = ["Biology",["Stomata, leaf pores that take in this gas, enlarge when its level in the air drops below normal","This 3-letter suffix denotes a carbohydrate, especially a sugar","There are 3 main types of these in the body--smooth, striated & cardiac","This part of the small intestine is named for the fact that it's about as long as the width of 12 fingers"],["carbon dioxide","-ose","muscles","duodenum"]];
+    daily2 = ["5-Letter Words",["To surpass, or a Microsoft spreadsheet program","Honey is an animal product & can be excluded from a strict this type of diet","A musical composition with a repeated theme using multiple voices, or a disturbed state of altered consciousness","The Carabao is a popular variety of this tropical fruit"],["excel","vegan","fugue","mango"]];
+  } else {
+    iteration = 0;
+    daily0 = ["cat0",["q0","q1","q2","q4"],["a0","a1","a2","a4"]];
+    daily1 = ["cat1",["q0","q1","q2","q4"],["a0","a1","a2","a4"]];
+    daily2 = ["cat2",["q0","q1","q2","q4"],["a0","a1","a2","a4"]];
+  }
+}
 
 function daily() {
-  document.getElementById("daily-category0").innerHTML = daily0[0];
-  document.getElementById("daily-category1").innerHTML = daily1[0];
-  document.getElementById("daily-category2").innerHTML = daily2[0];
+  document.getElementById("myScore").style.visibility = "none";
+  dailyScore = [['x','x','x','x'],['x','x','x','x'],['x','x','x','x']];
+  dailyTurn = 0;
+  bonus = false;
   score = 0;
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
@@ -252,12 +278,17 @@ function daily() {
   today = mm + '/' + dd + '/' + yyyy;
   dailyDate = today;
   document.getElementById("daily-date").innerHTML = today;
+  getDailyQuestions(today);
+  document.getElementById("daily-category0").innerHTML = daily0[0];
+  document.getElementById("daily-category1").innerHTML = daily1[0];
+  document.getElementById("daily-category2").innerHTML = daily2[0];
 }
 
 var dailyCat = 0;
 var dailyQues = 0;
+
 function dailyQ(cat,ques) {
-  if (dailyTurn < 10) {
+  if (dailyScore[cat][ques] == 'x' && dailyTurn < 10) {
     showClueDaily(cat,ques);
     dailyCat = cat;
     dailyQues = ques;  
@@ -328,7 +359,7 @@ function share() {
     }
     result += "\n";
   }
-  result += "\nCalpardy Daily\n" + dailyDate + "\n" + score*10 + "%" + "\n\ncalvinchristensen96.github.io/calpardy";
+  result += "\nCalpardy Daily #" + iteration + "\n" + dailyDate + "\n" + score*10 + "%" + "\n\ncalvinchristensen96.github.io/calpardy";
   document.getElementById("myScore").value = result;
   var copyText = document.getElementById("myScore");
   copyText.select();
@@ -339,8 +370,9 @@ function share() {
     alert("Your score has been copied to your clipboard.\n\nThank you for playing!");
   })
   .catch(() => {
-    alert("Something went wrong.");
+    alert("Unable to copy to clipboard. Please copy message manually to share.\n\nThank you for playing!");
   });
+  document.getElementById("myScore").style.visibility = "visible";
 }
 
 function populate() {
