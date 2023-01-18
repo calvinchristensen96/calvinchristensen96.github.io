@@ -178,18 +178,6 @@ a {
   font-size: 12px;
 }
 
-.option-players {
-
-}
-
-#option-minus, #option-plus {
-
-}
-
-.option-number {
-
-}
-
 .option-button, .option-button-off {
   text-align: right;
 }
@@ -447,12 +435,46 @@ a {
   margin-right: auto;
 }
 
-.daily-table td {
-  
+#daily-how-to-play {
+  display: none;
+  position: fixed;
+  text-align: center;
+  max-width: 700px;
+  width: 80%;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -22px;
+  border-radius: 12px 12px 12px 12px;
+  padding: 4%;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  max-height: 65vh;
+  color: black;
+  background-color: white;
+  overflow: auto;
 }
 
-.daily-section {
+#daily-how-to-play h2 {
+  margin-bottom: 24px;
+}
 
+#daily-how-to-play li {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+#daily-how-to-play button {
+  width: 250px;
+  padding: 18px;
+  margin: 6px;
+  font-size: 18px;
+  border-radius: 24px 24px 24px 24px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--c2);
 }
 
 .dailyQ {
@@ -480,6 +502,7 @@ a {
 
 #daily-share {
   display: none;
+  border: none;
 }
 
 #daily-button {
@@ -514,4 +537,5 @@ a {
 
 #myScore {
   visibility: hidden;
+  height: 100px;
 }
