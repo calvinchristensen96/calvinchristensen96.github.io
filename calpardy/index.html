@@ -80,7 +80,7 @@
     </div>
     <div id="game-board">
       <div class="game-section" id="game-section-0">
-        <div class="game-category" id="cat-0">KINGS &amp; QUEENS</div>
+        <div class="game-category" id="cat-0">ONLINE LINGO</div>
         <span class="game-date" id="cat-0-date">1996</span>
         <table class="game-table" id="table-0">
       	  <tbody><tr><td id="0-200" onclick="showClue(0,0)"></td>
@@ -91,7 +91,7 @@
         </tr></tbody></table>
       </div>
       <div class="game-section" id="game-section-1">
-        <div class="game-category" id="cat-1">FOOD POTPOURRI</div>
+        <div class="game-category" id="cat-1">NOBEL WINNERS BY CATEGORY</div>
         <span class="game-date" id="cat-1-date">1996</span>
         <table class="game-table" id="table-1">
       	  <tbody><tr><td id="1-200" onclick="showClue(1,0)"></td>
@@ -113,7 +113,7 @@
         </tr></tbody></table>
       </div>
       <div class="game-section" id="game-section-3">
-        <div class="game-category" id="cat-3">THE SENATE</div>
+        <div class="game-category" id="cat-3">FLOWER POWER</div>
         <span class="game-date" id="cat-3-date">1996</span>
         <table class="game-table" id="table-3">
       	  <tbody><tr><td id="3-200" onclick="showClue(3,0)"></td>
@@ -135,7 +135,7 @@
         </tr></tbody></table>
       </div>
       <div class="game-section" id="game-section-5">
-        <div class="game-category" id="cat-5">REALLY BIG MOUNTAINS</div>
+        <div class="game-category" id="cat-5">THE WAR OF 1812</div>
         <span class="game-date" id="cat-5-date">1996</span>
         <table class="game-table" id="table-5">
       	  <tbody><tr><td id="5-200" onclick="showClue(5,0)"></td>
@@ -154,7 +154,7 @@
       <div id="question-q">?</div>
       <div id="question-a"></div>
       <div id="daily-correct">
-        <button id="daily-wrong1" onClick="dailyCorrect(0)"><span id="daily-wrong">X</span></button><button id="daily-right" onClick="dailyCorrect(1)">✓</button>
+        <button id="daily-wrong1" onclick="dailyCorrect(0)"><span id="daily-wrong">X</span></button><button id="daily-right" onclick="dailyCorrect(1)">✓</button>
       </div>
     </div>
     <div id="question-buttons">
@@ -173,10 +173,21 @@
     </div>
   </div>
   
+  <div id="daily-how-to-play">
+      <h2>How to play</h2>
+      <ol>
+        <li>There are 3 categories with 3 questions each. Click on the squares underneath to select a question.
+        <li>Answer the question aloud or in your head, then click "Show Answer". If you got it right click "✓", otherwise click "X".
+        <li>After answering all 9 questions you get 1 bonus attempt for an additional point. Choose the category you are most confident with.
+      </ol>
+      Have fun!
+      <br><br>
+      <button onClick="start(7)">Begin</button>
+    </div>
+  
   <div id="daily">
-      <div id="daily-date">
-      
-      </div>
+    <div id="daily-date">
+    </div>
     <div id="daily-board">
 
       <div class="daily-section">
@@ -184,62 +195,62 @@
           Category 0
         </div>
         <table class="daily-table">
-          <td onClick="dailyQ(0,0)" class="dailyQ" id="daily0-q0">
+          <tbody><tr><td onclick="dailyQ(0,0)" class="dailyQ" id="daily0-q0">
           
           </td>
-          <td onClick="dailyQ(0,1)" class="dailyQ" id="daily0-q1">
+          <td onclick="dailyQ(0,1)" class="dailyQ" id="daily0-q1">
           
           </td>
-          <td onClick="dailyQ(0,2)" class="dailyQ" id="daily0-q2">
+          <td onclick="dailyQ(0,2)" class="dailyQ" id="daily0-q2">
           
           </td>
-          <td onClick="dailyQ(0,3)" class="dailyQ" id="daily0-q3">
+          <td onclick="dailyQ(0,3)" class="dailyQ" id="daily0-q3">
           
           </td>
-        </table>
+        </tr></tbody></table>
       </div>
       <div class="daily-section">
         <div id="daily-category1" class="daily-category">
           Category 1
         </div>
         <table class="daily-table">
-          <td onClick="dailyQ(1,0)" class="dailyQ" id="daily1-q0">
+          <tbody><tr><td onclick="dailyQ(1,0)" class="dailyQ" id="daily1-q0">
           
           </td>
-          <td onClick="dailyQ(1,1)" class="dailyQ" id="daily1-q1">
+          <td onclick="dailyQ(1,1)" class="dailyQ" id="daily1-q1">
           
           </td>
-          <td onClick="dailyQ(1,2)" class="dailyQ" id="daily1-q2">
+          <td onclick="dailyQ(1,2)" class="dailyQ" id="daily1-q2">
           
           </td>
-          <td onClick="dailyQ(1,3)" class="dailyQ" id="daily1-q3">
+          <td onclick="dailyQ(1,3)" class="dailyQ" id="daily1-q3">
           
           </td>
-        </table>
+        </tr></tbody></table>
       </div>
       <div class="daily-section">
         <div id="daily-category2" class="daily-category">
           Category 2
         </div>
         <table class="daily-table">
-          <td onClick="dailyQ(2,0)" class="dailyQ" id="daily2-q0">
+          <tbody><tr><td onclick="dailyQ(2,0)" class="dailyQ" id="daily2-q0">
           
           </td>
-          <td onClick="dailyQ(2,1)" class="dailyQ" id="daily2-q1">
+          <td onclick="dailyQ(2,1)" class="dailyQ" id="daily2-q1">
           
           </td>
-          <td onClick="dailyQ(2,2)" class="dailyQ" id="daily2-q2">
+          <td onclick="dailyQ(2,2)" class="dailyQ" id="daily2-q2">
           
           </td>
-          <td onClick="dailyQ(2,3)" class="dailyQ" id="daily2-q3">
+          <td onclick="dailyQ(2,3)" class="dailyQ" id="daily2-q3">
           
           </td>
-        </table>
+        </tr></tbody></table>
       </div>
     </div>  
     <div id="daily-button">
-      <button id="daily-share" onClick="share()">Share Score</button><br>
-      <textarea value="" id="myScore"></textarea>
+      <textarea value="" id="myScore"></textarea><br>
+      <button id="daily-share" onclick="share()">Share Score</button><br>
     </div>
   </div>
 </html> 
