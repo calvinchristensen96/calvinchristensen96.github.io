@@ -152,10 +152,12 @@
   	<div id="question-category">Category</div>
     <div id="question-card">
       <div id="question-q">?</div>
-      <div id="question-a"></div>
-      <div id="daily-correct">
-        <button id="daily-wrong1" onclick="dailyCorrect(0)"><span id="daily-wrong">X</span></button><button id="daily-right" onclick="dailyCorrect(1)">✓</button>
+      <div id="question-a"><span id="question-answer"></span><br>
+        <div id="daily-correct">
+          <button id="daily-wrong1" onclick="dailyCorrect(0)"><span id="daily-wrong">X</span></button><button id="daily-right" onclick="dailyCorrect(1)">✓</button>
+        </div>
       </div>
+
     </div>
     <div id="question-buttons">
       <button class="question-show" onclick="showAnswer()">Show Answer</button><br>
@@ -254,4 +256,6 @@
     </div>
   </div>
 </html> 
+<script type="text/javascript" src="categories.js"></script>
+<script type="text/javascript" src="dailies.js"></script>  
 <script type="text/javascript" src="script.js"></script>
