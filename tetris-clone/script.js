@@ -368,10 +368,14 @@ function move(direction) {
   updateTable();
 }
 
-function dropBlock() {
+function dropBlock() { 
   var droppable = true;
   var dropToRow = activeCell[0];
   while (droppable && dropToRow < boardHeight-2) {
+    if (activeBlock.body[0][0] + dropToRow > 19 || activeBlock.body[1][0] + dropToRow > 19|| activeBlock.body[2][0] + dropToRow > 19 || activeBlock.body[3][0] + dropToRow > 19) {
+      droppable = false;
+      break;
+    }
     if (occupiedCells[activeBlock.body[0][0] + dropToRow][activeBlock.body[1][1] + activeCell[1]] || occupiedCells[activeBlock.body[1][0] + dropToRow][activeBlock.body[1][1] + activeCell[1]] || occupiedCells[activeBlock.body[2][0] + dropToRow][activeBlock.body[2][1] + activeCell[1]] || occupiedCells[activeBlock.body[3][0] + dropToRow][activeBlock.body[3][1] + activeCell[1]]) {
       droppable = false;
     } else {
