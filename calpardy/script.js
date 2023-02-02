@@ -196,11 +196,11 @@ function showAnswer() {
   } else if (scene == 8) {
     document.getElementById("daily-correct").style.display = "inline";
     if (dailyCat == 0) {
-      document.getElementById("question-answer").innerHTML = daily0[2][dailyQues];
+      document.getElementById("question-answer").innerHTML = dailyArr[0][2][dailyQues];
     } else if (dailyCat == 1) {
-      document.getElementById("question-answer").innerHTML = daily1[2][dailyQues];
+      document.getElementById("question-answer").innerHTML = dailyArr[1][2][dailyQues];
     } else if (dailyCat == 2) {
-      document.getElementById("question-answer").innerHTML = daily2[2][dailyQues];
+      document.getElementById("question-answer").innerHTML = dailyArr[2][2][dailyQues];
     }
   }
 }
@@ -240,19 +240,8 @@ var bonus = false;
 var dailyDate;
 var score = 0;
 
-/*
-var daily0;
-var daily1;
-var daily2;
-var iteration;
-*/
-
 function daily() {
   document.getElementById("myScore").style.visibility = "none";
-  //dailyScore = [['x','x','x','x'],['x','x','x','x'],['x','x','x','x']];
-  //dailyTurn = 0;
-  //bonus = false;
-  //score = 0;
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -262,9 +251,9 @@ function daily() {
   dailyDate = today;
   document.getElementById("daily-date").innerHTML = today;
   getDailyQuestions(today);
-  document.getElementById("daily-category0").innerHTML = daily0[0];
-  document.getElementById("daily-category1").innerHTML = daily1[0];
-  document.getElementById("daily-category2").innerHTML = daily2[0];
+  document.getElementById("daily-category0").innerHTML = dailyArr[0][0];
+  document.getElementById("daily-category1").innerHTML = dailyArr[1][0];
+  document.getElementById("daily-category2").innerHTML = dailyArr[2][0];
 }
 
 var dailyCat = 0;
@@ -313,14 +302,14 @@ function showClueDaily(cat, index) {
   document.getElementById("question").style.display = "inline";
   document.getElementById("daily").style.display = "none";
   if (cat == 0) {
-    document.getElementById("question-category").innerHTML = daily0[0];
-    document.getElementById("question-q").innerHTML = daily0[1][index];
+    document.getElementById("question-category").innerHTML = dailyArr[0][0];
+    document.getElementById("question-q").innerHTML = dailyArr[0][1][index];
   } else if (cat == 1) {
-    document.getElementById("question-category").innerHTML = daily1[0];
-    document.getElementById("question-q").innerHTML = daily1[1][index];
+    document.getElementById("question-category").innerHTML = dailyArr[1][0];
+    document.getElementById("question-q").innerHTML = dailyArr[1][1][index];
   } else if (cat == 2) {
-    document.getElementById("question-category").innerHTML = daily2[0];
-    document.getElementById("question-q").innerHTML = daily2[1][index];
+    document.getElementById("question-category").innerHTML = dailyArr[2][0];
+    document.getElementById("question-q").innerHTML = dailyArr[2][1][index];
   }
   tempIndex = index;
   tempCat = cat;
