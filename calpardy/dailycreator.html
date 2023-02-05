@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color: black;color: white;">
+<button onClick="main()">Reset</button>
+<table style="border: white 1px solid;">
+<th id="c0"></th>
+<td id="c0-q0"></td>
+<td id="c0-q1"></td>
+<td id="c0-q2"></td>
+<td id="c0-q3"></td>
+<tr>
+<th id="c1"></th>
+<td id="c1-q0"></td>
+<td id="c1-q1"></td>
+<td id="c1-q2"></td>
+<td id="c1-q3"></td>
+<tr>
+<th id="c2"></th>
+<td id="c2-q0"></td>
+<td id="c2-q1"></td>
+<td id="c2-q2"></td>
+<td id="c2-q3"></td>
+</table>
+<span id="demo"></span>
+</body>
+</html>
+<style>
+td {
+  border: white 1px solid;
+}
+th {
+  border: white 1px solid;
+}
+</style>
+<script>
+var category = [];
+var id=0;
+function main() {
+  category = [];
+  for (i=0;i<3;i++) {
+    id = Math.floor(Math.random() * 5505);
+    getCategories(i, id);
+  }
+}
+
+function getCategories(i, id) {
+fetch('https://jservice.io/api/category?id=' + id)
+  .then(response => response.text())
+  .then((data) => {
+    category.push(JSON.parse(data));
+  })
+  setTimeout(function(){
+  var cat0 = category[0].title;
+  var cat1 = category[1].title;
+  var cat2 = category[2].title;
+  var q0 = category[0].clues;
+  var q1 = category[1].clues;
+  var q2 = category[2].clues;
+  if (q0.length < 4 || q1.length < 4 || q2.length < 4) {
+    result = "Please retry";
+  } else {
+    var rands0 = [];
+    var rands1 = [];
+    var rands2 = [];
+    var i;
+    for (i=0;i<4;i++) {
+      rands0.push(i);
+    }
+    for (i=0;i<4;i++) {
+      rands1.push(i);
+    }
+    for (i=0;i<4;i++) {
+      rands2.push(i);
+    }
+    document.getElementById("c" + 0).innerHTML = cat0;
+    document.getElementById("c" + 1).innerHTML = cat1;
+    document.getElementById("c" + 2).innerHTML = cat2;
+    for (i=0;i<4;i++) {
+      document.getElementById("c0-q" + i).innerHTML = q0[rands0[i]].question + "<br><br>" + q0[rands0[i]].answer;  
+      document.getElementById("c1-q" + i).innerHTML = q1[rands1[i]].question + "<br><br>" + q1[rands1[i]].answer;  
+      document.getElementById("c2-q" + i).innerHTML = q2[rands2[i]].question + "<br><br>" + q2[rands2[i]].answer;  
+    }
+    var result = 'dailyArr = [ ["' + cat0.replace(/["]+/g, '\\"') + '", ["' + q0[rands0[0]].question.replace(/["]+/g, '\\"') + '", "' + q0[rands0[1]].question.replace(/["]+/g, '\\"') + '", "' + q0[rands0[2]].question.replace(/["]+/g, '\\"') + '", "' + q0[rands0[3]].question.replace(/["]+/g, '\\"') + '"], ["' + q0[rands0[0]].answer.replace(/["]+/g, '\\"') + '", "' + q0[rands0[1]].answer.replace(/["]+/g, '\\"') + '", "' + q0[rands0[2]].answer.replace(/["]+/g, '\\"') + '", "' + q0[rands0[3]].answer.replace(/["]+/g, '\\"') + '"]], ["' + cat1.replace(/["]+/g, '\\"') + '", ["' + q1[rands1[0]].question.replace(/["]+/g, '\\"') + '", "' + q1[rands1[1]].question.replace(/["]+/g, '\\"') + '", "' + q1[rands1[2]].question.replace(/["]+/g, '\\"') + '", "' + q1[rands1[3]].question.replace(/["]+/g, '\\"') + '"], ["' + q1[rands1[0]].answer.replace(/["]+/g, '\\"') + '", "' + q1[rands1[1]].answer.replace(/["]+/g, '\\"') + '", "' + q1[rands1[2]].answer.replace(/["]+/g, '\\"') + '", "' + q1[rands1[3]].answer.replace(/["]+/g, '\\"') + '"]], ["' + cat2.replace(/["]+/g, '\\"') + '", ["' + q2[rands2[0]].question.replace(/["]+/g, '\\"') + '", "' + q2[rands2[1]].question.replace(/["]+/g, '\\"') + '", "' + q2[rands2[2]].question.replace(/["]+/g, '\\"') + '", "' + q2[rands2[3]].question.replace(/["]+/g, '\\"') + '"], ["' + q2[rands2[0]].answer.replace(/["]+/g, '\\"') + '", "' + q2[rands2[1]].answer.replace(/["]+/g, '\\"') + '", "' + q2[rands2[2]].answer.replace(/["]+/g, '\\"') + '", "' + q2[rands2[3]].answer.replace(/["]+/g, '\\"') + '"]] ];';
+  }
+  document.getElementById("demo").innerHTML = (result);
+}, 1000);
+}
+</script>
