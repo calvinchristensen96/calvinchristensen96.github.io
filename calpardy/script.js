@@ -20,7 +20,6 @@ function start(val) {
     document.getElementById("title-logo").style.top = "24px";
     document.getElementById("title-logo").style.fontSize = "24px";
     document.getElementById("header-back").style.left = "20px";
-    document.getElementById("header-refresh").style.right = "20px";
     document.getElementById("question-answer").innerHTML = "";
     refreshCategories();
     scene = 2;
@@ -41,7 +40,6 @@ function start(val) {
     document.getElementById("title-logo").style.fontSize = "24px";
     scene = 8;
   }
-   
 }
 
 function back() {
@@ -59,22 +57,25 @@ function back() {
   document.getElementById("title-logo").style.top = "25vh";
   document.getElementById("title-logo").style.fontSize = "64px";
   document.getElementById("header-back").style.left = "-24px";
-  document.getElementById("header-refresh").style.right = "-24px";
   scene = 0;
 }
 
 function changeTheme() {
   if (dark) {
+    document.documentElement.style.setProperty('--c0', '#E26310');
   	document.documentElement.style.setProperty('--c1', '#E26310');
     document.documentElement.style.setProperty('--c2', '#F8D496');
     document.documentElement.style.setProperty('--c4', '#FFFFFF');
     document.documentElement.style.setProperty('--c5', '#000000');
+    document.getElementById("header-theme").innerHTML = "☀";
     dark = false;
   } else {
-    document.documentElement.style.setProperty('--c1', '#131313');
-    document.documentElement.style.setProperty('--c2', '#824700');
+    document.documentElement.style.setProperty('--c0', '#131313');
+    document.documentElement.style.setProperty('--c1', '#AB5F03');
+    document.documentElement.style.setProperty('--c2', '#773300');
     document.documentElement.style.setProperty('--c4', '#474747');
     document.documentElement.style.setProperty('--c5', '#EEEEEE');
+    document.getElementById("header-theme").innerHTML = "☽";
     dark = true;
   }
 }
@@ -101,7 +102,6 @@ function closeQuestion() {
     document.getElementById("question-answer").innerHTML = "";
     scene = 2;
     document.getElementById("header-back").style.display = "inline";
-    document.getElementById("header-refresh").style.display = "inline";
     // grey out a finished category
     if (gameBoard[tempCat].every((val, i, arr) => val === 0 )) {
       document.getElementById("game-section-" + tempCat).style.opacity = "0.5";
@@ -183,7 +183,6 @@ function showClue(cat, index) {
   tempIndex = index;
   tempCat = cat;
   document.getElementById("header-back").style.display = "none";
-  document.getElementById("header-refresh").style.display = "none";
   document.getElementById("question-close").style.display = "inline";
   scene = 3;
 }
@@ -261,9 +260,9 @@ var dailyQues = 0;
 
 function dailyQ(cat,ques) {
   if (dailyScore[cat][ques] == 'x' && dailyTurn < 10) {
-    showClueDaily(cat,ques);
     dailyCat = cat;
     dailyQues = ques;  
+    showClueDaily(cat,ques);
   }
 }
 
@@ -271,7 +270,7 @@ function dailyCorrect(val) {
   document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.borderColor = "var(--c1)";
   document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.cursor = "auto";
   if (val == 0) {
-    document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.backgroundColor = "white";
+    document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.backgroundColor = "var(--c3)";
     dailyScore[dailyCat][dailyQues] = 0;
   } else {
     document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.backgroundColor = "var(--c1)";
@@ -290,8 +289,8 @@ function dailyCorrect(val) {
     var i;
     for (i=0;i<3;i++) {
       if (dailyScore[i][3] == 'x') {
-        document.getElementById("daily" + i + "-q3").style.backgroundColor = "white";
-        document.getElementById("daily" + i + "-q3").style.border = "white";
+        document.getElementById("daily" + i + "-q3").style.backgroundColor = "var(--c3)";
+        document.getElementById("daily" + i + "-q3").style.border = "var(--c3)";
         document.getElementById("daily" + i + "-q3").style.cursor = "auto";
       }
     }
@@ -421,14 +420,13 @@ function freePlayCreateTable(raw) {
 }
 
 function showClueFreePlay(index) {
-  document.getElementById("value" + index).style.backgroundColor = "white";
+  document.getElementById("value" + index).style.backgroundColor = "var(--c4)";
   freePlayIndex = index;
   document.getElementById("question").style.display = "inline";
   document.getElementById("free-play").style.display = "none";
   document.getElementById("question-category").innerHTML = freePlayCategoryData.title.toUpperCase();
   document.getElementById("question-q").innerHTML = freePlayCategoryData.clues[index].question;
   document.getElementById("header-back").style.display = "none";
-  document.getElementById("header-refresh").style.display = "none";
 }
 
 // Takes a string in YYYY-MM-DD and returns in Month Day, Year.
