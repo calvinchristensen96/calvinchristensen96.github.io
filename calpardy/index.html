@@ -9,9 +9,9 @@
 <div id="transition-layer"></div>
 <div id="header">
   <span onclick="back()" id="header-back">←</span>
-  <span onclick="refreshCategories()" id="header-refresh">⟳</span>
+  <span onclick="changeTheme()" id="header-theme">☀</span>
 </div>
-<div id="title-logo"><span onclick="changeTheme()">Calpardy!</span></div>
+<div id="title-logo"><span>Calpardy!</span></div>
 
   <div id="title">
     <div id="title-buttons">
@@ -145,6 +145,7 @@
           <td id="5-1000" onclick="showClue(5,4)"></td>
         </tr></tbody></table>
       </div>
+      <button id="game-refresh" onClick="refreshCategories()">Refresh</button>
     </div>
   </div>
 
@@ -161,7 +162,7 @@
     </div>
     <div id="question-buttons">
       <button class="question-show" onclick="showAnswer()">Show Answer</button><br>
-      <button id="question-close" onclick="closeQuestion()">Close</button>
+      <button id="question-close" onclick="closeQuestion()"><span>Close</span></button>
     </div>
 
   </div>
@@ -256,6 +257,3 @@
     </div>
   </div>
 </html> 
-<script type="text/javascript" src="categories.js"></script>
-<script type="text/javascript" src="dailies.js"></script>  
-<script type="text/javascript" src="script.js"></script>
