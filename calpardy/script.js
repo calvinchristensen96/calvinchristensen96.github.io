@@ -63,7 +63,7 @@ function back() {
 function changeTheme() {
   if (dark) {
     document.documentElement.style.setProperty('--c0', '#E26310');
-  	document.documentElement.style.setProperty('--c1', '#E26310');
+    document.documentElement.style.setProperty('--c1', '#E26310');
     document.documentElement.style.setProperty('--c2', '#F8D496');
     document.documentElement.style.setProperty('--c4', '#FFFFFF');
     document.documentElement.style.setProperty('--c5', '#000000');
@@ -71,7 +71,7 @@ function changeTheme() {
     dark = false;
   } else {
     document.documentElement.style.setProperty('--c0', '#131313');
-    document.documentElement.style.setProperty('--c1', '#AB5F03');
+    document.documentElement.style.setProperty('--c1', '#CC5500');
     document.documentElement.style.setProperty('--c2', '#773300');
     document.documentElement.style.setProperty('--c4', '#474747');
     document.documentElement.style.setProperty('--c5', '#EEEEEE');
