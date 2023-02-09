@@ -31,7 +31,7 @@ body, * {
 }
 
 #pokemon {
-	font-size: 300%;
+	font-size: 200%;
 	margin-left: 24px;
 	margin-right: 24px;
 	margin-bottom: 20%;
@@ -42,7 +42,7 @@ body, * {
 	min-width: 50%;
 	margin-left: 36px;
 	margin-right: 36px;
-	font-size: 36px;
+	font-size: 16px;
 }
 
 #nav {
@@ -55,13 +55,12 @@ body, * {
 
 #restart {
 	position: fixed;
-	left: 12px;
-	font-size: 72px;
+	left: 16px;
+    top: 16px;
+	font-size: 36px;
 	border-color: white;
 	border: none;
 	text-decoration: none;
-	width: 108px;
-	height: 108px;
 	border-radius: 50%;
 	margin: 0px;
 	padding: 0px;
@@ -88,7 +87,7 @@ body, * {
 }
 
 #selected-mon {
-	font-size: 72px;
+	font-size: 36px;
 	text-align: left;
 	padding-left: 124px;
 	padding-top: 12px;
@@ -98,7 +97,7 @@ body, * {
 }
 
 #maxCp {
-	font-size: 32px;
+	font-size: 18px;
 	text-align: left;
 	padding-left: 124px;
 	text-shadow: 4px 4px black;
@@ -120,7 +119,7 @@ body, * {
 }
 
 table {
-	font-size: 24px;
+	font-size: 18px;
 }
 
 #th-level {
@@ -169,7 +168,7 @@ table {
 }
 
 #great-table-content, #ultra-table-content, #custom-table-content {
-	font-size: 28px;
+	font-size: 18px;
 }
 
 .tab {
@@ -186,7 +185,7 @@ table {
 	cursor: pointer;
 	padding: 14px 16px;
 	transition: 0.3s;
-	font-size: 28px;
+	font-size: 20px;
 	width: 33.33%;
 }
 
