@@ -11,7 +11,7 @@ body {
 }
 #content {
 	min-height: 100vh;
-	min-width: 520px;
+	min-width: 360px;
 }
 #logo img {
 	width: 100px;
@@ -32,16 +32,16 @@ button {
 	padding: 8px;
 }
 #a-a, #c-a, #d-a, #f-a {
-	font-size: 16px;
+	font-size: 12px;
 }
 button:hover {
 	background-color: #e7e7e7;
 }
 .key {
 	border: solid 2px black;
-	padding-left: 8px;
-	padding-right: 8px;
-	padding-top: 66px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 44px;
 	padding-bottom: 8px;
 	cursor: pointer;
 	color: white;
@@ -58,10 +58,10 @@ button:hover {
 .b-key {
 	background-color: #242424;
 	position: absolute;
-	width: 12px;
-	padding-top: 56px;
-	top: 206px;
-	margin-left: -10px;
+	width: 9px;
+	padding-top: 42px;
+	top: 166px;
+	margin-left: -6px;
 	border: solid black 2px;
 	color: black;
 	cursor: pointer;
@@ -85,8 +85,8 @@ input {
 #left {
 	padding-bottom: 48px;
 	background-color: white;
-	margin-left: 24px;
-	margin-right: 24px;
+	margin-left: 12px;
+	margin-right: 12px;
 }
 #left button {
 	font-size: 16px;
@@ -161,11 +161,12 @@ a:hover {
 	display: none;
 }
 #tool {
-	margin-bottom: 96px;
-	font-size: 20px;
+	margin-bottom: 32px;
+	font-size: 16px;
 	width: 80%;
 	margin-left: 10%;
 	margin-right: 10%;
+    transition-duration: 0.25s;
 }
 #tool a {
 	text-decoration: none;
@@ -200,7 +201,7 @@ a:hover {
 }
 #treble, #bass {
 	position: absolute;
-	left: 142px;
+	left: 96px;
 }
 #treble {
 	margin-top: -36px;
@@ -214,7 +215,30 @@ a:hover {
 #bass img {
 	width: 71px;
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 550px) {
+  #tool {
+    font-size: 20px;
+    margin-bottom: 96px;
+  }
+  .key {	
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 66px;
+	padding-bottom: 8px;
+	margin-left: 1px;
+	margin-right: 1px;
+  }
+  .b-key {
+	width: 12px;
+	padding-top: 56px;
+	top: 206px;
+	margin-left: -8px;
+  }
+  .b-key {
+    top: 206px;
+  }
+}
+@media screen and (min-width: 1000px) {
   .key {	
 	padding-left: 12px;
 	padding-right: 12px;
@@ -227,7 +251,7 @@ a:hover {
 	width: 18px;
 	padding-top: 82px;
 	top: 170px;
-	margin-left: -10px;
+	margin-left: -11px;
   }
 	#logo img {
 	  width: 100px;
