@@ -168,6 +168,7 @@ function getChord(note, chord) {
 }
 
 function light(id, note, val) {
+	document.getElementById("result").innerHTML = "Chord not found. Try removing or adding other notes.";
 	if (id.substring(5,6) == '♯') {
 		if (document.getElementById(id).style.backgroundColor != "rgb(255, 185, 0)") {
 			document.getElementById(id).style.backgroundColor = "#ffb900";
