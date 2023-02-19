@@ -6,7 +6,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <title>Calpardy! | Daily</title>
 </head>
-<body>
+<body onLoad="checkCookie()">
 <div id="transition-layer"></div>
 <div id="daily-results">
   <div id="results-close" onClick="toggleDim()">X</div>
@@ -21,7 +21,7 @@
   <table>
     <th>Distribution</th><tr>
     <td>
-      <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+      <canvas id="myChart" style="margin-left: auto; margin-right: auto;width:100%;max-width:800px"></canvas>
     </td>
   </table>
     <br><br><a>View the Questions you missed?</a><br><br>
@@ -48,19 +48,16 @@
     </div>
     <div id="question-buttons">
       <button class="question-show" onclick="showAnswer()">Show Answer</button><br>
-      <button id="question-close" onclick="closeQuestion()"><span>Close</span></button>
     </div>
   </div>
 
   <div id="daily-how-to-play">
       <h2>How to play</h2>
       <ol>
-        <li>There are 3 categories with 3 questions each. Click on the squares underneath to select a question.
+        <li>Click on the squares underneath the category to select a question.
         <li>Answer the question aloud or in your head, then click "Show Answer". If you got it right click "✓", otherwise click "X".
-        <li>After answering all 9 questions you get 1 bonus attempt for an additional point. Choose the category you are most confident with.
-      </ol>
-      Have fun!
-      <br><br>
+        <li>After answering 9 questions you get 1 bonus attempt for an additional point. Choose your category wisely.
+      </ol><br>
       <button onClick="start(7)">Begin</button>
     </div>
   
@@ -181,7 +178,7 @@ body {
   background-color: var(--c0);
   color: var(--c4);
   font-family: 'gill sans', sans-serif;
-  min-width: 360px;
+  min-width: 430px;
 }
 
 #dim {
@@ -383,11 +380,13 @@ a {
 
 .daily-category {
   margin-top: 24px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 #daily table {
    border-collapse: collapse;
-   border-spacing: 6vw 12px;
+   border-spacing: 3vw 6px;
    border-collapse: separate;
 }
 
@@ -462,7 +461,8 @@ a {
 }
 
 table .dailyQ {
-  width: 48px;
+  width: 64px;
+  height: 64px;
   margin-left:auto;
   margin-right: auto;
 }
@@ -523,13 +523,46 @@ table .dailyQ {
 }
 
 </style>
-<script type="text/javascript" src="dailies.js"></script>  
+<script type="text/javascript" src="https://calvinchristensen96.github.io/calpardy/dailies.js"></script>  
 <script type="text/javascript">
 
 var yValues = [0,0,0,0,0,0,0,0,0,0];
+
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  yValues = getCookie("dist");
+  yValues = yValues.split(',').map(Number);
+  if (yValues == "" || yValues == [0,0,0,0,0,0,0,0,0,0]) {
+  
+  } else {
+    
+  }
+}
+
 function createGraph() {
   var xValues = ["0%","10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"];
-
   new Chart("myChart", {
     type: "bar",
     data: {
@@ -544,7 +577,6 @@ function createGraph() {
     }
   });
 }
-
 
 var iteration = 0;
 var scene = 0;
@@ -573,7 +605,7 @@ function back() {
 function toggleDim() {
   document.getElementById("dim").style.opacity = "0";
   document.getElementById("dim").style.visibility = "hidden";
-    document.getElementById("daily-results").style.opacity = "0%";
+  document.getElementById("daily-results").style.opacity = "0%";
   document.getElementById("daily-results").style.top = "20%";
   setTimeout(function() {
     document.getElementById("daily-results").style.visibility = "hidden";
@@ -689,11 +721,11 @@ function dailyCorrect(val) {
   dailyTurn++;
   document.getElementById("header-back").style.display = "inline-block";
   closeQuestion();
-  if (dailyTurn == 9) {
+  if (dailyTurn == 1) {
     document.getElementById("daily0-q3").style.display = "inline-block";
     document.getElementById("daily1-q3").style.display = "inline-block";
     document.getElementById("daily2-q3").style.display = "inline-block";
-  } else if (dailyTurn == 10) {
+  } else if (dailyTurn == 2) {
     yValues[score] += 1;
     document.getElementById("results-score").innerHTML = score*10 + "%";
     
@@ -704,10 +736,14 @@ function dailyCorrect(val) {
       total += yValues[kk];
       average += yValues[kk] * (kk*10);
     }
-    
+
     document.getElementById("results-average").innerHTML = Math.floor(average/total) + "%";
     document.getElementById("results-played").innerHTML = total;
+    setCookie("dist", yValues, 30);
+    setCookie("lastPlay", dailyDate, 30);
+    
     createGraph();
+    
     setTimeout(function() {
       dailyResults();
     }, 1000);
