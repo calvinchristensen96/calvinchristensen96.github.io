@@ -552,12 +552,16 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-  yValues = getCookie("dist");
-  yValues = yValues.split(',').map(Number);
-  if (yValues == "" || yValues == [0,0,0,0,0,0,0,0,0,0]) {
-  
+  if (getCookie("dist") == "") {
+    yValues = [0,0,0,0,0,0,0,0,0,0];
   } else {
+    yValues = getCookie("dist");
+    yValues = yValues.split(',').map(Number);
+    if (yValues == "" || yValues == [0,0,0,0,0,0,0,0,0,0]) {
+  
+    } else {
     
+    }
   }
 }
 
