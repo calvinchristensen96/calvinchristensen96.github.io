@@ -721,11 +721,11 @@ function dailyCorrect(val) {
   dailyTurn++;
   document.getElementById("header-back").style.display = "inline-block";
   closeQuestion();
-  if (dailyTurn == 1) {
+  if (dailyTurn == 9) {
     document.getElementById("daily0-q3").style.display = "inline-block";
     document.getElementById("daily1-q3").style.display = "inline-block";
     document.getElementById("daily2-q3").style.display = "inline-block";
-  } else if (dailyTurn == 2) {
+  } else if (dailyTurn == 10) {
     yValues[score] += 1;
     document.getElementById("results-score").innerHTML = score*10 + "%";
     
