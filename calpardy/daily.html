@@ -1,0 +1,826 @@
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1">
+  <meta name="author" content="Calvin Christensen">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <title>Calpardy! | Daily</title>
+</head>
+<body>
+<div id="transition-layer"></div>
+<div id="daily-results">
+  <div id="results-close" onClick="toggleDim()">X</div>
+  <table>
+    <th>Today's Score</th><tr>
+    <td id="results-score">50%</td>
+  </table>
+  <table>
+    <th>Played</th><th>Average</th><tr>
+    <td id="results-played">1</td><td id="results-average">50%</td>
+  </table>
+  <table>
+    <th>Distribution</th><tr>
+    <td>
+      <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    </td>
+  </table>
+    <br><br><a>View the Questions you missed?</a><br><br>
+ 
+  <button onClick="share()">Share Score</button><br>
+</div>
+<div id="dim" onClick="toggleDim()"></div>
+<div id="header">
+  <span onclick="back()" id="header-back">←</span>
+  <span onclick="changeTheme()" id="header-theme">☀</span>
+</div>
+<div id="title-logo"><span>Calpardy!</span></div>
+
+  <div id="question">
+  	<div id="question-category">Category</div>
+    <div id="question-card">
+      <div id="question-q">?</div>
+      <div id="question-a"><span id="question-answer"></span><br>
+        <div id="daily-correct">
+          <button id="daily-wrong1" onclick="dailyCorrect(0)"><span id="daily-wrong">X</span></button><button id="daily-right" onclick="dailyCorrect(1)">✓</button>
+        </div>
+      </div>
+
+    </div>
+    <div id="question-buttons">
+      <button class="question-show" onclick="showAnswer()">Show Answer</button><br>
+      <button id="question-close" onclick="closeQuestion()"><span>Close</span></button>
+    </div>
+  </div>
+
+  <div id="daily-how-to-play">
+      <h2>How to play</h2>
+      <ol>
+        <li>There are 3 categories with 3 questions each. Click on the squares underneath to select a question.
+        <li>Answer the question aloud or in your head, then click "Show Answer". If you got it right click "✓", otherwise click "X".
+        <li>After answering all 9 questions you get 1 bonus attempt for an additional point. Choose the category you are most confident with.
+      </ol>
+      Have fun!
+      <br><br>
+      <button onClick="start(7)">Begin</button>
+    </div>
+  
+  <div id="daily">
+    <div id="daily-date">
+    </div>
+    <div id="daily-board">
+
+      <div class="daily-section">
+        <div id="daily-category0" class="daily-category">
+          Category 0
+        </div>
+        <table class="daily-table">
+          <tbody><tr><td onclick="dailyQ(0,0)" class="dailyQ" id="daily0-q0">
+          
+          </td>
+          <td onclick="dailyQ(0,1)" class="dailyQ" id="daily0-q1">
+          
+          </td>
+          <td onclick="dailyQ(0,2)" class="dailyQ" id="daily0-q2">
+          
+          </td>
+          <td onclick="dailyQ(0,3)" class="dailyQ" id="daily0-q3">
+          
+          </td>
+        </tr></tbody></table>
+      </div>
+      <div class="daily-section">
+        <div id="daily-category1" class="daily-category">
+          Category 1
+        </div>
+        <table class="daily-table">
+          <tbody><tr><td onclick="dailyQ(1,0)" class="dailyQ" id="daily1-q0">
+          
+          </td>
+          <td onclick="dailyQ(1,1)" class="dailyQ" id="daily1-q1">
+          
+          </td>
+          <td onclick="dailyQ(1,2)" class="dailyQ" id="daily1-q2">
+          
+          </td>
+          <td onclick="dailyQ(1,3)" class="dailyQ" id="daily1-q3">
+          
+          </td>
+        </tr></tbody></table>
+      </div>
+      <div class="daily-section">
+        <div id="daily-category2" class="daily-category">
+          Category 2
+        </div>
+        <table class="daily-table">
+          <tbody><tr><td onclick="dailyQ(2,0)" class="dailyQ" id="daily2-q0">
+          
+          </td>
+          <td onclick="dailyQ(2,1)" class="dailyQ" id="daily2-q1">
+          
+          </td>
+          <td onclick="dailyQ(2,2)" class="dailyQ" id="daily2-q2">
+          
+          </td>
+          <td onclick="dailyQ(2,3)" class="dailyQ" id="daily2-q3">
+          
+          </td>
+        </tr></tbody></table>
+      </div>
+    </div>  
+    <div id="daily-button">
+      <textarea value="" id="myScore"></textarea><br>
+      <button id="daily-share" onclick="dailyResults()">View Results</button><br>
+    </div>
+  </div>
+</html> 
+
+<style>
+:root {
+  --c0: #E26310;
+  --c1: #E26310;
+  --c2: #F8D496;
+  --c4: #FFFFFF;
+  --c5: #000000;
+}
+
+::selection {
+  background: var(--c2);
+}
+
+@keyframes riseFade {
+  0% {
+    opacity: 0;
+    top: 100px;
+  }
+  100% {
+    opacity: 1;
+    top: 0px;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin2 { 
+      0%       { bottom:5px; }
+      25%, 75% { bottom:15px; }
+      50%      { bottom:20px; }
+      100%     {bottom:0;}
+}
+
+body, * {
+  margin: 0px;
+}
+body {
+  background-color: var(--c0);
+  color: var(--c4);
+  font-family: 'gill sans', sans-serif;
+  min-width: 360px;
+}
+
+#dim {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  opacity: .5;
+  top: 0;
+  z-index: 1;
+  visibility: hidden;
+}
+
+#daily-results {
+  transition-duration: .5s;
+  opacity: 0%;
+  visibility: hidden;
+  position: fixed;
+  z-index: 20;
+  color: var(--c5);
+  background-color: var(--c4);
+  left: 5%;
+  top: 20%;
+  width: 80%;
+  text-align: center;
+  padding: 5%;
+  max-width: 800px;
+}
+
+#results-close {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#daily-results table {
+  color: var(--c5);
+  background-color: var(--c4);
+  text-align: center;
+  width: 100%;
+}
+
+#transition-layer {
+  pointer-events: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--c0);
+  z-index: 100;
+  opacity: 0;
+  transition-duration: 0.25s;
+}
+
+#header {
+  position: fixed;
+  z-index: 105;
+  width: 100%;
+}
+
+#header-back {
+  position: absolute;
+  left: -24px;
+  top: 20px;
+  font-weight: bold;
+  font-size: 24px;
+  transition-duration: .5s;
+  cursor: pointer;
+  color: white;
+}
+
+#header-theme {
+  color: white;
+  font-size: 24px;
+  position: absolute;
+  right: 24px;
+  top: 20px;
+  cursor: pointer;
+}
+
+#title {
+  text-align: center;
+}
+#title-logo {
+  z-index: 101;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+  top: 24px;
+  animation: fade ease .75s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transition-duration: .5s;
+  color: white;
+  text-shadow: black 4px 4px;
+}
+#title-buttons {
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+}
+
+a {
+  color: var(--c2);
+}
+
+#question {
+  text-align: center;
+  display: none;
+}
+
+#question-category {
+  position: absolute;
+  background-color: var(--c2);
+  width: 256px;
+  left: 50%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-left: -128px;
+  margin-top: -12px;
+  color: var(--c5);
+  z-index: 1;
+}
+
+#question-card {
+  width: 80%;
+  margin-top: 120px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px 12px 12px 12px;
+  padding: 4%;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  height: 35vh;
+  color: var(--c5);
+  background-color: var(--c4);
+  z-index: 0;
+  position: relative;
+}
+
+#question-buttons {
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+}
+
+#question button {
+  width: 250px;
+  padding: 18px;
+  margin: 6px;
+  font-size: 18px;
+  color: var(--c5);
+  border-radius: 24px 24px 24px 24px;
+  cursor: pointer;
+  border: none;
+}
+
+#question-close span {
+  color: black;
+}
+
+.question-show {
+  background-color: var(--c2);
+}
+
+#question-a {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  bottom: 12px;
+}
+
+#daily {
+  display: none;
+  width: 100%;
+}
+
+#daily-board {
+  margin-top: 120px;
+  max-width: 700px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-radius: 12px 12px 12px 12px;
+  background-color: var(--c4);
+  color: var(--c5);
+  padding-left: 4%;
+  padding-right: 4%;
+  padding-bottom: 48px;
+  padding-top: 24px;
+}
+
+.daily-category {
+  margin-top: 24px;
+}
+
+#daily table {
+   border-collapse: collapse;
+   border-spacing: 6vw 12px;
+   border-collapse: separate;
+}
+
+#daily-date {
+  position: absolute;
+  background-color: var(--c2);
+  width: 128px;
+  left: 50%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-left: -64px;
+  margin-top: -12px;
+  color: var(--c5);
+  z-index: 1;
+  text-align: center;
+}
+
+.daily-table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#daily-how-to-play {
+  display: inline;
+  position: fixed;
+  text-align: center;
+  max-width: 700px;
+  width: 80%;
+  padding: 24px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -22px;
+  border-radius: 12px 12px 12px 12px;
+  padding: 4%;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  max-height: 65vh;
+  color: var(--c5);
+  background-color: var(--c4);
+  overflow: auto;
+}
+
+#daily-how-to-play h2 {
+  margin-bottom: 24px;
+}
+
+#daily-how-to-play li {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+#daily-how-to-play button {
+  width: 250px;
+  padding: 18px;
+  margin: 6px;
+  font-size: 18px;
+  border-radius: 24px 24px 24px 24px;
+  cursor: pointer;
+  border: none;
+  color: var(--c5);
+  background-color: var(--c2);
+}
+
+.dailyQ {
+  height: 48px;
+  width: 48px;
+  border: solid var(--c2) 2px;
+  background-color: var(--c2);
+  cursor: pointer;
+  position: relative;
+}
+
+table .dailyQ {
+  width: 48px;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+#daily0-q3, #daily1-q3, #daily2-q3 {
+  display: none;
+}
+
+#daily-correct {
+  display: none;
+}
+
+#daily-correct button {
+  width: 56px;
+  border: solid var(--c1) 2px;
+  color: var(--c4);
+  margin: 24px;
+}
+
+#daily-share {
+  display: none;
+  border: none;
+}
+
+#daily-button {
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+  text-align: center;
+}
+
+#daily-button button {
+  width: 250px;
+  padding: 18px;
+  margin: 6px;
+  font-size: 18px;
+  border-radius: 24px 24px 24px 24px;
+  cursor: pointer;
+}
+
+#daily-wrong {
+  color: var(--c1);
+}
+
+#daily-wrong1 {
+  background-color: var(--c4);
+}
+
+#daily-right {
+  background-color: var(--c1);
+  border: solid var(--c1) 2px;
+  color: var(--c4);
+}
+
+#myScore {
+  visibility: hidden;
+  height: 100px;
+}
+
+</style>
+<script type="text/javascript" src="dailies.js"></script>  
+<script type="text/javascript">
+
+var yValues = [0,0,0,0,0,0,0,0,0,0];
+function createGraph() {
+  var xValues = ["0%","10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"];
+
+  new Chart("myChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: "#E26310",
+        data: yValues
+      }]
+    },
+    options: {
+      legend: {display: false},
+    }
+  });
+}
+
+
+var iteration = 0;
+var scene = 0;
+var category = [];
+var tempIndex = 0;
+var tempCat = 0;
+var i;
+var dark = false;
+var extraArr = [];
+
+function start(val) {
+  if (val == 7) {
+    transition("daily-how-to-play", "daily");
+    document.getElementById("header-back").style.left = "20px";
+    daily();
+    scene = 8;
+  } else if (val == 8) {
+    scene = 8;
+  }
+}
+
+function back() {
+
+}
+
+function toggleDim() {
+  document.getElementById("dim").style.opacity = "0";
+  document.getElementById("dim").style.visibility = "hidden";
+    document.getElementById("daily-results").style.opacity = "0%";
+  document.getElementById("daily-results").style.top = "20%";
+  setTimeout(function() {
+    document.getElementById("daily-results").style.visibility = "hidden";
+  }, 500);
+}
+
+function changeTheme() {
+  if (dark) {
+    document.documentElement.style.setProperty('--c0', '#E26310');
+    document.documentElement.style.setProperty('--c1', '#E26310');
+    document.documentElement.style.setProperty('--c2', '#F8D496');
+    document.documentElement.style.setProperty('--c4', '#FFFFFF');
+    document.documentElement.style.setProperty('--c5', '#000000');
+    document.getElementById("header-theme").innerHTML = "☀";
+    dark = false;
+  } else {
+    document.documentElement.style.setProperty('--c0', '#131313');
+    document.documentElement.style.setProperty('--c1', '#CC5500');
+    document.documentElement.style.setProperty('--c2', '#773300');
+    document.documentElement.style.setProperty('--c4', '#474747');
+    document.documentElement.style.setProperty('--c5', '#EEEEEE');
+    document.getElementById("header-theme").innerHTML = "☽";
+    dark = true;
+  }
+}
+
+function transition(to, from, duration) {
+  if (duration == null) {
+    duration = 300;
+  }
+  var a = setTimeout(function() {
+    document.getElementById(to).style.display = "none";
+      document.getElementById(from).style.display = "inline";
+      document.getElementById("transition-layer").style.opacity = 0;
+    }, duration);
+  document.getElementById("transition-layer").style.opacity = 1;
+}
+
+function closeQuestion() {
+  document.getElementById("question").style.display = "none";
+  document.getElementById("daily").style.display = "inline";
+  document.getElementById("question-answer").innerHTML = "";
+  document.getElementById("daily-correct").style.display = "none";
+}
+
+function showClue(cat, index) {
+  document.getElementById("question").style.display = "inline";
+  document.getElementById("game").style.display = "none";
+  document.getElementById("question-category").innerHTML = category[cat].title.toUpperCase();
+  document.getElementById("question-q").innerHTML = category[cat].clues[index].question;
+  tempIndex = index;
+  tempCat = cat;
+  document.getElementById("header-back").style.display = "none";
+  document.getElementById("question-close").style.display = "inline";
+  scene = 3;
+}
+
+function showAnswer() {
+  document.getElementById("daily-correct").style.display = "inline";
+  if (dailyCat == 0) {
+    document.getElementById("question-answer").innerHTML = dailyArr[0][2][dailyQues];
+  } else if (dailyCat == 1) {
+    document.getElementById("question-answer").innerHTML = dailyArr[1][2][dailyQues];
+  } else if (dailyCat == 2) {
+    document.getElementById("question-answer").innerHTML = dailyArr[2][2][dailyQues];
+  }
+}
+
+var dailyScore = [['x','x','x','x'],['x','x','x','x'],['x','x','x','x']];
+var dailyTurn = 0;
+var bonus = false;
+var dailyDate;
+var score = 0;
+
+function daily() {
+  document.getElementById("myScore").style.visibility = "none";
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+  dailyDate = today;
+  document.getElementById("daily-date").innerHTML = today;
+  getDailyQuestions(today);
+  document.getElementById("daily-category0").innerHTML = dailyArr[0][0];
+  document.getElementById("daily-category1").innerHTML = dailyArr[1][0];
+  document.getElementById("daily-category2").innerHTML = dailyArr[2][0];
+}
+
+var dailyCat = 0;
+var dailyQues = 0;
+
+function dailyQ(cat,ques) {
+  if (dailyScore[cat][ques] == 'x' && dailyTurn < 10) {
+    dailyCat = cat;
+    dailyQues = ques;  
+    showClueDaily(cat,ques);
+  }
+}
+
+function dailyCorrect(val) {
+  document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.borderColor = "var(--c1)";
+  document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.cursor = "auto";
+  if (val == 0) {
+    document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.backgroundColor = "var(--c3)";
+    dailyScore[dailyCat][dailyQues] = 0;
+  } else {
+    document.getElementById("daily" + dailyCat + "-q" + dailyQues).style.backgroundColor = "var(--c1)";
+    dailyScore[dailyCat][dailyQues] = 1;
+    score++;
+  }
+  dailyTurn++;
+  document.getElementById("header-back").style.display = "inline-block";
+  closeQuestion();
+  if (dailyTurn == 9) {
+    document.getElementById("daily0-q3").style.display = "inline-block";
+    document.getElementById("daily1-q3").style.display = "inline-block";
+    document.getElementById("daily2-q3").style.display = "inline-block";
+  } else if (dailyTurn == 10) {
+    yValues[score] += 1;
+    document.getElementById("results-score").innerHTML = score*10 + "%";
+    
+    var average = 0;
+    var total = 0;
+    var kk;
+    for (kk=0;kk<yValues.length;kk++) {
+      total += yValues[kk];
+      average += yValues[kk] * (kk*10);
+    }
+    
+    document.getElementById("results-average").innerHTML = Math.floor(average/total) + "%";
+    document.getElementById("results-played").innerHTML = total;
+    createGraph();
+    setTimeout(function() {
+      dailyResults();
+    }, 1000);
+	setTimeout(function() {
+      document.getElementById('daily0-q0').style.animation="spin2 .3s linear";
+    }, 10);
+    setTimeout(function() {
+      document.getElementById('daily0-q1').style.animation="spin2 .3s linear";
+    }, 50);
+    setTimeout(function() {
+      document.getElementById('daily0-q2').style.animation="spin2 .3s linear";
+    }, 100);
+    setTimeout(function() {
+      document.getElementById('daily0-q3').style.animation="spin2 .3s linear";
+    }, 150);
+    setTimeout(function() {
+      document.getElementById('daily1-q0').style.animation="spin2 .3s linear";
+    }, 200);
+    setTimeout(function() {
+      document.getElementById('daily1-q1').style.animation="spin2 .3s linear";
+    }, 250);
+    setTimeout(function() {
+      document.getElementById('daily1-q2').style.animation="spin2 .3s linear";
+    }, 300);
+    setTimeout(function() {
+      document.getElementById('daily1-q3').style.animation="spin2 .3s linear";
+    }, 350);
+    setTimeout(function() {
+      document.getElementById('daily2-q0').style.animation="spin2 .3s linear";
+    }, 400);
+    setTimeout(function() {
+      document.getElementById('daily2-q1').style.animation="spin2 .3s linear";
+    }, 450);
+    setTimeout(function() {
+      document.getElementById('daily2-q2').style.animation="spin2 .3s linear";
+    }, 500);
+    setTimeout(function() {
+      document.getElementById('daily2-q3').style.animation="spin2 .3s linear";
+    }, 550);
+    
+    
+    document.getElementById("daily-share").style.display = "inline-block";
+    var i;
+    for (i=0;i<3;i++) {
+      if (dailyScore[i][3] == 'x') {
+        extraArr.push(dailyArr[i][0]);
+        document.getElementById("daily" + i + "-q3").style.backgroundColor = "var(--c3)";
+        document.getElementById("daily" + i + "-q3").style.border = "var(--c3)";
+        document.getElementById("daily" + i + "-q3").style.cursor = "auto";
+      }
+    }
+    document.getElementById("extra-category0").innerHTML = extraArr[0];
+    document.getElementById("extra-category1").innerHTML = extraArr[1];
+  }
+}
+
+function showClueDaily(cat, index) {
+  document.getElementById("question").style.display = "inline";
+  document.getElementById("daily").style.display = "none";
+  if (cat == 0) {
+    document.getElementById("question-category").innerHTML = dailyArr[0][0];
+    document.getElementById("question-q").innerHTML = dailyArr[0][1][index];
+  } else if (cat == 1) {
+    document.getElementById("question-category").innerHTML = dailyArr[1][0];
+    document.getElementById("question-q").innerHTML = dailyArr[1][1][index];
+  } else if (cat == 2) {
+    document.getElementById("question-category").innerHTML = dailyArr[2][0];
+    document.getElementById("question-q").innerHTML = dailyArr[2][1][index];
+  }
+  tempIndex = index;
+  tempCat = cat;
+  document.getElementById("header-back").style.display = "none";
+  document.getElementById("header-refresh").style.display = "none";
+  document.getElementById("question-close").style.display = "none";
+}
+
+function dailyResults() {
+  document.getElementById("daily-results").style.visibility = "visible";
+  document.getElementById("daily-results").style.opacity = "100%";
+  document.getElementById("daily-results").style.top = "10%";
+  document.getElementById("dim").style.opacity = ".5";
+  document.getElementById("dim").style.visibility = "visible";
+  
+}
+
+function share() {
+  var result = "";
+  var i;
+  var j;
+  for (i=0;i<3;i++) {
+    for (j=0;j<4;j++) {
+      if (dailyScore[i][j] == 0) {
+        result += "⬜";
+      } else if (dailyScore[i][j] == 1) {
+        result += "🟧";
+      }
+    }
+    result += "\n";
+  }
+  result += "\nCalpardy Daily #" + iteration + "\n" + dailyDate + "\n" + score*10 + "%" + "\n\ncalvinchristensen96.github.io/calpardy";
+  document.getElementById("myScore").value = result;
+  var copyText = document.getElementById("myScore");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard
+  .writeText(copyText.value)
+  .then(() => {
+    alert("Your score has been copied to your clipboard.\n\nThank you for playing!");
+  })
+  .catch(() => {
+    alert("Unable to copy to clipboard. Please copy message manually to share.\n\nThank you for playing!");
+  });
+  document.getElementById("myScore").style.visibility = "visible";
+}
+
+</script>
