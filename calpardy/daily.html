@@ -6,35 +6,36 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <title>Calpardy! | Daily</title>
 </head>
-<body onLoad="checkCookie()">
+<body onload="checkCookie()">
 <div id="transition-layer"></div>
 <div id="daily-results">
-  <div id="results-close" onClick="toggleDim()">X</div>
+  <div id="results-close" onclick="toggleDim()">X</div>
+  <span id="results-table0">
   <table>
-    <th>Today's Score</th><tr>
+    <tr><th>Today's Score</th></tr><tr>
     <td id="results-score">50%</td>
-  </table>
+  </tr></table>
+  </span>
   <table>
-    <th>Played</th><th>Average</th><tr>
+   <tr><th>Played</th><th>Average</th></tr><tr>
     <td id="results-played">1</td><td id="results-average">50%</td>
-  </table>
-  <table>
-    <th>Distribution</th><tr>
+  </tr></table>
+  <table style="border-collapse: collapse!important;">
+    <tr><th>Distribution</th></tr><tr>
     <td>
-      <canvas id="myChart" style="margin-left: auto; margin-right: auto;width:60%;max-width:800px"></canvas>
+      <canvas width="300" id="myChart"></canvas>
     </td>
-  </table>
+  </tr></table>
     <br><br><a>View the Questions you missed?</a><br><br>
  
-  <button onClick="share()">Share Score</button><br>
+  <button onclick="share()">Share Score</button><br>
 </div>
-<div id="dim" onClick="toggleDim()"></div>
+<div id="dim" onclick="toggleDim()"></div>
 <div id="header">
   <span onclick="back()" id="header-back">←</span>
   <span onclick="changeTheme()" id="header-theme">☀</span>
 </div>
 <div id="title-logo"><span>Calpardy!</span></div>
-
   <div id="question">
   	<div id="question-category">Category</div>
     <div id="question-card">
@@ -55,10 +56,10 @@
       <h2>How to play</h2>
       <ol>
         <li>Click on the squares underneath the category to select a question.
-        <li>Answer the question aloud or in your head, then click "Show Answer". If you got it right click "✓", otherwise click "X".
-        <li>After answering 9 questions you get 1 bonus attempt for an additional point. Choose your category wisely.
-      </ol><br>
-      <button onClick="start(7)">Begin</button>
+        </li><li>Answer the question aloud or in your head, then click "Show Answer". If you got it right click "✓", otherwise click "X".
+        </li><li>After answering 9 questions you get 1 bonus attempt for an additional point. Choose your category wisely.
+      </li></ol><br>
+      <button onclick="start(7)">Begin</button>
     </div>
   
   <div id="daily">
@@ -129,7 +130,7 @@
       <button id="daily-share" onclick="dailyResults()">View Results</button><br>
     </div>
   </div>
-</html> 
+ 
 
 <style>
 :root {
@@ -204,7 +205,10 @@ body {
   top: 20%;
   width: 80%;
   text-align: center;
-  padding: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 24px;
+  padding-bottom: 24px;
   max-width: 800px;
 }
 
@@ -218,9 +222,11 @@ body {
 
 #daily-results table {
   color: var(--c5);
-  background-color: var(--c4);
   text-align: center;
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 48px 0px;
+  margin-bottom: 24px;
 }
 
 #transition-layer {
@@ -358,7 +364,6 @@ a {
 }
 
 #daily {
-  display: none;
   width: 100%;
 }
 
@@ -410,7 +415,7 @@ a {
 }
 
 #daily-how-to-play {
-  display: inline;
+  display: none;
   position: fixed;
   text-align: center;
   max-width: 700px;
@@ -526,7 +531,7 @@ table .dailyQ {
 <script type="text/javascript" src="https://calvinchristensen96.github.io/calpardy/dailies.js"></script>  
 <script type="text/javascript">
 
-var yValues = [0,0,0,0,0,0,0,0,0,0];
+var yValues;
 
 function setCookie(cname,cvalue,exdays) {
   const d = new Date();
@@ -554,15 +559,16 @@ function getCookie(cname) {
 function checkCookie() {
   if (getCookie("dist") == "") {
     yValues = [0,0,0,0,0,0,0,0,0,0];
+    howToPlay();
   } else {
     yValues = getCookie("dist");
     yValues = yValues.split(',').map(Number);
-    if (yValues == "" || yValues == [0,0,0,0,0,0,0,0,0,0]) {
-  
-    } else {
-    
+    if (yValues.length != 10) {
+      yValues = [0,0,0,0,0,0,0,0,0,0];
     }
+    daily();
   }
+  
 }
 
 function createGraph() {
@@ -634,6 +640,11 @@ function changeTheme() {
     document.getElementById("header-theme").innerHTML = "☽";
     dark = true;
   }
+}
+
+function howToPlay() {
+  document.getElementById("daily-how-to-play").style.display = "inline";
+  document.getElementById("daily").style.display = "none";
 }
 
 function transition(to, from, duration) {
@@ -725,11 +736,11 @@ function dailyCorrect(val) {
   dailyTurn++;
   document.getElementById("header-back").style.display = "inline-block";
   closeQuestion();
-  if (dailyTurn == 9) {
+  if (dailyTurn == 1) {
     document.getElementById("daily0-q3").style.display = "inline-block";
     document.getElementById("daily1-q3").style.display = "inline-block";
     document.getElementById("daily2-q3").style.display = "inline-block";
-  } else if (dailyTurn == 10) {
+  } else if (dailyTurn == 2) {
     yValues[score] += 1;
     document.getElementById("results-score").innerHTML = score*10 + "%";
     
@@ -864,3 +875,4 @@ function share() {
 }
 
 </script>
+</body></html>
