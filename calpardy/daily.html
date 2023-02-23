@@ -555,11 +555,10 @@ function getCookie(cname) {
   }
   return "";
 }
-daily();
+howToPlay();
 function checkCookie() {
   if (getCookie("dist") == "") {
     yValues = [0,0,0,0,0,0,0,0,0,0];
-    howToPlay();
   } else {
     yValues = getCookie("dist");
     yValues = yValues.split(',').map(Number);
