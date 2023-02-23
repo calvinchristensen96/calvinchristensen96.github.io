@@ -555,7 +555,7 @@ function getCookie(cname) {
   }
   return "";
 }
-
+daily();
 function checkCookie() {
   if (getCookie("dist") == "") {
     yValues = [0,0,0,0,0,0,0,0,0,0];
@@ -566,9 +566,7 @@ function checkCookie() {
     if (yValues.length != 10) {
       yValues = [0,0,0,0,0,0,0,0,0,0];
     }
-    daily();
   }
-  
 }
 
 function createGraph() {
