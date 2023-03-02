@@ -558,12 +558,12 @@ function getCookie(cname) {
 howToPlay();
 function checkCookie() {
   if (getCookie("dist") == "") {
-    yValues = [0,0,0,0,0,0,0,0,0,0];
+    yValues = [0,0,0,0,0,0,0,0,0,0,0];
   } else {
     yValues = getCookie("dist");
     yValues = yValues.split(',').map(Number);
-    if (yValues.length != 10) {
-      yValues = [0,0,0,0,0,0,0,0,0,0];
+    if (yValues.length != 11) {
+      yValues = [0,0,0,0,0,0,0,0,0,0,0];
     }
   }
 }
