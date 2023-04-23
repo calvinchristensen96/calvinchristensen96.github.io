@@ -1,7 +1,7 @@
 function getDailyQuestions(val) {
   var startDate = new Date("01/17/2023");
   var endDate = new Date(val);
-  iteration = ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+  var iteration = ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1;
   iteration = iteration % 72;
   if (iteration == 0) {
     daily0 = ["Metals",["The Statue of Liberty is sheathed in more than 31 tons of this metal mined in Norway", "Discovered in Colorado in the 1950s, coffinite is an ore that is more than 60% this radioactive metal","An oxide of this light metal, discovered in 1791, is used extensively as a white pigment","This metal used to make semiconductors was discovered by Clemens Winkler & named for his homeland"],["Copper","Uranium","Titanium","Germanium"]];
