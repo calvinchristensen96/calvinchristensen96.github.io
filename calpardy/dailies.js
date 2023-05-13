@@ -3,6 +3,7 @@ function getDailyQuestions(val) {
   var endDate = new Date(val);
   var iteration = ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1;
   iteration = iteration % 72;
+  alert(iteration);
   if (iteration == 0) {
     daily0 = ["Metals",["The Statue of Liberty is sheathed in more than 31 tons of this metal mined in Norway", "Discovered in Colorado in the 1950s, coffinite is an ore that is more than 60% this radioactive metal","An oxide of this light metal, discovered in 1791, is used extensively as a white pigment","This metal used to make semiconductors was discovered by Clemens Winkler & named for his homeland"],["Copper","Uranium","Titanium","Germanium"]];
     daily1 = ["The Revolutionary War",["The British passed the Intolerable Acts to punish Massachusetts for this event","General Richard Montgomery was killed December 31, 1775 leading a hopeless attack on this Canadian city","Born in Connecticut, Nathan Hale was a graduate of this Ivy League university","In the 1760s painter Charles Willson Peale joined this patriot group, angering Loyalist creditors"],["Boston Tea Party","Quebec","Yale","Sons of Liberty"]];
