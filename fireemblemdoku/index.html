@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Fire Emblemdoku</h1>
+<table>
+<td></td><td id="tcat0"</td><td id="tcat1"</td><td id="tcat2"</td><tr>
+<td id="tcat3"></td><td id="t0">
+</td><td id="t1"></td><td id="t2"></td><tr>
+<td id="tcat4"></td><td id="t3"></td><td id="t4"></td><td id="t5"></td><tr>
+<td id="tcat5"></td><td id="t6"></td><td id="t7"></td><td id="t8"></td><tr>
+</table>
+<br><br>
+<div id="refresh"></div>
+</body>
+  
+<script>
+class Unit {
+  constructor(name, weapons, affinity, gender, game) {
+    this.name = name;
+    this.weapons = weapons;
+    this.affinity = affinity;
+    this.gender = gender;
+    this.game = game;
+  }
+}
+
+const roy = new Unit("Roy", ["Sword"], "fire", "male", ["6"]);
+const marcus = new Unit("Marcus", ["Sword", "Lance", "Axe"], "ice", "male", ["6","7"]);
+const allen = new Unit("Allen", ["Sword", "Lance", "Axe"], "fire", "male", ["6"]);
+const lance = new Unit("Lance", ["Sword", "Lance", "Axe"], "anima", "male", ["6"]);
+const wolt = new Unit("Wolt", ["Bow"], "ice", "male", ["6"]);
+const bors = new Unit("Bors", ["Lance", "Axe"], "wind", "male", ["6"]);
+const merlinus = new Unit("Merlinus", [], "dark", "male", ["6", "7"]);
+const ellen = new Unit("Ellen", ["Staff", "Light"], "wind", "female", ["6"]);
+const dieck = new Unit("Dieck", ["Sword", "Axe"], "thunder", "male", ["6"]);
+const wade = new Unit("Wade", ["Axe", "Bow"], "fire", "male", ["6"]);
+const lott = new Unit("Lott", ["Axe", "Bow"], "anima", "male", ["6"]);
+const thany = new Unit("Thany", ["Sword", "Lance"], "wind", "female", ["6"]);
+const chad = new Unit("Chad", ["Sword"], "thunder", "male", ["6"]);
+const lugh = new Unit("Lugh", ["Staff", "Anima"], "fire", "male", ["6"]);
+const clarine = new Unit("Clarine", ["Staff", "Anima"], "thunder", "female", ["6"]);
+const rutger = new Unit("Rutger", ["Sword"], "dark", "male", ["6"]);
+const saul = new Unit("Saul", ["Staff", "Light"], "ice", "male", ["6"]);
+const dorothy = new Unit("Dorothy", ["Bow"], "fire", "female", ["6"]);
+const sue = new Unit("Sue", ["Sword", "Bow"], "wind", "female", ["6"]);
+const zealot = new Unit("Zealot", ["Sword", "Lance", "Axe"], "dark", "male", ["6"]);
+const treck = new Unit("Treck", ["Sword", "Lance", "Axe"], "wind", "male", ["6"]);
+const noah = new Unit("Noah", ["Sword", "Lance", "Axe"], "anima", "male", ["6"]);
+const astohl = new Unit("Astohl", ["Sword"], "dark", "male", ["6"]);
+const lilina = new Unit("Lilina", ["Staff", "Anima"], "light", "female", ["6"]);
+const wendy = new Unit("Wendy", ["Lance", "Axe"], "fire", "female", ["6"]);
+const barth = new Unit("Barth", ["Lance", "Axe"], "ice", "male", ["6"]);
+const oujay = new Unit("Oujay", ["Sword", "Axe"], "wind", "male", ["6"]);
+const fir = new Unit("Fir", ["Sword"], "fire", "female", ["6"]);
+const shin = new Unit("Shin", ["Sword", "Bow"], "ice", "male", ["6"]);
+const gonzales = new Unit("Gonzales", ["Axe"], "thunder", "male", ["6"]);
+const geese = new Unit("Geese", ["Axe"], "fire", "male", ["6"]);
+const klein = new Unit("Klein", ["Bow"], "ice", "male", ["6"]);
+const tate = new Unit("Tate", ["Sword", "Lance"], "ice", "female", ["6"]);
+const lalum = new Unit("Lalum", [], "thunder", "female", ["6"]);
+const echidna = new Unit("Echidna", ["Sword", "Axe"], "light", "female", ["6"]);
+const elphin = new Unit("Elphin", [], "ice", "female", ["6"]);
+const bartre = new Unit("Bartre", ["Box", "Axe"], "thunder", "male", ["6", "7"]);
+const ray = new Unit("Ray", ["Staff", "Dark"], "ice", "male", ["6"]);
+const cath = new Unit("Cath", ["Sword"], "anima", "female", ["6"]);
+const miredy = new Unit("Miredy", ["Sword", "Lance"], "dark", "female", ["6"]);
+const percival = new Unit("Percival", ["Sword", "Lance", "Axe"], "dark", "male", ["6"]);
+const cecilia = new Unit("Cecilia", ["Staff", "Anima"], "anima", "female", ["6"]);
+const sofiya = new Unit("Sofiya", ["Staff", "Dark"], "dark", "female", ["6"]);
+const igrene = new Unit("Igrene", ["Bow"], "ice", "female", ["6"]);
+const garret = new Unit("Garret", ["Axe"], "wind", "male", ["6"]);
+const fa = new Unit("Fa", [], "light", "female", ["6"]);
+const hugh = new Unit("Hugh", ["Staff", "Anima"], "wind", "male", ["6"]);
+const zeiss = new Unit("Zeiss", ["Sword", "Lance"], "thunder", "male", ["6"]);
+const douglass = new Unit("Douglass", ["Lance", "Axe"], "thunder", "male", ["6"]);
+const niime = new Unit("Niime", ["Staff", "Dark"], "anima", "female", ["6"]);
+const dayan = new Unit("Dayan", ["Sword", "Bow"], "anima", "male", ["6"]);
+const juno = new Unit("Juno", ["Sword", "Lance"], "light", "female", ["6"]);
+const yodel = new Unit("Yodel", ["Staff", "Light"], "light", "male", ["6"]);
+const karel = new Unit("Karel", ["Sword"], "light", "male", ["6", "7"]);
+
+const lyn = new Unit("Lyn", ["Sword", "Bow"], "wind", "female", ["7"]);
+const sain = new Unit("Sain", ["Sword", "Lance", "Axe"], "wind", "male", ["7"]);
+const kent = new Unit("Kent", ["Sword", "Lance", "Axe"], "anima", "male", ["7"]);
+const florina = new Unit("Florina", ["Sword", "Lance"], "light", "female", ["7"]);
+const wil = new Unit("Wil", ["Bow"], "wind", "female", ["7"]);
+const dorcas = new Unit("Dorcas", ["Axe", "Bow"], "fire", "male", ["7"]);
+const serra = new Unit("Serra", ["Staff"], "thunder", "female", ["7"]);
+const erk = new Unit("Erk", ["Anima", "Staff"], "thunder", "male", ["7"]);
+const rath = new Unit("Rath", ["Sword", "Bow"], "dark", "male", ["7"]);
+const matthew = new Unit("Matthew", ["Sword"], "wind", "male", ["7"]);
+const nils = new Unit("Nils", [], "ice", "male", ["7"]);
+const lucius = new Unit("Lucius", ["Staff", "Light"], "light", "male", ["7"]);
+const wallace = new Unit("Wallace", ["Lance", "Axe"], "thunder", "male", ["7"]);
+const eliwood = new Unit("Eliwood", ["Sword", "Lance"], "anima", "male", ["7"]);
+const lowen = new Unit("Lowen", ["Sword", "Lance", "Axe"], "fire", "male", ["7"]);
+const rebecca = new Unit("Rebecca", ["Bow"], "fire", "female", ["7"]);
+const hector = new Unit("Hector", ["Sword", "Axe"], "thunder", "male", ["7"]);
+const oswin = new Unit("Oswin", ["Axe", "Lance"], "anima", "male", ["7"]);
+const guy = new Unit("Guy", ["Sword"], "fire", "male", ["7"]);
+const priscilla = new Unit("Priscilla", ["Staff", "Anima"], "wind", "female", ["7"]);
+const raven = new Unit("Raven", ["Sword", "Axe"], "ice", "male", ["7"]);
+const canas = new Unit("Canas", ["Dark", "Staff"], "anima", "male", ["7"]);
+const dart = new Unit("Dart", ["Axe"], "fire", "male", ["7"]);
+const fiora = new Unit("Fiora", ["Sword", "Lance"], "wind", "female", ["7"]);
+const legault = new Unit("Legault", ["Sword"], "ice", "male", ["7"]);
+const ninian = new Unit("Ninian", [], "ice", "female", ["7"]);
+const isadora = new Unit("Isadora", ["Sword", "Lance", "Axe"], "dark", "female", ["7"]);
+const heath = new Unit("Heath", ["Sword", "Lance"], "fire", "male", ["7"]);
+const hawkeye = new Unit("Hawkeye", ["Axe"], "wind", "male", ["7"]);
+const geitz = new Unit("Geitz", ["Axe", "Bow"], "thunder", "male", ["7"]);
+const farina = new Unit("Farina", ["Sword", "Lance"], "anime", "female", ["7"]);
+const pent = new Unit("Pent", ["Staff", "Anima"], "ice", "male", ["7"]);
+const louise = new Unit("Louise", ["Bow"], "light", "female", ["7"]);
+const harken = new Unit("Harken", ["Sword", "Axe"], "fire", "male", ["7"]);
+const nino = new Unit("Nino", ["Staff", "Anima"], "fire", "female", ["7"]);
+const jaffar = new Unit("Jaffar", ["Sword"], "ice", "male", ["7"]);
+const vaida = new Unit("Vaida", ["Sword", "Lance"], "fire", "female", ["7"]);
+const karla = new Unit("Karla", ["Sword"], "dark", "female", ["7"]);
+const renault = new Unit("Renault", ["Sword"], "anima", "male", ["7"]);
+const athos = new Unit("Athos", ["Staff", "Light", "Dark", "Anima"], "anima", "male", ["7"]);
+
+const eirika = new Unit("Eirika", ["Sword"], "light", "female", ["8"]);
+const seth = new Unit("Seth", ["Sword", "Lance"], "anima", "male", ["8"]);
+const franz = new Unit("Franz", ["Sword", "Lance", "Axe"], "light", "male", ["8"]);
+const gilliam = new Unit("Gilliam", ["Sword", "Lance", "Axe"], "fire", "male", ["8"]);
+const vanessa = new Unit("Vanessa", ["Sword", "Lance"], "anima", "female", ["8"]);
+const moulder = new Unit("Moulder", ["Staff", "Anima", "Light"], "anima", "male", ["8"]);
+const ross = new Unit("Ross", ["Sword", "Axe", "Bow"], "fire", "male", ["8"]);
+const garcia = new Unit("Garcia", ["Axe", "Bow"], "fire", "male", ["8"]);
+const neimi = new Unit("Neimi", ["Sword", "Bow"], "fire", "female", ["8"]);
+const colm = new Unit("Colm", ["Sword"], "light", "male", ["8"]);
+const artur = new Unit("Artur", ["Staff", "Anima", "Light"], "ice", "male", ["8"]);
+const lute = new Unit("Lute", ["Staff", "Anima", "Light"], "anima", "female", ["8"]);
+const natasha = new Unit("Natasha", ["Staff", "Light"], "ice", "female", ["8"]);
+const joshua = new Unit("Joshua", ["Sword"], "wind", "male", ["8"]);
+const ephraim = new Unit("Ephraim", ["Lance"], "fire", "male", ["8"]);
+const forde = new Unit("Forde", ["Sword", "Lance", "Axe"], "wind", "male", ["8"]);
+const kyle = new Unit("Kyle", ["Sword", "Lance", "Axe"], "ice", "male", ["8"]);
+const orson = new Unit("Orson", ["Sword", "Lance", "Axe"], "dark", "male", ["8"]);
+const tana = new Unit("Tana", ["Sword", "Lance"], "wind", "female", ["8"]);
+const amelia = new Unit("Amelia", ["Sword", "Lance", "Axe"], "thunder", "female", ["8"]);
+const innes = new Unit("Innes", ["Bow"], "ice", "male", ["8"]);
+const gerik = new Unit("Gerik", ["Sword", "Axe", "Bow"], "thunder", "male", ["8"]);
+const tethys = new Unit("Tethys", [], "fire", "female", ["8"]);
+const marisa = new Unit("Marisa", ["Sword"], "ice", "female", ["8"]);
+const larachel = new Unit("L'arachel", ["Staff", "Light"], "light", "female", ["8"]);
+const dozla = new Unit("Dozla", ["Axe"], "thunder", "male", ["8"]);
+const saleh = new Unit("Saleh", ["Staff", "Anima", "Light"], "wind", "male", ["8"]);
+const ewan = new Unit("Ewan", ["Staff", "Anima", "Light", "Dark"], "light", "male", ["8"]);
+const cormag = new Unit("Cormag", ["Sword", "Lance"], "fire", "male", ["8"]);
+const rennac = new Unit("Rennac", ["Sword"], "dark", "male", ["8"]);
+const duessel = new Unit("Duessel", ["Sword", "Lance", "Axe"], "anima", "male", ["8"]);
+const knoll = new Unit("Knoll", ["Staff", "Anima", "Dark"], "dark", "male", ["8"]);
+const myrrh = new Unit("Myrrh", [], "wind", "female", ["8"]);
+const syrene = new Unit("Syrene", ["Sword", "Lance"], "thunder", "female", ["8"]);
+
+var units = [roy, marcus, allen, lance, wolt, bors, merlinus, ellen, dieck, wade, lott, thany, chad, lugh, clarine, rutger, saul, dorothy, sue, zealot, treck, zealot, astohl, lilina, wendy, barth, oujay, fir, shin, gonzales, geese, klein, tate, lalum, echidna, elphin, bartre, ray, cath, miredy, percival, cecilia, sofiya, igrene, garret, fa, hugh, zeiss, douglass, niime, dayan, juno, yodel, karel, lyn, sain, kent, florina, wil, dorcas, serra, erk, rath, matthew, nils, lucius, wallace, eliwood, lowen, rebecca, hector, oswin, guy, priscilla, raven, canas, dart, fiora, legault, ninian, isadora, heath, hawkeye, geitz, farina, pent, louise, harken, nino, jaffar, vaida, karla, renault, athos, eirika, seth, franz, gilliam, vanessa, moulder, ross, garcia, neimi, colm, artur, lute, natasha, joshua, ephraim, forde, kyle, orson, tana, amelia, innes, gerik, tethys, marisa, larachel, dozla, saleh, ewan, cormag, rennac, duessel, knoll, myrrh, syrene];
+
+var value = ' ">';
+
+var j = 0;
+for (j = 0; j < units.length; j++) {
+ value += '<a onClick="select(' + j + ')">' + units[j].name + '</a>';
+}
+
+value += '</div></div>';
+
+var options = ["Sword", "Lance", "Axe", "Bow", "Anima Magic", "Light Magic", "Dark Magic", "Staff", "Male", "Female", "Sacred Stones", "Blazing Sword", "Binding Blade", "Light Affinity", "Dark Affinity", "Anima Affinity", "Fire Affinity", "Ice Affinity", "Wind Affinity", "Thunder Affinity"];
+var categories = [];
+
+generateGrid();
+
+var cell = 0;
+function setCell(val) {
+  cell = val;
+}
+function select(value) {
+  var correct = true;
+  var tempCategories = [cell%3];
+  
+  if (cell == 0 || cell == 1 || cell == 2) {
+    tempCategories.push(3);
+  } else if (cell == 3 || cell == 4 || cell == 5) {
+    tempCategories.push(4);
+  } else {
+    tempCategories.push(5);
+  }
+
+  correct = validateSelection(value, tempCategories);
+  
+  if (correct) {
+    document.getElementById("t" + cell).innerHTML = units[value].name;
+  } else {
+    myFunction(cell);
+  }
+}
+
+function validateSelection(tempUnit, tempIndex) {
+  var k = 0;
+  for (k = 0; k < 2; k++) {
+    // weapons
+    if (categories[tempIndex[k]] == "Sword" && units[tempUnit].weapons.indexOf("Sword") < 0) {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Lance" && units[tempUnit].weapons.indexOf("Lance") < 0) {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Axe" && units[tempUnit].weapons.indexOf("Axe") < 0) {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Bow" && units[tempUnit].weapons.indexOf("Bow") < 0) {
+      return false;
+    }
+    // magic
+    if (categories[tempIndex[k]] == "Light Magic" && units[tempUnit].weapons.indexOf("Light") < 0) {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Dark Magic" && units[tempUnit].weapons.indexOf("Dark") < 0) {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Anima Magic" && units[tempUnit].weapons.indexOf("Anima") < 0) {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Staff" && units[tempUnit].weapons.indexOf("Staff") < 0) {
+      return false;
+    }
+    // gender
+    if (categories[tempIndex[k]] == "Female" && units[tempUnit].gender == "male") {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Male" && units[tempUnit].gender == "female") {
+      return false;
+    }
+    // game
+    if (categories[tempIndex[k]] == "Sacred Stones" && units[tempUnit].game.indexOf("8") < 0) {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Blazing Sword" && units[tempUnit].game.indexOf("7") < 0) {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Binding Blade" && units[tempUnit].game.indexOf("6") < 0) {
+      return false;
+    }
+    // affin
+    if (categories[tempIndex[k]] == "Dark Affinity" && units[tempUnit].affinity != "dark") {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Light Affinity" && units[tempUnit].affinity != "light") {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Anima Affinity" && units[tempUnit].affinity != "anima") {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Ice Affinity" && units[tempUnit].affinity != "ice") {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Wind Affinity" && units[tempUnit].affinity != "wind") {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Fire Affinity" && units[tempUnit].affinity != "fire") {
+      return false;
+    }
+    if (categories[tempIndex[k]] == "Thunder Affinity" && units[tempUnit].affinity != "thunder") {
+      return false;
+    }
+    
+    
+  }
+  return true;
+}
+
+function generateGrid() {
+  var i = 0;
+  var tempIndex = 0;
+  var tempOptions = options;
+  
+  for (i = 0; i < 3; i++) {
+    tempIndex = Math.floor(Math.random() * (tempOptions.length));
+    categories.push(tempOptions[tempIndex]);
+    document.getElementById("tcat" + i).innerHTML = tempOptions.splice(tempIndex,1);
+  }
+  
+  tempOptions = options;
+  
+  if (categories.indexOf("Sword") >= 0 || categories.indexOf("Lance") >= 0 || categories.indexOf("Axe") >= 0 || categories.indexOf("Bow") >= 0) {
+    tempOptions.splice(tempOptions.indexOf("Anima Magic"), 1);
+    tempOptions.splice(tempOptions.indexOf("Light Magic"), 1);
+    tempOptions.splice(tempOptions.indexOf("Dark Magic"), 1);
+    tempOptions.splice(tempOptions.indexOf("Staff"), 1);
+  }
+  
+  if (categories.indexOf("Bow") >= 0) {
+    tempOptions.splice(tempOptions.indexOf("Lance"), 1);
+  }
+  if (categories.indexOf("Lance") >= 0) {
+    tempOptions.splice(tempOptions.indexOf("Bow"), 1);
+  }
+  
+    if (categories.indexOf("Dark Affinity") >= 0) {
+    tempOptions.splice(tempOptions.indexOf("Light Magic"), 1);
+  }
+  if (categories.indexOf("Light Magic") >= 0) {
+    tempOptions.splice(tempOptions.indexOf("Dark Affinity"), 1);
+  }
+  
+  if (categories.indexOf("Anima Magic") >= 0 || categories.indexOf("Light Magic") >= 0 || categories.indexOf("Dark Magic") >= 0 || categories.indexOf("Staff") >= 0) {
+    tempOptions.splice(tempOptions.indexOf("Sword"), 1);
+    tempOptions.splice(tempOptions.indexOf("Lance"), 1);
+    tempOptions.splice(tempOptions.indexOf("Axe"), 1);
+    tempOptions.splice(tempOptions.indexOf("Bow"), 1);
+  }
+  
+  if (categories.indexOf("Male") >= 0 || categories.indexOf("Female") >= 0) {
+    tempOptions.splice(tempOptions.indexOf("Male"), 1);
+    tempOptions.splice(tempOptions.indexOf("Female"), 1);
+  }
+  
+  if (categories.indexOf("Sacred Stones") >= 0 || categories.indexOf("Blazing Sword") >= 0 || categories.indexOf("Binding Blade") >= 0) {
+    tempOptions.splice(tempOptions.indexOf("Sacred Stones"), 1);
+    tempOptions.splice(tempOptions.indexOf("Blazing Sword"), 1);
+    tempOptions.splice(tempOptions.indexOf("Binding Blade"), 1);
+  }
+  
+    if (categories.indexOf("Anima Affinity") >= 0 || categories.indexOf("Light Affinity") >= 0 || categories.indexOf("Dark Affinity") >= 0 || categories.indexOf("Ice Affinity") >= 0 || categories.indexOf("Fire Affinity") >= 0 || categories.indexOf("Thunder Affinity") >= 0 || categories.indexOf("Wind Affinity") >= 0) {
+    tempOptions.splice(tempOptions.indexOf("Anima Affinity"), 1);
+    tempOptions.splice(tempOptions.indexOf("Light Affinity"), 1);
+    tempOptions.splice(tempOptions.indexOf("Dark Affinity"), 1);
+    tempOptions.splice(tempOptions.indexOf("Ice Affinity"), 1);
+    tempOptions.splice(tempOptions.indexOf("Fire Affinity"), 1);
+    tempOptions.splice(tempOptions.indexOf("Thunder Affinity"), 1);
+    tempOptions.splice(tempOptions.indexOf("Wind Affinity"), 1);
+  }
+  
+  for (i = 3; i < 6; i++) {
+    tempIndex = Math.floor(Math.random() * (tempOptions.length));
+    categories.push(tempOptions[tempIndex]);
+    document.getElementById("tcat" + i).innerHTML = tempOptions.splice(tempIndex,1);
+  }
+  
+  for (i = 0; i < 9; i++) {
+    document.getElementById("t" + i).innerHTML = '<div onClick="setCell(' + i + ')" class="dropdown"><button onclick="myFunction(' + i + ')" class="dropbtn">Select</button><div id="myDropdown' + i + '" class="dropdown-content"><input type="text" placeholder="Search.." class="myInput" id="myInput' + i + '" onkeyup="filterFunction(' + i + ') ' + value;
+  }
+}
+
+function myFunction(val) {
+  document.getElementById("myDropdown" + val).classList.toggle("show");
+}
+
+function filterFunction(val) {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput" + val);
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown" + cell);
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+
+if (document.getElementById("tcat5").innerHTML.length < 2) {
+  document.getElementById("refresh").innerHTML = '<button onClick="window.location.reload();">Reload</button>';
+}
+</script>
+
+<style>
+body, * {
+  margin: 0px;
+  text-align: center;
+}
+table {
+  width: 100%;
+}
+td {
+  border: solid black 1px;
+  width: 20%;
+  height: 48px;
+  text-align: center;
+}
+
+
+.myInput {
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.myInput:focus {
+  outline: 3px solid #ddd;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+</style>
+</html>
