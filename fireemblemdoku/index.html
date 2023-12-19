@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1">
+  <meta name="author" content="Calvin Christensen">
+  <title>Fire Emblemdoku</title>
+</head>
 <body>
 <h1>Fire Emblemdoku</h1>
 <table>
@@ -79,6 +85,13 @@ const juno = new Unit("Juno", ["Sword", "Lance"], "light", "female", ["6"]);
 const yodel = new Unit("Yodel", ["Staff", "Light"], "light", "male", ["6"]);
 const karel = new Unit("Karel", ["Sword"], "light", "male", ["6", "7"]);
 
+const narshen = new Unit("Narshen", ["Sword", "Lance"], "none", "male", ["6"]);
+const gale = new Unit("Gale", ["Sword", "Lance"], "ice", "male", ["6"]);
+const brunya = new Unit("Brunya", ["Staff", "Anima"], "none", "female", ["6"]);
+const murdoch = new Unit("Murdoch", ["Axe", "Lance"], "none", "male", ["6"]);
+const zephiel = new Unit("Zephiel", ["Sword"], "none", "male", ["6"]);
+const guinevere = new Unit("Guinevere", ["Staff", "Light", "Anima"], "light", "female", ["6"]);
+
 const lyn = new Unit("Lyn", ["Sword", "Bow"], "wind", "female", ["7"]);
 const sain = new Unit("Sain", ["Sword", "Lance", "Axe"], "wind", "male", ["7"]);
 const kent = new Unit("Kent", ["Sword", "Lance", "Axe"], "anima", "male", ["7"]);
@@ -92,10 +105,10 @@ const matthew = new Unit("Matthew", ["Sword"], "wind", "male", ["7"]);
 const nils = new Unit("Nils", [], "ice", "male", ["7"]);
 const lucius = new Unit("Lucius", ["Staff", "Light"], "light", "male", ["7"]);
 const wallace = new Unit("Wallace", ["Lance", "Axe"], "thunder", "male", ["7"]);
-const eliwood = new Unit("Eliwood", ["Sword", "Lance"], "anima", "male", ["7"]);
+const eliwood = new Unit("Eliwood", ["Sword", "Lance", "Axe"], "anima", "male", ["6", "7"]);
 const lowen = new Unit("Lowen", ["Sword", "Lance", "Axe"], "fire", "male", ["7"]);
 const rebecca = new Unit("Rebecca", ["Bow"], "fire", "female", ["7"]);
-const hector = new Unit("Hector", ["Sword", "Axe"], "thunder", "male", ["7"]);
+const hector = new Unit("Hector", ["Sword", "Axe", "Lance"], "thunder", "male", ["6", "7"]);
 const oswin = new Unit("Oswin", ["Axe", "Lance"], "anima", "male", ["7"]);
 const guy = new Unit("Guy", ["Sword"], "fire", "male", ["7"]);
 const priscilla = new Unit("Priscilla", ["Staff", "Anima"], "wind", "female", ["7"]);
@@ -155,7 +168,17 @@ const knoll = new Unit("Knoll", ["Staff", "Anima", "Dark"], "dark", "male", ["8"
 const myrrh = new Unit("Myrrh", [], "wind", "female", ["8"]);
 const syrene = new Unit("Syrene", ["Sword", "Lance"], "thunder", "female", ["8"]);
 
-var units = [roy, marcus, allen, lance, wolt, bors, merlinus, ellen, dieck, wade, lott, thany, chad, lugh, clarine, rutger, saul, dorothy, sue, zealot, treck, zealot, astohl, lilina, wendy, barth, oujay, fir, shin, gonzales, geese, klein, tate, lalum, echidna, elphin, bartre, ray, cath, miredy, percival, cecilia, sofiya, igrene, garret, fa, hugh, zeiss, douglass, niime, dayan, juno, yodel, karel, lyn, sain, kent, florina, wil, dorcas, serra, erk, rath, matthew, nils, lucius, wallace, eliwood, lowen, rebecca, hector, oswin, guy, priscilla, raven, canas, dart, fiora, legault, ninian, isadora, heath, hawkeye, geitz, farina, pent, louise, harken, nino, jaffar, vaida, karla, renault, athos, eirika, seth, franz, gilliam, vanessa, moulder, ross, garcia, neimi, colm, artur, lute, natasha, joshua, ephraim, forde, kyle, orson, tana, amelia, innes, gerik, tethys, marisa, larachel, dozla, saleh, ewan, cormag, rennac, duessel, knoll, myrrh, syrene];
+const caellach = new Unit("Caellach", ["Sword", "Axe"], "thunder", "male", ["8"]);
+const riev = new Unit("Riev", ["Staff", "Light"], "dark", "male", ["8"]);
+const ismaire = new Unit("Ismaire", ["Sword"], "wind", "female", ["8"]);
+const selena = new Unit("Selena", ["Staff", "Anima"], "thunder", "female", ["8"]);
+const glen = new Unit("Glen", ["Sword", "Lance"], "wind", "male", ["8"]);
+const hayden = new Unit("Hayden", ["Sword", "Bow"], "anima", "male", ["8"]);
+const valter = new Unit("Valter", ["Lance"], "ice", "male", ["8"]);
+const fado = new Unit("Fado", ["Sword", "Lance", "Axe"], "fire", "male", ["8"]);
+const lyon = new Unit("Lyon", ["Staff", "Dark"], "ice", "male", ["8"]);
+
+var units = [roy, marcus, allen, lance, wolt, bors, merlinus, ellen, dieck, wade, lott, thany, chad, lugh, clarine, rutger, saul, dorothy, sue, zealot, treck, zealot, astohl, lilina, wendy, barth, oujay, fir, shin, gonzales, geese, klein, tate, lalum, echidna, elphin, bartre, ray, cath, miredy, percival, cecilia, sofiya, igrene, garret, fa, hugh, zeiss, douglass, niime, dayan, juno, yodel, karel, narshen, gale, brunya, murdoch, zephiel, guinevere, lyn, sain, kent, florina, wil, dorcas, serra, erk, rath, matthew, nils, lucius, wallace, eliwood, lowen, rebecca, hector, oswin, guy, priscilla, raven, canas, dart, fiora, legault, ninian, isadora, heath, hawkeye, geitz, farina, pent, louise, harken, nino, jaffar, vaida, karla, renault, athos, eirika, seth, franz, gilliam, vanessa, moulder, ross, garcia, neimi, colm, artur, lute, natasha, joshua, ephraim, forde, kyle, orson, tana, amelia, innes, gerik, tethys, marisa, larachel, dozla, saleh, ewan, cormag, rennac, duessel, knoll, myrrh, syrene, caellach, riev, ismaire, selena, glen, hayden, valter, fado, lyon];
 
 var value = ' ">';
 
@@ -372,10 +395,19 @@ if (document.getElementById("tcat5").innerHTML.length < 2) {
 body, * {
   margin: 0px;
   text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
 }
+
 table {
-  width: 100%;
+  width: 90%;
 }
+
+h1 {
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
 td {
   border: solid black 1px;
   width: 20%;
@@ -383,24 +415,35 @@ td {
   text-align: center;
 }
 
-
 .myInput {
   font-size: 16px;
-  padding: 14px 20px 12px 45px;
+  padding: 20px 0px 20px 0px;
   border: none;
   border-bottom: 1px solid #ddd;
+  margin-left: 0px;
+  width: 100%;
 }
 
 .myInput:focus {
   outline: 3px solid #ddd;
 }
 
+.dropbtn {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin: 0px;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
+  left: 20%;
   background-color: #f6f6f6;
   min-width: 230px;
   overflow: auto;
+  overflow-x: hidden;
+  max-height: 50vh;
   border: 1px solid #ddd;
   z-index: 1;
 }
