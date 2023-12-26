@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1">
+  <meta name="author" content="Calvin Christensen">
+</head>
+<body>
+
+<div id="navbar">
+  <div id="logo"></div>
+  <div onclick="toggleNav()" id="toggle-nav"></div>
+  <ul id="nav">
+    <li>Home</li>
+    <li>About</li>
+    <li>Menu</li>
+    <li>Contact</li>
+  </ul>
+</div>
+
+<div id="search">
+  <input type="text" onInput="filter(this.value)" placeholder="Search"></input>
+</div>
+
+<div id="products">
+  <table id="products-table">
+  
+  </table>
+</div>
+
+</body>
+
+<script>
+
+class Product {
+  constructor(name, image) {
+    this.name = name;
+    this.image = image;
+  }
+}
+
+var navActive = false;
+function toggleNav() {
+  if (navActive) {  
+    document.getElementById("nav").style.top = "-240px";
+    navActive = false;
+  } else {
+    document.getElementById("nav").style.top = "49px";
+    navActive = true;
+  }
+}
+
+
+const mocha = new Product("Mocha", "https://assets.coffeeandbagels-static.com/content-v5/thumb-de1828cf-0c9d-4589-92cf-00cf8cebcdff.png");
+
+const coldBrew = new Product("Cold Brew", "https://assets.coffeeandbagels-static.com/content-v5/thumb-de1828cf-0c9d-4589-92cf-00cf8cebcdff.png");
+
+const latte = new Product("Latte", "https://assets.coffeeandbagels-static.com/content-v5/thumb-de1828cf-0c9d-4589-92cf-00cf8cebcdff.png");
+
+const frappacino = new Product("Frappacino", "https://assets.coffeeandbagels-static.com/content-v5/thumb-de1828cf-0c9d-4589-92cf-00cf8cebcdff.png");
+
+
+var allProducts = [mocha, coldBrew, latte, frappacino];
+var filteredProducts = allProducts;
+
+generateTable();
+
+function generateTable() {
+  var i;
+  var result = "";
+  for (i=0;i<filteredProducts.length;i++) {
+    result += '<td><div class="product-image"><img src="' + filteredProducts[i].image + '"></div><div class="product-text">' + filteredProducts[i].name + '</div></td>';
+    if (i%2 != 0) {
+      result += "<tr>";
+    }
+  }
+  
+  document.getElementById("products-table").innerHTML = result;
+}
+
+function filter(val) { 
+  val = val.toLowerCase();
+  var i;
+  filteredProducts = [];
+  for (i=0;i<allProducts.length;i++) {
+    if(allProducts[i].name.toLowerCase().indexOf(val) >= 0) {
+      filteredProducts.push(allProducts[i]);
+    }
+  }
+ generateTable();
+}
+</script>
+
+<style>
+
+body, * {
+  margin: 0px;
+  font-family: Tahoma, sans-serif;
+}
+
+#logo {
+  background-color: black;
+  width: 48px;
+  height: 48px;
+  position: fixed;
+}
+
+#navbar {
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  border-bottom: 1px solid gray;
+  z-index: 10;
+}
+
+#toggle-nav {
+  background-color: black;
+  width: 48px;
+  height: 48px;
+  float: right;
+}
+
+#nav {
+  position: fixed;
+  width: 100%;
+  top: -240px;
+  border-bottom: 1px black solid;
+  left: 0;
+  background-color: white;
+  transition-duration: .5s;
+  z-index: -2;
+}
+
+#navbar ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+#navbar li {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+#search {
+  width: 100%;
+  padding: 24px;
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: gray;
+  position: relative;
+  top: 48px;
+}
+
+#search input {
+  width: 80%;
+}
+
+#products {
+  position: relative;
+  top: 48px;
+  text-align: center;
+}
+
+.product-image img {
+  width: 64px;
+}
+
+#products table {
+  width: 100%;
+}
+
+#products td {
+  width: 50%;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  cursor: pointer;
+}
+
+</style>
+</html>
