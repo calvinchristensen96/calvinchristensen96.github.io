@@ -1,0 +1,198 @@
+<html>
+  <head>
+		<meta charset="UTF-8">
+	  <meta name="viewport" content="initial-scale=1">
+	  <meta name="author" content="Calvin Christensen">
+	  <link rel="stylesheet" href="style.css">
+	</head>
+  <body>
+  <div id="header">
+    <h1>Rainbow Jam</h1>
+    <table id="nav-date">
+      <td><button class="nav-date-button"><</button> </td>
+      <td><h3>June 4th, 2024</h3></td>
+      <td><button class="nav-date-button">></button></td>
+    </table>
+  </div>
+
+  <div id="progress-box">
+    <table id="progress-table">
+      <tr> <td>HIIT</td> <td class="p-bar"> <div id="p-red">&nbsp</div></td></tr>
+      <tr> <td>Strength</td> <td class="p-bar"> <div id="p-orange">&nbsp</div></td></tr>
+      <tr> <td>Flexibility</td> <td class="p-bar"> <div id="p-yellow">&nbsp</div></td></tr>
+      <tr> <td>Cardio</td> <td class="p-bar"> <div id="p-green">&nbsp</div></td></tr>
+      <tr> <td>Mindfulness</td> <td class="p-bar"> <div id="p-blue">&nbsp</div></td></tr>
+      <tr> <td>Recovery</td> <td class="p-bar"> <div id="p-purple">&nbsp</div></td></tr>
+    </table>
+  </div>
+
+  <div id="options">
+    <button>add new entry</button>
+  </div>
+  </body>
+</html>
+<script type="text/javascript" src="script.js"></script>
+
+
+<!--
+
+<!DOCTYPE html>
+<html>
+
+<body>
+<div id="header">
+  <h1>Rainbow Jam</h1>
+  <table id="nav-date">
+    <td><button class="nav-date-button"><</button> </td>
+    <td><h3>June 4th, 2024</h3></td>
+    <td><button class="nav-date-button">></button></td>
+  </table>
+</div>
+
+<div id="progress-box">
+ <table id="progress-table">
+   <tr> <td>HIIT</td> <td class="p-bar"> <div id="p-red">&nbsp</div></td></tr>
+   <tr> <td>Strength</td> <td class="p-bar"> <div id="p-orange">&nbsp</div></td></tr>
+   <tr> <td>Flexibility</td> <td class="p-bar"> <div id="p-yellow">&nbsp</div></td></tr>
+   <tr> <td>Cardio</td> <td class="p-bar"> <div id="p-green">&nbsp</div></td></tr>
+   <tr> <td>Mindfulness</td> <td class="p-bar"> <div id="p-blue">&nbsp</div></td></tr>
+   <tr> <td>Recovery</td> <td class="p-bar"> <div id="p-purple">&nbsp</div></td></tr>
+
+ </table>
+
+</div>
+
+<div id="options">
+<button>add new entry</button>
+</div>
+
+</body>
+
+<style>
+body {
+  font-family: 'Trebuchet MS', sans-serif;
+}
+#header {
+  height: 10vh;
+  text-align: center;
+  margin: 16px;
+}
+
+#nav-date {
+  width:100%;
+}
+
+.nav-date-button {
+  text-formating: none;
+  background: white;
+  cursor: pointer;
+  border: solid #a2a2a2 1px;
+}
+
+#progress-box {
+  border: #a2a2a2 1px solid;
+  height: 60vh;
+  margin: 24px;
+}
+
+#progress-table {
+ margin: 16px;
+}
+
+#options {
+  margin: 24px;
+  text-align: right;
+}
+
+#progress-table tr td:first-child {
+  border-right: #a2a2a2 1px solid;
+  width: 20vw;
+  height: 9vh;
+}
+#progress-table tr td:nth-child(2) {
+  width: 80vw;
+}
+
+#p-red, #p-orange, #p-yellow, #p-green, #p-blue, #p-purple {
+  height: 8px;
+  border-radius: 6px 6px 6px 6px;
+  width: 0px;
+  transition-duration: 0.5s;
+}
+
+#p-red {
+  background-color: red;
+}
+
+#p-orange {
+  background-color: orange;
+}
+
+#p-yellow {
+  background-color: yellow;
+}
+
+#p-green {
+  background-color: green;
+}
+
+#p-blue {
+  background-color: blue;
+}
+
+#p-purple {
+  background-color: purple;
+}
+
+</style>
+
+<script>
+var colorIds = ["p-red", "p-orange", "p-yellow", "p-green", "p-blue", "p-purple"];
+var colorPercents = [0, 0, 0, 0, 0, 0];
+
+var i = 0;
+/*
+var a = setTimeout(function() {
+for (i=0; i<6; i++) {
+  document.getElementById(colorIds[i]).style.width = (Math.floor(Math.random() * 11) * 10) + "%" ;
+}
+}, 20);
+*/
+var a = setTimeout(function() {
+  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
+  i++;
+}, 20);
+var b = setTimeout(function() {
+  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
+  i++;
+}, 120);
+var c = setTimeout(function() {
+  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
+  i++;
+}, 220);
+var d = setTimeout(function() {
+  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
+  i++;
+}, 320);
+var e = setTimeout(function() {
+  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
+  i++;
+}, 420);
+var f = setTimeout(function() {
+  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
+  i++;
+}, 520);
+
+
+</script>
+
+</html>
+
+
+</html>
+
+
+
+
+
+-->
