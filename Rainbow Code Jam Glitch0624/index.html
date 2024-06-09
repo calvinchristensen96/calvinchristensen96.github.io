@@ -1,13 +1,171 @@
 <html>
   <head>
-		<meta charset="UTF-8">
-	  <meta name="viewport" content="initial-scale=1">
-	  <meta name="author" content="Calvin Christensen">
-	  <link rel="stylesheet" href="style.css">
-	</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1">
+    <meta name="author" content="Calvin Christensen">
+    <link rel="stylesheet" href="style.css">
+  </head>
   <body>
-  <div id="header">
-    <h1>Rainbow Jam</h1>
+  <h1 id="title">Welcome to Rainbow Fitness</h1>
+  <h3 id="subtitle">Your colorful journey to a balanced fitness routine</h3>
+  <div id="scene-intro">
+    <div>
+      Rainbow Fitness is designed to make workouts more engaging and motivating by associating each type of exercise with a different color of the rainbow. Users can track their progress by aiming to complete a <b>rainbow of activities</b> each week.
+    </div><br><br>
+    <div id="intro-buttons">
+      <button id="begin" onclick="begin()">Begin Your Journey</button>
+    </div>
+  </div>
+
+  <div id="scene-goals">
+    <table id="color-table">
+      <td id="ct-0">•</td>
+      <td id="ct-1">•</td>
+      <td id="ct-2">•</td>
+      <td id="ct-3">•</td>
+      <td id="ct-4">•</td>
+      <td id="ct-5">•</td>
+    </table><br><br>
+    <div id="goals0">
+      <div class="goals-title">
+        High-Intensity Interval Training (HIIT)
+      </div>
+      <div class="goals-info">
+        HIIT involves short bursts of intense exercise followed by periods of rest or low-intensity exercise.<br><br>
+        These exercises are designed to improve cardiovascular fitness, burn calories, and build strength quickly.<br><br>
+        Examples:
+        <ul>
+          <li>Burpees</li>
+          <li>Lunges</li>
+          <li>Jumping Jacks</li>
+          <li>Running</li>
+        </ul><br>
+        Suggested amount: <b>75 minutes</b> per week.
+        <hr>
+        Your goal: <input id="goals-your-0" class="goals-your" value="75" type="number"></input> minutes per week.<br>
+      </div>
+    </div>
+
+    <div id="goals1">
+      <div class="goals-title">
+        Cardio
+      </div>
+      <div class="goals-info">
+        Cardio exercises are designed to increase heart rate and improve the efficiency of the cardiovascular system.<br><br>
+        These exercises are typically performed at a moderate intensity for a longer duration.<br><br>
+        Examples:
+        <ul>
+          <li>Cycling</li>
+          <li>Jogging</li>
+          <li>Rollerblading</li>
+          <li>Running</li>
+        </ul><br>
+        Suggested amount: <b>150 minutes</b> per week.
+        <hr>
+        Your goal: <input id="goals-your-1" class="goals-your" value="150" type="number"></input> minutes per week.<br>
+      </div>
+    </div>
+
+    <div id="goals2">
+      <div class="goals-title">
+        Flexibility & Yoga
+      </div>
+      <div class="goals-info">
+        Flexibility & Yoga exercises focus on stretching and elongating the muscles to improve range of motion, reduce injury, and promote relaxation.<br><br>
+        Examples:
+        <ul>
+          <li>Stretching</li>
+          <li>Yoga</li>
+        </ul><br>
+        Suggested amount: <b>30 minutes</b> per week.
+        <hr>
+        Your goal: <input id="goals-your-2" class="goals-your" value="30" type="number"></input> minutes per week.<br>
+      </div>
+    </div>
+
+    <div id="goals3">
+      <div class="goals-title">
+        Nutrition
+      </div>
+      <div class="goals-info">
+        This category emphasizes maintaining a balanced diet that includes essential nutrients.<br><br>
+        A balanced diet focuses on fruits, vegetables, lean proteins, and whole grains.<br><br>
+        Examples:
+        <ul>
+          <li>Eating 5 servings of fruits and vegetables per day</li>
+          <li>Drinking 8 glasses of water daily</li>
+          <li>Avoiding processed foods and added sugars</li>
+        </ul><br>
+        Suggested amount: <b>7 days</b> of reaching your nutrition goals per week.
+        <hr>
+        Your goal: <input id="goals-your-3" class="goals-your" value="7" type="number"></input> days per week.<br>
+      </div>
+    </div>
+
+    <div id="goals4">
+      <div class="goals-title">
+        Mindfulness
+      </div>
+      <div class="goals-info">
+        Mindfulness practices are designed to improve mental health, reduce stress and enchance overall well-being through focused attention and awareness.<br><br>
+        Examples:
+        <ul>
+          <li>Meditation sessions</li>
+          <li>Deep breathing exercises</li>
+        </ul><br>
+        Suggested amount: <b>60 minutes</b> per week.
+        <hr>
+        Your goal: <input id="goals-your-4" class="goals-your" value="60" type="number"></input> minutes per week.<br>
+      </div>
+    </div>
+
+    <div id="goals5">
+      <div class="goals-title">
+        Rest & Recovery
+      </div>
+      <div class="goals-info">
+        This category focuses on the importance of rest, including adequate sleep and rest days.<br><br>
+        Adhering to rest and recovery can allow the body to repair and rejuvenate.<br><br>
+        Examples:
+        <ul>
+          <li>Getting 7-9 hours of sleep per night</li>
+          <li>Taking 1-2 rest days per week with no intense physical activity</li>
+          <li>Practicing relaxation techniques before bedtime to improve sleep quality</li>
+        </ul><br>
+        Suggested amount: <b>7 days</b> of reaching your rest & recovery goals per week.
+        <hr>
+        Your goal: <input id="goals-your-5" class="goals-your" value="7" type="number"></input> days per week.<br>
+      </div>
+    </div>
+
+    <div id ="goals6">
+      <span class="goals-title">High Intensity Interval Training (HIIT)</span><br>
+      <span class="icon" id="icon-red">&nbsp&nbsp</span><input class="goals-input" id="goal-0" value="120" type="number"></input> minutes per week.<br><br>
+
+      <span class="goals-title">Cardio</span><br>
+      <span class="icon" id="icon-orange">&nbsp&nbsp</span><input class="goals-input" id="goal-1" value="60" type="number"></input> minutes per week.<br><br>
+
+      <span class="goals-title">Flexibility</span><br>
+      <span class="icon" id="icon-yellow">&nbsp&nbsp</span><input class="goals-input" id="goal-2" value="120" type="number"></input> minutes per week.<br><br>
+
+      <span class="goals-title">Nutrition</span><br>
+      <span class="icon" id="icon-green">&nbsp&nbsp</span><input class="goals-input" id="goal-3" value="240" type="number"></input> days per week.<br><br>
+
+      <span class="goals-title">Mindfulness</span><br>
+      <span class="icon" id="icon-blue">&nbsp&nbsp</span><input class="goals-input" id="goal-4" value="90" type="number"></input> minutes per week.<br><br>
+
+      <span class="goals-title">Rest and Recovery</span><br>
+      <span class="icon" id="icon-purple">&nbsp&nbsp</span><input class="goals-input" id="goal-5" value="56" type="number"></input> days per week.<br><br>
+    </div>
+
+    <div id="goals-submit">
+      <button onclick="advanceGoals()">Submit</button>
+    </div>
+  </div>
+
+  <!-- Rainbow screen -->
+  <div id="scene-rainbow">
+  <div id="rainbow-header">
     <table id="nav-date">
       <td><button class="nav-date-button"><</button> </td>
       <td><h3>June 4th, 2024</h3></td>
@@ -15,7 +173,7 @@
     </table>
   </div>
 
-  <div id="progress-box">
+  <div id="rainbow-progress-box">
     <table id="progress-table">
       <tr> <td>HIIT</td> <td class="p-bar"> <div id="p-red">&nbsp</div></td></tr>
       <tr> <td>Strength</td> <td class="p-bar"> <div id="p-orange">&nbsp</div></td></tr>
@@ -26,173 +184,11 @@
     </table>
   </div>
 
-  <div id="options">
+  <div id="rainbow-options">
     <button>add new entry</button>
   </div>
+  </div>
+
   </body>
 </html>
 <script type="text/javascript" src="script.js"></script>
-
-
-<!--
-
-<!DOCTYPE html>
-<html>
-
-<body>
-<div id="header">
-  <h1>Rainbow Jam</h1>
-  <table id="nav-date">
-    <td><button class="nav-date-button"><</button> </td>
-    <td><h3>June 4th, 2024</h3></td>
-    <td><button class="nav-date-button">></button></td>
-  </table>
-</div>
-
-<div id="progress-box">
- <table id="progress-table">
-   <tr> <td>HIIT</td> <td class="p-bar"> <div id="p-red">&nbsp</div></td></tr>
-   <tr> <td>Strength</td> <td class="p-bar"> <div id="p-orange">&nbsp</div></td></tr>
-   <tr> <td>Flexibility</td> <td class="p-bar"> <div id="p-yellow">&nbsp</div></td></tr>
-   <tr> <td>Cardio</td> <td class="p-bar"> <div id="p-green">&nbsp</div></td></tr>
-   <tr> <td>Mindfulness</td> <td class="p-bar"> <div id="p-blue">&nbsp</div></td></tr>
-   <tr> <td>Recovery</td> <td class="p-bar"> <div id="p-purple">&nbsp</div></td></tr>
-
- </table>
-
-</div>
-
-<div id="options">
-<button>add new entry</button>
-</div>
-
-</body>
-
-<style>
-body {
-  font-family: 'Trebuchet MS', sans-serif;
-}
-#header {
-  height: 10vh;
-  text-align: center;
-  margin: 16px;
-}
-
-#nav-date {
-  width:100%;
-}
-
-.nav-date-button {
-  text-formating: none;
-  background: white;
-  cursor: pointer;
-  border: solid #a2a2a2 1px;
-}
-
-#progress-box {
-  border: #a2a2a2 1px solid;
-  height: 60vh;
-  margin: 24px;
-}
-
-#progress-table {
- margin: 16px;
-}
-
-#options {
-  margin: 24px;
-  text-align: right;
-}
-
-#progress-table tr td:first-child {
-  border-right: #a2a2a2 1px solid;
-  width: 20vw;
-  height: 9vh;
-}
-#progress-table tr td:nth-child(2) {
-  width: 80vw;
-}
-
-#p-red, #p-orange, #p-yellow, #p-green, #p-blue, #p-purple {
-  height: 8px;
-  border-radius: 6px 6px 6px 6px;
-  width: 0px;
-  transition-duration: 0.5s;
-}
-
-#p-red {
-  background-color: red;
-}
-
-#p-orange {
-  background-color: orange;
-}
-
-#p-yellow {
-  background-color: yellow;
-}
-
-#p-green {
-  background-color: green;
-}
-
-#p-blue {
-  background-color: blue;
-}
-
-#p-purple {
-  background-color: purple;
-}
-
-</style>
-
-<script>
-var colorIds = ["p-red", "p-orange", "p-yellow", "p-green", "p-blue", "p-purple"];
-var colorPercents = [0, 0, 0, 0, 0, 0];
-
-var i = 0;
-/*
-var a = setTimeout(function() {
-for (i=0; i<6; i++) {
-  document.getElementById(colorIds[i]).style.width = (Math.floor(Math.random() * 11) * 10) + "%" ;
-}
-}, 20);
-*/
-var a = setTimeout(function() {
-  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
-  i++;
-}, 20);
-var b = setTimeout(function() {
-  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
-  i++;
-}, 120);
-var c = setTimeout(function() {
-  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
-  i++;
-}, 220);
-var d = setTimeout(function() {
-  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
-  i++;
-}, 320);
-var e = setTimeout(function() {
-  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
-  i++;
-}, 420);
-var f = setTimeout(function() {
-  document.getElementById(colorIds[i]).style.width = ((Math.floor(Math.random() * 7) + 4) * 10) + "%" ;
-  i++;
-}, 520);
-
-
-</script>
-
-</html>
-
-
-</html>
-
-
-
-
-
--->
