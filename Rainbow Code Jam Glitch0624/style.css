@@ -1,7 +1,136 @@
 body {
   font-family: 'Trebuchet MS', sans-serif;
+  max-width: 600px;
+  margin: auto;
+  padding: 24px;
 }
-#header {
+
+#title {
+  text-align: center;
+  margin: 24px;
+}
+
+#subtitle {
+  text-align: center;
+  margin: 24px;
+}
+
+#scene-intro {
+  text-align: center;
+}
+
+#scene-intro button {
+  padding: 12px;
+  border-radius: 8px 8px 8px 8px;
+  cursor: pointer;
+}
+
+#scene-goals {
+  display: none;
+}
+
+#color-table {
+  width:80%;
+  margin-left:10%;
+  margin-right:10%;
+  text-align: center;
+}
+
+#color-table td {
+  height: 48px;
+}
+
+#ct-0 {
+  border-bottom: solid red 2px;
+}
+
+#ct-1 {
+  border-color: solid orange 0px;
+}
+
+#ct-2 {
+  border-color: yellow;
+}
+
+.goals-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.goals-input {
+  width: 64px;
+}
+
+.icon {
+  width: 24px;
+  height: 36px;
+}
+
+.goals-title {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+#goals-info {
+
+}
+
+.goals-your {
+  width: 64px;
+}
+
+#goals1, #goals2, #goals3, #goals4, #goals5, #goals6 {
+  display:none;
+}
+
+#goals-submit {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  bottom: 8%;
+}
+
+#goals-submit button {
+  padding: 12px;
+  border-radius: 8px 8px 8px 8px;
+  cursor: pointer;
+}
+
+#icon-red {
+  background-color: red;
+}
+
+#icon-orange {
+  background-color: orange;
+}
+
+#icon-yellow {
+  background-color: yellow;
+}
+
+#icon-green {
+  background-color: green;
+}
+
+#icon-blue {
+  background-color: blue;
+}
+
+#icon-purple {
+  background-color: purple;
+}
+
+#scene-rainbow {
+  position: relative;
+  transition-duration: 0.5s;
+  display: none;
+}
+
+#rainbow-header {
   height: 10vh;
   text-align: center;
   margin: 16px;
@@ -9,6 +138,7 @@ body {
 
 #nav-date {
   width:100%;
+  text-align: center;
 }
 
 .nav-date-button {
@@ -18,7 +148,7 @@ body {
   border: solid #a2a2a2 1px;
 }
 
-#progress-box {
+#rainbow-progress-box {
   border: #a2a2a2 1px solid;
   height: 60vh;
   margin: 24px;
@@ -28,7 +158,7 @@ body {
  margin: 16px;
 }
 
-#options {
+#rainbow-options {
   margin: 24px;
   text-align: right;
 }
