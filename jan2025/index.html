@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+
+//sat. fat, sodium, fiber, added sugar, vit. D, calcium, iron, potassium
+var nutritionInfo = [0, 0, 0, 0, 0, 0, 0, 0];
+//g, mg, g, g, mcg, mg, mg, mg
+var dailyRec = [20, 2300, 28, 50, 20, 1300, 18, 4700];
+
+var calories = 0; 
+var fat = 0; 
+var cholesterol = 0; 
+var sodium = 0; 
+var carbohydrate = 0;
+var fiber = 0;
+var ingredients = ["Black Beans", "Lettuce", "Tomato", "Tortilla", "Shredded Cheddar Cheese"];
+var selected = [];
+var quantities = [];
+
+
+function graph(val) {
+  selected.push(ingredients[val]);
+  quantities.push(1);
+  var i;
+  document.getElementById("ingredient-table").innerHTML = "";
+  for (i=0; i<selected.length; i++) {
+    document.getElementById("ingredient-table").innerHTML += "<td>" + selected[i] + "</td><td><input type='number' value=15></input> oz</td><tr>";
+  }
+  
+
+  
+  if (val == 0) {
+    calories += 387;
+    nutritionInfo[0] += 0.3;
+    nutritionInfo[1] += 1633;
+    nutritionInfo[2] += 29;
+    nutritionInfo[3] += 0;
+    nutritionInfo[4] += 0;
+    nutritionInfo[5] += 149;
+    nutritionInfo[6] += 8.1;
+    nutritionInfo[7] += 1309.8;
+  } else if (val == 1) {
+    calories += 16;
+    fat += 0;
+    cholesterol += 0;
+    sodium += 0;
+    carbohydrate += 1;
+    fiber += 7;
+  } else if (val == 3) {
+    calories += 159;
+    fat += 4;
+    cholesterol += 0;
+    sodium += 10;
+    carbohydrate += 10;
+    fiber += 8;
+  } else if (val == 4) {
+    calories += 114;
+    fat += 12;
+    cholesterol += 8;
+    sodium += 8;
+    carbohydrate += 0;
+    fiber += 0;
+  }
+  
+  document.getElementById("calories").innerHTML = "Total calories: " + calories;
+  var chart = new CanvasJS.Chart("chartContainer", {
+    animationEnabled: true,
+    title:{
+      text: "Nutrition"
+    },
+    axisY: {
+      title: "Percentage"
+    },
+    data: [{        
+      type: "column",  
+      showInLegend: true, 
+      legendMarkerColor: "grey",
+      legendText: "Percentage",
+      dataPoints: [      
+        { y: nutritionInfo[0] / dailyRec[0] * 100, label: "Saturated Fat" },
+        { y: nutritionInfo[1] / dailyRec[1] * 100, label: "Sodium" },
+        { y: nutritionInfo[2] / dailyRec[2] * 100, label: "Dietary Fiber" },
+        { y: nutritionInfo[3] / dailyRec[3] * 100, label: "Added Sugars" },
+        { y: nutritionInfo[4] / dailyRec[4] * 100, label: "Vitamin D" },
+        { y: nutritionInfo[5] / dailyRec[5] * 100, label: "Calcium" },
+        { y: nutritionInfo[6] / dailyRec[6] * 100, label: "Iron" },
+        { y: nutritionInfo[7] / dailyRec[7] * 100, label: "Potassium" }
+      ]
+    }]
+  });
+  chart.render();
+}
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+  const input = document.getElementById("myInput");
+  const filter = input.value.toUpperCase();
+  const div = document.getElementById("myDropdown");
+  const a = div.getElementsByTagName("a");
+  for (let i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+</script>
+</head>
+<body>
+  <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+    <div id="myDropdown" class="dropdown-content">
+    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+      <a onclick="graph(0)">Black Beans</a>
+      <a onclick="graph(1)">Lettuce</a>
+      <a onclick="graph(2)">Tomato</a>
+      <a onclick="graph(3)">Tortilla</a>
+      <a onclick="graph(4)">Shredded Cheddar Cheese</a>
+    </div>
+  </div>
+  <button onclick="graph()">Submit</button>
+  <div id="ingredients">
+    <table id="ingredient-table"></table>
+  </div>
+  <div id="calories"></div>
+  <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+
+<style>
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+/* The search field */
+#myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+/* The search field when it gets focus/clicked on */
+#myInput:focus {outline: 3px solid #ddd;}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+</style>
+</html>
