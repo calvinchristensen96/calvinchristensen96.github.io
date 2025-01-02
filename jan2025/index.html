@@ -1,6 +1,29 @@
 <!DOCTYPE HTML>
 <html>
-<head>
+  <head>
+    <body>
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+      <div id="myDropdown" class="dropdown-content">
+      <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <a onclick="graph(0)">Black Beans</a>
+        <a onclick="graph(1)">Lettuce</a>
+        <a onclick="graph(2)">Tomato</a>
+        <a onclick="graph(3)">Tortilla</a>
+        <a onclick="graph(4)">Shredded Cheddar Cheese</a>
+      </div>
+    </div>
+    <button onclick="graph()">Submit</button>
+    <div id="ingredients">
+      <table id="ingredient-table"></table>
+    </div>
+    <div id="calories"></div>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+      <div id="nutrition">
+      <table id="nutrition-table"></table>
+    </div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  </body>
 <script>
 
 //sat. fat, sodium, fiber, added sugar, vit. D, calcium, iron, potassium
@@ -25,9 +48,10 @@ function graph(val) {
   var i;
   document.getElementById("ingredient-table").innerHTML = "";
   for (i=0; i<selected.length; i++) {
-    document.getElementById("ingredient-table").innerHTML += "<td>" + selected[i] + "</td><td><input type='number' value=15></input> oz</td><tr>";
+    document.getElementById("ingredient-table").innerHTML += "<th>Ingredient</th><th>Servings</th><th>Quantitiy</th><tr><td>" + selected[i] + "</td><td><input type='number' value=1></input></td><td><input type='number' value=15></input> oz</td><tr>";
   }
   
+
 
   
   if (val == 0) {
@@ -61,6 +85,10 @@ function graph(val) {
     sodium += 8;
     carbohydrate += 0;
     fiber += 0;
+  }
+  //g, mg, g, g, mcg, mg, mg, mg
+    for (i=0; i<selected.length; i++) {
+    document.getElementById("nutrition-table").innerHTML = "<th>Saturated Fat</th><th>Sodium</th><th>Dietary Fiber</th><th>Added Sugar</th><th>Vitamin D</th><th>Calcium</th><th>Iron</th><th>Potassium</th><tr><td>" + nutritionInfo[0] + " g</td><td>" + nutritionInfo[1] + " mg</td><td>" + nutritionInfo[2] + " g</td><td>" + nutritionInfo[3] + " g</td><td>" + nutritionInfo[4] + " mcg</td><td>" + nutritionInfo[5] + " mg</td><td>" + nutritionInfo[6] + " mg</td><td>" + nutritionInfo[7] + " mg</td><td>";
   }
   
   document.getElementById("calories").innerHTML = "Total calories: " + calories;
@@ -112,26 +140,7 @@ function filterFunction() {
 }
 </script>
 </head>
-<body>
-  <div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-    <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-      <a onclick="graph(0)">Black Beans</a>
-      <a onclick="graph(1)">Lettuce</a>
-      <a onclick="graph(2)">Tomato</a>
-      <a onclick="graph(3)">Tortilla</a>
-      <a onclick="graph(4)">Shredded Cheddar Cheese</a>
-    </div>
-  </div>
-  <button onclick="graph()">Submit</button>
-  <div id="ingredients">
-    <table id="ingredient-table"></table>
-  </div>
-  <div id="calories"></div>
-  <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-</body>
+
 
 <style>
 .dropbtn {
