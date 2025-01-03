@@ -71,21 +71,8 @@ function graph(val) {
     sodium += 0;
     carbohydrate += 1;
     fiber += 7;
-  } else if (val == 3) {
-    calories += 159;
-    fat += 4;
-    cholesterol += 0;
-    sodium += 10;
-    carbohydrate += 10;
-    fiber += 8;
-  } else if (val == 4) {
-    calories += 114;
-    fat += 12;
-    cholesterol += 8;
-    sodium += 8;
-    carbohydrate += 0;
-    fiber += 0;
-  }
+  } 
+    
   //g, mg, g, g, mcg, mg, mg, mg
     for (i=0; i<selected.length; i++) {
     document.getElementById("nutrition-table").innerHTML = "<th>Saturated Fat</th><th>Sodium</th><th>Dietary Fiber</th><th>Added Sugar</th><th>Vitamin D</th><th>Calcium</th><th>Iron</th><th>Potassium</th><tr><td>" + nutritionInfo[0] + " g</td><td>" + nutritionInfo[1] + " mg</td><td>" + nutritionInfo[2] + " g</td><td>" + nutritionInfo[3] + " g</td><td>" + nutritionInfo[4] + " mcg</td><td>" + nutritionInfo[5] + " mg</td><td>" + nutritionInfo[6] + " mg</td><td>" + nutritionInfo[7] + " mg</td><td>";
