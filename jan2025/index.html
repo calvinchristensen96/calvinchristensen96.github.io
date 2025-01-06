@@ -42,13 +42,20 @@ var selected = [];
 var quantities = [];
 
 
+function removeSlot(val) {
+  selected.splice(val,1);
+  graph();
+}
+
 function graph(val) {
-  selected.push(ingredients[val]);
-  quantities.push(1);
+  if (val >= 0) {
+    selected.push(ingredients[val]);
+    quantities.push(1);
+  }
   var i;
   document.getElementById("ingredient-table").innerHTML = "";
   for (i=0; i<selected.length; i++) {
-    document.getElementById("ingredient-table").innerHTML += "<th>Ingredient</th><th>Servings</th><th>Quantitiy</th><tr><td>" + selected[i] + "</td><td><input type='number' value=1></input></td><td><input type='number' value=15></input> oz</td><tr>";
+    document.getElementById("ingredient-table").innerHTML += "<th>Ingredient</th><th>Servings</th><th>Quantitiy</th><tr><td>" + selected[i] + "</td><td><input type='number' value=1></input></td><td><input type='number' value=15></input> oz</td><td><button onclick='removeSlot(" + i + ")'>X</button></td><tr>";
   }
   
 
