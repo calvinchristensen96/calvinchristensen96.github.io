@@ -32,11 +32,14 @@ var nutritionInfo = [0, 0, 0, 0, 0, 0, 0, 0];
 var dailyRec = [20, 2300, 28, 50, 20, 1300, 18, 4700];
 
 var calories = []; 
-var fat = 0; 
-var cholesterol = 0; 
-var sodium = 0; 
-var carbohydrate = 0;
-var fiber = 0;
+var fat = []; 
+var sodium = [];
+var fiber = []; 
+var sugar = []; 
+var vitd = []; 
+var calcium = []; 
+var iron = []; 
+var potassium = []; 
 var ingredients = ["Black Beans", "Lettuce", "Tomato", "Tortilla", "Shredded Cheddar Cheese"];
 var selected = [];
 var quantities = [];
@@ -66,37 +69,40 @@ function graph(val) {
   }
   
 
-
   
   if (val == 0) {
     calories.push(387 * quantities[0]);
-    nutritionInfo[0] += 0.3 * quantities[0];
-    nutritionInfo[1] += 1633 * quantities[0];
-    nutritionInfo[2] += 29 * quantities[0];
-    nutritionInfo[3] += 0 * quantities[0];
-    nutritionInfo[4] += 0 * quantities[0];
-    nutritionInfo[5] += 149 * quantities[0];
-    nutritionInfo[6] += 8.1 * quantities[0];
-    nutritionInfo[7] += 1309.8 * quantities[0];
-  } else if (val == 1) {
-    calories += 16;
-    fat += 0;
-    cholesterol += 0;
-    sodium += 0;
-    carbohydrate += 1;
-    fiber += 7;
+    fat.push(0.3 * quantities[0]);
+    sodium.push(1633 * quantities[0]);
+    fiber.push(29 * quantities[0]);
+    sugar.push(0 * quantities[0]);
+    vitd.push(0 * quantities[0]);
+    calcium.push(149 * quantities[0]);
+    iron.push(8.1 * quantities[0]);
+    potassium.push(1309.8 * quantities[0]);
   } 
+  
+  var caloriesSum = 0;
+  var j = 0;
+  for (j=0; j<calories.length; j++) {
+    caloriesSum += calories[j];
+    nutritionInfo[0] += fat[j];
+    nutritionInfo[1] += sodium[j];
+    nutritionInfo[2] += fiber[j];
+    nutritionInfo[3] += sugar[j];
+    nutritionInfo[4] += vitd[j];
+    nutritionInfo[5] += calcium[j];
+    nutritionInfo[6] += iron[j];
+    nutritionInfo[7] += potassium[j];
+  }
     
   //g, mg, g, g, mcg, mg, mg, mg
     for (i=0; i<selected.length; i++) {
     document.getElementById("nutrition-table").innerHTML = "<th>Saturated Fat</th><th>Sodium</th><th>Dietary Fiber</th><th>Added Sugar</th><th>Vitamin D</th><th>Calcium</th><th>Iron</th><th>Potassium</th><tr><td>" + nutritionInfo[0] + " g</td><td>" + nutritionInfo[1] + " mg</td><td>" + nutritionInfo[2] + " g</td><td>" + nutritionInfo[3] + " g</td><td>" + nutritionInfo[4] + " mcg</td><td>" + nutritionInfo[5] + " mg</td><td>" + nutritionInfo[6] + " mg</td><td>" + nutritionInfo[7] + " mg</td><td>";
   }
   
-  var caloriesSum = 0;
-  var j = 0;
-  for (j=0; j<calories.length; j++) {
-    caloriesSum += calories[j];
-  }
+
+  
   
   document.getElementById("calories").innerHTML = "Total calories: " + caloriesSum;
   var chart = new CanvasJS.Chart("chartContainer", {
