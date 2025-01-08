@@ -7,7 +7,7 @@
       <div id="myDropdown" class="dropdown-content">
       <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
         <a onclick="graph(0)">Black Beans</a>
-        <a onclick="graph(1)">Lettuce</a>
+        <a onclick="graph(1)">White Rice</a>
         <a onclick="graph(2)">Tomato</a>
         <a onclick="graph(3)">Tortilla</a>
         <a onclick="graph(4)">Shredded Cheddar Cheese</a>
@@ -49,14 +49,14 @@ function removeSlot(val) {
   selected.splice(val,1);
   quantities.splice(val,1);
   calories.splice(val,1);
-  nutritionInfo[0].splice(val,1);
-  nutritionInfo[1].splice(val,1);
-  nutritionInfo[2].splice(val,1);
-  nutritionInfo[3].splice(val,1);
-  nutritionInfo[4].splice(val,1);
-  nutritionInfo[5].splice(val,1);
-  nutritionInfo[6].splice(val,1);
-  nutritionInfo[7].splice(val,1);
+  fat.splice(val,1);
+  sodium.splice(val,1);
+  fiber.splice(val,1);
+  sugar.splice(val,1);
+  vitd.splice(val,1);
+  calcium.splice(val,1);
+  iron.splice(val,1);
+  potassium.splice(val,1);
   graph();
 }
 
@@ -88,6 +88,16 @@ function graph(val) {
     calcium.push(149 * quantities[0]);
     iron.push(8.1 * quantities[0]);
     potassium.push(1309.8 * quantities[0]);
+  } else if (val == 1) {
+    calories.push(205 * quantities[0]);
+    fat.push(0.4 * quantities[0]);
+    sodium.push(1.6 * quantities[0]);
+    fiber.push(0.6 * quantities[0]);
+    sugar.push(0 * quantities[0]);
+    vitd.push(0 * quantities[0]);
+    calcium.push(16 * quantities[0]);
+    iron.push(1.9 * quantities[0]);
+    potassium.push(55.3 * quantities[0]);
   } 
   
   var caloriesSum = 0;
@@ -110,7 +120,7 @@ function graph(val) {
     for (i=0; i<selected.length; i++) {
       document.getElementById("nutrition-table").innerHTML += "<td>" + selected[i] + "<td>" + fat[i] + " g</td><td>" + sodium[i] + " mg</td><td>" + fiber[i] + " g</td><td>" + sugar[i] + " g</td><td>" + vitd[i] + " mcg</td><td>" + calcium[i] + " mg</td><td>" + iron[i] + " mg</td><td>" + potassium[i] + " mg</td><tr>";
     }
-    document.getElementById("nutrition-table").innerHTML +="<td></td><td id='total'>" + nutritionInfo[0] + " g</td><td id='total'>" + nutritionInfo[1] + " mg</td><td id='total'>" + nutritionInfo[2] + " g</td><td id='total'>" + nutritionInfo[3] + " g</td><td id='total'>" + nutritionInfo[4] + " mcg</td><td id='total'>" + nutritionInfo[5] + " mg</td><td id='total'>" + nutritionInfo[6] + " mg</td><td id='total'>" + nutritionInfo[7] + " mg</td>"
+    document.getElementById("nutrition-table").innerHTML +="<td></td><td id='total'>" + Math.round(nutritionInfo[0] * 100) / 100 + " g</td><td id='total'>" + Math.round(nutritionInfo[1] * 100) / 100 + " mg</td><td id='total'>" + Math.round(nutritionInfo[2] * 100) / 100 + " g</td><td id='total'>" + Math.round(nutritionInfo[3] * 100) / 100 + " g</td><td id='total'>" + Math.round(nutritionInfo[4] * 100) / 100 + " mcg</td><td id='total'>" + Math.round(nutritionInfo[5] * 100) / 100 + " mg</td><td id='total'>" + Math.round(nutritionInfo[6] * 100) / 100 + " mg</td><td id='total'>" + Math.round(nutritionInfo[7] * 100) / 100 + " mg</td>"
 
   
   
