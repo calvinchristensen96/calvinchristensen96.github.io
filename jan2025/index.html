@@ -105,10 +105,12 @@ function graph(val) {
   }
     
   //g, mg, g, g, mcg, mg, mg, mg
+    
+    document.getElementById("nutrition-table").innerHTML = "<th></th><th>Saturated Fat</th><th>Sodium</th><th>Dietary Fiber</th><th>Added Sugar</th><th>Vitamin D</th><th>Calcium</th><th>Iron</th><th>Potassium</th><tr>";
     for (i=0; i<selected.length; i++) {
-    document.getElementById("nutrition-table").innerHTML = "<th>Saturated Fat</th><th>Sodium</th><th>Dietary Fiber</th><th>Added Sugar</th><th>Vitamin D</th><th>Calcium</th><th>Iron</th><th>Potassium</th><tr><td>" + nutritionInfo[0] + " g</td><td>" + nutritionInfo[1] + " mg</td><td>" + nutritionInfo[2] + " g</td><td>" + nutritionInfo[3] + " g</td><td>" + nutritionInfo[4] + " mcg</td><td>" + nutritionInfo[5] + " mg</td><td>" + nutritionInfo[6] + " mg</td><td>" + nutritionInfo[7] + " mg</td><td>";
-  }
-  
+      document.getElementById("nutrition-table").innerHTML += "<td>" + selected[i] + "<td>" + fat[i] + " g</td><td>" + sodium[i] + " mg</td><td>" + fiber[i] + " g</td><td>" + sugar[i] + " g</td><td>" + vitd[i] + " mcg</td><td>" + calcium[i] + " mg</td><td>" + iron[i] + " mg</td><td>" + potassium[i] + " mg</td><tr>";
+    }
+    document.getElementById("nutrition-table").innerHTML +="<td></td><td id='total'>" + nutritionInfo[0] + " g</td><td id='total'>" + nutritionInfo[1] + " mg</td><td id='total'>" + nutritionInfo[2] + " g</td><td id='total'>" + nutritionInfo[3] + " g</td><td id='total'>" + nutritionInfo[4] + " mcg</td><td id='total'>" + nutritionInfo[5] + " mg</td><td id='total'>" + nutritionInfo[6] + " mg</td><td id='total'>" + nutritionInfo[7] + " mg</td>"
 
   
   
@@ -164,6 +166,12 @@ function filterFunction() {
 
 
 <style>
+
+#total {
+  font-weight: bold;
+  border-top: 1px solid black;
+}
+
 .dropbtn {
   background-color: #04AA6D;
   color: white;
