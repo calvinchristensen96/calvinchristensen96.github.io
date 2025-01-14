@@ -121,9 +121,6 @@ function graph(val) {
       document.getElementById("nutrition-table").innerHTML += "<td>" + selected[i] + "<td>" + fat[i] + " g</td><td>" + sodium[i] + " mg</td><td>" + fiber[i] + " g</td><td>" + sugar[i] + " g</td><td>" + vitd[i] + " mcg</td><td>" + calcium[i] + " mg</td><td>" + iron[i] + " mg</td><td>" + potassium[i] + " mg</td><tr>";
     }
     document.getElementById("nutrition-table").innerHTML +="<td></td><td id='total'>" + Math.round(nutritionInfo[0] * 100) / 100 + " g</td><td id='total'>" + Math.round(nutritionInfo[1] * 100) / 100 + " mg</td><td id='total'>" + Math.round(nutritionInfo[2] * 100) / 100 + " g</td><td id='total'>" + Math.round(nutritionInfo[3] * 100) / 100 + " g</td><td id='total'>" + Math.round(nutritionInfo[4] * 100) / 100 + " mcg</td><td id='total'>" + Math.round(nutritionInfo[5] * 100) / 100 + " mg</td><td id='total'>" + Math.round(nutritionInfo[6] * 100) / 100 + " mg</td><td id='total'>" + Math.round(nutritionInfo[7] * 100) / 100 + " mg</td>"
-
-  
-  
   document.getElementById("calories").innerHTML = "Total calories: " + caloriesSum;
   var chart = new CanvasJS.Chart("chartContainer", {
     animationEnabled: true,
