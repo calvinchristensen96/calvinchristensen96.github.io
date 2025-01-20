@@ -102,15 +102,15 @@ function graph(val) {
   nutritionInfo = [0, 0, 0, 0, 0, 0, 0, 0];
   var j = 0;
   for (j=0; j<calories.length; j++) {
-    caloriesSum += calories[j];
-    nutritionInfo[0] += fat[j];
-    nutritionInfo[1] += sodium[j];
-    nutritionInfo[2] += fiber[j];
-    nutritionInfo[3] += sugar[j];
-    nutritionInfo[4] += vitd[j];
-    nutritionInfo[5] += calcium[j];
-    nutritionInfo[6] += iron[j];
-    nutritionInfo[7] += potassium[j];
+    caloriesSum += calories[j] * quantities[j];
+    nutritionInfo[0] += fat[j] * quantities[j];
+    nutritionInfo[1] += sodium[j] * quantities[j];
+    nutritionInfo[2] += fiber[j] * quantities[j];
+    nutritionInfo[3] += sugar[j] * quantities[j];
+    nutritionInfo[4] += vitd[j] * quantities[j];
+    nutritionInfo[5] += calcium[j] * quantities[j];
+    nutritionInfo[6] += iron[j] * quantities[j];
+    nutritionInfo[7] += potassium[j] * quantities[j];
   }
     
  //g, mg, g, g, mcg, mg, mg, mg
