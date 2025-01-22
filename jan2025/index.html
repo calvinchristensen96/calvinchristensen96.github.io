@@ -2,23 +2,25 @@
 <html>
   <head>
     <body>
-    <div class="dropdown">
-      <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-      <div id="myDropdown" class="dropdown-content">
-      <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-        <a onclick="graph(0)">Black Beans</a>
-        <a onclick="graph(1)">White Rice</a>
-        <a onclick="graph(2)">Tomato</a>
-        <a onclick="graph(3)">Tortilla</a>
-        <a onclick="graph(4)">Shredded Cheddar Cheese</a>
+    <div id="header">
+      <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+          <a onclick="graph(0)">Black Beans</a>
+          <a onclick="graph(1)">White Rice</a>
+          <a onclick="graph(2)">Tomato</a>
+          <a onclick="graph(3)">Tortilla</a>
+          <a onclick="graph(4)">Shredded Cheddar Cheese</a>
+        </div> 
       </div>
+      <div id="ingredients">
+        <table id="ingredient-table"></table>
+      </div>
+      <div id="calories"></div>
     </div>
-    <div id="ingredients">
-      <table id="ingredient-table"></table>
-    </div>
-    <div id="calories"></div>
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-      <div id="nutrition">
+    <div id="nutrition">
       <table id="nutrition-table"></table>
     </div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -170,6 +172,10 @@ function filterFunction() {
 </head>
   
 <style>
+
+body, * {
+  margin: 0px;
+}
 #total {
   font-weight: bold;
   border-top: 1px solid black;
@@ -224,5 +230,23 @@ function filterFunction() {
 
 .dropdown-content a:hover {background-color: #f1f1f1}
 .show {display:block;}
+
+#header { 
+  background-color: #76abae;
+  padding: 12px;
+}
+
+#chartContainer {
+  padding: 12px;
+}
+
+#nutrition {
+  color: white;
+  background-color: #313634;
+  padding: 12px;
+}
+
+
+
 </style>
 </html>
