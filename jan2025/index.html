@@ -42,7 +42,6 @@ var potassium = [];
 var ingredients = ["Black Beans", "White Rice", "Tomato", "Tortilla", "Shredded Cheddar Cheese"];
 var selected = [];
 var quantities = [];
-
 graph();
 
 function removeSlot(val) {
@@ -64,7 +63,6 @@ function servings(val) {
   quantities[val] = document.getElementById("servings-" + val).value;
   graph();
 }
-
 
 function graph(val) {
   if (val >= 0) {
