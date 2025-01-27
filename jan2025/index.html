@@ -127,7 +127,7 @@ function graph(val) {
     axisY: {
       title: "Percentage"
     },
-    data: [{        
+    data: [ {        
       type: "column",  
       showInLegend: true, 
       legendMarkerColor: "grey",
@@ -142,7 +142,7 @@ function graph(val) {
         { y: nutritionInfo[6] / dailyRec[6] * 100, label: "Iron" },
         { y: nutritionInfo[7] / dailyRec[7] * 100, label: "Potassium" }
       ]
-    }]
+    } ]
   });
   chart.render();
 }
