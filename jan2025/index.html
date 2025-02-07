@@ -74,7 +74,6 @@ function graph(val) {
   for (i=0; i<selected.length; i++) {
     document.getElementById("ingredient-table").innerHTML += "<th>Ingredient</th><th>Servings</th><th>Quantitiy</th><tr><td>" + selected[i] + "</td><td><input id='servings-" + i + "'type='number' step='0.25' min='1' value=" + quantities[i] + " onchange='servings(" + i + ")'></input></td><td><input type='number' value=" + 15 * quantities[i] + " id='serving-size'></input> oz</td><td><button onclick='removeSlot(" + i + ")'>X</button></td><tr>";
   }
-  
   if (val == 0) {
     calories.push(387 * quantities[0]);
     fat.push(0.3 * quantities[0]);
@@ -96,7 +95,6 @@ function graph(val) {
     iron.push(1.9 * quantities[0]);
     potassium.push(55.3 * quantities[0]);
   } 
-  
   var caloriesSum = 0;
   nutritionInfo = [0, 0, 0, 0, 0, 0, 0, 0];
   var j = 0;
@@ -111,7 +109,6 @@ function graph(val) {
     nutritionInfo[6] += iron[j] * quantities[j];
     nutritionInfo[7] += potassium[j] * quantities[j];
   }
-    
  //g, mg, g, g, mcg, mg, mg, mg
     document.getElementById("nutrition-table").innerHTML = "<th></th><th>Saturated Fat</th><th>Sodium</th><th>Dietary Fiber</th><th>Added Sugar</th><th>Vitamin D</th><th>Calcium</th><th>Iron</th><th>Potassium</th><tr>";
     for (i=0; i<selected.length; i++) {
